@@ -17,7 +17,7 @@ html{scroll-behavior:smooth}
 body{background:var(--charcoal);color:var(--cream);font-family:'EB Garamond',Georgia,serif;font-size:18px;line-height:1.7;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
 
 /* HERO */
-.hero{text-align:center;padding:90px 2rem 40px;background:radial-gradient(ellipse at 50% 18%,#2d2008 0%,var(--charcoal) 62%);position:relative}
+.hero{text-align:center;padding:90px 2rem 24px;background:radial-gradient(ellipse at 50% 18%,#2d2008 0%,var(--charcoal) 62%);position:relative}
 .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a84c' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
 .hero-eyebrow{font-size:0.68rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;font-family:'Crimson Pro',serif;position:relative}
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6.5vw,5rem);font-weight:900;line-height:1.02;color:var(--cream);position:relative}
@@ -25,8 +25,12 @@ body{background:var(--charcoal);color:var(--cream);font-family:'EB Garamond',Geo
 .hero-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.05rem,2.4vw,1.4rem);color:var(--gold-light);opacity:0.85;position:relative}
 .hero-strip{margin-top:1.4rem;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream);opacity:0.4;font-family:'Crimson Pro',serif;position:relative}
 
+/* ABOUT */
+.about{max-width:660px;margin:0 auto;padding:14px 2rem 4px;text-align:center}
+.about p{font-family:'EB Garamond',serif;font-size:1.1rem;line-height:1.8;color:var(--cream);opacity:0.8}
+
 /* LINKS */
-.links{width:100%;max-width:940px;margin:0 auto;padding:30px 2rem 10px;flex:1}
+.links{width:100%;max-width:940px;margin:0 auto;padding:26px 2rem 10px;flex:1}
 .links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem}
 .link-card{display:block;text-decoration:none;background:var(--mid);border:1px solid var(--rule);border-radius:4px;padding:1.7rem 1.6rem;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s}
 .link-card:hover{transform:translateY(-4px);border-color:var(--gold-dim);box-shadow:0 14px 36px rgba(0,0,0,0.6)}
@@ -38,14 +42,19 @@ body{background:var(--charcoal);color:var(--cream);font-family:'EB Garamond',Geo
 /* SUBSECTION */
 .sub-label{text-align:center;margin:3.2rem auto 1.4rem;font-family:'Crimson Pro',serif;font-size:0.66rem;letter-spacing:0.34em;text-transform:uppercase;color:var(--gold);opacity:0.7;position:relative}
 .sub-label::before,.sub-label::after{content:'';display:inline-block;width:38px;height:1px;background:var(--rule);vertical-align:middle;margin:0 0.9rem}
-.solo-grid{display:grid;grid-template-columns:1fr;max-width:440px;margin:0 auto}
+
+/* CONTACT */
+.contact{text-align:center;margin:0 auto}
+.contact-note{font-size:0.92rem;color:var(--cream);opacity:0.5;margin-bottom:0.6rem;font-style:italic}
+.contact a{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3vw,1.6rem);color:var(--gold-light);text-decoration:none;border-bottom:1px solid var(--gold-dim);padding-bottom:3px;transition:color 0.2s,border-color 0.2s}
+.contact a:hover{color:var(--gold);border-color:var(--gold)}
 
 /* FOOTER */
 footer{border-top:1px solid var(--rule);text-align:center;padding:2.6rem 2rem;margin-top:3rem;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream);opacity:0.3;font-family:'Crimson Pro',serif}
 
 @media(max-width:600px){
-  .hero{padding:70px 1.4rem 30px}
-  .links{padding:24px 1.4rem 10px}
+  .hero{padding:70px 1.4rem 20px}
+  .links{padding:22px 1.4rem 10px}
 }
 </style>
 </head>
@@ -58,6 +67,10 @@ footer{border-top:1px solid var(--rule);text-align:center;padding:2.6rem 2rem;ma
   <p class="hero-sub">A Voice for the Working Class</p>
   <div class="hero-strip">Books &nbsp;&middot;&nbsp; Shirts &nbsp;&middot;&nbsp; Prints &nbsp;&middot;&nbsp; Puzzles</div>
 </header>
+
+<section class="about">
+  <p>Hey, I'm Uncle Zeke. Just a guy out of Moravia, New York, trying to earn an honest living and spread a little of what I believe makes the world better while I do it. Most of what I make comes back to the same place, the working folks who actually built this country and the history that tends to get forgotten. If any of it lands with you, pull up a chair and look around.</p>
+</section>
 
 <main class="links">
   <div class="links-grid">
@@ -97,16 +110,19 @@ footer{border-top:1px solid var(--rule);text-align:center;padding:2.6rem 2rem;ma
       <span class="link-go">Follow along &rsaquo;</span>
     </a>
 
-  </div>
-
-  <div class="sub-label">Another Shop</div>
-  <div class="solo-grid">
     <a class="link-card" href="https://www.teepublic.com/user/minddump" target="_blank" rel="noopener">
       <div class="link-eyebrow">TeePublic</div>
       <div class="link-title">MindDump</div>
       <div class="link-desc">A second shirt shop, running its own lane.</div>
       <span class="link-go">Shop on TeePublic &rsaquo;</span>
     </a>
+
+  </div>
+
+  <div class="sub-label">Get in Touch</div>
+  <div class="contact">
+    <p class="contact-note">Questions, wholesale, or just to say hey.</p>
+    <a href="mailto:shopfloor@unclezeke.com">shopfloor@unclezeke.com</a>
   </div>
 </main>
 
