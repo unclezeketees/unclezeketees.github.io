@@ -81,6 +81,7 @@ page("index.html","Uncle Zeke's Place | A Voice for the Working Class",
     </div>
     <div class="grid">{red_items()}</div>
     <div class="cta"><a class="btn white" href="shirts.html">See All Red Shirts</a></div>
+    <a class="feature" href="books.html"><img src="img/web/uz_floorman.jpg" alt="The Floor Man's Guide to Contract Season cover" loading="lazy" width="500" height="750"><div><div class="eyebrow">Contract Season Reading</div><div class="feature-title">The Floor Man's Guide to Contract Season</div><p>What it says, what it means, and what to do about it. Plain language, real situations, no law degree required.</p><span class="door-go">Get the book &rsaquo;</span></div></a>
   </div>
 </section>
 
@@ -106,7 +107,7 @@ page("index.html","Uncle Zeke's Place | A Voice for the Working Class",
       <div class="door-body"><div class="eyebrow">Etsy</div><div class="door-title">Patent Prints</div><div class="door-desc">Machine shop and fishing lure patents, printable wall art for the shop or the den.</div><span class="door-go">Browse prints &rsaquo;</span></div>
     </a>
     <a class="door" href="books.html">
-      <div class="door-img covers"><img src="img/web/workers_unite.jpg" alt="" loading="lazy"><img src="img/web/ovc_debs.jpg" alt="" loading="lazy"><img src="img/web/ovc_tess.jpg" alt="" loading="lazy"></div>
+      <div class="door-img covers"><img src="img/web/uz_floorman.jpg" alt="" loading="lazy"><img src="img/web/workers_unite.jpg" alt="" loading="lazy"><img src="img/web/ovc_debs.jpg" alt="" loading="lazy"></div>
       <div class="door-body"><div class="eyebrow">Amazon</div><div class="door-title">Books</div><div class="door-desc">Labor history puzzles, annotated classics, and a few surprises.</div><span class="door-go">Browse books &rsaquo;</span></div>
     </a>
   </div>
@@ -125,6 +126,7 @@ page("shirts.html","Red Shirt Wednesday | Uncle Zeke Shirts",
     </div>
     <div class="grid">{red_items()}</div>
     <div class="cta"><a class="btn white" href="{UZ_TP}" target="_blank" rel="noopener">Go to the Store</a></div>
+    <a class="feature" href="{AMZ_UZ}" target="_blank" rel="noopener"><img src="img/web/uz_floorman.jpg" alt="The Floor Man's Guide to Contract Season cover" loading="lazy" width="500" height="750"><div><div class="eyebrow">Contract Season Reading</div><div class="feature-title">The Floor Man's Guide to Contract Season</div><p>What it says, what it means, and what to do about it. Plain language, real situations, no law degree required.</p><span class="door-go">Get it on Amazon &rsaquo;</span></div></a>
   </div>
 </section>
 <main class="section"><div class="wrap">
@@ -169,7 +171,7 @@ page("prints.html","Patent Prints | Uncle Zeke's Place",
 
 # BOOKS
 def books(lst,href): return "".join(item(i,t,a,href,alt=f"{t} cover",w=500) for i,t,a in lst)
-UZB=[("workers_unite","Workers Unite! Word Search","Uncle Zeke"),("trailblazers","Trailblazers! Word Search","Uncle Zeke")]
+UZB=[("uz_floorman","The Floor Man's Guide to Contract Season","Uncle Zeke"),("workers_unite","Workers Unite! Word Search","Uncle Zeke"),("trailblazers","Trailblazers! Word Search","Uncle Zeke")]
 OVC=[("ovc_debs","Debs: His Life, Writings and Speeches","Eugene V. Debs"),("ovc_sabotage","Simple Sabotage Field Manual","Office of Strategic Services"),
      ("ovc_tess","Tess of the Storm Country","Grace Miller White"),("ovc_valley","From the Valley of the Missing","Grace Miller White"),
      ("ovc_secret","The Secret of the Storm Country","Grace Miller White"),("ovc_rose","Rose O' Paradise","Grace Miller White"),
@@ -185,7 +187,7 @@ page("books.html","Books | Uncle Zeke's Place",
   <p>Everything here is published out of Moravia, New York by Phoenix Industries Media &amp; Publishing.</p>
 </header>
 <main><div class="wrap">
-  <section class="section"><div class="section-head"><div class="eyebrow">Puzzles and History</div><h2>Uncle Zeke</h2><p>Word search books built from real labor and local history, with the story behind every puzzle.</p></div>
+  <section class="section"><div class="section-head"><div class="eyebrow">Puzzles and History</div><h2>Uncle Zeke</h2><p>Plain-language union know-how and word search books built from real labor and local history.</p></div>
     <div class="grid">{books(UZB,AMZ_UZ)}</div>
     <div class="cta"><a class="btn" href="{AMZ_UZ}" target="_blank" rel="noopener">Uncle Zeke on Amazon</a></div></section>
   <section class="section"><div class="section-head"><div class="eyebrow">Annotated Classics</div><h2>Owasco Valley Classics</h2><p>Public domain works worth keeping, newly typeset with an introduction and a note on the text. Labor history, Finger Lakes authors, and the classics.</p></div>
