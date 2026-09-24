@@ -123,3 +123,9 @@ footer{border-top:1px solid var(--rule);text-align:center;padding:2.4rem 16px;ma
 .feature p{font-size:0.95rem;opacity:0.9;line-height:1.5}
 .feature .door-go{color:#fff;display:inline-block}
 @media(max-width:600px){.feature{flex-direction:column;text-align:center}.feature img{width:140px}}
+.reading{margin-top:2.4rem}
+.reading-head{text-align:center;color:#ffd6dc;margin-bottom:1rem}
+.reading-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:960px;margin:0 auto}
+.reading .feature{margin:0;max-width:none}
+.reading .feature img{width:110px}
+@media(max-width:760px){.reading-row{grid-template-columns:1fr}}

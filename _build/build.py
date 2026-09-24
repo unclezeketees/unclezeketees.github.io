@@ -61,6 +61,13 @@ RED=[("red_red_until_signed","Red Until It's Signed","Back print"),
      ("red_union_kid","Union Kid","Front and back, youth sizes too")]
 def red_items(): return "".join(item(i,t,m,UZ_TP,alt=f"{t} shirt design",w=700,h=700) for i,t,m in RED)
 
+READING=[("uz_floorman","The Floor Man's Guide to Contract Season","What it says, what it means, and what to do about it. Plain language, real situations, no law degree required."),
+         ("workers_unite","Workers Unite! Word Search Puzzles","120 puzzles celebrating American labor history. Working class puzzles with working class solutions.")]
+def reading(href,go,ext=False):
+    tgt=' target="_blank" rel="noopener"' if ext else ''
+    cards="".join(f'''<a class="feature" href="{href}"{tgt}><img src="img/web/{i}.jpg" alt="{html.escape(t)} cover" loading="lazy" width="500" height="750"><div><div class="feature-title">{html.escape(t)}</div><p>{html.escape(d)}</p><span class="door-go">{go} &rsaquo;</span></div></a>''' for i,t,d in READING)
+    return f'<div class="reading"><div class="eyebrow reading-head">Contract Season Reading</div><div class="reading-row">{cards}</div></div>'
+
 # INDEX
 page("index.html","Uncle Zeke's Place | A Voice for the Working Class",
  "Uncle Zeke's Place. Union shirts, patent prints, and books with a working-class voice, out of Moravia, New York.",f'''
@@ -81,7 +88,7 @@ page("index.html","Uncle Zeke's Place | A Voice for the Working Class",
     </div>
     <div class="grid">{red_items()}</div>
     <div class="cta"><a class="btn white" href="shirts.html">See All Red Shirts</a></div>
-    <a class="feature" href="books.html"><img src="img/web/uz_floorman.jpg" alt="The Floor Man's Guide to Contract Season cover" loading="lazy" width="500" height="750"><div><div class="eyebrow">Contract Season Reading</div><div class="feature-title">The Floor Man's Guide to Contract Season</div><p>What it says, what it means, and what to do about it. Plain language, real situations, no law degree required.</p><span class="door-go">Get the book &rsaquo;</span></div></a>
+    {reading("books.html","Get the book")}
   </div>
 </section>
 
@@ -126,7 +133,7 @@ page("shirts.html","Red Shirt Wednesday | Uncle Zeke Shirts",
     </div>
     <div class="grid">{red_items()}</div>
     <div class="cta"><a class="btn white" href="{UZ_TP}" target="_blank" rel="noopener">Go to the Store</a></div>
-    <a class="feature" href="{AMZ_UZ}" target="_blank" rel="noopener"><img src="img/web/uz_floorman.jpg" alt="The Floor Man's Guide to Contract Season cover" loading="lazy" width="500" height="750"><div><div class="eyebrow">Contract Season Reading</div><div class="feature-title">The Floor Man's Guide to Contract Season</div><p>What it says, what it means, and what to do about it. Plain language, real situations, no law degree required.</p><span class="door-go">Get it on Amazon &rsaquo;</span></div></a>
+    {reading(AMZ_UZ,"Get it on Amazon",True)}
   </div>
 </section>
 <main class="section"><div class="wrap">
@@ -171,8 +178,8 @@ page("prints.html","Patent Prints | Uncle Zeke's Place",
 
 # BOOKS
 def books(lst,href): return "".join(item(i,t,a,href,alt=f"{t} cover",w=500) for i,t,a in lst)
-UZB=[("uz_floorman","The Floor Man's Guide to Contract Season","Uncle Zeke"),("workers_unite","Workers Unite! Word Search","Uncle Zeke"),("trailblazers","Trailblazers! Word Search","Uncle Zeke")]
-OVC=[("ovc_debs","Debs: His Life, Writings and Speeches","Eugene V. Debs"),("ovc_sabotage","Simple Sabotage Field Manual","Office of Strategic Services"),
+UZB=[("uz_floorman","The Floor Man's Guide to Contract Season","Uncle Zeke"),("workers_unite","Workers Unite! Word Search Puzzles","Uncle Zeke"),("trailblazers","Trailblazers! Word Search","Uncle Zeke")]
+OVC=[("ovc_walls","Walls and Bars","Eugene V. Debs"),("ovc_haywood","Bill Haywood's Book","William D. Haywood"),("ovc_debs","Debs: His Life, Writings and Speeches","Eugene V. Debs"),("ovc_sabotage","Simple Sabotage Field Manual","Office of Strategic Services"),
      ("ovc_tess","Tess of the Storm Country","Grace Miller White"),("ovc_valley","From the Valley of the Missing","Grace Miller White"),
      ("ovc_secret","The Secret of the Storm Country","Grace Miller White"),("ovc_rose","Rose O' Paradise","Grace Miller White"),
      ("ovc_yellow","The Yellow Wallpaper","Charlotte Perkins Gilman"),("ovc_dorian","The Picture of Dorian Gray","Oscar Wilde"),
