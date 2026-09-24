@@ -3,132 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Uncle Zeke's Place | A Voice for the Working Class</title>
-<meta name="description" content="Uncle Zeke's Place. Books, shirts, prints, and puzzles with a working-class voice, out of Moravia, New York.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:wght@300;400&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --gold:#c9a84c;--gold-light:#e8c97a;--gold-dim:#7a6030;
-  --cream:#f2ead8;--ink:#1a1612;--charcoal:#111008;--mid:#1d1a10;
-  --rule:rgba(201,168,76,0.22);
-}
-html{scroll-behavior:smooth}
-body{background:var(--charcoal);color:var(--cream);font-family:'EB Garamond',Georgia,serif;font-size:18px;line-height:1.7;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
-
-/* HERO */
-.hero{text-align:center;padding:90px 2rem 24px;background:radial-gradient(ellipse at 50% 18%,#2d2008 0%,var(--charcoal) 62%);position:relative}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a84c' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
-.hero-eyebrow{font-size:0.68rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;font-family:'Crimson Pro',serif;position:relative}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6.5vw,5rem);font-weight:900;line-height:1.02;color:var(--cream);position:relative}
-.hero-rule{width:64px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.4rem auto;position:relative}
-.hero-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.05rem,2.4vw,1.4rem);color:var(--gold-light);opacity:0.85;position:relative}
-.hero-strip{margin-top:1.4rem;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream);opacity:0.4;font-family:'Crimson Pro',serif;position:relative}
-
-/* ABOUT */
-.about{max-width:660px;margin:0 auto;padding:14px 2rem 4px;text-align:center}
-.about p{font-family:'EB Garamond',serif;font-size:1.1rem;line-height:1.8;color:var(--cream);opacity:0.8}
-
-/* LINKS */
-.links{width:100%;max-width:940px;margin:0 auto;padding:26px 2rem 10px;flex:1}
-.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem}
-.link-card{display:block;text-decoration:none;background:var(--mid);border:1px solid var(--rule);border-radius:4px;padding:1.7rem 1.6rem;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s}
-.link-card:hover{transform:translateY(-4px);border-color:var(--gold-dim);box-shadow:0 14px 36px rgba(0,0,0,0.6)}
-.link-eyebrow{font-family:'Crimson Pro',serif;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.55rem}
-.link-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--cream);margin-bottom:0.45rem;line-height:1.15}
-.link-desc{font-size:0.88rem;color:var(--cream);opacity:0.55;line-height:1.5}
-.link-go{display:inline-block;margin-top:0.95rem;font-family:'Crimson Pro',serif;font-size:0.64rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.85}
-
-/* SUBSECTION */
-.sub-label{text-align:center;margin:3.2rem auto 1.4rem;font-family:'Crimson Pro',serif;font-size:0.66rem;letter-spacing:0.34em;text-transform:uppercase;color:var(--gold);opacity:0.7;position:relative}
-.sub-label::before,.sub-label::after{content:'';display:inline-block;width:38px;height:1px;background:var(--rule);vertical-align:middle;margin:0 0.9rem}
-
-/* CONTACT */
-.contact{text-align:center;margin:0 auto}
-.contact-note{font-size:0.92rem;color:var(--cream);opacity:0.5;margin-bottom:0.6rem;font-style:italic}
-.contact a{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3vw,1.6rem);color:var(--gold-light);text-decoration:none;border-bottom:1px solid var(--gold-dim);padding-bottom:3px;transition:color 0.2s,border-color 0.2s}
-.contact a:hover{color:var(--gold);border-color:var(--gold)}
-
-/* FOOTER */
-footer{border-top:1px solid var(--rule);text-align:center;padding:2.6rem 2rem;margin-top:3rem;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream);opacity:0.3;font-family:'Crimson Pro',serif}
-
-@media(max-width:600px){
-  .hero{padding:70px 1.4rem 20px}
-  .links{padding:22px 1.4rem 10px}
-}
-</style>
+<title>Uncle Zeke&#x27;s Place | A Voice for the Working Class</title>
+<meta name="description" content="Uncle Zeke&#x27;s Place. Union shirts, patent prints, and books with a working-class voice, out of Moravia, New York.">
+<meta property="og:title" content="Uncle Zeke&#x27;s Place | A Voice for the Working Class">
+<meta property="og:description" content="Uncle Zeke&#x27;s Place. Union shirts, patent prints, and books with a working-class voice, out of Moravia, New York.">
+<meta property="og:image" content="https://unclezeke.com/img/web/og.jpg">
+<meta property="og:url" content="https://unclezeke.com/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="img/web/favicon.png">
+<link rel="apple-touch-icon" href="img/web/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:wght@300;400&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<nav class="nav"><div class="nav-in">
+  <a class="nav-brand" href="index.html"><img src="img/web/logo.jpg" alt="" width="36" height="36">Uncle Zeke's Place</a>
+  <div class="nav-links"><a href="shirts.html" class="red">Red Shirts</a><a href="minddump.html" class="">MindDump</a><a href="prints.html" class="">Prints</a><a href="books.html" class="">Books</a></div>
+</div></nav>
 
 <header class="hero">
-  <div class="hero-eyebrow">Moravia, New York</div>
+  <img class="hero-logo" src="img/web/logo.jpg" alt="Uncle Zeke badge" width="150" height="150">
+  <div class="eyebrow">Moravia, New York</div>
   <h1 class="hero-title">Uncle Zeke's Place</h1>
-  <div class="hero-rule"></div>
+  <div class="rule"></div>
   <p class="hero-sub">A Voice for the Working Class</p>
-  <div class="hero-strip">Books &nbsp;&middot;&nbsp; Shirts &nbsp;&middot;&nbsp; Prints &nbsp;&middot;&nbsp; Puzzles</div>
 </header>
 
-<section class="about">
-  <p>Hey, I'm Uncle Zeke. Just a guy out of Moravia, New York, trying to earn an honest living and spread a little of what I believe makes the world better while I do it. Most of what I make comes back to the same place, the working folks who actually built this country and the history that tends to get forgotten. If any of it lands with you, pull up a chair and look around.</p>
+<section class="rsw" id="red-shirt-wednesday">
+  <div class="wrap">
+    <div class="rsw-head">
+      <div class="eyebrow">Contract Year</div>
+      <h2>Red Shirt Wednesday</h2>
+      <p>Every Wednesday is red until there's a fair contract with a signature on it. Shirts made by a steward, for the folks on the floor and the families backing them.</p>
+    </div>
+    <div class="grid"><a class="item" href="https://www.teepublic.com/user/unclezeke" target="_blank" rel="noopener" data-link="store"><img src="img/web/red_red_until_signed.jpg" alt="Red Until It&#x27;s Signed shirt design" loading="lazy" width="700" height="700"><div class="item-body"><div class="item-title">Red Until It&#x27;s Signed</div><div class="item-meta">Back print</div></div></a><a class="item" href="https://www.teepublic.com/user/unclezeke" target="_blank" rel="noopener" data-link="store"><img src="img/web/red_no_contract_no_peace.jpg" alt="No Contract, No Peace shirt design" loading="lazy" width="700" height="700"><div class="item-body"><div class="item-title">No Contract, No Peace</div><div class="item-meta">Front and back print</div></div></a><a class="item" href="https://www.teepublic.com/user/unclezeke" target="_blank" rel="noopener" data-link="store"><img src="img/web/red_record_profits.jpg" alt="Record Profits. Empty Promises. shirt design" loading="lazy" width="700" height="700"><div class="item-body"><div class="item-title">Record Profits. Empty Promises.</div><div class="item-meta">Back print</div></div></a><a class="item" href="https://www.teepublic.com/user/unclezeke" target="_blank" rel="noopener" data-link="store"><img src="img/web/red_union_steward.jpg" alt="Union Steward, Ask Me Anything shirt design" loading="lazy" width="700" height="700"><div class="item-body"><div class="item-title">Union Steward, Ask Me Anything</div><div class="item-meta">Back print</div></div></a><a class="item" href="https://www.teepublic.com/user/unclezeke" target="_blank" rel="noopener" data-link="store"><img src="img/web/red_union_kid.jpg" alt="Union Kid shirt design" loading="lazy" width="700" height="700"><div class="item-body"><div class="item-title">Union Kid</div><div class="item-meta">Front and back, youth sizes too</div></div></a></div>
+    <div class="cta"><a class="btn white" href="shirts.html">See All Red Shirts</a></div>
+  </div>
 </section>
 
-<main class="links">
-  <div class="links-grid">
+<section class="about">
+  <div class="eyebrow">Who We Are</div>
+  <p style="margin-top:0.8rem">Hey, I'm Uncle Zeke. Just a guy out of Moravia, New York, trying to earn an honest living and spread a little of what I believe makes the world better while I do it. Most of what I make comes back to the same place, the working folks who actually built this country and the history that tends to get forgotten. If any of it lands with you, pull up a chair and look around.</p>
+  <img class="sig" src="img/web/sig_white.png" alt="Uncle Zeke signature" width="500" height="122">
+</section>
 
-    <a class="link-card" href="https://www.amazon.com/stores/Uncle-Zeke/author/B0GSNHSGZC" target="_blank" rel="noopener">
-      <div class="link-eyebrow">Amazon</div>
-      <div class="link-title">Books</div>
-      <div class="link-desc">Puzzle books, word searches, and journals built from real history.</div>
-      <span class="link-go">Shop on Amazon &rsaquo;</span>
+<main class="section"><div class="wrap">
+  <div class="section-head"><div class="eyebrow">What We Make</div><h2>Pick a Door</h2></div>
+  <div class="doors">
+    <a class="door" href="shirts.html">
+      <div class="door-img redbg"><img src="img/web/red_red_until_signed.jpg" alt="" loading="lazy"></div>
+      <div class="door-body"><div class="eyebrow">TeePublic</div><div class="door-title">Uncle Zeke Shirts</div><div class="door-desc">Union, labor, and working-class pride. Red Shirt Wednesday lives here.</div><span class="door-go">Browse shirts &rsaquo;</span></div>
     </a>
-
-    <a class="link-card" href="https://www.teepublic.com/user/unclezeke" target="_blank" rel="noopener">
-      <div class="link-eyebrow">TeePublic</div>
-      <div class="link-title">Shirts</div>
-      <div class="link-desc">Bold, statement-driven designs inspired by working-class pride.</div>
-      <span class="link-go">Shop on TeePublic &rsaquo;</span>
+    <a class="door" href="minddump.html">
+      <div class="door-img wordmark"><span>MindDump</span></div>
+      <div class="door-body"><div class="eyebrow">TeePublic</div><div class="door-title">MindDump</div><div class="door-desc">The second shirt shop. Hometown pride and whatever else falls out of my head.</div><span class="door-go">Browse MindDump &rsaquo;</span></div>
     </a>
-
-    <a class="link-card" href="https://www.etsy.com/shop/UncleZekesPlace" target="_blank" rel="noopener">
-      <div class="link-eyebrow">Etsy</div>
-      <div class="link-title">Prints &amp; Downloads</div>
-      <div class="link-desc">Wall art and printable digital downloads.</div>
-      <span class="link-go">Shop on Etsy &rsaquo;</span>
+    <a class="door" href="prints.html">
+      <div class="door-img"><img src="img/web/mockup_drill.jpg" alt="" loading="lazy"></div>
+      <div class="door-body"><div class="eyebrow">Etsy</div><div class="door-title">Patent Prints</div><div class="door-desc">Machine shop and fishing lure patents, printable wall art for the shop or the den.</div><span class="door-go">Browse prints &rsaquo;</span></div>
     </a>
-
-    <a class="link-card" href="https://www.pinterest.com/UncleZekesPlace" target="_blank" rel="noopener">
-      <div class="link-eyebrow">Pinterest</div>
-      <div class="link-title">Pinterest</div>
-      <div class="link-desc">Americana, history, and the Finger Lakes.</div>
-      <span class="link-go">Follow along &rsaquo;</span>
+    <a class="door" href="books.html">
+      <div class="door-img covers"><img src="img/web/workers_unite.jpg" alt="" loading="lazy"><img src="img/web/ovc_debs.jpg" alt="" loading="lazy"><img src="img/web/ovc_tess.jpg" alt="" loading="lazy"></div>
+      <div class="door-body"><div class="eyebrow">Amazon</div><div class="door-title">Books</div><div class="door-desc">Labor history puzzles, annotated classics, and a few surprises.</div><span class="door-go">Browse books &rsaquo;</span></div>
     </a>
-
-    <a class="link-card" href="https://www.facebook.com/unclezekesplace" target="_blank" rel="noopener">
-      <div class="link-eyebrow">Facebook</div>
-      <div class="link-title">Facebook</div>
-      <div class="link-desc">The page. Stories, new drops, and the day to day.</div>
-      <span class="link-go">Follow along &rsaquo;</span>
-    </a>
-
-    <a class="link-card" href="https://www.teepublic.com/user/minddump" target="_blank" rel="noopener">
-      <div class="link-eyebrow">TeePublic</div>
-      <div class="link-title">MindDump</div>
-      <div class="link-desc">A second shirt shop, running its own lane.</div>
-      <span class="link-go">Shop on TeePublic &rsaquo;</span>
-    </a>
-
   </div>
+</div></main>
 
-  <div class="sub-label">Get in Touch</div>
-  <div class="contact">
-    <p class="contact-note">Questions, wholesale, or just to say hey.</p>
-    <a href="mailto:shopfloor@unclezeke.com">shopfloor@unclezeke.com</a>
-  </div>
-</main>
-
-<footer>
-  &copy; 2025&ndash;2026 Phoenix Industries Media &amp; Publishing LLC &nbsp;&middot;&nbsp; Moravia, New York
-</footer>
-
+<section class="contact">
+  <p class="contact-note">Questions, bulk orders for your local, or just to say hey.</p>
+  <a href="mailto:shopfloor@unclezeke.com">shopfloor@unclezeke.com</a>
+  <div class="social"><a href="https://www.facebook.com/unclezekesplace" target="_blank" rel="noopener">Facebook</a><a href="https://www.pinterest.com/UncleZekesPlace" target="_blank" rel="noopener">Pinterest</a></div>
+</section>
+<footer>&copy; 2025-2026 Phoenix Industries Media &amp; Publishing LLC &nbsp;&middot;&nbsp; Moravia, New York</footer>
 </body>
 </html>
