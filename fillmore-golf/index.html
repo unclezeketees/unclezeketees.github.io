@@ -95,7 +95,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hole-grid button{padding:10px 0;border:1px solid var(--line);border-radius:8px;font-weight:600;background:rgba(255,255,255,.03)}
 .hole-grid button small{display:block;font-size:10px;color:var(--ink-dim);font-weight:400}
 #toast{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:30px;text-shadow:0 2px 8px rgba(0,0,0,.7);pointer-events:none;opacity:0;transition:opacity .25s;text-align:center;white-space:nowrap}
-#toast small{display:block;font-family:var(--font);font-size:14px;color:var(--ink-dim);margin-top:4px}
+#toast small{display:block;font-family:var(--font);font-size:14px;color:var(--ink);margin-top:4px;white-space:normal;max-width:min(88vw,420px);margin-left:auto;margin-right:auto}
+#coach{position:fixed;left:12px;right:72px;bottom:calc(env(safe-area-inset-bottom) + 204px);z-index:7;max-width:520px;background:var(--panel-solid);border:1px solid var(--accent);border-radius:12px;padding:10px 14px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+#coach .coach-step{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700}
+#coach-text{font-size:14px;line-height:1.45;margin-top:4px}
+#coach-text b{color:var(--accent)}
+.coach-btns{display:flex;gap:8px;margin-top:8px;justify-content:flex-end}
+.coach-btns button{padding:7px 12px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--line)}
+#coach-next{background:var(--accent);color:#1b1a12;border-color:var(--accent)}
 #toast.show{opacity:1}
 
 #icons{position:fixed;right:12px;bottom:calc(env(safe-area-inset-bottom) + 150px);display:flex;flex-direction:column;gap:8px}
@@ -160,6 +167,7 @@ table.sc tr.tot td{font-weight:700}
 
 <div id="toast"></div>
 <button id="ff-btn" class="hidden" aria-label="Fast forward">&raquo;</button>
+<div id="coach" class="hidden"><div class="coach-step" id="coach-step">Lesson</div><div id="coach-text"></div><div class="coach-btns"><button id="coach-skip">End lesson</button><button id="coach-next" class="hidden">Next</button></div></div>
 
 <div id="hud-bottom" class="hidden">
   <div id="meter-wrap">
@@ -174,12 +182,12 @@ table.sc tr.tot td{font-weight:700}
 </div>
 
 <div id="menu" class="hidden">
-  <div class="menu-top"><div><div class="sign" role="img" aria-label="Gillmore Golf Club. Open to public. 18 holes. Locke, N.Y.">
-    <div class="sign-face"><div class="sign-script">Gillmore Golf Club</div><div class="sign-rule"></div>
+  <div class="menu-top"><div><div class="sign" role="img" aria-label="Fillmore Golf Club. Open to public. 18 holes. Locke, N.Y.">
+    <div class="sign-face"><div class="sign-script">Fillmore Golf Club</div><div class="sign-rule"></div>
     <div class="sign-row"><svg class="sign-green" viewBox="0 0 62 40" aria-hidden="true"><ellipse cx="31" cy="31" rx="29" ry="8" fill="#2f8f6e" stroke="#1f6a50" stroke-width="1"/><line x1="35" y1="32" x2="35" y2="3" stroke="#222" stroke-width="1.6"/><rect x="26.5" y="3" width="8.5" height="6" fill="#f1e2a8" stroke="#555" stroke-width=".6"/><text x="30.7" y="8.2" font-size="4.6" text-anchor="middle" fill="#a33" font-family="Arial" font-weight="700">18</text></svg>
     <div class="sign-text"><div class="sign-open">OPEN <span>to</span> PUBLIC</div><div class="sign-18">18 HOLES</div><div class="sign-loc">LOCKE &middot; N.Y.</div></div></div></div>
   </div><div class="sign-post"></div></div>
-  <div class="menu-actions"><button id="menu-settings">Settings</button><button id="menu-help">How to play</button></div></div>
+  <div class="menu-actions"><button id="menu-lesson">Lesson</button><button id="menu-settings">Settings</button><button id="menu-help">How to play</button></div></div>
   <div id="menu-map"><canvas id="menu-canvas"></canvas><svg id="menu-lines"></svg><div id="menu-chips"></div><div id="menu-wait">Drawing the course...</div></div>
   <div class="menu-foot">Tap the clubhouse to play the course, or warm up at the putting green and range.</div>
 </div>

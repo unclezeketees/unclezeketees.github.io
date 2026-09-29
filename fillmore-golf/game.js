@@ -527,13 +527,96 @@ function startPractice(kind) {
   <button class="btn alt" id="intro-back">Back to the map</button>`);
   $('intro-go').onclick = () => {
     closeSheet(); showHUD(true); setupShot();
+    if (lesson) { if (kind === 'range') wind = { x: 0, y: 0, mph: 0 }; updateHUD(); lessonShow(); }
     const tt = fitPoints(isR ? [ball ? [ball.x, ball.y] : hole.tee, hole.aim] : [[PRACT.c[0] - 14, PRACT.c[1] - 14], [PRACT.c[0] + 14, PRACT.c[1] + 14]], 0.5, 30);
     cam.vx = tt[0]; cam.vy = tt[1]; cam.s = tt[2];
   };
-  $('intro-back').onclick = () => { closeSheet(); hole = null; mode = 'round'; showTitle(); };
+  $('intro-back').onclick = () => { closeSheet(); hole = null; mode = 'round'; lesson = null; showTitle(); };
+  if (lesson) {
+    $('intro-go').insertAdjacentHTML('beforebegin', `<p style="color:var(--accent)">Lesson: ${kind === 'range' ? 'five quick steps on the range, then one on the putting green.' : 'last step, the putting green.'}</p>`);
+  }
   layerHole = null; layerGreen = null; layerBack = null;
   setTimeout(buildLayers, 30);
 }
+/* ---------------- lesson ---------------- */
+let lesson = null;
+const LESSON = [
+  { t: 'Aim', text: 'Tap anywhere out on the range to aim. The white ring is where the ball should land. The yardage card shows how far that is, and <b>plays</b> adds the hill: uphill plays longer, downhill shorter.', wait: 'aim' },
+  { t: 'Club', text: 'Each club carries a set distance, shown under its name. Change clubs with the arrows beside it. The <b>gold tick</b> on the meter is the power you need to reach your aim with that club.', wait: 'next' },
+  { t: 'Swing', text: 'Tap <b>SWING</b> to start the meter. Tap again when it reaches the <b>gold tick</b> to set power. Tap a third time as the marker comes back over the <b>white zone</b>. Early pulls it left, late pushes it right. Hit one.', wait: 'shot' },
+  { t: 'Swing', text: 'Now two more. Try to stop the marker right on the white zone both times.', wait: 'shots2' },
+  { t: 'Wind', text: 'The wind just picked up to <b>12 mph straight at you</b>. Into the wind the ball balloons and falls short, so take more club or more power. Hit one and see.', wait: 'shot' },
+  { t: 'Putting', text: 'Last stop, the putting green. Arrows point <b>downhill</b>, red means steep, so aim above the hole on a slope. Tap <b>PUTT</b> to start, tap again at the gold tick for pace. Hole one to finish.', wait: 'holed' },
+];
+/* carry of a launch on flat ground, with or without wind, for honest side-by-side numbers */
+function flatCarry(l, wx, wy) {
+  const b = { x: 0, y: 0, z: 0, g0: 0, vx: l.vx, vy: l.vy, vz: l.vz, L: l.L, S: l.S, v0: l.v0 };
+  for (let t = 0; t < 20; t += 1 / 120) { integrate(b, 1 / 120, wx, wy); if (b.z < 0 && t > 0.1) break; }
+  return Math.hypot(b.x, b.y);
+}
+function coach(html, showNext) {
+  $('coach').classList.remove('hidden');
+  $('coach-step').textContent = `Lesson ${lesson.step + 1} of ${LESSON.length}: ${LESSON[lesson.step].t}`;
+  $('coach-text').innerHTML = html;
+  $('coach-next').classList.toggle('hidden', !showNext);
+}
+function startLesson() {
+  lesson = { step: 0, shots: 0, calmCarry: null };
+  lsSet('fgc_lesson_seen', true);
+  startPractice('range');
+}
+function lessonShow() {
+  const st = LESSON[lesson.step];
+  if (st.t === 'Wind' && mode === 'range') { const d = RANGE.dir, ms = 12 / 2.237; wind = { x: -d[0] * ms, y: -d[1] * ms, mph: 12 }; updateHUD(); }
+  coach(st.text, st.wait === 'next');
+}
+function lessonAdvance() {
+  lesson.step++; lesson.shots = 0;
+  if (lesson.step >= LESSON.length) return lessonDone();
+  if (LESSON[lesson.step].t === 'Putting') {
+    $('coach').classList.add('hidden');
+    setTimeout(() => { if (lesson) startPractice('putt'); }, 2200);
+    return;
+  }
+  lessonShow();
+}
+function lessonEvent(kind, d) {
+  if (!lesson) return;
+  const st = LESSON[lesson.step];
+  if (kind === 'aim' && st.wait === 'aim') {
+    coach(`Good. You're aiming ${Math.round(dist([ball.x, ball.y], aim) * YD)} yds out. The gold tick on the meter moved to show the power that distance needs. Next, clubs.`, true);
+    lesson.waitNext = true;
+  } else if (kind === 'shot' && (st.wait === 'shot' || st.wait === 'shots2')) {
+    lesson.shots++;
+    const a = Math.abs(d.acc), why = a < 0.02 ? 'You stopped it on the white zone, so it flew straight at your aim.' :
+      d.acc > 0 ? `You tapped ${a < 0.06 ? 'a little ' : ''}early, before the white zone, so the ball started left and curved left.` :
+        `You tapped ${a < 0.06 ? 'a little ' : ''}late, past the white zone, so the ball started right and curved right.`;
+    const pw = d.power > 1.02 ? ' You also went past full power, which adds a little distance but makes the timing less forgiving.' : '';
+    if (st.t === 'Wind') {
+      const loss = Math.round(d.windLoss);
+      coach(`That wind cost you about <b>${loss} yds</b> of carry compared with the same swing on a calm day, and the ball flew higher. On a windy day, club up. ${why}`, true); lesson.waitNext = true;
+    } else if (st.wait === 'shot') {
+      lesson.calmCarry = d.carry;
+      coach(`${why}${pw}`, true); lesson.waitNext = true;
+    } else {
+      lesson.calmCarry = lesson.calmCarry ? (lesson.calmCarry + d.carry) / 2 : d.carry;
+      if (lesson.shots >= 2) { coach(`${why}${pw} That's the whole swing: power on the gold tick, timing on the white zone.`, true); lesson.waitNext = true; }
+      else coach(`${why}${pw} One more.`, false);
+    }
+  } else if (kind === 'putt' && st.wait === 'holed') {
+    lesson.shots++;
+    if (d.holed) { coach('In the hole. That is the lesson. Head to the clubhouse to play the course, or stay and practice.', false); setTimeout(lessonDone, 3500); }
+    else if (lesson.shots === 1) coach('Missed. Check the arrows around the hole: they show which way it breaks. Short putts on a slope need firm pace. Keep going until one drops.', false);
+  }
+}
+function lessonDone() {
+  lesson = null; lsSet('fgc_lesson_done', true);
+  $('coach').classList.add('hidden');
+  toast('Lesson done', 'Tap MENU to head back to the map', 2500);
+}
+$('coach-next').onclick = () => { if (!lesson) return; lesson.waitNext = false; lessonAdvance(); };
+$('coach-skip').onclick = () => { lesson = null; $('coach').classList.add('hidden'); };
+
 function rangeResult(note) {
   state = 'result'; ball.mode = 'rest';
   const c = CLUBS[shot.club], f = shot.from, a = shot.aimDir;
@@ -543,7 +626,8 @@ function rangeResult(note) {
   prac.balls++; (prac.clubs[c.n] = prac.clubs[c.n] || []).push(carry);
   prac.last = { carry, total, off, apex, club: c.n };
   const side = Math.abs(off) < 1 ? 'dead straight' : `${Math.round(Math.abs(off))} ${off < 0 ? 'left' : 'right'}`;
-  toast(`${Math.round(carry)} yds carry`, `${Math.round(total)} total, ${side}, peak ${apex} ft${note ? ', ' + note : ''}`, 2400);
+  toast(`${Math.round(carry)} yds carry`, `${Math.round(total)} total, ${side}, peak ${apex} ft${note ? ', ' + note : ''}. ${strikeVerdict(shot.acc, shot.power)}.`, 2600);
+  lessonEvent('shot', { carry, off, acc: shot.acc, power: shot.power, windLoss: shot.launch && wind.mph ? (flatCarry(shot.launch, 0, 0) - flatCarry(shot.launch, wind.x, wind.y)) * YD : 0 });
   updateHUD();
   setTimeout(() => { if (mode !== 'range' || state !== 'result') return; placeBall(rangeBallSpot()); ball.onTee = true; trail = []; setupShot(); }, 2500);
 }
@@ -555,12 +639,14 @@ function puttResult(inHole) {
     prac.made++; if (prac.ballPutts === 1) prac.firstMade++; prac.balls++;
     toast(prac.ballPutts === 1 ? 'Drained it' : 'In the hole', `${prac.ballPutts} putt${prac.ballPutts > 1 ? 's' : ''}`, 1500);
     nextPracticeBall(1600);
+    lessonEvent('putt', { holed: true });
   } else {
+    lessonEvent('putt', { holed: false });
     const k = cls(cvAt(ball.x, ball.y)), off = k !== GREEN && k !== FRINGE, ft = dist([ball.x, ball.y], pin) * FT;
     if (prac.ballPutts >= 3 || off) {
       prac.balls++; toast(off ? 'Off the green' : 'Three putts', 'Next ball', 1400); nextPracticeBall(1500);
     } else {
-      toast(ft < 3 ? 'Tap in' : 'Missed', ft < 2 ? `${Math.max(1, Math.round(ft * 12))} in left` : `${Math.round(ft)} ft left`, 1200);
+      toast(ft < 3 ? 'Tap in' : 'Missed', puttPace(), 1300);
       setTimeout(() => { if (mode === 'putt' && state === 'result') setupShot(); }, 1100);
     }
   }
@@ -595,7 +681,7 @@ function saveRound() { if (round && round.kind !== 'single') lsSet('fgc_round', 
 function clearRound() { try { localStorage.removeItem('fgc_round'); } catch (e) { } }
 
 function startHole() {
-  mode = 'round'; prac = null; $('menu').classList.add('hidden');
+  mode = 'round'; prac = null; $('menu').classList.add('hidden'); lesson = null; $('coach').classList.add('hidden');
   const n = round.holes[round.i]; hole = HOLES[n]; hole.n = n + 1;
   const d = [hole.gc[0] - hole.tee[0], hole.gc[1] - hole.tee[1]], l = Math.hypot(d[0], d[1]);
   HD = [d[0] / l, d[1] / l];
@@ -701,7 +787,7 @@ function setupShot() {
 }
 function setAim(p) {
   aim = p;
-  if (mode === 'range') { prac.aim = p.slice(); updateHUD(); return; }
+  if (mode === 'range') { prac.aim = p.slice(); updateHUD(); lessonEvent('aim'); return; }
   if (!clubManual) ci = pickClub(aim);
   if (onPuttingSurface()) ci = PUTTER;
   cam.mode = ci === PUTTER ? 'putt' : 'aim';
@@ -793,6 +879,7 @@ function strike(power, acc) {
       L: c.L * (k === ROUGH || k === LONG ? 0.75 : 1), S: -acc * 0.011 + randn() * 0.0005 * err, mode: 'fly', v0: v, g0: hAt(ball.x, ball.y)
     });
     ball.z += 0.03;
+    shot.launch = { vx: ball.vx, vy: ball.vy, vz: ball.vz, L: ball.L, S: ball.S, v0: v };
     shot.bite = k === ROUGH || k === LONG || k === WOODS ? c.bite * 0.3 : c.bite;
     SFX.hit();
   }
@@ -910,6 +997,27 @@ function finishOB() {
   endShot('Out of bounds', 'Stroke and distance. Replay from the last spot.', shot.from.slice(), true);
   ball.onTee = shot.onTee;
 }
+/* one line on how the swing went, shown after every full shot */
+function strikeVerdict(acc, power) {
+  const a = Math.abs(acc);
+  let v;
+  if (a < 0.02) v = 'Pure strike';
+  else if (acc > 0) v = a < 0.06 ? 'A touch early, drew left' : 'Early, hooked left';
+  else v = a < 0.06 ? 'A touch late, faded right' : 'Late, sliced right';
+  if (power > 1.02) v += ', overswung';
+  return v;
+}
+function offlineYds() {
+  const a = shot.aimDir || [0, 0], rx = ball.x - shot.from[0], ry = ball.y - shot.from[1];
+  return (-rx * a[1] + ry * a[0]) * YD;
+}
+function puttPace() {
+  const a = shot.aimDir, rx = ball.x - shot.from[0], ry = ball.y - shot.from[1];
+  const along = rx * a[0] + ry * a[1], want = dist(shot.from, pin);
+  const ft = dist([ball.x, ball.y], pin) * FT;
+  const size = ft < 2 ? `${Math.max(1, Math.round(ft * 12))} in` : `${Math.round(ft)} ft`;
+  return `${size} ${along > want ? 'long' : 'short'}`;
+}
 function settle() {
   if (mode === 'range') return rangeResult();
   if (mode === 'putt') return puttResult(false);
@@ -922,9 +1030,10 @@ function settle() {
   if (CLUBS[shot.club].putter) {
     const ft = dist([ball.x, ball.y], pin) * FT;
     title = ft < 3 ? 'Tap in' : 'Missed';
-    sub = ft < 2 ? `${Math.max(1, Math.round(ft * 12))} in left` : `${Math.round(ft)} ft left`;
+    sub = puttPace();
   } else {
-    sub = `${lastShotYds} yds${shot.tree ? ', clipped the trees' : ''}`;
+    const off = offlineYds();
+    sub = `${lastShotYds} yds${shot.tree ? ', clipped the trees' : ''}. ${strikeVerdict(shot.acc, shot.power)}${Math.abs(off) >= 3 ? `, ${Math.round(Math.abs(off))} yds ${off < 0 ? 'left' : 'right'} of your aim` : ''}.`;
   }
   endShot(title, sub, null, false);
 }
@@ -932,7 +1041,7 @@ function endShot(title, sub, place, penalty) {
   if (place) placeBall(place);
   ball.mode = 'rest';
   state = 'result';
-  toast(title, sub, penalty ? 2000 : 1300);
+  toast(title, sub, penalty ? 2000 : 2000);
   updateHUD();
   if (strokes >= 10) { setTimeout(() => finishHole(true), 1400); return; }
   setTimeout(() => { if (state === 'result') setupShot(); }, penalty ? 1800 : 1100);
@@ -1185,6 +1294,7 @@ function optionsHTML() {
   <div class="opt"><span>Sound</span>${seg('sound', [[true, 'On'], [false, 'Off']], settings.sound)}</div>`;
 }
 const HELP = `<div class="help">
+<p><b>New?</b> Tap <b>Lesson</b> on the start map for a two minute walk-through.</p>
 <p><b>Aim:</b> tap the map where you want the ball to go. Fine tune with the curved arrows. The club is picked for you, change it with the arrows beside it.</p>
 <p><b>Swing:</b> tap SWING (or press Space) to start the meter. Tap again to set power, the gold tick shows the suggested power for your aim point. Tap a third time as the marker comes back over the white zone. Early pulls it left and hooks, late pushes it right and slices.</p>
 <p><b>Putt:</b> two taps, start and pace. Arrows on the green point downhill, red is steeper.</p>
@@ -1237,10 +1347,18 @@ function drawMenuMap() {
   });
 }
 function showTitle() {
-  state = 'title'; showHUD(false); mode = 'round'; prac = null;
+  state = 'title'; showHUD(false); mode = 'round'; prac = null; lesson = null; $('coach').classList.add('hidden');
   $('menu').classList.remove('hidden');
   if (menuMap) drawMenuMap(); else { $('menu-wait').classList.remove('hidden'); setTimeout(buildMenuMap, 30); }
+  if (!lsGet('fgc_lesson_seen', false)) {
+    lsSet('fgc_lesson_seen', true);
+    sheet(`<h2>First time out?</h2><p>A two minute lesson on the range shows how to aim, pick a club, time the swing, play the wind and read a green.</p>
+    <button class="btn" id="ls-go">Take the lesson</button><button class="btn alt" id="ls-skip">Skip, I'll figure it out</button>`);
+    $('ls-go').onclick = () => { closeSheet(); startLesson(); };
+    $('ls-skip').onclick = closeSheet;
+  }
 }
+$('menu-lesson').onclick = () => { closeSheet(); startLesson(); };
 function showClubhouse() {
   const saved = lsGet('fgc_round', null);
   const b18 = lsGet(bestKey('all'), null), bf = lsGet(bestKey('front'), null), bb = lsGet(bestKey('back'), null);
