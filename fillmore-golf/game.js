@@ -170,9 +170,9 @@ function accel(b, wx, wy, out) {
   const sp = Math.sqrt(rx * rx + ry * ry + rz * rz) || 1e-9, hs = Math.hypot(rx, ry) || 1e-9;
   const hdx = rx / hs, hdy = ry / hs;
   let ax = -KD * sp * rx, ay = -KD * sp * ry, az = -KD * sp * rz - G;
-  const lm = b.L * (1 + (b.Lm || 0)) * (b.v0 || sp);  // backspin lift ~ spin x airspeed, spin set at launch
+  const lm = b.L * (b.v0 || sp);  // backspin lift ~ spin x airspeed, spin set at launch
   ax += lm * -rz * hdx; ay += lm * -rz * hdy; az += lm * hs;
-  const sm = (b.S + (b.Sx || 0)) * sp * sp;  // side force, right of travel = (-dy, dx)
+  const sm = b.S * sp * sp;  // side force, right of travel = (-dy, dx)
   ax += sm * -hdy; ay += sm * hdx;
   out[0] = ax; out[1] = ay; out[2] = az;
 }
@@ -181,7 +181,7 @@ function integrate(b, dt, wx, wy) {
   accel(b, wx, wy, ACC);
   b.vx += ACC[0] * dt; b.vy += ACC[1] * dt; b.vz += ACC[2] * dt;
   b.x += b.vx * dt; b.y += b.vy * dt; b.z += b.vz * dt;
-  const k = Math.exp(-dt / 7); b.L *= k; b.S *= k; if (b.Sx) b.Sx *= k;
+  const k = Math.exp(-dt / 7); b.L *= k; b.S *= k;
 }
 /* carry table per club on flat ground, no wind, so partial swings map to distance */
 for (const c of CLUBS) {
@@ -220,7 +220,7 @@ function vnoise(x, y) {
 /* ---------------- settings and storage ---------------- */
 function lsGet(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
-const settings = Object.assign({ speed: 'normal', season: 'summer', sound: true, topo: true, spin: true }, lsGet('fgc_settings', {}));
+const settings = Object.assign({ speed: 'normal', season: 'summer', sound: true, topo: true }, lsGet('fgc_settings', {}));
 const saveSettings = () => lsSet('fgc_settings', settings);
 const METER_T = { relaxed: 1.45, normal: 1.1, fast: 0.8 };
 
@@ -775,7 +775,7 @@ function strike(power, acc) {
     const range = puttRange(), mu = SURF[GREEN].mu;
     const v = Math.sqrt(2 * mu * G * power * range) * (1 + randn() * 0.012);
     const a = base + acc * 0.5 + randn() * 0.004;
-    Object.assign(ball, { vx: Math.cos(a) * v, vy: Math.sin(a) * v, vz: 0, L: 0, S: 0, Sx: 0, Lm: 0, mode: 'roll' });
+    Object.assign(ball, { vx: Math.cos(a) * v, vy: Math.sin(a) * v, vz: 0, L: 0, S: 0, mode: 'roll' });
     shot.bite = 0; SFX.putt();
   } else {
     let err = s.err * (power > 1 ? 1 + (power - 1) * 6 : 1);
@@ -790,14 +790,13 @@ function strike(power, acc) {
     const hv = v * Math.cos(ang * Math.PI / 180);
     Object.assign(ball, {
       vx: Math.cos(dir) * hv, vy: Math.sin(dir) * hv, vz: v * Math.sin(ang * Math.PI / 180),
-      L: c.L * (k === ROUGH || k === LONG ? 0.75 : 1), S: -acc * 0.011 + randn() * 0.0005 * err, mode: 'fly', v0: v, g0: hAt(ball.x, ball.y), Sx: 0, Lm: 0
+      L: c.L * (k === ROUGH || k === LONG ? 0.75 : 1), S: -acc * 0.011 + randn() * 0.0005 * err, mode: 'fly', v0: v, g0: hAt(ball.x, ball.y)
     });
     ball.z += 0.03;
     shot.bite = k === ROUGH || k === LONG || k === WOODS ? c.bite * 0.3 : c.bite;
     SFX.hit();
   }
-  shot.power = power; shot.acc = acc; shot.spinX = 0; shot.spinY = 0;
-  if (!c.putter && settings.spin) openSpin();
+  shot.power = power; shot.acc = acc;
   state = 'flight'; cam.mode = c.putter ? 'putt' : 'flight'; cam.panX = cam.panY = 0;
   updateHUD();
 }
@@ -866,15 +865,9 @@ function bounce(b, gz) {
   if (vn >= 0) { b.z = gz + 0.01; return; }
   let tx = b.vx - vn * nx, ty = b.vy - vn * ny, tz = b.vz - vn * nz;
   const steep = Math.min(1, 1.4 * -vn / sp);
-  const back = Math.max(0, shot.spinY || 0), top = Math.max(0, -(shot.spinY || 0));
   const firm = k === GREEN ? 0.8 : (k === FAIR || k === FRINGE || k === TEE) ? 0.45 : 0.25;
-  const bite = shot.bounces === 0 ? (shot.bite + back * (0.2 + shot.bite) - top * 0.06) * firm : 0;
-  let keep = Math.max(0, 1 - s.fr * steep - bite);
-  // enough backspin into a green or fairway checks up and draws the ball back
-  if (shot.bounces === 0 && back > 0.35 && (k === GREEN || k === FRINGE || k === FAIR)) {
-    const raw = 1 - s.fr * steep - bite;
-    if (raw < 0) keep = Math.max(-0.14 * back * (0.5 + shot.bite), raw);
-  }
+  const bite = shot.bounces === 0 ? shot.bite * firm : 0;
+  const keep = Math.max(0, 1 - s.fr * steep - bite);
   tx *= keep; ty *= keep; tz *= keep;
   const out = -vn * s.e;
   b.vx = tx + out * nx; b.vy = ty + out * ny; b.vz = tz + out * nz;
@@ -884,50 +877,6 @@ function bounce(b, gz) {
   if (out < 1.1 || shot.bounces > 12) { b.mode = 'roll'; b.vz = 0; }
   b.z = gz + 0.002;
 }
-/* ---------------- after-hit spin pad ---------------- */
-const spinUI = { open: false, t0: 0, dur: 1.6 };
-function openSpin() {
-  spinUI.open = true; spinUI.t0 = performance.now() / 1000;
-  $('spin-pad').classList.remove('hidden'); $('spin-label').textContent = 'Tap fast to add spin';
-  drawSpin();
-}
-function closeSpin() {
-  if (!spinUI.open) return;
-  spinUI.open = false;
-  const x = shot.spinX, y = shot.spinY, parts = [];
-  if (Math.abs(x) > 0.08) parts.push(`${Math.round(Math.abs(x) * 100)}% ${x < 0 ? 'left' : 'right'}`);
-  if (Math.abs(y) > 0.08) parts.push(`${Math.round(Math.abs(y) * 100)}% ${y > 0 ? 'backspin' : 'topspin'}`);
-  $('spin-label').textContent = parts.length ? parts.join(', ') : 'No spin added';
-  setTimeout(() => { if (!spinUI.open) $('spin-pad').classList.add('hidden'); }, 900);
-}
-function spinTap(dx, dy) {
-  if (!spinUI.open || state !== 'flight') return;
-  const m = Math.hypot(dx, dy); if (m < 0.12) return;
-  const f = Math.min(1, m) * 0.2;
-  shot.spinX = Math.max(-1, Math.min(1, shot.spinX + dx / m * f));
-  shot.spinY = Math.max(-1, Math.min(1, shot.spinY + dy / m * f));  // bottom of the ball = backspin
-  tone(1400 + 300 * Math.random(), 0.03, 0.08);
-  applySpin(); drawSpin();
-}
-function applySpin() {
-  ball.Sx = shot.spinX * 0.0012;
-  ball.Lm = shot.spinY > 0 ? shot.spinY * 0.25 : shot.spinY * 0.12;
-}
-function drawSpin() {
-  const d = $('spin-dot'); d.style.left = (50 + shot.spinX * 38) + '%'; d.style.top = (50 + shot.spinY * 38) + '%';
-}
-function spinTick(dt) {
-  if (!spinUI.open) return;
-  const el = performance.now() / 1000 - spinUI.t0;
-  const k = Math.exp(-dt / 0.9); shot.spinX *= k; shot.spinY *= k; applySpin(); drawSpin();
-  $('spin-time-bar').style.width = Math.max(0, 100 - el / spinUI.dur * 100) + '%';
-  if (el >= spinUI.dur || ball.mode !== 'fly' || state !== 'flight') closeSpin();
-}
-$('spin-hit').addEventListener('pointerdown', e => {
-  e.preventDefault(); e.stopPropagation();
-  const r = e.currentTarget.getBoundingClientRect();
-  spinTap((e.clientX - r.left) / r.width * 2 - 1, (e.clientY - r.top) / r.height * 2 - 1);
-});
 $('ff-btn').addEventListener('click', () => { if (state === 'flight' && shot) shot.fast = true; });
 
 function nearestPlayable(p, notCloserThan) {
@@ -1233,13 +1182,11 @@ function bindSegs() {
 function optionsHTML() {
   return `<div class="opt"><span>Swing meter</span>${seg('speed', [['relaxed', 'Relaxed'], ['normal', 'Normal'], ['fast', 'Fast']], settings.speed)}</div>
   <div class="opt"><span>Trees</span>${seg('season', [['summer', 'Summer'], ['autumn', 'Autumn']], settings.season)}</div>
-  <div class="opt"><span>After-hit spin</span>${seg('spin', [[true, 'On'], [false, 'Off']], settings.spin)}</div>
   <div class="opt"><span>Sound</span>${seg('sound', [[true, 'On'], [false, 'Off']], settings.sound)}</div>`;
 }
 const HELP = `<div class="help">
 <p><b>Aim:</b> tap the map where you want the ball to go. Fine tune with the curved arrows. The club is picked for you, change it with the arrows beside it.</p>
 <p><b>Swing:</b> tap SWING (or press Space) to start the meter. Tap again to set power, the gold tick shows the suggested power for your aim point. Tap a third time as the marker comes back over the white zone. Early pulls it left and hooks, late pushes it right and slices.</p>
-<p><b>Spin:</b> right after contact a spin pad pops up for a second and a half. Tap its left or right side to curve the ball, the bottom for backspin (higher, stops faster, wedges can spin back), the top for topspin (lower, more roll). Faster taps build more spin, up to a limit. Arrow keys work on a keyboard. Turn it off in settings for pure swing-meter golf.</p>
 <p><b>Putt:</b> two taps, start and pace. Arrows on the green point downhill, red is steeper.</p>
 <p><b>Hills:</b> elevation is real lidar. "Plays" yardage adds about a yard for every 3 ft of climb. Balls kick and roll off slopes.</p>
 <p><b>Rules:</b> white dashed line is out of bounds, stroke and distance. Water and the creek cost a stroke with a drop where it went in. Trees knock balls down. Max 10 strokes a hole.</p>
@@ -1417,10 +1364,7 @@ $('btn-menu').onclick = showMenu;
 $('score-card').onclick = () => { if (state === 'aim' && mode === 'round') { const p = state; state = 'paused'; showScorecard(() => { state = p; }); } };
 window.addEventListener('keydown', e => {
   if (!$('overlay').classList.contains('hidden')) return;
-  if (spinUI.open && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.code)) {
-    e.preventDefault(); const m = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[e.code]; spinTap(m[0], m[1]); return;
-  }
-  if (e.code === 'Space') { e.preventDefault(); if (state === 'flight') { if (!spinUI.open) shot.fast = true; } else meterClick(); }
+  if (e.code === 'Space') { e.preventDefault(); if (state === 'flight') shot.fast = true; else meterClick(); }
   else if (state === 'aim' && meter.phase === 'idle') {
     if (e.code === 'ArrowLeft') rotateAim(ci === PUTTER ? -0.5 : -1);
     else if (e.code === 'ArrowRight') rotateAim(ci === PUTTER ? 0.5 : 1);
@@ -1451,7 +1395,7 @@ function endPtr(e) {
   if (!ptrs.has(e.pointerId)) return; ptrs.delete(e.pointerId);
   if (gesture && gesture.type === 'tap' && ptrs.size === 0) {
     if (state === 'aim' && meter.phase === 'idle') setAim(s2w(e.clientX, e.clientY));
-    else if (state === 'flight' && !spinUI.open) shot.fast = true;
+    else if (state === 'flight') shot.fast = true;
   }
   if (ptrs.size === 0) gesture = null;
 }
@@ -1463,9 +1407,8 @@ let lastT = performance.now();
 function frame(t) {
   const dtr = Math.min(0.05, (t - lastT) / 1000); lastT = t;
   meterTick();
-  spinTick(dtr);
   if (hole) updateCars(dtr);
-  $('ff-btn').classList.toggle('hidden', !(state === 'flight' && !spinUI.open));
+  $('ff-btn').classList.toggle('hidden', state !== 'flight');
   if (state === 'flight' && ball.mode !== 'rest') {
     const speed = (shot.fast ? 5 : ball.mode === 'fly' ? 1.4 : 1.4), sub = 1 / 240;
     let n = Math.ceil(dtr * speed / sub);
@@ -1491,7 +1434,7 @@ if (/[?&]debug/.test(location.search)) window.__fgc = {
   view(m) { cam.mode = m; cam.zoom = 1; cam.panX = cam.panY = 0; },
   place(x, y) { placeBall([x, y]); ball.onTee = false; setupShot(); },
   hit(p, a) { strike(p, a); },
-  test(o) { NORAND = true; if (o.wind) wind = { x: o.wind[0], y: o.wind[1], mph: Math.round(Math.hypot(o.wind[0], o.wind[1]) * 2.237) }; placeBall(o.at); ball.onTee = !!o.tee; state = 'aim'; aim = o.aim; ci = CLUBS.findIndex(c => c.n === o.club); strike(o.power || 1, 0); if (o.spin) { shot.spinX = o.spin[0]; shot.spinY = o.spin[1]; applySpin(); spinUI.dur = 0; } },
+  test(o) { NORAND = true; if (o.wind) wind = { x: o.wind[0], y: o.wind[1], mph: Math.round(Math.hypot(o.wind[0], o.wind[1]) * 2.237) }; placeBall(o.at); ball.onTee = !!o.tee; state = 'aim'; aim = o.aim; ci = CLUBS.findIndex(c => c.n === o.club); strike(o.power || 1, 0); },
   carTest() { const p = carPose(cars[0]); const saved = shot; shot = {}; const b = { x: p[0], y: p[1], z: hAt(p[0], p[1]) + 0.3, vx: 5, vy: 0, vz: -1, mode: 'fly' }; carCheck(b); const r = { hit: !!shot.carHit, flash: cars[0].hit > 0, vx: b.vx }; shot = saved; return r; },
   get cars() { return cars.map(c => carPose(c).map(v => Math.round(v))); },
   get prac() { return prac && JSON.parse(JSON.stringify(prac)); },

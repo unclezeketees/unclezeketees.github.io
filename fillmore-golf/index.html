@@ -66,16 +66,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #meter .pmark{position:absolute;top:0;bottom:0;width:3px;background:var(--accent)}
 #meter-label{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-dim);margin-top:4px;font-variant-numeric:tabular-nums}
 
-#spin-pad{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 146px);transform:translateX(-50%);width:156px;display:flex;flex-direction:column;align-items:center;gap:6px;z-index:6;touch-action:none}
-#spin-pad .pad{position:relative;width:148px;height:148px;border-radius:50%;background:radial-gradient(circle at 42% 38%,#fdfcf7 0%,#e6e2d4 62%,#b9b4a2 100%);border:3px solid var(--accent);box-shadow:0 4px 18px rgba(0,0,0,.45);cursor:pointer}
-#spin-pad .pad span{position:absolute;font-size:10px;font-weight:700;letter-spacing:.08em;color:#4a4636;pointer-events:none}
-#spin-pad .t{top:10px;left:50%;transform:translateX(-50%)} #spin-pad .b{bottom:10px;left:50%;transform:translateX(-50%)}
-#spin-pad .l{left:10px;top:50%;transform:translateY(-50%)} #spin-pad .r{right:10px;top:50%;transform:translateY(-50%)}
-#spin-dot{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--flag);border:2px solid #fff;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 6px rgba(0,0,0,.5)}
-#spin-time{width:148px;height:6px;border-radius:3px;background:rgba(0,0,0,.35);overflow:hidden}
-#spin-time div{height:100%;background:var(--accent);width:100%}
-#spin-label{font-size:12px;color:var(--ink);text-shadow:0 1px 3px #000}
-#ff-btn{position:fixed;right:12px;bottom:calc(env(safe-area-inset-bottom) + 146px);width:52px;height:44px;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:15px;z-index:6}
+#ff-btn{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom) + 150px);width:52px;height:44px;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:15px;z-index:6}
 #menu{position:fixed;inset:0;z-index:15;background:var(--bg);display:flex;flex-direction:column}
 .menu-top{display:flex;flex-direction:column;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top) + 14px) 16px 10px}
 .sign{background:#1f5a3a;padding:7px;border-radius:5px;box-shadow:0 3px 0 #163f29,0 10px 22px rgba(0,0,0,.5);width:min(340px,92vw);position:relative}
@@ -168,7 +159,6 @@ table.sc tr.tot td{font-weight:700}
 </div>
 
 <div id="toast"></div>
-<div id="spin-pad" class="hidden"><div class="pad" id="spin-hit"><span class="t">TOP</span><span class="b">BACK</span><span class="l">LEFT</span><span class="r">RIGHT</span><div id="spin-dot"></div></div><div id="spin-time"><div id="spin-time-bar"></div></div><div id="spin-label">Tap fast to add spin</div></div>
 <button id="ff-btn" class="hidden" aria-label="Fast forward">&raquo;</button>
 
 <div id="hud-bottom" class="hidden">
