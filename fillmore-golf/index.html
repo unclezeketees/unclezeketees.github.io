@@ -67,6 +67,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #meter-label{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-dim);margin-top:4px;font-variant-numeric:tabular-nums}
 
 #ff-btn{position:fixed;left:12px;bottom:calc(env(safe-area-inset-bottom) + 150px);width:52px;height:44px;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:15px;z-index:6}
+/* Netlify preview badge: keep it off the swing controls while playing */
+body:has(#hud-top:not(.hidden)) #nl-badge-frame{top:calc(env(safe-area-inset-top) + 164px)!important;bottom:auto!important;left:6px!important;right:auto!important}
 #menu{position:fixed;inset:0;z-index:15;background:var(--bg);display:flex;flex-direction:column}
 .menu-top{display:flex;flex-direction:column;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top) + 14px) 16px 10px}
 .sign{background:#1f5a3a;padding:7px;border-radius:5px;box-shadow:0 3px 0 #163f29,0 10px 22px rgba(0,0,0,.5);width:min(340px,92vw);position:relative}
