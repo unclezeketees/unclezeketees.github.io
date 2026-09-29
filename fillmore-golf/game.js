@@ -1134,6 +1134,13 @@ if (/[?&]debug/.test(location.search)) window.__fgc = {
   view(m) { cam.mode = m; cam.zoom = 1; cam.panX = cam.panY = 0; },
   place(x, y) { placeBall([x, y]); ball.onTee = false; setupShot(); },
   hit(p, a) { strike(p, a); },
+  async map(ppm) {
+    HD = [0, -1]; buildShade(); const tok = ++buildToken;
+    const L = await makeLayer(0, 0, C.cW * CC, C.cH * CC, ppm, true, tok);
+    const c = document.createElement('canvas'); c.width = L.base.width; c.height = L.base.height;
+    const g = c.getContext('2d'); g.drawImage(L.base, 0, 0); g.globalAlpha = 0.45; g.drawImage(L.topo, 0, 0);
+    return c.toDataURL('image/png');
+  },
   get state() { return { state, ball: { ...ball }, pin, strokes, club: CLUBS[ci].n, aim, hole: hole && hole.n }; },
 };
 $('loading').classList.add('hidden');
