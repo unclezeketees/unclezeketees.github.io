@@ -647,11 +647,11 @@ function simStep(dt) {
     if (isWet(k)) return hazard();
     const g = grad(b.x, b.y), sp = Math.hypot(b.vx, b.vy);
     const sl = Math.hypot(g[0], g[1]) * 5 / 7;
-    if (sp < 0.03 && sl < s.mu) { b.vx = b.vy = 0; b.mode = 'rest'; if (dist([b.x, b.y], pin) < CUP) return holed(); return settle(); }
+    if (sp < 0.03 && sl < s.mu) { b.vx = b.vy = 0; b.mode = 'rest'; if (dist([b.x, b.y], pin) < CUP + 0.012) return holed(); return settle(); }
     let ax = -5 / 7 * G * g[0], ay = -5 / 7 * G * g[1];
     if (sp > 1e-6) { ax -= s.mu * G * b.vx / sp; ay -= s.mu * G * b.vy / sp; }
     const nvx = b.vx + ax * dt, nvy = b.vy + ay * dt;
-    if (sp > 1e-6 && nvx * b.vx + nvy * b.vy < 0 && sl < s.mu) { b.vx = b.vy = 0; b.mode = 'rest'; if (dist([b.x, b.y], pin) < CUP) return holed(); return settle(); }
+    if (sp > 1e-6 && nvx * b.vx + nvy * b.vy < 0 && sl < s.mu) { b.vx = b.vy = 0; b.mode = 'rest'; if (dist([b.x, b.y], pin) < CUP + 0.012) return holed(); return settle(); }
     b.vx = nvx; b.vy = nvy; b.x += b.vx * dt; b.y += b.vy * dt; b.z = hAt(b.x, b.y);
     if (!isWet(k) && !isOB(v)) shot.lastDry = [ox, oy];
     // cup
@@ -722,7 +722,7 @@ function settle() {
   if (CLUBS[shot.club].putter) {
     const ft = dist([ball.x, ball.y], pin) * FT;
     title = ft < 3 ? 'Tap in' : 'Missed';
-    sub = `${Math.round(ft)} ft left`;
+    sub = ft < 2 ? `${Math.max(1, Math.round(ft * 12))} in left` : `${Math.round(ft)} ft left`;
   } else {
     sub = `${lastShotYds} yds${shot.tree ? ', clipped the trees' : ''}`;
   }
@@ -878,7 +878,7 @@ function updateHUD() {
   const ev = Math.abs(pe) < 1 ? 'level' : `${pe > 0 ? '<span class="up">up</span>' : '<span class="down">down</span>'} ${Math.round(Math.abs(pe))} ft`;
   let html;
   if (ci === PUTTER || onPuttingSurface()) {
-    html = `<div class="row"><span class="k">To hole</span><b>${Math.round(pd * FT)} ft</b></div>
+    html = `<div class="row"><span class="k">To hole</span><b>${pd * FT < 2 ? Math.max(1, Math.round(pd * FT * 12)) + ' in' : Math.round(pd * FT) + ' ft'}</b></div>
             <div class="row"><span class="k">Slope</span><span>${Math.abs(pe) < 0.2 ? 'flat' : (pe > 0 ? 'uphill ' : 'downhill ') + Math.abs(pe).toFixed(1) + ' ft'}</span></div>
             <div class="row"><span class="k">Lie</span><span>${lieName()}</span></div>`;
   } else {
@@ -1129,7 +1129,7 @@ function frame(t) {
   requestAnimationFrame(frame);
 }
 if (/[?&]debug/.test(location.search)) window.__fgc = {
-  go(n) { closeSheet(); round = { kind: 'all', holes: [...Array(18).keys()], i: n, scores: [], putts: [], pins: Array(18).fill(0) }; startHole(); },
+  go(n, list) { closeSheet(); const h = list || [...Array(18).keys()]; round = { kind: 'all', holes: h, i: list ? 0 : n, scores: [], putts: [], pins: h.map(() => 0) }; startHole(); },
   tee() { $('intro-go').click(); },
   view(m) { cam.mode = m; cam.zoom = 1; cam.panX = cam.panY = 0; },
   place(x, y) { placeBall([x, y]); ball.onTee = false; setupShot(); },
