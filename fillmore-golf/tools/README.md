@@ -24,9 +24,10 @@ around the course), `crop.json` (game frame).
 ## Hand-set details in build.py
 
 - Creek centerline points (traced from the aerial, snapped to the lidar channel).
-- In bounds: the OSM outline closed over the clubhouse strip, woods within about 50 yds, and the grass
-  strip up to Toll Gate Hill Rd. The road, everything across it, and the Golf View Rd house lots are out.
-- Clubhouse drive, gravel lot, cart path and practice green (traced from the aerial).
+- In bounds: one smoothed outer line about 50 yds into the woods around the OSM outline, closed over the
+  clubhouse strip and running up to Toll Gate Hill Rd. The road, everything across it, and the Golf View Rd
+  house lots are out. No out-of-bounds islands.
+- Clubhouse drive, gravel lot, cart path and the practice green southeast of the clubhouse (traced from the aerial).
 - Bunkers at holes 1 and 9 (the only sand visible in the imagery), plus bowls found in the lidar:
   the rocky pit in the #6 fairway, the bowl beside #8 green, a pit short of #8, and a hollow near #10 green.
 - Fairway widths are estimated (about 32 m, narrowing toward the green). The spring

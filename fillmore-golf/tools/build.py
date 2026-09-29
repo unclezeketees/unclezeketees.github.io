@@ -68,6 +68,7 @@ roadish=(SAT<16)&(L>55)&(L<140)&(chmC<1)&(G_-R_<4)&~inside
 roadish=ndi.binary_dilation(dropsmall(ndi.binary_opening(roadish,iterations=1),12),iterations=int(2/CC))
 inside|=play&~roadish
 cov[play&(cov==LONG)&inside]=ROUGH
+fair_all=fair.copy()
 fair&=inside
 cov[fair]=FAIR
 # paths, roads, gravel from imagery (non-vegetated, no canopy)
@@ -163,28 +164,38 @@ dt=lambda m: ndi.distance_transform_edt(~m)*CC
 osm_in=raster_poly(bw)
 core=dt(osm_in)<=30; core=ndi.distance_transform_edt(core)*CC>30; core|=osm_in
 core=ndi.binary_fill_holes(core)
-# clubhouse lot and drive (traced from the aerial, image pixels)
-lot_px=[(1005,690),(1080,660),(1105,662),(1120,690),(1160,685),(1195,660),(1230,637),(1250,632),(1252,642),(1205,675),(1160,700),(1130,720),(1115,745),(1090,770),(1045,790),(1000,797),(1000,710)]
+# clubhouse gravel lot, drive and paths (traced from the aerial, image pixels)
+lot_px=[(1107,662),(1130,685),(1140,710),(1120,740),(1100,755),(1070,770),(1030,790),(1005,795),(1002,730),(1025,695),(1070,670)]
 lot=raster_poly([w(p) for p in lot_px])
-lot|=raster_line([w(p) for p in [(1065,610),(1072,635),(1080,655)]],2.5)
+drive=raster_line([w(p) for p in [(1236,638),(1200,652),(1167,669),(1135,681),(1118,684)]],5.5)
+lot|=raster_line([w(p) for p in [(1062,610),(1072,635),(1080,655)]],2.5)
 cartpath=raster_line([w(p) for p in [(1105,750),(1160,765),(1210,785),(1230,800)]],2.5)
-core|=lot
-inb=core|(woods&(dt(core)<=45))|ndi.binary_dilation(teem,iterations=int(10/CC))
-# the grass strip between the course and Toll Gate Hill Rd is in play right up to the road
-inb|=(dt(core)<=70)&(dt(barrier)<=75)
+core|=lot|drive
+# ---- in bounds: one smoothed outer line, no islands
 lab,n=ndi.label(~barrier); side=lab[int(H_[0]['gc'][1]/CC),int(H_[0]['gc'][0]/CC)]
-inb&=(lab==side)
-inb&=~road
-inb&=~(resid&~osm_in)
+course_side=lab==side
 nearhouse=(dt(houses)<=12)&~lot&~osm_in
-inb&=~nearhouse
+nearhouse&=~(dt(lot|drive)<=60)   # clubhouse and maintenance buildings are on the course
+excl=~course_side|road|(resid&~osm_in)|nearhouse
+reach=core|(dt(core)<=45)|((dt(core)<=70)&(dt(barrier)<=75))|ndi.binary_dilation(teem,iterations=int(10/CC))
+reach&=~excl
+sm=ndi.gaussian_filter(reach.astype(float),9/CC)>0.5
+sm|=core|ndi.binary_dilation(teem,iterations=int(10/CC))
+sm&=~excl
+sm=ndi.binary_opening(sm,iterations=int(3/CC))
+lab2,n2=ndi.label(sm); sizes=ndi.sum(sm,lab2,range(1,n2+1)); sm=lab2==(int(np.argmax(sizes))+1)
+inb=ndi.binary_fill_holes(sm)&~road
 cov[inb&(cov==LONG)]=ROUGH
-cov[lot&~bldC]=GRAVEL
-cov[cartpath&~bldC&~water]=PATH
+# fairways run to the in-bounds line, not the rough OSM outline
+cov[fair_all&inb&np.isin(cov,[ROUGH,LONG])]=FAIR
+cov[(lot|drive)&~bldC]=GRAVEL
+cov[cartpath&~bldC&~water&np.isin(cov,[ROUGH,FAIR,LONG])]=PATH
 cov[road]=ROAD
-# practice putting green by the clubhouse (traced from the aerial)
-pg=Image.new('L',(CW,CH),0); c_=w((1085,580)); ImageDraw.Draw(pg).ellipse([(c_[0]-11)/CC,(c_[1]-9.5)/CC,(c_[0]+11)/CC,(c_[1]+9.5)/CC],fill=1)
-cov[np.array(pg)>0]=GREEN
+# practice putting green beside the clubhouse (traced from the aerial)
+pg=Image.new('L',(CW,CH),0); c_=w((1172,707)); ImageDraw.Draw(pg).ellipse([(c_[0]-10.5)/CC,(c_[1]-8.5)/CC,(c_[0]+10.5)/CC,(c_[1]+8.5)/CC],fill=1)
+pgm=np.array(pg)>0
+cov[ndi.binary_dilation(pgm,iterations=int(1.2/CC))&~pgm&np.isin(cov,[ROUGH,FAIR])]=FRINGE
+cov[pgm]=GREEN
 inside=inb
 covf=cov|np.where(inside,0,0x80).astype(np.uint8)
 np.save('cover.npy',covf)
