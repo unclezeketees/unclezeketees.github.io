@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Fillmore Golf</title>
+<meta name="description" content="Play all 18 holes of Fillmore Golf Club in Locke, NY, built from real lidar terrain, aerial imagery and GPS hole data.">
+<meta name="theme-color" content="#16261b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2715%27 fill=%27%2316261b%27/%3E%3Cpath d=%27M13 6v20%27 stroke=%27%23ece4cd%27 stroke-width=%272%27/%3E%3Cpath d=%27M14 6l9 4-9 4z%27 fill=%27%23d8392b%27/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#16261b; --panel:rgba(18,32,23,.92); --panel-solid:#132218; --line:rgba(236,228,205,.16);
+  --ink:#ece4cd; --ink-dim:#b7b09a; --accent:#e0b64a; --good:#8fd18a; --bad:#e8836b; --flag:#d8392b;
+  --r:12px; --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--font);overflow:hidden;overscroll-behavior:none;touch-action:none;user-select:none;-webkit-user-select:none}
+canvas#view{position:fixed;inset:0;width:100%;height:100%;display:block;background:#1d3322}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.hidden{display:none!important}
+
+/* HUD */
+#hud-top{position:fixed;left:0;right:0;top:0;display:flex;gap:8px;justify-content:space-between;align-items:flex-start;padding:calc(env(safe-area-inset-top) + 10px) 12px 0;pointer-events:none}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#hole-card .big{font-family:var(--serif);font-size:22px;line-height:1.05}
+#hole-card .sub{font-size:12px;color:var(--ink-dim);margin-top:2px;letter-spacing:.02em}
+#score-card{text-align:right;pointer-events:auto;cursor:pointer}
+#score-card .big{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+#score-card .sub{font-size:12px;color:var(--ink-dim)}
+#wind-card{display:flex;align-items:center;gap:8px}
+#wind-card canvas{width:34px;height:34px}
+#wind-card .big{font-size:15px;font-weight:600}
+#wind-card .sub{font-size:11px;color:var(--ink-dim)}
+.stack{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.stack-l{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+
+#info-card{font-size:13px;line-height:1.35;min-width:150px}
+#info-card b{font-size:15px}
+#info-card .row{display:flex;justify-content:space-between;gap:12px}
+#info-card .k{color:var(--ink-dim)}
+.up{color:var(--bad)} .down{color:var(--good)}
+
+#hud-bottom{position:fixed;left:0;right:0;bottom:0;padding:0 12px calc(env(safe-area-inset-bottom) + 12px);display:flex;flex-direction:column;gap:8px;align-items:stretch;pointer-events:none}
+#controls{display:flex;gap:8px;align-items:stretch;pointer-events:auto}
+#club-box{display:flex;align-items:stretch;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+#club-box button{padding:0 12px;font-size:22px;color:var(--ink-dim)}
+#club-box button:active{background:rgba(255,255,255,.08)}
+#club-name{min-width:96px;text-align:center;padding:6px 4px;display:flex;flex-direction:column;justify-content:center}
+#club-name .big{font-size:16px;font-weight:600}
+#club-name .sub{font-size:11px;color:var(--ink-dim)}
+#aim-box{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+#aim-box button{padding:0 12px;font-size:20px;color:var(--ink-dim)}
+#aim-box button:active{background:rgba(255,255,255,.08)}
+#swing-btn{flex:1;min-height:56px;border-radius:var(--r);background:var(--accent);color:#1b1a12;font-weight:700;font-size:18px;letter-spacing:.06em;box-shadow:0 2px 0 rgba(0,0,0,.35)}
+#swing-btn:active{transform:translateY(1px)}
+#swing-btn[disabled]{opacity:.45}
+
+#meter-wrap{pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:8px 10px}
+#meter{position:relative;height:22px;border-radius:6px;background:linear-gradient(90deg,#2d4a34 0%,#3d6a45 60%,#b8a24a 90%,#c0503a 100%);overflow:hidden}
+#meter .zone{position:absolute;top:0;bottom:0;background:rgba(255,255,255,.28)}
+#meter .tick{position:absolute;top:0;bottom:0;width:2px;background:rgba(0,0,0,.45)}
+#meter .mark{position:absolute;top:-2px;bottom:-2px;width:3px;background:#fff;box-shadow:0 0 4px #000}
+#meter .pmark{position:absolute;top:0;bottom:0;width:3px;background:var(--accent)}
+#meter-label{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-dim);margin-top:4px;font-variant-numeric:tabular-nums}
+
+#toast{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:30px;text-shadow:0 2px 8px rgba(0,0,0,.7);pointer-events:none;opacity:0;transition:opacity .25s;text-align:center;white-space:nowrap}
+#toast small{display:block;font-family:var(--font);font-size:14px;color:var(--ink-dim);margin-top:4px}
+#toast.show{opacity:1}
+
+#icons{position:fixed;right:12px;bottom:calc(env(safe-area-inset-bottom) + 150px);display:flex;flex-direction:column;gap:8px}
+.icon-btn{width:44px;height:44px;border-radius:50%;background:var(--panel);border:1px solid var(--line);font-size:10.5px;font-weight:700;letter-spacing:.02em;color:var(--ink);padding:0}
+.icon-btn.on{border-color:var(--accent);color:var(--accent)}
+
+/* overlays */
+.overlay{position:fixed;inset:0;background:rgba(10,18,12,.78);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
+.sheet{background:var(--panel-solid);border:1px solid var(--line);border-radius:16px;max-width:560px;width:100%;max-height:100%;overflow:auto;padding:22px}
+.sheet h1{font-family:var(--serif);font-weight:normal;font-size:34px;margin:0 0 4px}
+.sheet h2{font-family:var(--serif);font-weight:normal;font-size:24px;margin:0 0 6px}
+.sheet p{color:var(--ink-dim);line-height:1.5;font-size:14px;margin:8px 0}
+.btn{display:block;width:100%;padding:14px;border-radius:10px;background:var(--accent);color:#1b1a12;font-weight:700;font-size:16px;margin-top:10px}
+.btn.alt{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn-row{display:flex;gap:8px}.btn-row .btn{flex:1}
+.opt{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{padding:6px 10px;font-size:13px;color:var(--ink-dim)}
+.seg button.on{background:var(--accent);color:#1b1a12;font-weight:600}
+.credits{font-size:11.5px;color:var(--ink-dim);line-height:1.5;margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+.credits a{color:var(--ink-dim)}
+table.sc{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;margin-top:8px}
+table.sc th,table.sc td{padding:5px 3px;text-align:center;border-bottom:1px solid var(--line)}
+table.sc th{color:var(--ink-dim);font-weight:500}
+table.sc td.l,table.sc th.l{text-align:left}
+table.sc tr.tot td{font-weight:700}
+.b{color:var(--good)} .bo{color:var(--bad)}
+.intro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 4px}
+.intro-stats div{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.intro-stats b{display:block;font-size:20px}
+.intro-stats span{font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.06em}
+#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;background:var(--bg);z-index:30;font-family:var(--serif);font-size:20px}
+#loading small{font-family:var(--font);font-size:13px;color:var(--ink-dim)}
+.help{font-size:13px;color:var(--ink-dim);line-height:1.55}
+.help b{color:var(--ink)}
+@media (max-width:420px){
+  #hole-card .big{font-size:19px}
+  #club-name{min-width:84px}
+  #info-card{min-width:128px;font-size:12px}
+}
+</style>
+</head>
+<body>
+<canvas id="view"></canvas>
+
+<div id="hud-top" class="hidden">
+  <div class="stack-l">
+    <div class="card" id="hole-card"><div class="big" id="h-title">Hole 1</div><div class="sub" id="h-sub">Par 4 &middot; 340 yds</div></div>
+    <div class="card" id="info-card"></div>
+  </div>
+  <div class="stack">
+    <div class="card" id="score-card"><div class="big" id="s-total">E</div><div class="sub" id="s-sub">Stroke 1</div></div>
+    <div class="card" id="wind-card"><canvas id="wind-canvas" width="68" height="68"></canvas><div><div class="big" id="w-speed">0 mph</div><div class="sub">wind</div></div></div>
+  </div>
+</div>
+
+<div id="icons" class="hidden">
+  <button class="icon-btn" id="btn-view" title="Hole overview">VIEW</button>
+  <button class="icon-btn" id="btn-topo" title="Contour lines">TOPO</button>
+  <button class="icon-btn" id="btn-menu" title="Menu">MENU</button>
+</div>
+
+<div id="toast"></div>
+
+<div id="hud-bottom" class="hidden">
+  <div id="meter-wrap">
+    <div id="meter"><div class="zone" id="m-zone"></div><div class="tick" id="m-full"></div><div class="pmark hidden" id="m-p"></div><div class="mark" id="m-mark"></div></div>
+    <div id="meter-label"><span id="m-left">Tap SWING to start</span><span id="m-right"></span></div>
+  </div>
+  <div id="controls">
+    <div id="club-box"><button id="club-prev" aria-label="Previous club">&lsaquo;</button><div id="club-name"><div class="big" id="c-name">Driver</div><div class="sub" id="c-dist">230 yds</div></div><button id="club-next" aria-label="Next club">&rsaquo;</button></div>
+    <div id="aim-box"><button id="aim-l" aria-label="Aim left">&#8630;</button><button id="aim-r" aria-label="Aim right">&#8631;</button></div>
+    <button id="swing-btn">SWING</button>
+  </div>
+</div>
+
+<div id="overlay" class="overlay hidden"><div class="sheet" id="sheet"></div></div>
+<div id="loading">Fillmore Golf Club<small id="load-msg">Loading course data...</small></div>
+
+<script src="course.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
