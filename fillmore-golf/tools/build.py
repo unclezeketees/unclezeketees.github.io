@@ -71,25 +71,7 @@ cov[play&(cov==LONG)&inside]=ROUGH
 fair&=inside
 cov[fair]=FAIR
 # paths, roads, gravel from imagery (non-vegetated, no canopy)
-asph=(SAT<16)&(L>55)&(L<140)&(chmC<1)&(G_-R_<4)
-light=(SAT<20)&(L>=150)&(chmC<1)&(G_-R_<3)
-asph=ndi.binary_opening(asph,iterations=1); light=ndi.binary_opening(light,iterations=1)
-def thin_or_gray(mk,maxhalf,minm2):
-    lab,n=ndi.label(mk); dt=ndi.distance_transform_edt(mk)*CC
-    idx=range(1,n+1)
-    mxd=np.array(ndi.maximum(dt,lab,idx)); sz=np.array(ndi.sum(mk,lab,idx))*CC*CC
-    sat=np.array(ndi.mean(SAT,lab,idx))
-    sl=ndi.find_objects(lab)
-    diag=np.array([math.hypot((s_[0].stop-s_[0].start)*CC,(s_[1].stop-s_[1].start)*CC) for s_ in sl])
-    path_like=(diag>=18)&(sz/np.maximum(diag,1)<=3.2)&(mxd<=maxhalf)
-    com=np.array(ndi.center_of_mass(mk,lab,idx)).reshape(-1,2)*CC
-    lot=(sat<11)&(sz>300)&(np.hypot(com[:,1]-476,com[:,0]-221)<90)
-    path_like&=False
-    keep=np.zeros(n+1,bool); keep[1:]=(sz>=minm2)&(path_like|lot); return keep[lab]
-asph=dropsmall(asph,12)
-light=thin_or_gray(light,1.7,8)
-asph_in=thin_or_gray(asph&inside,1.7,8)
-cov[asph&~inside]=ROAD; cov[asph_in]=PATH; cov[light&inside]=PATH; cov[light&~inside]=GRAVEL
+# roads and the clubhouse lot come from OSM and hand tracing further down
 # buildings from lidar: tall, smooth canopy surface
 rough=ndi.generic_filter(chm,np.std,size=3) if False else np.sqrt(np.maximum(ndi.uniform_filter(chm**2,3)-ndi.uniform_filter(chm,3)**2,0))
 b1=(chm>2.5)&(rough<0.45); b1=ndi.binary_opening(b1,iterations=1)
@@ -145,6 +127,51 @@ for (ox,oy,mk) in gm:
 fringe=ndi.binary_dilation(greens,iterations=int(1.6/CC))&~greens
 cov[fringe&~water]=FRINGE; cov[greens]=GREEN
 cov[teem&~water&~greens]=TEE
+# ---- in-bounds: property outline closed over the clubhouse strip, woods edges in play,
+#      Toll Gate Hill Rd and everything across it out, house lots out
+rd=json.load(open('roads.json'))
+def wl(q): return w(px((q['lat'],q['lon'])))
+def raster_line(pts,width_m):
+    m=Image.new('L',(CW,CH),0); ImageDraw.Draw(m).line([(p[0]/CC,p[1]/CC) for p in pts],fill=1,width=max(1,int(round(width_m/CC))),joint='curve'); return np.array(m)>0
+def raster_poly(pts):
+    m=Image.new('L',(CW,CH),0); ImageDraw.Draw(m).polygon([(p[0]/CC,p[1]/CC) for p in pts],fill=1); return np.array(m)>0
+road=np.zeros((CH,CW),bool); barrier=np.zeros((CH,CW),bool); resid=np.zeros((CH,CW),bool); houses=np.zeros((CH,CW),bool)
+for e in rd['elements']:
+    t=e.get('tags',{}); pts=[wl(q) for q in e['geometry']]
+    hw=t.get('highway')
+    if hw in ('tertiary','unclassified','residential','service'):
+        road|=raster_line(pts,7 if hw=='tertiary' else 6)
+        if t.get('name')=='Toll Gate Hill Road': barrier|=raster_line(pts,12)
+        if hw=='residential': resid|=raster_line(pts,80)
+    elif 'building' in t and len(pts)>2:
+        houses|=raster_poly(pts)
+dt=lambda m: ndi.distance_transform_edt(~m)*CC
+osm_in=raster_poly(bw)
+core=dt(osm_in)<=30; core=ndi.distance_transform_edt(core)*CC>30; core|=osm_in
+core=ndi.binary_fill_holes(core)
+# clubhouse lot and drive (traced from the aerial, image pixels)
+lot_px=[(1005,690),(1080,660),(1105,662),(1120,690),(1160,685),(1195,660),(1230,637),(1250,632),(1252,642),(1205,675),(1160,700),(1130,720),(1115,745),(1090,770),(1045,790),(1000,797),(1000,710)]
+lot=raster_poly([w(p) for p in lot_px])
+lot|=raster_line([w(p) for p in [(1065,610),(1072,635),(1080,655)]],2.5)
+cartpath=raster_line([w(p) for p in [(1105,750),(1160,765),(1210,785),(1230,800)]],2.5)
+core|=lot
+inb=core|(woods&(dt(core)<=45))|ndi.binary_dilation(teem,iterations=int(10/CC))
+# the grass strip between the course and Toll Gate Hill Rd is in play right up to the road
+inb|=(dt(core)<=70)&(dt(barrier)<=75)
+lab,n=ndi.label(~barrier); side=lab[int(H_[0]['gc'][1]/CC),int(H_[0]['gc'][0]/CC)]
+inb&=(lab==side)
+inb&=~road
+inb&=~(resid&~osm_in)
+nearhouse=(dt(houses)<=12)&~lot&~osm_in
+inb&=~nearhouse
+cov[inb&(cov==LONG)]=ROUGH
+cov[lot&~bldC]=GRAVEL
+cov[cartpath&~bldC&~water]=PATH
+cov[road]=ROAD
+# practice putting green by the clubhouse (traced from the aerial)
+pg=Image.new('L',(CW,CH),0); c_=w((1085,580)); ImageDraw.Draw(pg).ellipse([(c_[0]-11)/CC,(c_[1]-9.5)/CC,(c_[0]+11)/CC,(c_[1]+9.5)/CC],fill=1)
+cov[np.array(pg)>0]=GREEN
+inside=inb
 covf=cov|np.where(inside,0,0x80).astype(np.uint8)
 np.save('cover.npy',covf)
 # ---- trees from canopy height model

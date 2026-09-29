@@ -11,7 +11,8 @@ Run them from this folder with Python 3 and `numpy scipy pillow tifffile laspy l
    `https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/NY_CayugaOswegoCounties_2018_A18/NY_CayugaOswego_2018/LAZ/USGS_LPC_NY_CayugaOswegoCounties_2018_A18_u_<tile>_2018.laz`
 
 Included here: `gt_points.txt` (GolfTraxx tee, target and green GPS points per hole),
-`osm.json` (OpenStreetMap course boundary, way 213743599), `crop.json` (game frame).
+`osm.json` (OpenStreetMap course boundary, way 213743599), `roads.json` (OpenStreetMap roads and buildings
+around the course), `crop.json` (game frame).
 
 ## Steps
 
@@ -23,6 +24,9 @@ Included here: `gt_points.txt` (GolfTraxx tee, target and green GPS points per h
 ## Hand-set details in build.py
 
 - Creek centerline points (traced from the aerial, snapped to the lidar channel).
+- In bounds: the OSM outline closed over the clubhouse strip, woods within about 50 yds, and the grass
+  strip up to Toll Gate Hill Rd. The road, everything across it, and the Golf View Rd house lots are out.
+- Clubhouse drive, gravel lot, cart path and practice green (traced from the aerial).
 - Bunkers at holes 1 and 9 (the only sand visible in the imagery).
 - Fairway widths are estimated (about 32 m, narrowing toward the green). The spring
   aerial does not show mowing lines clearly enough to trace them.

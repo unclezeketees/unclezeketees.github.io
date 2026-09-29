@@ -145,30 +145,32 @@ function inTree(t, x, y, z) {
 }
 
 /* ---------------- clubs and flight ---------------- */
-const G = 9.81, KD = 0.0040, YD = 1.09361, FT = 3.28084, CUP = 0.054;
+const G = 9.81, KD = 0.0048, YD = 1.09361, FT = 3.28084, CUP = 0.054;
 const CLUBS = [
-  { n: 'Driver', carry: 230, ang: 12, L: .0034, bite: .07, roll: 0.1 },
-  { n: '3 Wood', carry: 210, ang: 12.5, L: .0038, bite: .10, roll: 0.08 },
-  { n: '5 Wood', carry: 195, ang: 13.5, L: .0042, bite: .13, roll: 0.07 },
-  { n: '4 Hybrid', carry: 183, ang: 14.5, L: .0046, bite: .16, roll: 0.06 },
-  { n: '5 Iron', carry: 172, ang: 15.5, L: .0050, bite: .19, roll: 0.05 },
-  { n: '6 Iron', carry: 162, ang: 17, L: .0054, bite: .22, roll: 0.04 },
-  { n: '7 Iron', carry: 152, ang: 19, L: .0058, bite: .26, roll: 0.035 },
-  { n: '8 Iron', carry: 140, ang: 21.5, L: .0062, bite: .30, roll: 0.03 },
-  { n: '9 Iron', carry: 128, ang: 24, L: .0066, bite: .34, roll: 0.025 },
-  { n: 'P Wedge', carry: 115, ang: 27, L: .0070, bite: .40, roll: 0.02 },
-  { n: 'G Wedge', carry: 100, ang: 30, L: .0072, bite: .45, roll: 0.01 },
-  { n: 'S Wedge', carry: 85, ang: 33, L: .0074, bite: .50, roll: 0 },
+  { n: 'Driver', carry: 230, ang: 12, L: .0027, bite: .07, roll: 0.1 },
+  { n: '3 Wood', carry: 210, ang: 12.5, L: .0030, bite: .10, roll: 0.08 },
+  { n: '5 Wood', carry: 195, ang: 13.5, L: .0034, bite: .13, roll: 0.07 },
+  { n: '4 Hybrid', carry: 183, ang: 14.5, L: .0037, bite: .16, roll: 0.06 },
+  { n: '5 Iron', carry: 172, ang: 15.5, L: .0040, bite: .19, roll: 0.05 },
+  { n: '6 Iron', carry: 162, ang: 17, L: .0043, bite: .22, roll: 0.04 },
+  { n: '7 Iron', carry: 152, ang: 19, L: .0046, bite: .26, roll: 0.035 },
+  { n: '8 Iron', carry: 140, ang: 21.5, L: .0050, bite: .30, roll: 0.03 },
+  { n: '9 Iron', carry: 128, ang: 24, L: .0053, bite: .34, roll: 0.025 },
+  { n: 'P Wedge', carry: 115, ang: 27, L: .0056, bite: .40, roll: 0.02 },
+  { n: 'G Wedge', carry: 100, ang: 30, L: .0058, bite: .45, roll: 0.01 },
+  { n: 'S Wedge', carry: 85, ang: 33, L: .0059, bite: .50, roll: 0 },
   { n: 'Putter', putter: true },
 ];
 const PUTTER = CLUBS.length - 1;
 
 function accel(b, wx, wy, out) {
-  const rx = b.vx - wx, ry = b.vy - wy, rz = b.vz;
+  // wind is stronger with height above the ground (power-law profile, 10 m reference)
+  const hw = Math.pow(Math.max(b.z - (b.g0 || 0), 0.5) / 10, 0.2) * 1.15;
+  const rx = b.vx - wx * hw, ry = b.vy - wy * hw, rz = b.vz;
   const sp = Math.sqrt(rx * rx + ry * ry + rz * rz) || 1e-9, hs = Math.hypot(rx, ry) || 1e-9;
   const hdx = rx / hs, hdy = ry / hs;
   let ax = -KD * sp * rx, ay = -KD * sp * ry, az = -KD * sp * rz - G;
-  const lm = b.L * sp;            // lift ~ L * sp^2, direction (-rz*hd, hs)/sp
+  const lm = b.L * (b.v0 || sp);  // backspin lift ~ spin x airspeed, spin set at launch
   ax += lm * -rz * hdx; ay += lm * -rz * hdy; az += lm * hs;
   const sm = b.S * sp * sp;       // side force, right of travel = (-dy, dx)
   ax += sm * -hdy; ay += sm * hdx;
@@ -185,8 +187,8 @@ function integrate(b, dt, wx, wy) {
 for (const c of CLUBS) {
   if (c.putter) continue;
   const tab = [];
-  for (let v = 3; v <= 80; v += 1.5) {
-    const b = { x: 0, y: 0, z: 0, vx: v * Math.cos(c.ang * Math.PI / 180), vy: 0, vz: v * Math.sin(c.ang * Math.PI / 180), L: c.L, S: 0 };
+  for (let v = 3; v <= 90; v += 1.5) {
+    const b = { x: 0, y: 0, z: 0, g0: 0, v0: v, vx: v * Math.cos(c.ang * Math.PI / 180), vy: 0, vz: v * Math.sin(c.ang * Math.PI / 180), L: c.L, S: 0 };
     let t = 0;
     while (t < 20) { integrate(b, 1 / 120, 0, 0); t += 1 / 120; if (b.z < 0) break; }
     tab.push([v, b.x]);
@@ -204,7 +206,9 @@ function vForCarry(c, m) {
 
 /* ---------------- random ---------------- */
 const rnd = Math.random;
-function randn() { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+let NORAND = false;
+function randn() {
+  if (NORAND) return 0; let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
 function h2(i, j) { let h = (Math.imul(i, 374761393) + Math.imul(j, 668265263)) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); h ^= h >>> 16; return (h >>> 0) / 4294967296; }
 function vnoise(x, y) {
   const i = Math.floor(x), j = Math.floor(y), fx = x - i, fy = y - j;
@@ -601,7 +605,7 @@ function strike(power, acc) {
     const hv = v * Math.cos(ang * Math.PI / 180);
     Object.assign(ball, {
       vx: Math.cos(dir) * hv, vy: Math.sin(dir) * hv, vz: v * Math.sin(ang * Math.PI / 180),
-      L: c.L * (k === ROUGH || k === LONG ? 0.75 : 1), S: -acc * 0.011 + randn() * 0.0005 * err, mode: 'fly'
+      L: c.L * (k === ROUGH || k === LONG ? 0.75 : 1), S: -acc * 0.011 + randn() * 0.0005 * err, mode: 'fly', v0: v, g0: hAt(ball.x, ball.y)
     });
     ball.z += 0.03;
     shot.bite = k === ROUGH || k === LONG || k === WOODS ? c.bite * 0.3 : c.bite;
@@ -1134,6 +1138,8 @@ if (/[?&]debug/.test(location.search)) window.__fgc = {
   view(m) { cam.mode = m; cam.zoom = 1; cam.panX = cam.panY = 0; },
   place(x, y) { placeBall([x, y]); ball.onTee = false; setupShot(); },
   hit(p, a) { strike(p, a); },
+  test(o) { NORAND = true; if (o.wind) wind = { x: o.wind[0], y: o.wind[1], mph: Math.round(Math.hypot(o.wind[0], o.wind[1]) * 2.237) }; placeBall(o.at); ball.onTee = !!o.tee; state = 'aim'; aim = o.aim; ci = CLUBS.findIndex(c => c.n === o.club); strike(o.power || 1, 0); },
+  get shot() { return shot && { carry: shot.carry, from: shot.from, maxZ: shot.maxZ, bounces: shot.bounces }; },
   async map(ppm) {
     HD = [0, -1]; buildShade(); const tok = ++buildToken;
     const L = await makeLayer(0, 0, C.cW * CC, C.cH * CC, ppm, true, tok);
