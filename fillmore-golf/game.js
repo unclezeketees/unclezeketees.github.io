@@ -541,8 +541,13 @@ function rotateAim(deg) {
   aim = [ball.x + dx * Math.cos(a) - dy * Math.sin(a), ball.y + dx * Math.sin(a) + dy * Math.cos(a)];
   updateHUD();
 }
+/* flat-green equivalent length of a putt: rolling friction plus the pull of the slope */
+function puttEquiv() {
+  const d = dist([ball.x, ball.y], aim), dh = hAt(aim[0], aim[1]) - hAt(ball.x, ball.y);
+  return Math.max(0.3, d + 0.35 + (5 / 7) * dh / SURF[GREEN].mu);
+}
 function puttRange() {
-  const d = dist([ball.x, ball.y], aim) * 1.3;
+  const d = puttEquiv() * 1.3;
   for (const r of [3, 5, 8, 12, 18, 25, 35]) if (d <= r) return r;
   return 45;
 }
@@ -903,7 +908,7 @@ function updateHUD() {
   // meter guide: suggested power tick
   let sug = null;
   if (aim && state === 'aim') {
-    if (c.putter) sug = (dist(b, aim) + 0.35) / puttRange();
+    if (c.putter) sug = puttEquiv() / puttRange();
     else sug = playsLike(b, aim) / (c.carry / YD * lieMult(ci) * (dist(aim, pin) < 12 ? 1 + c.roll : 1));
   }
   const z = $('m-zone');

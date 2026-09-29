@@ -27,8 +27,9 @@ around the course), `crop.json` (game frame).
 - In bounds: the OSM outline closed over the clubhouse strip, woods within about 50 yds, and the grass
   strip up to Toll Gate Hill Rd. The road, everything across it, and the Golf View Rd house lots are out.
 - Clubhouse drive, gravel lot, cart path and practice green (traced from the aerial).
-- Bunkers at holes 1 and 9 (the only sand visible in the imagery).
+- Bunkers at holes 1 and 9 (the only sand visible in the imagery), plus bowls found in the lidar:
+  the rocky pit in the #6 fairway, the bowl beside #8 green, a pit short of #8, and a hollow near #10 green.
 - Fairway widths are estimated (about 32 m, narrowing toward the green). The spring
   aerial does not show mowing lines clearly enough to trace them.
-- Green tilt is capped at 5 percent. The lidar shows about 8.6 percent on #10 and
-  about 5.5 to 5.8 percent on #5 and #7, which a ball cannot stop on at normal green speed.
+- Green tilt is capped at 7 percent. The lidar shows about 8.6 percent on #10, which a ball
+  cannot stop on at the game's green speed. #5 and #7 keep their measured tilt.

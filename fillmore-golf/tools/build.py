@@ -14,7 +14,7 @@ def w(p): return [(p[0]-X0p)*MPP,(p[1]-Y0p)*MPP]
 # resample 1 m grids to cover grid
 cy,cx=np.mgrid[0:CH,0:CW]; wx=(cx+0.5)*CC; wy=(cy+0.5)*CC
 def samp(g,order=1): return ndi.map_coordinates(g.astype(float),[wy-0.5,wx-0.5],order=order,mode='nearest')
-chmC=samp(chm); voidC=samp(void.astype(float))>0.5
+chmC=samp(chm); voidC=samp(ndi.gaussian_filter(void.astype(float),1.0))>0.5
 # ---- boundary / OB
 osm=json.load(open('osm.json')); bd=[e for e in osm['elements'] if e['id']==213743599][0]['geometry']
 bw=[w(px((g['lat'],g['lon']))) for g in bd]
@@ -22,7 +22,7 @@ m=Image.new('L',(CW,CH),0); ImageDraw.Draw(m).polygon([(p[0]/CC,p[1]/CC) for p i
 # ---- classes
 ROUGH,FAIR,GREEN,FRINGE,TEE,SAND,WATER,WOODS,ROAD,PATH,BLDG,LONG,CREEK,GRAVEL=range(14)
 cov=np.where(inside,ROUGH,LONG).astype(np.uint8)
-canopy=ndi.uniform_filter((chmC>3).astype(float),int(6/CC))
+canopy=ndi.gaussian_filter((chmC>3).astype(float),2.6/CC)
 woods=canopy>0.55
 cov[woods]=WOODS
 # holes in world coords
@@ -92,6 +92,20 @@ for n,pts,wd in ((1,[(36,-9),(33,10),(27,28),(22,37)],8),(9,[(-2,-37),(6,-40),(1
     for a,b in (pts[0],pts[-1]):
         x,y=g[0]+a-X0p,g[1]+b-Y0p; bd_.ellipse([x-wd/2,y-wd/2,x+wd/2,y+wd/2],fill=1)
 sand=np.array(bm)>0
+# bunkers and waste pits found as bowls in the lidar (checked against the aerial):
+# rocky pit in the #6 fairway, rocky bowl beside #8 green, pit short of #8, grass hollow near #10 green
+bowlf=ndi.gaussian_filter(dtm,4)-ndi.gaussian_filter(dtm,0.7)
+blab,_=ndi.label(bowlf>0.12)
+bowl1m=np.zeros(dtm.shape,bool)
+for bx,by in ((295.5,178.0),(277.0,188.2),(187.7,297.0),(656.8,710.7),(264.5,313.1)):
+    l_=blab[int(by),int(bx)]
+    if l_==0: continue
+    r_=np.zeros(dtm.shape,bool); r_[blab==l_]=True
+    yy_,xx_=np.mgrid[0:dtm.shape[0],0:dtm.shape[1]]
+    bowl1m|=r_&(np.hypot(xx_+0.5-bx,yy_+0.5-by)<14)
+bowlC=ndi.map_coordinates(ndi.gaussian_filter(ndi.binary_closing(bowl1m).astype(float),1.2),[wy-0.5,wx-0.5],order=1)>0.5
+sand|=bowlC
+print('lidar bunkers m2',bowlC.sum()*CC*CC)
 cov[sand]=SAND
 # water: lidar voids + dark imagery nearby
 wv=ndi.binary_closing(voidC,iterations=3); wv=ndi.binary_fill_holes(wv); wv=dropsmall(wv,40)
@@ -236,11 +250,11 @@ for i,h in enumerate(H_):
     A_=np.c_[Xg[mk]+0.5-gc[0],Yg[mk]+0.5-gc[1],np.ones(mk.sum())]
     a,b,c0=np.linalg.lstsq(A_,hts[mk],rcond=None)[0]
     tilt=math.hypot(a,b)
-    if tilt>0.05:
-        k=(tilt-0.05)/tilt
+    if tilt>0.07:
+        k=(tilt-0.07)/tilt
         adj=(a*k*(Xg+0.5-gc[0])+b*k*(Yg+0.5-gc[1]))*feather*win
         hts=hts-adj
-        print('green %d tilt %.1f%% capped to 5%%'%(i+1,tilt*100))
+        print('green %d tilt %.1f%% capped to 7%%'%(i+1,tilt*100))
 base=float(np.floor(hts.min()))
 cm_=np.round((hts-base)*100).astype(np.int32)
 delta=np.diff(np.concatenate([np.zeros((HH,1),np.int32),cm_],1),axis=1).astype(np.int16)
