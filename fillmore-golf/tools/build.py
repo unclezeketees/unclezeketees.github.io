@@ -150,13 +150,14 @@ def raster_line(pts,width_m):
     m=Image.new('L',(CW,CH),0); ImageDraw.Draw(m).line([(p[0]/CC,p[1]/CC) for p in pts],fill=1,width=max(1,int(round(width_m/CC))),joint='curve'); return np.array(m)>0
 def raster_poly(pts):
     m=Image.new('L',(CW,CH),0); ImageDraw.Draw(m).polygon([(p[0]/CC,p[1]/CC) for p in pts],fill=1); return np.array(m)>0
+tgroad=[]
 road=np.zeros((CH,CW),bool); barrier=np.zeros((CH,CW),bool); resid=np.zeros((CH,CW),bool); houses=np.zeros((CH,CW),bool)
 for e in rd['elements']:
     t=e.get('tags',{}); pts=[wl(q) for q in e['geometry']]
     hw=t.get('highway')
     if hw in ('tertiary','unclassified','residential','service'):
         road|=raster_line(pts,7 if hw=='tertiary' else 6)
-        if t.get('name')=='Toll Gate Hill Road': barrier|=raster_line(pts,12)
+        if t.get('name')=='Toll Gate Hill Road': barrier|=raster_line(pts,12); tgroad=pts
         if hw=='residential': resid|=raster_line(pts,80)
     elif 'building' in t and len(pts)>2:
         houses|=raster_poly(pts)
@@ -167,9 +168,19 @@ core=ndi.binary_fill_holes(core)
 # clubhouse gravel lot, drive and paths (traced from the aerial, image pixels)
 lot_px=[(1107,662),(1130,685),(1140,710),(1120,740),(1100,755),(1070,770),(1030,790),(1005,795),(1002,730),(1025,695),(1070,670)]
 lot=raster_poly([w(p) for p in lot_px])
-drive=raster_line([w(p) for p in [(1236,638),(1200,652),(1167,669),(1135,681),(1118,684)]],5.5)
-lot|=raster_line([w(p) for p in [(1062,610),(1072,635),(1080,655)]],2.5)
-cartpath=raster_line([w(p) for p in [(1105,750),(1160,765),(1210,785),(1230,800)]],2.5)
+# drive: a smooth curve from the road into the lot (Catmull-Rom through the traced points)
+def smooth_path(P,n=12):
+    P=[P[0]]+P+[P[-1]]; out=[]
+    for i in range(1,len(P)-2):
+        p0,p1,p2,p3=P[i-1],P[i],P[i+1],P[i+2]
+        for k in range(n):
+            t=k/n; t2=t*t; t3=t2*t
+            out.append(tuple(0.5*((2*p1[j])+(-p0[j]+p2[j])*t+(2*p0[j]-5*p1[j]+4*p2[j]-p3[j])*t2+(-p0[j]+3*p1[j]-3*p2[j]+p3[j])*t3) for j in (0,1)))
+    out.append(P[-2]); return out
+drive=raster_line(smooth_path([w(p) for p in [(1240,636),(1205,650),(1168,668),(1138,684),(1115,700)]]),5.5)
+lot=ndi.gaussian_filter(lot.astype(float),2.2/CC)>0.5
+paved=ndi.gaussian_filter((lot|drive).astype(float),1.0/CC)>0.45
+cartpath=np.zeros((CH,CW),bool)
 core|=lot|drive
 # ---- in bounds: one smoothed outer line, no islands
 lab,n=ndi.label(~barrier); side=lab[int(H_[0]['gc'][1]/CC),int(H_[0]['gc'][0]/CC)]
@@ -188,7 +199,9 @@ inb=ndi.binary_fill_holes(sm)&~road
 cov[inb&(cov==LONG)]=ROUGH
 # fairways run to the in-bounds line, not the rough OSM outline
 cov[fair_all&inb&np.isin(cov,[ROUGH,LONG])]=FAIR
-cov[(lot|drive)&~bldC]=GRAVEL
+cov[paved&~bldC]=GRAVEL
+drive_s=ndi.gaussian_filter(drive.astype(float),1.0/CC)>0.45
+cov[drive_s&~bldC]=ROAD   # the drive is blacktop
 cov[cartpath&~bldC&~water&np.isin(cov,[ROUGH,FAIR,LONG])]=PATH
 cov[road]=ROAD
 # practice putting green beside the clubhouse (traced from the aerial)
@@ -196,6 +209,13 @@ pg=Image.new('L',(CW,CH),0); c_=w((1172,707)); ImageDraw.Draw(pg).ellipse([(c_[0
 pgm=np.array(pg)>0
 cov[ndi.binary_dilation(pgm,iterations=int(1.2/CC))&~pgm&np.isin(cov,[ROUGH,FAIR])]=FRINGE
 cov[pgm]=GREEN
+greens|=pgm
+# driving range tee: the hitting area east of the practice green, firing south along the road
+RANGE_TEE=(503.0,268.0); RANGE_DIR=(0.438,0.899)
+rx_=wx-RANGE_TEE[0]; ry_=wy-RANGE_TEE[1]
+along_=rx_*RANGE_DIR[0]+ry_*RANGE_DIR[1]; across_=-rx_*RANGE_DIR[1]+ry_*RANGE_DIR[0]
+rtee=(np.abs(along_)<7)&(np.abs(across_)<18)
+cov[rtee&inb&~bldC&np.isin(cov,[ROUGH,FAIR,LONG,GRAVEL])]=TEE
 inside=inb
 covf=cov|np.where(inside,0,0x80).astype(np.uint8)
 np.save('cover.npy',covf)
@@ -266,6 +286,14 @@ for i,h in enumerate(H_):
         adj=(a*k*(Xg+0.5-gc[0])+b*k*(Yg+0.5-gc[1]))*feather*win
         hts=hts-adj
         print('green %d tilt %.1f%% capped to 7%%'%(i+1,tilt*100))
+# practice green: keep its real plane, damp the small lidar bumps
+pc=w((1172,707)); pmask=(((Xg+0.5-pc[0])/11.5)**2+((Yg+0.5-pc[1])/9.5)**2)<=1
+if pmask.sum()>20:
+    A_=np.c_[Xg[pmask]+0.5-pc[0],Yg[pmask]+0.5-pc[1],np.ones(pmask.sum())]
+    a_,b_,c_=np.linalg.lstsq(A_,hts[pmask],rcond=None)[0]
+    plane=a_*(Xg+0.5-pc[0])+b_*(Yg+0.5-pc[1])+c_
+    pf=np.clip(ndi.gaussian_filter(pmask.astype(float),1.5)*1.4,0,1)
+    hts=hts*(1-pf)+(plane+0.4*(ndi.gaussian_filter(hts,1.5)-plane))*pf
 base=float(np.floor(hts.min()))
 cm_=np.round((hts-base)*100).astype(np.int32)
 delta=np.diff(np.concatenate([np.zeros((HH,1),np.int32),cm_],1),axis=1).astype(np.int16)
@@ -274,7 +302,10 @@ tr=np.array(trees,dtype=float)
 course={'name':'Fillmore Golf Club','cc':CC,'cW':CW,'cH':CH,'cover':b64(covf.tobytes()),
  'hc':1.0,'hW':HW,'hH':HH,'hBase':base,'heights':b64(delta.tobytes()),
  'trees':tr.flatten().round(1).tolist(),
- 'holes':out_holes,'bound':[[round(p[0],1),round(p[1],1)] for p in bw]}
+ 'holes':out_holes,'bound':[[round(p[0],1),round(p[1],1)] for p in bw],
+ 'practice':{'c':[round(v,2) for v in w((1172,707))],'rx':10.5,'ry':8.5},
+ 'range':{'tee':list(RANGE_TEE),'dir':list(RANGE_DIR),'half':18},
+ 'road':[[round(p[0],1),round(p[1],1)] for p in tgroad]}
 js='window.COURSE='+json.dumps(course,separators=(',',':'))+';\n'
 open('../course.js','w').write(js)
 print('course.js %.0f KB'%(len(js)/1024), 'cover b64 %.0f KB heights b64 %.0f KB'%(len(course['cover'])/1024,len(course['heights'])/1024))
