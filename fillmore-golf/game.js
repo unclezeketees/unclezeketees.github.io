@@ -222,7 +222,9 @@ function lsGet(k, d) { try { const v = localStorage.getItem(k); return v == null
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
 const settings = Object.assign({ speed: 'normal', season: 'summer', sound: true, topo: true }, lsGet('fgc_settings', {}));
 const saveSettings = () => lsSet('fgc_settings', settings);
-const METER_T = { relaxed: 1.45, normal: 1.1, fast: 0.8 };
+const METER_T = { relaxed: 2.0, normal: 1.5, fast: 1.05 };
+/* white zone half width: a tap inside it flies straight */
+const ZH = 0.05;
 
 /* ---------------- sound ---------------- */
 let AC = null;
@@ -588,9 +590,9 @@ function lessonEvent(kind, d) {
     lesson.waitNext = true;
   } else if (kind === 'shot' && (st.wait === 'shot' || st.wait === 'shots2')) {
     lesson.shots++;
-    const a = Math.abs(d.acc), why = a < 0.02 ? 'You stopped it on the white zone, so it flew straight at your aim.' :
-      d.acc > 0 ? `You tapped ${a < 0.06 ? 'a little ' : ''}early, before the white zone, so the ball started left and curved left.` :
-        `You tapped ${a < 0.06 ? 'a little ' : ''}late, past the white zone, so the ball started right and curved right.`;
+    const a = Math.abs(d.acc), why = a <= ZH ? 'You stopped it on the white zone, so it flew straight at your aim.' :
+      d.acc > 0 ? `You tapped ${a < 2 * ZH ? 'a little ' : ''}early, before the white zone, so the ball started left and curved left.` :
+        `You tapped ${a < 2 * ZH ? 'a little ' : ''}late, past the white zone, so the ball started right and curved right.`;
     const pw = d.power > 1.02 ? ' You also went past full power, which adds a little distance but makes the timing less forgiving.' : '';
     if (st.t === 'Wind') {
       const loss = Math.round(d.windLoss);
@@ -815,15 +817,16 @@ const MMIN = -0.18, MMAX = 1.1;
 const mPct = p => (p - MMIN) / (MMAX - MMIN) * 100;
 /* meter position from the clock, so a tap is exact even if frames are slow */
 function meterPosAt(now) {
-  const T = METER_T[settings.speed] || 1.1;
+  const T = METER_T[settings.speed] || 1.5;
   if (meter.phase === 'up') return Math.min(MMAX, (now - meter.t0) / T);
-  if (meter.phase === 'down') return Math.max(MMIN, meter.power - (now - meter.t0) / T * 1.15);
+  if (meter.phase === 'down') return Math.max(MMIN, meter.power - (now - meter.t0) / T);
   return 0;
 }
-function meterClick() {
+/* ts: the input event's timestamp, so a tap counts from the moment the finger lands */
+function meterClick(ts) {
   if (state !== 'aim') return;
   audio();
-  const now = performance.now() / 1000;
+  const now = Math.min(ts || Infinity, performance.now()) / 1000;
   if (meter.phase !== 'idle') meter.pos = meterPosAt(now);
   if (meter.phase === 'idle') { meter.phase = 'up'; meter.t0 = now; meter.pos = 0; $('m-p').classList.add('hidden'); return; }
   if (meter.phase === 'up') {
@@ -836,12 +839,12 @@ function meterClick() {
 }
 function meterTick() {
   if (state !== 'aim' || meter.phase === 'idle') return;
-  const now = performance.now() / 1000, T = METER_T[settings.speed] || 1.1;
+  const now = performance.now() / 1000, T = METER_T[settings.speed] || 1.5;
   if (meter.phase === 'up') {
     meter.pos = (now - meter.t0) / T;
     if (meter.pos >= MMAX) { meter.pos = MMAX; meter.power = MMAX; if (ci === PUTTER) { meter.phase = 'idle'; strike(1, randn() * 0.012); return; } meter.phase = 'down'; meter.t0 = now; $('m-p').classList.remove('hidden'); $('m-p').style.left = mPct(MMAX) + '%'; }
   } else if (meter.phase === 'down') {
-    meter.pos = meter.power - (now - meter.t0) / T * 1.15;
+    meter.pos = meter.power - (now - meter.t0) / T;
     if (meter.pos <= MMIN) { meter.phase = 'idle'; strike(meter.power, MMIN); return; }
   }
   $('m-mark').style.left = mPct(meter.pos) + '%';
@@ -872,11 +875,12 @@ function strike(power, acc) {
     if (k === SAND) { ang += 5; }
     if (k === WOODS) { ang = Math.min(ang, 8); carry *= 0.8; }
     const v = vForCarry(c, carry);
-    const dir = base + acc * 0.06 + randn() * 0.012 * err;
+    const ae = Math.sign(acc) * Math.max(0, Math.abs(acc) - ZH);
+    const dir = base + ae * 0.06 + randn() * 0.012 * err;
     const hv = v * Math.cos(ang * Math.PI / 180);
     Object.assign(ball, {
       vx: Math.cos(dir) * hv, vy: Math.sin(dir) * hv, vz: v * Math.sin(ang * Math.PI / 180),
-      L: c.L * (k === ROUGH || k === LONG ? 0.75 : 1), S: -acc * 0.011 + randn() * 0.0005 * err, mode: 'fly', v0: v, g0: hAt(ball.x, ball.y)
+      L: c.L * (k === ROUGH || k === LONG ? 0.75 : 1), S: -ae * 0.011 + randn() * 0.0005 * err, mode: 'fly', v0: v, g0: hAt(ball.x, ball.y)
     });
     ball.z += 0.03;
     shot.launch = { vx: ball.vx, vy: ball.vy, vz: ball.vz, L: ball.L, S: ball.S, v0: v };
@@ -1001,9 +1005,9 @@ function finishOB() {
 function strikeVerdict(acc, power) {
   const a = Math.abs(acc);
   let v;
-  if (a < 0.02) v = 'Pure strike';
-  else if (acc > 0) v = a < 0.06 ? 'A touch early, drew left' : 'Early, hooked left';
-  else v = a < 0.06 ? 'A touch late, faded right' : 'Late, sliced right';
+  if (a <= ZH) v = 'Pure strike';
+  else if (acc > 0) v = a < 2 * ZH ? 'A touch early, drew left' : 'Early, hooked left';
+  else v = a < 2 * ZH ? 'A touch late, faded right' : 'Late, sliced right';
   if (power > 1.02) v += ', overswung';
   return v;
 }
@@ -1250,7 +1254,7 @@ function updateHUD() {
     else sug = playsLike(b, aim) / (c.carry / YD * lieMult(ci) * (dist(aim, pin) < 12 ? 1 + c.roll : 1));
   }
   const z = $('m-zone');
-  if (c.putter) { z.style.display = 'none'; } else { z.style.display = ''; z.style.left = mPct(-0.035) + '%'; z.style.width = (mPct(0.035) - mPct(-0.035)) + '%'; }
+  if (c.putter) { z.style.display = 'none'; } else { z.style.display = ''; z.style.left = mPct(-ZH) + '%'; z.style.width = (mPct(ZH) - mPct(-ZH)) + '%'; }
   $('m-full').style.left = mPct(sug != null ? Math.min(MMAX, sug) : 1) + '%';
   $('m-left').textContent = state === 'aim' ? (c.putter ? 'Tap PUTT to start, tap again to set pace' : 'Tap to start, tap for power, tap on the line') : '';
   $('m-right').textContent = sug != null ? `Suggested ${Math.round(Math.min(sug, 1.1) * 100)}%` : '';
@@ -1462,7 +1466,11 @@ function showMenu() {
 }
 
 /* ---------------- input ---------------- */
-$('swing-btn').addEventListener('click', e => { e.preventDefault(); meterClick(); });
+// pointerdown, not click: click waits for the finger to lift, which made every phone swing late
+let lastPointer = -1e9;
+$('swing-btn').addEventListener('pointerdown', e => { if (e.button > 0) return; e.preventDefault(); lastPointer = performance.now(); meterClick(e.timeStamp); });
+// keyboard Enter still works; the click that follows a tap is ignored
+$('swing-btn').addEventListener('click', e => { e.preventDefault(); if (performance.now() - lastPointer > 1000) meterClick(); });
 function clubChanged() {
   if (mode === 'range') {
     if (ci === PUTTER) ci = PUTTER - 1;
@@ -1482,7 +1490,7 @@ $('btn-menu').onclick = showMenu;
 $('score-card').onclick = () => { if (state === 'aim' && mode === 'round') { const p = state; state = 'paused'; showScorecard(() => { state = p; }); } };
 window.addEventListener('keydown', e => {
   if (!$('overlay').classList.contains('hidden')) return;
-  if (e.code === 'Space') { e.preventDefault(); if (state === 'flight') shot.fast = true; else meterClick(); }
+  if (e.code === 'Space') { e.preventDefault(); if (e.repeat) return; if (state === 'flight') shot.fast = true; else meterClick(e.timeStamp); }
   else if (state === 'aim' && meter.phase === 'idle') {
     if (e.code === 'ArrowLeft') rotateAim(ci === PUTTER ? -0.5 : -1);
     else if (e.code === 'ArrowRight') rotateAim(ci === PUTTER ? 0.5 : 1);
