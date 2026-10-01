@@ -315,7 +315,7 @@ cm_=np.round((hts-base)*100).astype(np.int32)
 delta=np.diff(np.concatenate([np.zeros((HH,1),np.int32),cm_],1),axis=1).astype(np.int16)
 b64=lambda b: base64.b64encode(zlib.compress(b,9)).decode()
 tr=np.array(trees,dtype=float)
-course={'name':'Fillmore Golf Club','cc':CC,'cW':CW,'cH':CH,'cover':b64(covf.tobytes()),
+course={'name':"Zeke's Golf Game",'cc':CC,'cW':CW,'cH':CH,'cover':b64(covf.tobytes()),
  'hc':1.0,'hW':HW,'hH':HH,'hBase':base,'heights':b64(delta.tobytes()),
  'trees':tr.flatten().round(1).tolist(),
  'holes':out_holes,'bound':[[round(p[0],1),round(p[1],1)] for p in bw],

@@ -1,5 +1,5 @@
 'use strict';
-/* Fillmore Golf Club, Locke NY. Single player stroke play on terrain built from
+/* Zeke's Golf Game. Single player stroke play on terrain built from
    USGS 3DEP lidar, NYS orthoimagery and GolfTraxx GPS hole positions. */
 (async function () {
 const C = window.COURSE;
@@ -291,7 +291,7 @@ function s2w(sx, sy) { const [cx, cy] = screenCenter(); return fromV((sx - cx) /
 
 /* ---------------- prerendered layers ---------------- */
 const SUMMER = ['#35602a', '#3f6c2e', '#4a7431', '#335c29', '#527d36'];
-const AUTUMN = ['#b8412c', '#d0702c', '#d9a53a', '#c4552a', '#8f3a28', '#e0b84a', '#6f8a3a', '#a8602c'];
+const AUTUMN = ['#8c5a32', '#9c7038', '#a08a42', '#86503a', '#7a6a38', '#6e7a38', '#94633a'];
 const PINES = ['#1f3b2a', '#23412d', '#1b3526', '#284a31'];
 function hexRGB(h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; }
 const BASE = {};
@@ -369,7 +369,7 @@ function drawTrees(g, vx0, vy0, ppm, x0, y0, x1, y1) {
       star(g, X - r * 0.2, Y - r * 0.24, r * 0.4, r * 0.22, 7, s1 * 6.28, shadeHex(base, 1.3));
     } else {
       let base;
-      if (autumn) base = s1 < 0.22 ? SUMMER[Math.floor(s2 * SUMMER.length)] : AUTUMN[Math.floor(s2 * AUTUMN.length)];
+      if (autumn) base = s1 < 0.45 ? SUMMER[Math.floor(s2 * SUMMER.length)] : AUTUMN[Math.floor(s2 * AUTUMN.length)];
       else base = SUMMER[Math.floor(s2 * SUMMER.length)];
       g.fillStyle = shadeHex(base, 0.72); circ(g, X, Y, r);
       for (let i = 0; i < 6; i++) {
@@ -1308,7 +1308,7 @@ const HELP = `<div class="help">
 <p><b>Practice:</b> tap the putting green or the driving range on the start map. On the green a new ball drops after you hole out or use three putts. On the range every ball shows carry, total and how far offline, and the next ball drops on its own.</p>
 <p><b>Traffic:</b> cars run on Toll Gate Hill Rd. Hit one and it honks. The road is still out of bounds.</p>
 <p>Drag to pan, pinch or scroll to zoom. VIEW shows the whole hole, TOPO toggles contour lines (1 m, about 3 ft).</p></div>`;
-const CREDITS = `<div class="credits">Built from public data: elevation and tree heights from USGS 3DEP lidar (Cayuga/Oswego Counties 2018), course surfaces traced from NYS ITS orthoimagery, tee and green positions from GolfTraxx GPS data, course boundary from OpenStreetMap contributors (ODbL). Pars and handicaps from Hole19. Fan-made game, not affiliated with or endorsed by Fillmore Golf Club.</div>`;
+const CREDITS = `<div class="credits">Built from public data: elevation and tree heights from USGS 3DEP lidar (Cayuga/Oswego Counties 2018), course surfaces traced from NYS ITS orthoimagery, tee and green positions from GolfTraxx GPS data, course boundary from OpenStreetMap contributors (ODbL). Pars and handicaps from Hole19. Fan-made game, not affiliated with or endorsed by any golf club.</div>`;
 
 function bestKey(kind) { return 'fgc_best_' + kind; }
 let menuMap = null, menuBuilding = false;
@@ -1444,7 +1444,7 @@ function showDone() {
   clearRound();
   const tp2 = round.putts.reduce((a, b) => a + (b || 0), 0);
   sheet(`<h1>${tot} <span style="font-size:22px;color:var(--ink-dim)">(${fmtScore(tp)})</span></h1>
-  <p style="margin-top:0">${round.holes.length} hole${round.holes.length > 1 ? 's' : ''} at Fillmore &middot; ${tp2} putts${round.cars ? ` &middot; ${round.cars} car${round.cars > 1 ? 's' : ''} hit` : ''}${nb ? ' &middot; <b style="color:var(--accent)">New best</b>' : prev ? ` &middot; Best ${prev.s}` : ''}</p>
+  <p style="margin-top:0">${round.holes.length} hole${round.holes.length > 1 ? 's' : ''} played &middot; ${tp2} putts${round.cars ? ` &middot; ${round.cars} car${round.cars > 1 ? 's' : ''} hit` : ''}${nb ? ' &middot; <b style="color:var(--accent)">New best</b>' : prev ? ` &middot; Best ${prev.s}` : ''}</p>
   ${scorecardHTML()}
   <button class="btn" id="d-again">Play again</button><button class="btn alt" id="d-menu">Main menu</button>`);
   $('d-again').onclick = () => { closeSheet(); startRound(round.kind, round.holes[0]); };

@@ -1,4 +1,4 @@
-# Fillmore Golf course data pipeline
+# Course data pipeline
 
 These scripts build `../course.js` (terrain, surfaces, trees, holes) for the game.
 Run them from this folder with Python 3 and `numpy scipy pillow tifffile laspy lazrs pyproj`.
