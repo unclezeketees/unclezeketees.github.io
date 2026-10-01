@@ -497,9 +497,10 @@ function dropPracticeBall() {
   for (let i = 0; i < 200; i++) { p = randomInPractice(0.6); const d = dist(p, pin); if (d > 1.5 && d < 13) break; }
   placeBall(p); ball.onTee = false; prac.ballPutts = 0; trail = [];
 }
+/* a random spot along the range tee pad */
 function rangeBallSpot() {
-  const t = RANGE.tee, d = RANGE.dir, o = (rnd() - 0.5) * 22;
-  return [t[0] - d[1] * o, t[1] + d[0] * o];
+  const t = RANGE.tee, d = RANGE.dir, l = RANGE.line || [-d[1], d[0]], o = (rnd() * 2 - 1) * (RANGE.half || 11);
+  return [t[0] + l[0] * o, t[1] + l[1] * o];
 }
 function startPractice(kind) {
   mode = kind; round = null; $('menu').classList.add('hidden');
@@ -1564,7 +1565,7 @@ if (/[?&]debug/.test(location.search)) window.__fgc = {
   carTest() { const p = carPose(cars[0]); const saved = shot; shot = {}; const b = { x: p[0], y: p[1], z: hAt(p[0], p[1]) + 0.3, vx: 5, vy: 0, vz: -1, mode: 'fly' }; carCheck(b); const r = { hit: !!shot.carHit, flash: cars[0].hit > 0, vx: b.vx }; shot = saved; return r; },
   get cars() { return cars.map(c => carPose(c).map(v => Math.round(v))); },
   get prac() { return prac && JSON.parse(JSON.stringify(prac)); },
-  get shot() { return shot && { carry: shot.carry, from: shot.from, maxZ: shot.maxZ, bounces: shot.bounces }; },
+  get shot() { return shot && { carry: shot.carry, from: shot.from, maxZ: shot.maxZ, bounces: shot.bounces, tree: shot.tree }; },
   async map(ppm) {
     HD = [0, -1]; buildShade(); const tok = ++buildToken;
     const L = await makeLayer(0, 0, C.cW * CC, C.cH * CC, ppm, true, tok);

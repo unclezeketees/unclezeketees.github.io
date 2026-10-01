@@ -30,6 +30,15 @@ par=[4,5,4,4,3,4,3,4,4,5,3,4,3,5,5,4,4,3]; hcp=[16,2,8,6,14,4,18,12,10,1,15,3,13
 H_=[]
 for i,h in enumerate(holes):
     H_.append({k:w(h[k]) for k in ('tee','tt','gc','gf','gb')})
+# tee pads traced from the lidar (pads.py); holes without a visible pad keep the GPS tee
+PADS=json.load(open('tee_pads.json'))
+def cells_mask(cells):
+    q=np.array(cells); m=np.zeros((CH,CW),bool)
+    for ox in (-0.25,0.25):
+        for oy in (-0.25,0.25):
+            ii=np.clip(((q[:,0]+ox)/CC).astype(int),0,CW-1); jj=np.clip(((q[:,1]+oy)/CC).astype(int),0,CH-1); m[jj,ii]=True
+    return ndi.binary_closing(m,iterations=1)
+for k,v in PADS['tees'].items(): H_[int(k)-1]['tee']=list(v['start'])
 # fairways
 def seg_dist(P,a,b):
     ax,ay=a; bx,by=b; dx,dy=bx-ax,by-ay; L2=dx*dx+dy*dy
@@ -56,10 +65,13 @@ for i,h in enumerate(H_):
     else:
         f=(dmin<9+wob*1.5)&(s>gfd-16)&(s<gfd+2)
     fair[j0:j1,i0:i1]|=f
-    # tee box: 7 m x 16 m starting at the back tee pointing at first target
-    d0=np.array(path[1])-np.array(tee); d0/=np.linalg.norm(d0)
-    rx,ry=P[0]-tee[0],P[1]-tee[1]; along=rx*d0[0]+ry*d0[1]; across=-rx*d0[1]+ry*d0[0]
-    teem[j0:j1,i0:i1]|=(along>-2)&(along<14)&(np.abs(across)<3.5)
+    if str(i+1) in PADS['tees']:
+        teem|=cells_mask(PADS['tees'][str(i+1)]['cells'])
+    else:
+        # no pad visible in the lidar: 7 m x 16 m box at the GPS tee pointing at the first target
+        d0=np.array(path[1])-np.array(tee); d0/=np.linalg.norm(d0)
+        rx,ry=P[0]-tee[0],P[1]-tee[1]; along=rx*d0[0]+ry*d0[1]; across=-rx*d0[1]+ry*d0[0]
+        teem[j0:j1,i0:i1]|=(along>-2)&(along<14)&(np.abs(across)<3.5)
     h['path']=path; h['yds']=round(Ltot*1.09361)
 fair&=~woods
 # extend in-bounds only around tee boxes that the OSM outline clips (holes 4 and 6)
@@ -137,6 +149,11 @@ cov[creek]=CREEK
 # greens and fringes
 gm=np.load('green_masks.npy',allow_pickle=True)
 greens=np.zeros((CH,CW),bool)
+# green 16: the aerial trace came out half size, use the lidar plateau instead
+g16=ndi.binary_opening(cells_mask(PADS['green16']['cells']),iterations=2)
+g16=ndi.gaussian_filter(g16.astype(float),1.2/CC)>0.5
+gm=list(gm); j16,i16=np.nonzero(g16); ox16,oy16=i16.min()+X0p,j16.min()+Y0p
+gm[15]=(ox16,oy16,g16[j16.min():j16.max()+1,i16.min():i16.max()+1])
 for (ox,oy,mk) in gm:
     ys,xs=np.nonzero(mk); ys=ys+oy-Y0p; xs=xs+ox-X0p; ok=(ys>=0)&(ys<CH)&(xs>=0)&(xs<CW); greens[ys[ok],xs[ok]]=True
 fringe=ndi.binary_dilation(greens,iterations=int(1.6/CC))&~greens
@@ -210,12 +227,11 @@ pgm=np.array(pg)>0
 cov[ndi.binary_dilation(pgm,iterations=int(1.2/CC))&~pgm&np.isin(cov,[ROUGH,FAIR])]=FRINGE
 cov[pgm]=GREEN
 greens|=pgm
-# driving range tee: the hitting area east of the practice green, firing south along the road
-RANGE_TEE=(503.0,268.0); RANGE_DIR=(0.438,0.899)
-rx_=wx-RANGE_TEE[0]; ry_=wy-RANGE_TEE[1]
-along_=rx_*RANGE_DIR[0]+ry_*RANGE_DIR[1]; across_=-rx_*RANGE_DIR[1]+ry_*RANGE_DIR[0]
-rtee=(np.abs(along_)<7)&(np.abs(across_)<18)
-cov[rtee&inb&~bldC&np.isin(cov,[ROUGH,FAIR,LONG,GRAVEL])]=TEE
+# driving range tee: the leveled pad beside the practice green (lidar), firing south along the road
+RP=PADS['range']; RANGE_TEE=tuple(RP['c']); RANGE_DIR=(0.438,0.899)
+RANGE_LINE=tuple(RP['axis']); RANGE_HALF=round(RP['len']/2-2.5,1)
+rtee=cells_mask(RP['cells'])
+cov[ndi.binary_fill_holes(rtee)&inb&~bldC&~np.isin(cov,[ROAD,BLDG,WATER,GREEN])]=TEE
 inside=inb
 covf=cov|np.where(inside,0,0x80).astype(np.uint8)
 np.save('cover.npy',covf)
@@ -304,7 +320,7 @@ course={'name':'Fillmore Golf Club','cc':CC,'cW':CW,'cH':CH,'cover':b64(covf.tob
  'trees':tr.flatten().round(1).tolist(),
  'holes':out_holes,'bound':[[round(p[0],1),round(p[1],1)] for p in bw],
  'practice':{'c':[round(v,2) for v in w((1172,707))],'rx':10.5,'ry':8.5},
- 'range':{'tee':list(RANGE_TEE),'dir':list(RANGE_DIR),'half':18},
+ 'range':{'tee':list(RANGE_TEE),'dir':list(RANGE_DIR),'line':list(RANGE_LINE),'half':RANGE_HALF},
  'road':[[round(p[0],1),round(p[1],1)] for p in tgroad]}
 js='window.COURSE='+json.dumps(course,separators=(',',':'))+';\n'
 open('../course.js','w').write(js)

@@ -19,7 +19,8 @@ around the course), `crop.json` (game frame).
 1. `python3 greens.py` traces each green outline from the aerial, writes `green_masks.npy`.
 2. `python3 lidar.py` clips the lidar to the course, writes `pts.npz`.
 3. `python3 grids.py` builds the 1 m ground model and canopy height model, writes `grids.npz`.
-4. `python3 build.py` classifies surfaces, detects trees, picks pin spots, writes `../course.js`.
+4. `python3 pads.py` traces the tee pads, the range tee and green 16 from a 0.5 m lidar ground model, writes `tee_pads.json`.
+5. `python3 build.py` classifies surfaces, detects trees, picks pin spots, writes `../course.js`.
 
 ## Hand-set details in build.py
 
@@ -27,9 +28,15 @@ around the course), `crop.json` (game frame).
 - In bounds: one smoothed outer line about 50 yds into the woods around the OSM outline, closed over the
   clubhouse strip and running up to Toll Gate Hill Rd. The road, everything across it, and the Golf View Rd
   house lots are out. No out-of-bounds islands.
+- Tee pads: each tee is the leveled pad visible in the lidar (raised, flat topped), traced from a seed point per
+  hole in `pads.py`, and the ball starts at the pad's center. #1 and #10 share the bench beside the clubhouse,
+  #12 tees off the south end of the #17 pad across the creek. #3, #8 and #14 show no clear pad, so they keep a
+  7 m x 16 m box at the GolfTraxx tee point.
 - Clubhouse drive (blacktop, smooth curve off the road), gravel lot, the practice putting green southeast of the
-  clubhouse, and the driving range tee just south of it firing south along the road (placed from the owner's notes
-  and street photos). The practice green keeps its real plane with the small lidar bumps damped.
+  clubhouse, and the driving range tee on the leveled pad right beside it, firing south along the road (direction
+  from the owner's notes). Range balls drop along the pad. The practice green keeps its real plane with the small
+  lidar bumps damped.
+- Green 16 uses the lidar plateau; the aerial trace came out about half its real size.
 - Bunkers at holes 1 and 9 (the only sand visible in the imagery), plus bowls found in the lidar:
   the rocky pit in the #6 fairway, the bowl beside #8 green, a pit short of #8, and a hollow near #10 green.
 - Fairway widths are estimated (about 32 m, narrowing toward the green). The spring
