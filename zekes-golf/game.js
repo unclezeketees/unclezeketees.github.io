@@ -195,6 +195,36 @@ for (const c of CLUBS) {
   }
   c.tab = tab;
 }
+/* ---------------- shot shape ----------------
+   bend: how far the ball curves, as a share of carry. A shaped ball is started off the aim
+   line by just enough that, on flat ground with no wind, it curves back and lands on it. */
+const SHAPES = [
+  { n: 'Hook', s: -2, bend: 0.18, carry: 0.94, bite: 0.7, err: 1.25 },
+  { n: 'Draw', s: -1, bend: 0.07, carry: 0.98, bite: 0.85, err: 1.1 },
+  { n: 'Straight', s: 0, bend: 0, carry: 1, bite: 1, err: 1 },
+  { n: 'Fade', s: 1, bend: 0.07, carry: 0.98, bite: 1.15, err: 1.1 },
+  { n: 'Slice', s: 2, bend: 0.18, carry: 0.94, bite: 1.3, err: 1.25 },
+];
+const STRAIGHT = 2;
+let shapeI = STRAIGHT;
+/* flight on flat ground, no wind, launched along +x; +y is right of the target line */
+function flatFlight(v, ang, L, S, keep) {
+  const b = { x: 0, y: 0, z: 0, g0: 0, v0: v, vx: v * Math.cos(ang * Math.PI / 180), vy: 0, vz: v * Math.sin(ang * Math.PI / 180), L, S };
+  const pts = keep ? [[0, 0]] : null;
+  for (let t = 0, i = 0; t < 20; t += 1 / 120, i++) { integrate(b, 1 / 120, 0, 0); if (keep && i % 6 === 0) pts.push([b.x, b.y]); if (b.z < 0 && t > 0.1) break; }
+  if (keep) pts.push([b.x, b.y]);
+  return { x: b.x, y: b.y, pts };
+}
+const shapeSpin = (c, i) => Math.sign(SHAPES[i].s) * c.shapeS[Math.abs(SHAPES[i].s)];
+/* curve of the current club and shape, scaled so it runs from (0,0) to (1,0) */
+const _shapePath = new Map();
+function shapePath(cIdx, i) {
+  const key = cIdx * 10 + i; let r = _shapePath.get(key); if (r) return r;
+  const c = CLUBS[cIdx], f = flatFlight(vForCarry(c, c.carry / YD), c.ang, c.L, shapeSpin(c, i), true);
+  const a = -Math.atan2(f.y, f.x), D = Math.hypot(f.x, f.y), ca = Math.cos(a), sa = Math.sin(a);
+  r = f.pts.map(([x, y]) => [(x * ca - y * sa) / D, (x * sa + y * ca) / D]);
+  _shapePath.set(key, r); return r;
+}
 function vForCarry(c, m) {
   const t = c.tab;
   if (m <= t[0][1]) return t[0][0] * m / Math.max(t[0][1], 0.01);
@@ -202,6 +232,16 @@ function vForCarry(c, m) {
     const a = t[i - 1], b = t[i]; return a[0] + (b[0] - a[0]) * (m - a[1]) / (b[1] - a[1]);
   }
   return t[t.length - 1][0];
+}
+
+for (const c of CLUBS) {
+  if (c.putter) continue;
+  const v = vForCarry(c, c.carry / YD); c.shapeS = [0];
+  for (const bend of [SHAPES[1].bend, SHAPES[0].bend]) {
+    let lo = 0, hi = 0.012;
+    for (let k = 0; k < 30; k++) { const m = (lo + hi) / 2, f = flatFlight(v, c.ang, c.L, m); if (f.y / f.x < bend) lo = m; else hi = m; }
+    c.shapeS.push((lo + hi) / 2);
+  }
 }
 
 /* ---------------- random ---------------- */
@@ -520,7 +560,7 @@ function startPractice(kind) {
     dropPracticeBall();
     wind = { x: 0, y: 0, mph: 0 };
   }
-  strokes = 0; putts = 0; lastShotYds = null; trail = [];
+  strokes = 0; putts = 0; lastShotYds = null; trail = []; shapeI = STRAIGHT;
   state = 'intro'; showHUD(false);
   const isR = kind === 'range';
   sheet(`<p style="margin:0;text-transform:uppercase;letter-spacing:.1em;font-size:12px">Practice</p>
@@ -689,7 +729,7 @@ function startHole() {
   const d = [hole.gc[0] - hole.tee[0], hole.gc[1] - hole.tee[1]], l = Math.hypot(d[0], d[1]);
   HD = [d[0] / l, d[1] / l];
   pin = hole.pins[round.pins[round.i] % hole.pins.length];
-  strokes = 0; putts = 0; lastShotYds = null; trail = [];
+  strokes = 0; putts = 0; lastShotYds = null; trail = []; shapeI = STRAIGHT;
   ball = { x: hole.tee[0], y: hole.tee[1], z: hAt(hole.tee[0], hole.tee[1]), mode: 'rest', onTee: true };
   newWind();
   showIntro();
@@ -868,24 +908,31 @@ function strike(power, acc) {
     Object.assign(ball, { vx: Math.cos(a) * v, vy: Math.sin(a) * v, vz: 0, L: 0, S: 0, mode: 'roll' });
     shot.bite = 0; SFX.putt();
   } else {
-    let err = s.err * (power > 1 ? 1 + (power - 1) * 6 : 1);
+    const SH = SHAPES[shapeI];
+    let err = s.err * (power > 1 ? 1 + (power - 1) * 6 : 1) * SH.err;
     const pf = power <= 1 ? power : 1 + (power - 1) * 0.5;
-    let carry = c.carry / YD * pf * lieMult(ci) * (1 + randn() * 0.018 * err);
+    let carry = c.carry / YD * pf * lieMult(ci) * SH.carry * (1 + randn() * 0.018 * err);
     let ang = c.ang;
     if (k === ROUGH) ang -= 1;
     if (k === SAND) { ang += 5; }
     if (k === WOODS) { ang = Math.min(ang, 8); carry *= 0.8; }
     const v = vForCarry(c, carry);
     const ae = Math.sign(acc) * Math.max(0, Math.abs(acc) - ZH);
-    const dir = base + ae * 0.06 + randn() * 0.012 * err;
+    // shaped shot: start it off line so the curve brings it back to the aim
+    const S0 = shapeSpin(c, shapeI), Lf = c.L * (k === ROUGH || k === LONG ? 0.75 : 1);
+    let open = 0;
+    if (S0) { const f = flatFlight(v, ang, Lf, S0); open = -Math.atan2(f.y, f.x); }
+    // early (acc > 0) starts left and hooks left, late starts right and slices right
+    const dir = base + open - ae * 0.035 + randn() * 0.012 * err;
     const hv = v * Math.cos(ang * Math.PI / 180);
     Object.assign(ball, {
       vx: Math.cos(dir) * hv, vy: Math.sin(dir) * hv, vz: v * Math.sin(ang * Math.PI / 180),
-      L: c.L * (k === ROUGH || k === LONG ? 0.75 : 1), S: -ae * 0.011 + randn() * 0.0005 * err, mode: 'fly', v0: v, g0: hAt(ball.x, ball.y)
+      L: Lf, S: S0 - ae * 0.011 + randn() * 0.0005 * err, mode: 'fly', v0: v, g0: hAt(ball.x, ball.y)
     });
     ball.z += 0.03;
     shot.launch = { vx: ball.vx, vy: ball.vy, vz: ball.vz, L: ball.L, S: ball.S, v0: v };
-    shot.bite = k === ROUGH || k === LONG || k === WOODS ? c.bite * 0.3 : c.bite;
+    shot.bite = (k === ROUGH || k === LONG || k === WOODS ? c.bite * 0.3 : c.bite) * SH.bite;
+    shot.shape = SH.n; shot.run = 1 - 0.1 * SH.s;
     SFX.hit();
   }
   shot.power = power; shot.acc = acc;
@@ -959,7 +1006,8 @@ function bounce(b, gz) {
   const steep = Math.min(1, 1.4 * -vn / sp);
   const firm = k === GREEN ? 0.8 : (k === FAIR || k === FRINGE || k === TEE) ? 0.45 : 0.25;
   const bite = shot.bounces === 0 ? shot.bite * firm : 0;
-  const keep = Math.max(0, 1 - s.fr * steep - bite);
+  // a draw lands hot and runs, a fade lands soft
+  const keep = Math.max(0, 1 - s.fr * steep - bite) * (shot.bounces === 0 ? shot.run || 1 : 1);
   tx *= keep; ty *= keep; tz *= keep;
   const out = -vn * s.e;
   b.vx = tx + out * nx; b.vy = ty + out * ny; b.vz = tz + out * nz;
@@ -1142,7 +1190,12 @@ function drawAim() {
   const [bx, by] = w2s(ball.x, ball.y), [ax, ay] = w2s(aim[0], aim[1]);
   ctx.save();
   ctx.strokeStyle = 'rgba(255,255,255,0.85)'; ctx.lineWidth = 2; ctx.setLineDash([7, 6]);
-  ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(ax, ay); ctx.stroke(); ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(bx, by);
+  if (ci !== PUTTER && shapeI !== STRAIGHT) {
+    const D = dist([ball.x, ball.y], aim), d = [(aim[0] - ball.x) / D, (aim[1] - ball.y) / D];
+    for (const [u, l] of shapePath(ci, shapeI)) { const [x, y] = w2s(ball.x + (d[0] * u - d[1] * l) * D, ball.y + (d[1] * u + d[0] * l) * D); ctx.lineTo(x, y); }
+  }
+  ctx.lineTo(ax, ay); ctx.stroke(); ctx.setLineDash([]);
   if (ci !== PUTTER) {
     const c = CLUBS[ci], cr = c.carry / YD * lieMult(ci) * cam.s, ang = Math.atan2(ay - by, ax - bx);
     ctx.strokeStyle = 'rgba(224,182,74,0.8)'; ctx.lineWidth = 2; ctx.setLineDash([4, 5]);
@@ -1248,11 +1301,13 @@ function updateHUD() {
   else $('c-dist').textContent = `${Math.round(c.carry * lieMult(ci))} yds`;
   $('swing-btn').disabled = state !== 'aim';
   $('swing-btn').textContent = c.putter ? 'PUTT' : 'SWING';
+  $('shape-name').textContent = c.putter ? 'Putt' : SHAPES[shapeI].n;
+  $('shape-l').disabled = $('shape-r').disabled = !!c.putter;
   // meter guide: suggested power tick
   let sug = null;
   if (aim && state === 'aim') {
     if (c.putter) sug = puttEquiv() / puttRange();
-    else sug = playsLike(b, aim) / (c.carry / YD * lieMult(ci) * (dist(aim, pin) < 12 ? 1 + c.roll : 1));
+    else sug = playsLike(b, aim) / (c.carry / YD * lieMult(ci) * SHAPES[shapeI].carry * (dist(aim, pin) < 12 ? 1 + c.roll : 1));
   }
   const z = $('m-zone');
   if (c.putter) { z.style.display = 'none'; } else { z.style.display = ''; z.style.left = mPct(-ZH) + '%'; z.style.width = (mPct(ZH) - mPct(-ZH)) + '%'; }
@@ -1301,7 +1356,8 @@ function optionsHTML() {
 const HELP = `<div class="help">
 <p><b>New?</b> Tap <b>Lesson</b> on the start map for a two minute walk-through.</p>
 <p><b>Aim:</b> tap the map where you want the ball to go. Fine tune with the curved arrows. The club is picked for you, change it with the arrows beside it.</p>
-<p><b>Swing:</b> tap SWING (or press Space) to start the meter. Tap again to set power, the gold tick shows the suggested power for your aim point. Tap a third time as the marker comes back over the white zone. Early pulls it left and hooks, late pushes it right and slices.</p>
+<p><b>Shape:</b> the arrows under Aim bend the shot: Hook, Draw, Straight, Fade, Slice. The dotted line shows the curve, so you can bend one around a tree. The ball starts off line and curves back to your aim. Shaped shots give up a few yards, a draw rolls out more and a fade stops quicker. Keys A and D.</p>
+<p><b>Swing:</b> tap SWING (or press Space) to start the meter. Tap again to set power, the gold tick shows the suggested power for your aim point. Tap a third time as the marker comes back over the white zone. Early pulls it left and hooks, late pushes it right and slices, on top of any shape you picked.</p>
 <p><b>Putt:</b> two taps, start and pace. Arrows on the green point downhill, red is steeper.</p>
 <p><b>Hills:</b> elevation is real lidar. "Plays" yardage adds about a yard for every 3 ft of climb. Balls kick and roll off slopes.</p>
 <p><b>Rules:</b> white dashed line is out of bounds, stroke and distance. Water and the creek cost a stroke with a drop where it went in. Trees knock balls down. Max 10 strokes a hole.</p>
@@ -1482,6 +1538,12 @@ function clubChanged() {
 }
 $('club-prev').onclick = () => { if (state !== 'aim' || meter.phase !== 'idle') return; ci = Math.max(0, ci - 1); clubManual = true; clubChanged(); };
 $('club-next').onclick = () => { if (state !== 'aim' || meter.phase !== 'idle') return; ci = Math.min(PUTTER, ci + 1); clubManual = true; clubChanged(); };
+function setShape(dI) {
+  if (state !== 'aim' || meter.phase !== 'idle' || ci === PUTTER) return;
+  shapeI = Math.max(0, Math.min(SHAPES.length - 1, shapeI + dI)); updateHUD();
+}
+$('shape-l').onclick = () => setShape(-1);
+$('shape-r').onclick = () => setShape(1);
 $('aim-l').onclick = () => { if (state === 'aim' && meter.phase === 'idle') rotateAim(ci === PUTTER ? -0.5 : -1); };
 $('aim-r').onclick = () => { if (state === 'aim' && meter.phase === 'idle') rotateAim(ci === PUTTER ? 0.5 : 1); };
 $('btn-view').onclick = () => { if (!hole) return; cam.mode = cam.mode === 'overview' ? (ci === PUTTER ? 'putt' : state === 'flight' ? 'flight' : 'aim') : 'overview'; cam.zoom = 1; cam.panX = cam.panY = 0; };
@@ -1496,6 +1558,8 @@ window.addEventListener('keydown', e => {
     if (e.code === 'ArrowLeft') rotateAim(ci === PUTTER ? -0.5 : -1);
     else if (e.code === 'ArrowRight') rotateAim(ci === PUTTER ? 0.5 : 1);
     else if (e.code === 'ArrowUp') $('club-prev').onclick();
+    else if (e.code === 'KeyA') setShape(-1);
+    else if (e.code === 'KeyD') setShape(1);
     else if (e.code === 'ArrowDown') $('club-next').onclick();
   }
   if (e.code === 'KeyV') $('btn-view').onclick();
@@ -1561,7 +1625,7 @@ if (/[?&]debug/.test(location.search)) window.__fgc = {
   view(m) { cam.mode = m; cam.zoom = 1; cam.panX = cam.panY = 0; },
   place(x, y) { placeBall([x, y]); ball.onTee = false; setupShot(); },
   hit(p, a) { strike(p, a); },
-  test(o) { NORAND = true; if (o.wind) wind = { x: o.wind[0], y: o.wind[1], mph: Math.round(Math.hypot(o.wind[0], o.wind[1]) * 2.237) }; placeBall(o.at); ball.onTee = !!o.tee; state = 'aim'; aim = o.aim; ci = CLUBS.findIndex(c => c.n === o.club); strike(o.power || 1, 0); },
+  test(o) { NORAND = true; if (o.wind) wind = { x: o.wind[0], y: o.wind[1], mph: Math.round(Math.hypot(o.wind[0], o.wind[1]) * 2.237) }; placeBall(o.at); ball.onTee = !!o.tee; state = 'aim'; aim = o.aim; ci = CLUBS.findIndex(c => c.n === o.club); shapeI = o.shape == null ? STRAIGHT : o.shape; strike(o.power || 1, o.acc || 0); },
   carTest() { const p = carPose(cars[0]); const saved = shot; shot = {}; const b = { x: p[0], y: p[1], z: hAt(p[0], p[1]) + 0.3, vx: 5, vy: 0, vz: -1, mode: 'fly' }; carCheck(b); const r = { hit: !!shot.carHit, flash: cars[0].hit > 0, vx: b.vx }; shot = saved; return r; },
   get cars() { return cars.map(c => carPose(c).map(v => Math.round(v))); },
   get prac() { return prac && JSON.parse(JSON.stringify(prac)); },

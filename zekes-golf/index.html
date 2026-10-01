@@ -51,8 +51,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #club-name{min-width:96px;text-align:center;padding:6px 4px;display:flex;flex-direction:column;justify-content:center}
 #club-name .big{font-size:16px;font-weight:600}
 #club-name .sub{font-size:11px;color:var(--ink-dim)}
-#aim-box{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-#aim-box button{padding:0 12px;font-size:20px;color:var(--ink-dim)}
+#aim-box{display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:1fr 1fr;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;min-height:64px}
+#aim-box button{padding:0 11px;font-size:19px;color:var(--ink-dim)}
+#aim-box button[disabled]{opacity:.35}
+#aim-box>:nth-child(n+4){border-top:1px solid var(--line)}
+.ab-lab{display:flex;align-items:center;justify-content:center;min-width:52px;font-size:11px;color:var(--ink-dim);letter-spacing:.02em}
+#shape-name{color:var(--ink);font-weight:600}
 #aim-box button:active{background:rgba(255,255,255,.08)}
 #swing-btn{flex:1;min-height:56px;border-radius:var(--r);background:var(--accent);color:#1b1a12;font-weight:700;font-size:18px;letter-spacing:.06em;box-shadow:0 2px 0 rgba(0,0,0,.35)}
 #swing-btn:active{transform:translateY(1px)}
@@ -142,8 +146,18 @@ table.sc tr.tot td{font-weight:700}
 .help b{color:var(--ink)}
 @media (max-width:420px){
   #hole-card .big{font-size:19px}
-  #club-name{min-width:84px}
+  #club-name{min-width:70px}
+  #club-box button{padding:0 8px}
+  #aim-box button{padding:0 8px}
+  .ab-lab{min-width:38px}
   #info-card{min-width:128px;font-size:12px}
+}
+@media (max-width:340px){
+  #club-name{min-width:58px}
+  #club-name .big{font-size:14px}
+  #club-box button,#aim-box button{padding:0 6px}
+  .ab-lab{min-width:34px;font-size:10px}
+  #controls{gap:6px}
 }
 </style>
 </head>
@@ -178,7 +192,7 @@ table.sc tr.tot td{font-weight:700}
   </div>
   <div id="controls">
     <div id="club-box"><button id="club-prev" aria-label="Previous club">&lsaquo;</button><div id="club-name"><div class="big" id="c-name">Driver</div><div class="sub" id="c-dist">230 yds</div></div><button id="club-next" aria-label="Next club">&rsaquo;</button></div>
-    <div id="aim-box"><button id="aim-l" aria-label="Aim left">&#8630;</button><button id="aim-r" aria-label="Aim right">&#8631;</button></div>
+    <div id="aim-box"><button id="aim-l" aria-label="Aim left">&#8630;</button><span class="ab-lab">Aim</span><button id="aim-r" aria-label="Aim right">&#8631;</button><button id="shape-l" aria-label="Curve more left">&lsaquo;</button><span class="ab-lab" id="shape-name">Straight</span><button id="shape-r" aria-label="Curve more right">&rsaquo;</button></div>
     <button id="swing-btn">SWING</button>
   </div>
 </div>
