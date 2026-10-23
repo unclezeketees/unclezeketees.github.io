@@ -532,10 +532,33 @@ function randomInPractice(margin) {
   }
   return PRACT.c.slice();
 }
+/* practice green: five cups, the gold flag is the target, any cup counts */
+let cups = null;
+function placeCups() {
+  for (const gap of [4, 3.5, 3]) {
+    for (let tries = 0; tries < 40; tries++) {
+      const c = [];
+      for (let i = 0; i < 400 && c.length < 5; i++) { const p = randomInPractice(2.0); if (c.every(q => dist(p, q) >= gap)) c.push(p); }
+      if (c.length === 5) { cups = c; return; }
+    }
+  }
+  cups = [randomInPractice(2.5)];
+}
 function dropPracticeBall() {
-  let p = null;
-  for (let i = 0; i < 200; i++) { p = randomInPractice(0.6); const d = dist(p, pin); if (d > 1.5 && d < 13) break; }
+  let p = null, t = null;
+  for (let i = 0; i < 300; i++) {
+    p = randomInPractice(0.6);
+    if (cups.some(c => dist(p, c) < 1.5)) continue;
+    const near = cups.filter(c => { const d = dist(p, c); return d >= 2 && d <= 12; });
+    if (near.length) { t = near[Math.floor(rnd() * near.length)]; break; }
+  }
+  pin = t || cups.reduce((a, c) => dist(p, c) < dist(p, a) ? c : a);
   placeBall(p); ball.onTee = false; prac.ballPutts = 0; trail = [];
+}
+/* the cup the ball is over, if any */
+function cupAt(x, y, r) {
+  if (mode === 'putt' && cups) { for (const c of cups) if (Math.hypot(x - c[0], y - c[1]) < r) return c; return null; }
+  return Math.hypot(x - pin[0], y - pin[1]) < r ? pin : null;
 }
 /* a random spot along the range tee pad */
 function rangeBallSpot() {
@@ -555,7 +578,7 @@ function startPractice(kind) {
   } else {
     const c = PRACT.c;
     hole = { n: 'Practice', par: 0, yds: 0, hcp: '', tee: [c[0], c[1] + 14], aim: c.slice(), gc: c.slice(), pins: [] };
-    HD = [0, -1]; pin = randomInPractice(2.5);
+    HD = [0, -1]; placeCups(); pin = cups[0];
     ball = { x: c[0], y: c[1], z: hAt(c[0], c[1]), mode: 'rest', onTee: false };
     dropPracticeBall();
     wind = { x: 0, y: 0, mph: 0 };
@@ -565,7 +588,7 @@ function startPractice(kind) {
   const isR = kind === 'range';
   sheet(`<p style="margin:0;text-transform:uppercase;letter-spacing:.1em;font-size:12px">Practice</p>
   <h1>${isR ? 'Driving range' : 'Putting green'}</h1>
-  <p>${isR ? 'Hit any club off the range tee beside the putting green. Carry, total, how far offline and peak height show after every ball, and the next one drops on its own. Flags mark 50 to 250 yards. Wind today: ' + wind.mph + ' mph.' : 'A ball drops somewhere on the practice green. Hole it, or use three putts, and the next ball drops. The cup moves every five balls.'}</p>
+  <p>${isR ? 'Hit any club off the range tee beside the putting green. Carry, total, how far offline and peak height show after every ball, and the next one drops on its own. Flags mark 50 to 250 yards. Wind today: ' + wind.mph + ' mph.' : 'Five cups on the practice green. A ball drops somewhere on it and the gold flag marks your target. Tap another cup to switch, and any cup counts. Hole it, or use three putts, and the next ball drops. The cups move every 20 balls.'}</p>
   <button class="btn" id="intro-go" disabled>Walking over...</button>
   <button class="btn alt" id="intro-back">Back to the map</button>`);
   $('intro-go').onclick = () => {
@@ -674,13 +697,14 @@ function rangeResult(note) {
   updateHUD();
   setTimeout(() => { if (mode !== 'range' || state !== 'result') return; placeBall(rangeBallSpot()); ball.onTee = true; trail = []; setupShot(); }, 2500);
 }
-function puttResult(inHole) {
+function puttResult(inHole, cp) {
   state = 'result';
   prac.putts++; prac.ballPutts++;
   if (inHole) {
-    ball.mode = 'rest'; placeBall(pin); ball.z -= 0.05; SFX.cup();
+    ball.mode = 'rest'; placeBall(cp || pin); ball.z -= 0.05; SFX.cup();
     prac.made++; if (prac.ballPutts === 1) prac.firstMade++; prac.balls++;
-    toast(prac.ballPutts === 1 ? 'Drained it' : 'In the hole', `${prac.ballPutts} putt${prac.ballPutts > 1 ? 's' : ''}`, 1500);
+    const other = cp && cp !== pin;
+    toast(prac.ballPutts === 1 ? 'Drained it' : 'In the hole', `${prac.ballPutts} putt${prac.ballPutts > 1 ? 's' : ''}${other ? ', different cup, still counts' : ''}`, 1500);
     nextPracticeBall(1600);
     lessonEvent('putt', { holed: true });
   } else {
@@ -698,7 +722,7 @@ function puttResult(inHole) {
 function nextPracticeBall(ms) {
   setTimeout(() => {
     if (mode !== 'putt' || state !== 'result') return;
-    if (prac.balls % 5 === 0) pin = randomInPractice(2.5);
+    if (prac.balls % 20 === 0) { placeCups(); toast('Cups moved', 'Five new spots', 1400); }
     dropPracticeBall(); setupShot();
   }, ms);
 }
@@ -829,6 +853,11 @@ function setupShot() {
   updateHUD();
 }
 function setAim(p) {
+  if (mode === 'putt' && cups) {
+    const tol = Math.max(0.8, 26 / cam.s);
+    const c = cups.reduce((a, q) => dist(p, q) < dist(p, a) ? q : a);
+    if (dist(p, c) < tol && c !== pin) { pin = c; aim = pin.slice(); cam.mode = 'putt'; updateHUD(); return; }
+  }
   aim = p;
   if (mode === 'range') { prac.aim = p.slice(); updateHUD(); lessonEvent('aim'); return; }
   if (!clubManual) ci = pickClub(aim);
@@ -968,7 +997,7 @@ function simStep(dt) {
     if (Math.abs(b.x) > 5000 || Math.abs(b.y) > 5000) return finishOB();
     const gz = hAt(b.x, b.y);
     if (b.z <= gz) {
-      if (dist([b.x, b.y], pin) < CUP * 1.4 && b.vz > -14) return holed();
+      { const hc = cupAt(b.x, b.y, CUP * 1.4); if (hc && b.vz > -14) return holed(hc); }
       return bounce(b, gz);
     }
   } else if (b.mode === 'roll') {
@@ -976,21 +1005,25 @@ function simStep(dt) {
     if (isWet(k)) return hazard();
     const g = grad(b.x, b.y), sp = Math.hypot(b.vx, b.vy);
     const sl = Math.hypot(g[0], g[1]) * 5 / 7;
-    if (sp < 0.03 && sl < s.mu) { b.vx = b.vy = 0; b.mode = 'rest'; if (dist([b.x, b.y], pin) < CUP + 0.012) return holed(); return settle(); }
+    if (sp < 0.03 && sl < s.mu) { b.vx = b.vy = 0; b.mode = 'rest'; const hc = cupAt(b.x, b.y, CUP + 0.012); if (hc) return holed(hc); return settle(); }
     let ax = -5 / 7 * G * g[0], ay = -5 / 7 * G * g[1];
     if (sp > 1e-6) { ax -= s.mu * G * b.vx / sp; ay -= s.mu * G * b.vy / sp; }
     const nvx = b.vx + ax * dt, nvy = b.vy + ay * dt;
-    if (sp > 1e-6 && nvx * b.vx + nvy * b.vy < 0 && sl < s.mu) { b.vx = b.vy = 0; b.mode = 'rest'; if (dist([b.x, b.y], pin) < CUP + 0.012) return holed(); return settle(); }
+    if (sp > 1e-6 && nvx * b.vx + nvy * b.vy < 0 && sl < s.mu) { b.vx = b.vy = 0; b.mode = 'rest'; const hc = cupAt(b.x, b.y, CUP + 0.012); if (hc) return holed(hc); return settle(); }
     b.vx = nvx; b.vy = nvy; b.x += b.vx * dt; b.y += b.vy * dt; b.z = hAt(b.x, b.y);
     carCheck(b);
     if (!isWet(k) && !isOB(v)) shot.lastDry = [ox, oy];
-    // cup
-    const px = pin[0] - ox, py = pin[1] - oy, sx = b.x - ox, sy = b.y - oy, sl2 = sx * sx + sy * sy;
-    const t = sl2 > 0 ? Math.max(0, Math.min(1, (px * sx + py * sy) / sl2)) : 0;
-    const cd = Math.hypot(ox + sx * t - pin[0], oy + sy * t - pin[1]), spn = Math.hypot(b.vx, b.vy);
-    if (cd < CUP + 0.006) {
-      if (spn < 1.35) return holed();
-      if (spn < 1.9 && cd < CUP * 0.7) { const a = (rnd() - 0.5) * 1.4, c = Math.cos(a), si = Math.sin(a); const vx = b.vx; b.vx = (vx * c - b.vy * si) * 0.55; b.vy = (vx * si + b.vy * c) * 0.55; SFX.putt(); }
+    // cup (every cup on the practice green)
+    const sx = b.x - ox, sy = b.y - oy, sl2 = sx * sx + sy * sy, spn = Math.hypot(b.vx, b.vy);
+    for (const cp of (mode === 'putt' && cups ? cups : [pin])) {
+      const px = cp[0] - ox, py = cp[1] - oy;
+      const t = sl2 > 0 ? Math.max(0, Math.min(1, (px * sx + py * sy) / sl2)) : 0;
+      const cd = Math.hypot(ox + sx * t - cp[0], oy + sy * t - cp[1]);
+      if (cd < CUP + 0.006) {
+        if (spn < 1.35) return holed(cp);
+        if (spn < 1.9 && cd < CUP * 0.7) { const a = (rnd() - 0.5) * 1.4, c = Math.cos(a), si = Math.sin(a); const vx = b.vx; b.vx = (vx * c - b.vy * si) * 0.55; b.vy = (vx * si + b.vy * c) * 0.55; SFX.putt(); }
+        break;
+      }
     }
   }
 }
@@ -1100,9 +1133,9 @@ function endShot(title, sub, place, penalty) {
   setTimeout(() => { if (state === 'result') setupShot(); }, penalty ? 1800 : 1100);
 }
 const NAMES = { '-3': 'Albatross', '-2': 'Eagle', '-1': 'Birdie', '0': 'Par', '1': 'Bogey', '2': 'Double bogey', '3': 'Triple bogey', '4': 'Quadruple bogey' };
-function holed() {
+function holed(cp) {
   if (mode === 'range') return rangeResult();
-  if (mode === 'putt') return puttResult(true);
+  if (mode === 'putt') return puttResult(true, cp || pin);
   ball.mode = 'rest'; placeBall(pin); ball.z -= 0.05;
   SFX.cup();
   if (CLUBS[shot.club].putter) lastShotYds = null;
@@ -1133,7 +1166,7 @@ function updateCamTarget() {
   const b = [ball.x, ball.y];
   let t;
   if (cam.mode === 'overview') t = fitPoints([...holePath(hole), b], 0.3, 40);
-  else if (cam.mode === 'putt') { const d = dist(b, pin), m = Math.max(6, d * 0.3); t = fitPoints([[b[0] - m, b[1] - m], [b[0] + m, b[1] + m], [pin[0] - m, pin[1] - m], [pin[0] + m, pin[1] + m], aim || pin], 4, 30); }
+  else if (cam.mode === 'putt') { const d = dist(b, pin), m = Math.max(6, d * 0.3); t = fitPoints([[b[0] - m, b[1] - m], [b[0] + m, b[1] + m], [pin[0] - m, pin[1] - m], [pin[0] + m, pin[1] + m], aim || pin].concat(mode === 'putt' && cups ? cups.map(c => [c[0], c[1] + 1.5]) : []), 4, 30); }
   else if (cam.mode === 'flight') t = fitPoints([shot.from, aim, b], 0.5, 6);
   else { const a = aim || pin; t = fitPoints([b, a, [a[0] + 14, a[1] + 14], [a[0] - 14, a[1] - 14]], 0.5, 6.5); }
   cam.tvx = t[0] + cam.panX; cam.tvy = t[1] + cam.panY; cam.ts = t[2] * cam.zoom;
@@ -1178,13 +1211,18 @@ function drawRangeFlags() {
 }
 function drawPin() {
   if (mode === 'range') return drawRangeFlags();
-  const [x, y] = w2s(pin[0], pin[1]);
+  if (mode === 'putt' && cups) return cups.forEach(c => drawFlag(c, c === pin));
+  drawFlag(pin, true, '#d8392b');
+}
+/* cup and flag; practice cups get short white flags, the target a gold one */
+function drawFlag(c, main, col) {
+  const [x, y] = w2s(c[0], c[1]);
   const r = Math.max(2.2, CUP * cam.s);
   ctx.fillStyle = '#0d0d0d'; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
-  const L = Math.max(22, Math.min(70, 2.2 * cam.s * 0.9));
+  const L = Math.max(22, Math.min(70, 2.2 * cam.s * 0.9)) * (main ? 1 : 0.6);
   ctx.strokeStyle = 'rgba(0,0,0,0.3)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + L * 0.5, y + L * 0.35); ctx.stroke();
   ctx.strokeStyle = '#f4f1e6'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - L); ctx.stroke();
-  ctx.fillStyle = '#d8392b'; ctx.beginPath(); ctx.moveTo(x, y - L); ctx.lineTo(x + L * 0.42, y - L * 0.84); ctx.lineTo(x, y - L * 0.68); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = col || (main ? '#e0b64a' : '#f4f1e6'); ctx.beginPath(); ctx.moveTo(x, y - L); ctx.lineTo(x + L * 0.42, y - L * 0.84); ctx.lineTo(x, y - L * 0.68); ctx.closePath(); ctx.fill();
 }
 function drawAim() {
   const [bx, by] = w2s(ball.x, ball.y), [ax, ay] = w2s(aim[0], aim[1]);
@@ -1361,7 +1399,7 @@ const HELP = `<div class="help">
 <p><b>Putt:</b> two taps, start and pace. Arrows on the green point downhill, red is steeper.</p>
 <p><b>Hills:</b> elevation is real lidar. "Plays" yardage adds about a yard for every 3 ft of climb. Balls kick and roll off slopes.</p>
 <p><b>Rules:</b> white dashed line is out of bounds, stroke and distance. Water and the creek cost a stroke with a drop where it went in. Trees knock balls down. Max 10 strokes a hole.</p>
-<p><b>Practice:</b> tap the putting green or the driving range on the start map. On the green a new ball drops after you hole out or use three putts. On the range every ball shows carry, total and how far offline, and the next ball drops on its own.</p>
+<p><b>Practice:</b> tap the putting green or the driving range on the start map. The practice green has five cups: the gold flag is your target, tap another cup to switch, and any cup counts. A new ball drops after you hole out or use three putts. On the range every ball shows carry, total and how far offline, and the next ball drops on its own.</p>
 <p><b>Traffic:</b> cars run on Toll Gate Hill Rd. Hit one and it honks. The road is still out of bounds.</p>
 <p>Drag to pan, pinch or scroll to zoom. VIEW shows the whole hole, TOPO toggles contour lines (1 m, about 3 ft).</p></div>`;
 const CREDITS = `<div class="credits">Built from public data: elevation and tree heights from USGS 3DEP lidar (Cayuga/Oswego Counties 2018), course surfaces traced from NYS ITS orthoimagery, tee and green positions from GolfTraxx GPS data, course boundary from OpenStreetMap contributors (ODbL). Pars and handicaps from Hole19. Fan-made game, not affiliated with or endorsed by any golf club.</div>`;
@@ -1638,6 +1676,10 @@ if (/[?&]debug/.test(location.search)) window.__fgc = {
     return c.toDataURL('image/png');
   },
   get state() { return { state, ball: { ...ball }, pin, strokes, club: CLUBS[ci].n, aim, hole: hole && hole.n }; },
+  get cups() { return cups; },
+  get cupsScreen() { return cups && cups.map(c => w2s(c[0], c[1]).map(Math.round)); },
+  tap(x, y) { setAim([x, y]); },
+  aimRaw(x, y) { aim = [x, y]; updateHUD(); },
 };
 $('loading').classList.add('hidden');
 showTitle();
