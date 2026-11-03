@@ -260,7 +260,7 @@ function vnoise(x, y) {
 /* ---------------- settings and storage ---------------- */
 function lsGet(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
-const settings = Object.assign({ speed: 'normal', season: 'summer', sound: true, topo: true }, lsGet('fgc_settings', {}));
+const settings = Object.assign({ speed: 'normal', season: 'summer', sound: true, birds: true, topo: true }, lsGet('fgc_settings', {}));
 const saveSettings = () => lsSet('fgc_settings', settings);
 const METER_T = { relaxed: 2.0, normal: 1.5, fast: 1.05 };
 /* white zone half width: a tap inside it flies straight */
@@ -311,19 +311,24 @@ const SFX = {
   },
 };
 
-/* birdsong now and then while you play */
+/* a distant bird now and then while you line up a shot. Kept quiet, soft edged and
+   below the 3 to 4 kHz band where hearing is sharpest, and rare so it never nags */
 function chirp() {
   const ac = audio(); if (!ac) return;
-  const n = 2 + Math.floor(rnd() * 3), f0 = 2600 + rnd() * 1600;
+  const call = Math.floor(rnd() * 3), f0 = 1900 + rnd() * 700, n = call === 2 ? 3 + Math.floor(rnd() * 3) : 2;
   for (let i = 0; i < n; i++) {
-    const o = ac.createOscillator(), g = ac.createGain(), T = ac.currentTime + i * 0.13;
-    o.type = 'sine'; o.frequency.setValueAtTime(f0, T); o.frequency.exponentialRampToValueAtTime(f0 * (1.3 + rnd() * 0.4), T + 0.07);
-    g.gain.setValueAtTime(0.0001, T); g.gain.exponentialRampToValueAtTime(0.025, T + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, T + 0.09);
-    o.connect(g); g.connect(ac.destination); o.start(T); o.stop(T + 0.1);
+    const o = ac.createOscillator(), g = ac.createGain(), T = ac.currentTime + i * (call === 2 ? 0.09 : 0.32);
+    const fa = call === 0 ? f0 * (i ? 0.84 : 1) : f0, fb = call === 1 ? fa * (i ? 0.8 : 1.2) : fa * 1.12, d = call === 2 ? 0.06 : 0.22;
+    o.type = 'sine'; o.frequency.setValueAtTime(fa, T); o.frequency.linearRampToValueAtTime(fb, T + d);
+    g.gain.setValueAtTime(0.0001, T); g.gain.exponentialRampToValueAtTime(0.0055, T + d * 0.35); g.gain.exponentialRampToValueAtTime(0.0001, T + d);
+    o.connect(g); g.connect(ac.destination); o.start(T); o.stop(T + d + 0.02);
   }
 }
 (function birds() {
-  setTimeout(() => { if (AC && hole && settings.sound && document.visibilityState === 'visible' && (state === 'aim' || state === 'intro')) chirp(); birds(); }, 5000 + rnd() * 9000);
+  setTimeout(() => {
+    if (AC && hole && settings.sound && settings.birds !== false && document.visibilityState === 'visible' && state === 'aim' && meter.phase === 'idle') chirp();
+    birds();
+  }, 25000 + rnd() * 35000);
 })();
 
 /* ---------------- records ---------------- */
@@ -1557,7 +1562,8 @@ function bindSegs() {
 function optionsHTML() {
   return `<div class="opt"><span>Swing meter</span>${seg('speed', [['relaxed', 'Relaxed'], ['normal', 'Normal'], ['fast', 'Fast']], settings.speed)}</div>
   <div class="opt"><span>Trees</span>${seg('season', [['summer', 'Summer'], ['autumn', 'Autumn']], settings.season)}</div>
-  <div class="opt"><span>Sound</span>${seg('sound', [[true, 'On'], [false, 'Off']], settings.sound)}</div>`;
+  <div class="opt"><span>Sound</span>${seg('sound', [[true, 'On'], [false, 'Off']], settings.sound)}</div>
+  <div class="opt"><span>Birds</span>${seg('birds', [[true, 'On'], [false, 'Off']], settings.birds)}</div>`;
 }
 const HELP = `<div class="help">
 <p><b>New?</b> Tap <b>Lesson</b> on the start map for a two minute walk-through.</p>
