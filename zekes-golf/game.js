@@ -260,42 +260,97 @@ function vnoise(x, y) {
 /* ---------------- settings and storage ---------------- */
 function lsGet(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } }
-const settings = Object.assign({ speed: 'normal', season: 'summer', sound: true, birds: true, topo: true }, lsGet('fgc_settings', {}));
+const settings = Object.assign({ speed: 'normal', season: 'summer', sound: true, volume: 85, birds: true, topo: true }, lsGet('fgc_settings', {}));
 const saveSettings = () => lsSet('fgc_settings', settings);
 const METER_T = { relaxed: 2.0, normal: 1.5, fast: 1.05 };
 /* white zone half width: a tap inside it flies straight */
 const ZH = 0.05;
 
-/* ---------------- sound ---------------- */
-let AC = null;
+/* ---------------- sound ----------------
+   Everything is synthesized. All of it runs through one master gain (the volume slider),
+   and repeated sounds get small random pitch and level changes so they never sound canned. */
+let AC = null, MASTER = null, TEST_AC = null;
+function setVolume() { if (MASTER) MASTER.gain.value = Math.pow((settings.volume == null ? 85 : settings.volume) / 100, 2); }
 function audio() {
+  if (TEST_AC) return TEST_AC;
   if (!settings.sound) return null;
   try { if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume(); } catch (e) { AC = null; }
+  if (AC && !MASTER) {
+    // master volume into a gentle limiter so stacked sounds never clip
+    MASTER = AC.createGain(); const lim = AC.createDynamicsCompressor();
+    lim.threshold.value = -6; lim.knee.value = 4; lim.ratio.value = 12; lim.attack.value = 0.003; lim.release.value = 0.25;
+    MASTER.connect(lim); lim.connect(AC.destination); setVolume();
+  }
   return AC;
 }
-function noiseBurst(dur, freq, q, gain, type) {
+const out = ac => ac === TEST_AC ? ac.destination : MASTER;
+const vr = (a = 0.05) => 1 + (rnd() * 2 - 1) * a;
+function noiseBurst(dur, freq, q, gain, type, when, decay) {
   const ac = audio(); if (!ac) return;
-  const n = Math.floor(ac.sampleRate * dur), buf = ac.createBuffer(1, n, ac.sampleRate), ch = buf.getChannelData(0);
-  for (let i = 0; i < n; i++) ch[i] = (rnd() * 2 - 1) * Math.pow(1 - i / n, 3);
+  const n = Math.max(1, Math.floor(ac.sampleRate * dur)), buf = ac.createBuffer(1, n, ac.sampleRate), ch = buf.getChannelData(0), pw = decay || 3;
+  for (let i = 0; i < n; i++) ch[i] = (rnd() * 2 - 1) * Math.pow(1 - i / n, pw);
   const src = ac.createBufferSource(); src.buffer = buf;
   const f = ac.createBiquadFilter(); f.type = type || 'bandpass'; f.frequency.value = freq; f.Q.value = q;
   const g = ac.createGain(); g.gain.value = gain;
-  src.connect(f); f.connect(g); g.connect(ac.destination); src.start();
+  src.connect(f); f.connect(g); g.connect(out(ac)); src.start(ac.currentTime + (when || 0));
 }
-function tone(freq, dur, gain, when) {
+function tone(freq, dur, gain, when, wave, freqEnd) {
   const ac = audio(); if (!ac) return;
   const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime + (when || 0);
-  o.frequency.value = freq; o.type = 'sine';
+  o.type = wave || 'sine'; o.frequency.setValueAtTime(freq, t); if (freqEnd) o.frequency.exponentialRampToValueAtTime(freqEnd, t + dur);
   g.gain.setValueAtTime(gain, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + dur);
+  o.connect(g); g.connect(out(ac)); o.start(t); o.stop(t + dur + 0.01);
+}
+/* air moving past the club: noise that swells and fades while its pitch rises */
+function whoosh(dur, f0, f1, gain, when) {
+  const ac = audio(); if (!ac) return;
+  const n = Math.floor(ac.sampleRate * dur), buf = ac.createBuffer(1, n, ac.sampleRate), ch = buf.getChannelData(0);
+  for (let i = 0; i < n; i++) ch[i] = (rnd() * 2 - 1) * Math.pow(Math.sin(Math.PI * i / n), 2);
+  const src = ac.createBufferSource(), t = ac.currentTime + (when || 0); src.buffer = buf;
+  const f = ac.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 1.2; f.frequency.setValueAtTime(f0, t); f.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  const g = ac.createGain(); g.gain.value = gain;
+  src.connect(f); f.connect(g); g.connect(out(ac)); src.start(t);
 }
 const SFX = {
-  hit: () => { noiseBurst(0.09, 2400, 0.8, 0.9); tone(180, 0.08, 0.25); },
-  putt: () => { noiseBurst(0.05, 1800, 1.5, 0.35); },
-  tree: () => { noiseBurst(0.12, 700, 1.2, 0.7); tone(320, 0.06, 0.15); },
-  splash: () => { noiseBurst(0.5, 900, 0.4, 0.8, 'lowpass'); },
-  cup: () => { tone(900, 0.05, 0.25); tone(700, 0.05, 0.22, 0.07); tone(520, 0.08, 0.2, 0.15); },
-  land: () => { noiseBurst(0.06, 400, 1, 0.3); },
+  /* strike by club: woods crack with a ping, irons click and take turf, wedges are soft with a brush of turf.
+     The whoosh starts 70 ms before contact, as a real swing is heard just before the hit. */
+  hit: (cIdx, power, lie) => {
+    const lv = Math.pow(Math.max(0.2, Math.min(1.1, power == null ? 1 : power)), 0.7), w = 0.07;
+    whoosh(0.11, 300, 1400 * vr(), 0.22 * lv, 0);
+    if (cIdx == null || cIdx <= 2) {
+      noiseBurst(0.06, 3300 * vr(), 1.1, 1.1 * lv, 'bandpass', w, 4);
+      tone(1750 * vr(0.03), 0.09, 0.06 * lv, w, 'triangle');
+      tone(120 * vr(), 0.09, 0.3 * lv, w);
+    } else if (cIdx <= 8) {
+      noiseBurst(0.045, 2600 * vr(), 1.4, 0.95 * lv, 'bandpass', w, 4);
+      tone(210 * vr(), 0.07, 0.22 * lv, w);
+      if (lie !== TEE) noiseBurst(0.13, 650 * vr(), 0.8, 0.5 * lv, 'lowpass', w + 0.01, 2);
+    } else {
+      noiseBurst(0.04, 2000 * vr(), 1.2, 0.6 * lv, 'bandpass', w, 4);
+      tone(240 * vr(), 0.06, 0.14 * lv, w);
+      noiseBurst(0.16, 550 * vr(), 0.8, 0.55 * lv, 'lowpass', w + 0.01, 2);
+    }
+    if (lie === SAND) noiseBurst(0.3, 3500 * vr(), 0.6, 0.2, 'highpass', w, 1.5);
+    if (lie === ROUGH || lie === LONG) noiseBurst(0.16, 1300 * vr(), 0.7, 0.3, 'bandpass', w - 0.02, 2);
+  },
+  putt: power => { const lv = 0.45 + 0.55 * Math.min(1, power == null ? 0.5 : power); noiseBurst(0.035, 1900 * vr(), 1.8, 0.35 * lv, 'bandpass', 0, 4); tone(420 * vr(), 0.05, 0.07 * lv); },
+  /* a knock on wood and a rustle of leaves */
+  tree: () => { noiseBurst(0.07, 650 * vr(), 1.2, 0.55); tone(300 * vr(), 0.06, 0.12); noiseBurst(0.3, 2200 * vr(), 0.6, 0.22, 'bandpass', 0.02, 1.5); },
+  splash: () => { noiseBurst(0.09, 400, 0.8, 0.5, 'lowpass', 0, 2); noiseBurst(0.6, 1200 * vr(), 0.5, 0.35, 'bandpass', 0.03, 2); [0.25, 0.38, 0.5].forEach(t => tone(500 * vr(0.2), 0.06, 0.035, t, 'sine', 900 * vr(0.2))); },
+  /* landing by surface: thump on turf, soft on the green, crunch in sand, clatter on the path, rustle in the woods */
+  land: (k, sp) => {
+    const lv = Math.max(0.15, Math.min(1, (sp == null ? 20 : sp) / 28));
+    if (k === SAND) { noiseBurst(0.2, 1500 * vr(), 0.7, 0.25 * lv, 'bandpass', 0, 1.5); noiseBurst(0.06, 250, 1, 0.3 * lv, 'lowpass'); }
+    else if (k === PATH || k === ROAD || k === GRAVEL) { [0, 0.05, 0.11].forEach((t, i) => noiseBurst(0.03, 3200 * vr(), 2, 0.5 * lv * (1 - i * 0.3), 'bandpass', t, 4)); tone(950 * vr(), 0.04, 0.07 * lv, 0, 'triangle'); }
+    else if (k === GREEN) noiseBurst(0.05, 380 * vr(), 1, 0.45 * lv, 'lowpass', 0, 3);
+    else if (k === WOODS || k === LONG) { noiseBurst(0.18, 1600 * vr(), 0.6, 0.3 * lv, 'bandpass', 0, 2); noiseBurst(0.05, 260, 1, 0.3 * lv, 'lowpass'); }
+    else { noiseBurst(0.07, 300 * vr(), 1, 0.55 * lv, 'lowpass', 0, 3); if (k === ROUGH) noiseBurst(0.12, 1400 * vr(), 0.7, 0.18 * lv, 'bandpass', 0, 2); }
+  },
+  /* the drop, then the ball rattling round the plastic cup */
+  cup: () => {
+    noiseBurst(0.05, 900, 1, 0.45, 'lowpass'); tone(260, 0.12, 0.12, 0.05);
+    [0.06, 0.12, 0.2, 0.27].forEach((t, i) => { noiseBurst(0.025, 2400 * vr(0.1), 3, 0.4 * (1 - i * 0.2), 'bandpass', t, 3); tone(1150 * vr(0.05), 0.03, 0.05 * (1 - i * 0.2), t, 'triangle'); });
+  },
   fanfare: lvl => {
     const notes = lvl >= 3 ? [523, 659, 784, 1047, 784, 1047, 1319] : lvl === 2 ? [523, 659, 784, 1047, 1319] : [659, 784, 1047];
     notes.forEach((f, i) => { tone(f, 0.22, 0.12, i * 0.11); tone(f / 2, 0.22, 0.05, i * 0.11); });
@@ -306,10 +361,37 @@ const SFX = {
       const o = ac.createOscillator(), g = ac.createGain(), T = ac.currentTime + t;
       o.type = 'square'; o.frequency.value = f;
       g.gain.setValueAtTime(0.0001, T); g.gain.exponentialRampToValueAtTime(0.1, T + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, T + 0.2);
-      o.connect(g); g.connect(ac.destination); o.start(T); o.stop(T + 0.22);
+      o.connect(g); g.connect(out(ac)); o.start(T); o.stop(T + 0.22);
     });
   },
 };
+/* wind you can hear: soft pink noise through a low filter, its level and brightness
+   following the wind speed, swelling and easing in slow gusts */
+let windNodes = null;
+function makeWind(ac, dest) {
+  const n = ac.sampleRate * 6, buf = ac.createBuffer(1, n, ac.sampleRate), ch = buf.getChannelData(0);
+  let b0 = 0, b1 = 0, b2 = 0;
+  for (let i = 0; i < n; i++) { const w = rnd() * 2 - 1; b0 = 0.99765 * b0 + w * 0.099046; b1 = 0.963 * b1 + w * 0.2965164; b2 = 0.57 * b2 + w * 1.0526913; ch[i] = (b0 + b1 + b2 + w * 0.1848) * 0.11; }
+  const X = Math.floor(ac.sampleRate * 0.5);   // crossfade the loop seam
+  for (let i = 0; i < X; i++) { const a = i / X; ch[n - X + i] = ch[n - X + i] * (1 - a) + ch[i] * a; }
+  const src = ac.createBufferSource(); src.buffer = buf; src.loop = true; src.loopStart = X / ac.sampleRate; src.loopEnd = n / ac.sampleRate;
+  const f = ac.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 300; f.Q.value = 0.5;
+  const g = ac.createGain(); g.gain.value = 0;
+  src.connect(f); f.connect(g); g.connect(dest); src.start();
+  return { src, f, g, next: 0 };
+}
+const windLevel = mph => mph < 1 ? 0 : 0.028 * Math.min(1, mph / 20);
+function windAudio() {
+  const on = !!(AC && MASTER && settings.sound && settings.birds !== false && hole && mode !== 'putt' && state !== 'title' && document.visibilityState === 'visible');
+  if (!on && !windNodes) return;
+  if (!windNodes) windNodes = makeWind(AC, MASTER);
+  const t = AC.currentTime; if (t < windNodes.next) return;
+  const base = on ? windLevel(wind.mph || 0) : 0, gust = 0.6 + rnd() * 0.8, dur = on ? 1.2 + rnd() * 1.8 : 0.6;
+  const G = windNodes.g.gain, F = windNodes.f.frequency;
+  G.cancelScheduledValues(t); G.setValueAtTime(G.value, t); G.linearRampToValueAtTime(base * gust, t + dur);
+  F.cancelScheduledValues(t); F.setValueAtTime(F.value, t); F.linearRampToValueAtTime(220 + 520 * Math.min(1, (wind.mph || 0) / 20) * gust, t + dur);
+  windNodes.next = t + dur * 0.9;
+}
 
 /* a distant bird now and then while you line up a shot. Kept quiet, soft edged and
    below the 3 to 4 kHz band where hearing is sharpest, and rare so it never nags */
@@ -321,7 +403,7 @@ function chirp() {
     const fa = call === 0 ? f0 * (i ? 0.84 : 1) : f0, fb = call === 1 ? fa * (i ? 0.8 : 1.2) : fa * 1.12, d = call === 2 ? 0.06 : 0.22;
     o.type = 'sine'; o.frequency.setValueAtTime(fa, T); o.frequency.linearRampToValueAtTime(fb, T + d);
     g.gain.setValueAtTime(0.0001, T); g.gain.exponentialRampToValueAtTime(0.0055, T + d * 0.35); g.gain.exponentialRampToValueAtTime(0.0001, T + d);
-    o.connect(g); g.connect(ac.destination); o.start(T); o.stop(T + d + 0.02);
+    o.connect(g); g.connect(out(ac)); o.start(T); o.stop(T + d + 0.02);
   }
 }
 (function birds() {
@@ -965,7 +1047,7 @@ function strike(power, acc) {
     const v = Math.sqrt(2 * mu * G * power * range) * (1 + randn() * 0.012);
     const a = base + acc * 0.5 + randn() * 0.004;
     Object.assign(ball, { vx: Math.cos(a) * v, vy: Math.sin(a) * v, vz: 0, L: 0, S: 0, mode: 'roll' });
-    shot.bite = 0; SFX.putt();
+    shot.bite = 0; SFX.putt(power);
   } else {
     const SH = SHAPES[shapeI];
     let err = s.err * (power > 1 ? 1 + (power - 1) * 6 : 1) * SH.err;
@@ -992,7 +1074,7 @@ function strike(power, acc) {
     shot.launch = { vx: ball.vx, vy: ball.vy, vz: ball.vz, L: ball.L, S: ball.S, v0: v };
     shot.bite = (k === ROUGH || k === LONG || k === WOODS ? c.bite * 0.3 : c.bite) * SH.bite;
     shot.shape = SH.n; shot.run = 1 - 0.1 * SH.s;
-    SFX.hit();
+    SFX.hit(ci, power, k);
   }
   shot.power = power; shot.acc = acc;
   state = 'flight'; cam.mode = c.putter ? 'putt' : 'flight'; cam.panX = cam.panY = 0;
@@ -1075,7 +1157,8 @@ function bounce(b, gz) {
   const out = -vn * s.e;
   b.vx = tx + out * nx; b.vy = ty + out * ny; b.vz = tz + out * nz;
   impactFx(k, b, sp);
-  if (shot.bounces === 0) { shot.carry = dist(shot.from, [b.x, b.y]); SFX.land(); }
+  if (shot.bounces === 0) { shot.carry = dist(shot.from, [b.x, b.y]); SFX.land(k, sp); }
+  else if (sp > 6) SFX.land(k, sp * 0.6);
   shot.bounces++;
   b.L *= 0.2; b.S *= 0.1;
   if (out < 1.1 || shot.bounces > 12) { b.mode = 'roll'; b.vz = 0; }
@@ -1551,6 +1634,8 @@ function seg(name, opts, cur) {
   return `<div class="seg" data-seg="${name}">${opts.map(([v, l]) => `<button data-v="${v}" class="${v === cur ? 'on' : ''}">${l}</button>`).join('')}</div>`;
 }
 function bindSegs() {
+  const vol = document.getElementById('opt-vol');
+  if (vol) { vol.oninput = () => { settings.volume = +vol.value; saveSettings(); setVolume(); }; vol.onchange = () => { audio(); SFX.land(FAIR, 25); }; }
   document.querySelectorAll('[data-seg]').forEach(s => s.querySelectorAll('button').forEach(b => b.onclick = () => {
     const k = s.dataset.seg; let v = b.dataset.v; if (v === 'true') v = true; if (v === 'false') v = false;
     settings[k] = v; saveSettings();
@@ -1563,7 +1648,8 @@ function optionsHTML() {
   return `<div class="opt"><span>Swing meter</span>${seg('speed', [['relaxed', 'Relaxed'], ['normal', 'Normal'], ['fast', 'Fast']], settings.speed)}</div>
   <div class="opt"><span>Trees</span>${seg('season', [['summer', 'Summer'], ['autumn', 'Autumn']], settings.season)}</div>
   <div class="opt"><span>Sound</span>${seg('sound', [[true, 'On'], [false, 'Off']], settings.sound)}</div>
-  <div class="opt"><span>Birds</span>${seg('birds', [[true, 'On'], [false, 'Off']], settings.birds)}</div>`;
+  <div class="opt"><span>Volume</span><input type="range" id="opt-vol" min="0" max="100" step="5" value="${settings.volume}" aria-label="Volume"></div>
+  <div class="opt"><span>Birds &amp; wind</span>${seg('birds', [[true, 'On'], [false, 'Off']], settings.birds)}</div>`;
 }
 const HELP = `<div class="help">
 <p><b>New?</b> Tap <b>Lesson</b> on the start map for a two minute walk-through.</p>
@@ -1814,6 +1900,7 @@ function frame(t) {
   meterTick();
   if (hole) updateCars(dtr);
   if (fx.length || confetti.length) updateFx(dtr);
+  windAudio();
   $('ff-btn').classList.toggle('hidden', state !== 'flight');
   if (state === 'flight' && ball.mode !== 'rest') {
     const speed = (shot.fast ? 5 : ball.mode === 'fly' ? 1.4 : 1.4), sub = 1 / 240;
@@ -1858,6 +1945,12 @@ if (/[?&]debug/.test(location.search)) window.__fgc = {
   get fxCount() { return [fx.length, confetti.length]; },
   get camMode() { return cam.mode; },
   party(n) { celebrate(n); SFX.fanfare(2); },
+  async renderSfx(name, args, secs) {
+    const oc = new OfflineAudioContext(1, Math.floor(44100 * (secs || 1.2)), 44100); TEST_AC = oc;
+    try { if (name === 'wind') { const w = makeWind(oc, oc.destination); w.g.gain.value = windLevel(args[0]); w.f.frequency.value = 220 + 520 * Math.min(1, args[0] / 20); } else if (name === 'chirp') chirp(); else SFX[name](...(args || [])); } finally { TEST_AC = null; }
+    const d = (await oc.startRendering()).getChannelData(0); let pk = 0, ss = 0; for (const v of d) { pk = Math.max(pk, Math.abs(v)); ss += v * v; }
+    return { peak: +(20 * Math.log10(pk || 1e-9)).toFixed(1), rms: +(10 * Math.log10(ss / d.length || 1e-12)).toFixed(1) };
+  },
   get cupsScreen() { return cups && cups.map(c => w2s(c[0], c[1]).map(Math.round)); },
   tap(x, y) { setAim([x, y]); },
   aimRaw(x, y) { aim = [x, y]; updateHUD(); },
