@@ -71,7 +71,7 @@
       "difficulty": "medium",
       "topic": "cutting tools",
       "passage": null,
-      "stem": "Hacksaw blades are sold with 14, 18, 24, and 32 teeth per inch. Which blade should be used to cut thin sheet metal about 1/16 inch thick?",
+      "stem": "Hacksaw blades are sold with 14, 18, 24, and 32 teeth per inch. Which blade should be used to cut thin sheet metal less than 1/16 inch thick?",
       "choices": [
         "14 teeth per inch",
         "18 teeth per inch",
@@ -79,7 +79,7 @@
         "32 teeth per inch"
       ],
       "answer": 3,
-      "explanation": "The rule is to keep at least two or three teeth in contact with the metal at all times, so thinner stock needs more teeth per inch. A 32 tooth blade is for stock under 1/8 inch; coarser blades such as 14 or 18 would catch and strip teeth on thin sheet.",
+      "explanation": "The rule is to keep at least two or three teeth in contact with the metal at all times, so thinner stock needs more teeth per inch. The 32 tooth blade is the finest made and is the one for thin sheet metal and thin-wall tubing; coarser blades such as 14 or 18 are for thick bar stock and would catch and strip teeth on thin sheet.",
       "svg": null
     },
     {
@@ -351,7 +351,7 @@
         "The rectangular cavity cut into the leg"
       ],
       "answer": 3,
-      "explanation": "The mortise is the hole or cavity, and the tenon is the projecting tongue that fits into it. A good way to remember it is that the tenon is the part that extends. A peg driven through the joint is called a drawbore pin, and glue is not a named part of the joint.",
+      "explanation": "The mortise is the hole or cavity, and the tenon is the projecting tongue that fits into it. A good way to remember it is that the tenon is the part that extends. A peg driven through the joint is a separate pin or dowel, and glue is not a named part of the joint.",
       "svg": null
     },
     {
@@ -431,7 +431,7 @@
         "220 grit"
       ],
       "answer": 3,
-      "explanation": "The grit number tells how many abrasive particles fit through a one inch screen, so a higher number means smaller particles and a finer paper. 60 grit is coarse for fast removal, 100 to 150 is medium, and 220 is a fine finishing grit used before applying a finish.",
+      "explanation": "The grit number comes from the number of openings per inch in the screen used to sort the abrasive particles, so a higher number means smaller particles and a finer paper. 60 grit is coarse for fast removal, 100 to 150 is medium, and 220 is a fine finishing grit used before applying a finish.",
       "svg": null
     },
     {
@@ -623,7 +623,7 @@
         "2 inches"
       ],
       "answer": 1,
-      "explanation": "Thread pitch is the distance between threads, 1/16 inch for 16 threads per inch, and each full turn advances the nut one pitch. So 8 turns x 1/16 inch = 8/16 = 1/2 inch. Multiplying 8 by the 3/8 diameter or by 1/4 gives the wrong answers.",
+      "explanation": "Thread pitch is the distance between threads, 1/16 inch for 16 threads per inch, and each full turn advances the nut one pitch. So 8 turns x 1/16 inch = 8/16 = 1/2 inch. Using 1/32 inch per turn gives 1/4 inch, and using 1/4 inch per turn gives 2 inches; both use the wrong pitch.",
       "svg": null
     },
     {

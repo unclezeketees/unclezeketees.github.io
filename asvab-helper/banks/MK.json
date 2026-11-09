@@ -143,7 +143,7 @@
         "8"
       ],
       "answer": 3,
-      "explanation": "When multiplying powers with the same base, add the exponents: -3 + 5 = 2, so the top is 2^2. When dividing, subtract: 2 - (-1) = 3, so the result is 2^3 = 8. Adding -1 instead of subtracting it gives 2^1 = 2, and dropping the negative signs gives 2^5 = 32.",
+      "explanation": "When multiplying powers with the same base, add the exponents: -3 + 5 = 2, so the top is 2^2. When dividing, subtract: 2 - (-1) = 3, so the result is 2^3 = 8. Adding -1 instead of subtracting it gives 2^1 = 2, and 32 is just the middle factor 2^5 by itself, ignoring the other two powers.",
       "svg": null
     },
     {
@@ -415,7 +415,7 @@
         "3:4"
       ],
       "answer": 3,
-      "explanation": "Divide both parts by their greatest common factor, 6: 18 / 6 = 3 and 24 / 6 = 4, so 18:24 = 3:4. The order matters, so 4:3 is wrong, and 1:6 is just the difference between the numbers, not a ratio.",
+      "explanation": "Divide both parts by their greatest common factor, 6: 18 / 6 = 3 and 24 / 6 = 4, so 18:24 = 3:4. The order matters, so 4:3 is wrong. The 1:6 comes from the difference 24 - 18 = 6, but a ratio is reduced by dividing, not subtracting.",
       "svg": null
     },
     {
