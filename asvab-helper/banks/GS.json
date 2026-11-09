@@ -1,0 +1,646 @@
+{
+  "subtest": "GS",
+  "name": "General Science",
+  "items": [
+    {
+      "id": "GS-01",
+      "difficulty": "easy",
+      "topic": "biology",
+      "passage": null,
+      "stem": "Which organelle is the main site of cellular respiration, where a cell releases energy from glucose?",
+      "choices": [
+        "nucleus",
+        "chloroplast",
+        "mitochondrion",
+        "ribosome"
+      ],
+      "answer": 2,
+      "explanation": "Mitochondria break down glucose with oxygen to make ATP, the cell's usable energy. Ribosomes build proteins, the nucleus holds DNA, and chloroplasts (plants only) carry out photosynthesis, which stores energy rather than releasing it.",
+      "svg": null
+    },
+    {
+      "id": "GS-02",
+      "difficulty": "medium",
+      "topic": "biology",
+      "passage": null,
+      "stem": "In pea plants, tall (T) is dominant over short (t). If two heterozygous tall plants (Tt x Tt) are crossed, what fraction of the offspring is expected to be short?",
+      "choices": [
+        "1/2",
+        "1/4",
+        "0",
+        "3/4"
+      ],
+      "answer": 1,
+      "explanation": "A Punnett square for Tt x Tt gives TT, Tt, Tt, and tt. Only tt plants are short, so 1 out of 4 offspring is expected to be short. 3/4 is the fraction that is tall, and 1/2 is the fraction that is heterozygous.",
+      "svg": null
+    },
+    {
+      "id": "GS-03",
+      "difficulty": "medium",
+      "topic": "biology",
+      "passage": null,
+      "stem": "A strand of DNA has the base sequence ATGCCA. What is the sequence of the complementary DNA strand?",
+      "choices": [
+        "TACCCA",
+        "TACGGT",
+        "UACGGU",
+        "ATGCCA"
+      ],
+      "answer": 1,
+      "explanation": "In DNA, adenine (A) pairs with thymine (T) and guanine (G) pairs with cytosine (C), so ATGCCA pairs with TACGGT. UACGGU uses uracil, which belongs to RNA, not DNA. ATGCCA is just the original strand repeated.",
+      "svg": null
+    },
+    {
+      "id": "GS-04",
+      "difficulty": "easy",
+      "topic": "biology",
+      "passage": null,
+      "stem": "Mushrooms, molds, and yeasts belong to which kingdom of living things?",
+      "choices": [
+        "Animalia",
+        "Protista",
+        "Plantae",
+        "Fungi"
+      ],
+      "answer": 3,
+      "explanation": "Fungi absorb nutrients from their surroundings and have cell walls made of chitin. They are not plants because they do not photosynthesize, and they are not animals because they do not ingest food. Protists are mostly single-celled organisms such as amoebas and algae.",
+      "svg": null
+    },
+    {
+      "id": "GS-05",
+      "difficulty": "hard",
+      "topic": "biology",
+      "passage": null,
+      "stem": "A biologist examines a single-celled organism that has a cell wall but no nucleus and no membrane-bound organelles. It is best classified as a",
+      "choices": [
+        "fungus",
+        "bacterium",
+        "virus",
+        "protist"
+      ],
+      "answer": 1,
+      "explanation": "A cell with no nucleus is a prokaryote, and bacteria are prokaryotes. Protists and fungi are eukaryotes, so their cells have a nucleus. A virus is not a cell at all; it is genetic material in a protein coat and cannot reproduce on its own.",
+      "svg": null
+    },
+    {
+      "id": "GS-06",
+      "difficulty": "easy",
+      "topic": "human body",
+      "passage": null,
+      "stem": "Which type of blood vessel carries blood away from the heart?",
+      "choices": [
+        "venules",
+        "veins",
+        "arteries",
+        "capillaries"
+      ],
+      "answer": 2,
+      "explanation": "Arteries carry blood away from the heart under high pressure, which is why they have thick, muscular walls. Veins and venules return blood to the heart, and capillaries are the tiny vessels where gases and nutrients are exchanged with tissues.",
+      "svg": null
+    },
+    {
+      "id": "GS-07",
+      "difficulty": "medium",
+      "topic": "human body",
+      "passage": null,
+      "stem": "In which organ does most absorption of digested nutrients into the bloodstream take place?",
+      "choices": [
+        "esophagus",
+        "stomach",
+        "small intestine",
+        "large intestine"
+      ],
+      "answer": 2,
+      "explanation": "The small intestine is lined with millions of finger-like villi that give it a huge surface area for absorbing nutrients. The stomach mainly mixes food with acid and enzymes, the large intestine absorbs water, and the esophagus only moves food to the stomach.",
+      "svg": null
+    },
+    {
+      "id": "GS-08",
+      "difficulty": "medium",
+      "topic": "human body",
+      "passage": null,
+      "stem": "Which chamber of the heart pumps oxygen-rich blood into the aorta and out to the rest of the body?",
+      "choices": [
+        "left atrium",
+        "left ventricle",
+        "right ventricle",
+        "right atrium"
+      ],
+      "answer": 1,
+      "explanation": "The left ventricle has the thickest wall because it must push blood through the entire body. The right ventricle pumps blood only to the lungs, and the atria are receiving chambers that pass blood down to the ventricles.",
+      "svg": null
+    },
+    {
+      "id": "GS-09",
+      "difficulty": "easy",
+      "topic": "human body",
+      "passage": null,
+      "stem": "Which blood component contains hemoglobin and carries oxygen from the lungs to the body's tissues?",
+      "choices": [
+        "white blood cells",
+        "red blood cells",
+        "platelets",
+        "plasma"
+      ],
+      "answer": 1,
+      "explanation": "Hemoglobin is the iron-containing protein inside red blood cells that binds oxygen. White blood cells fight infection, platelets help blood clot, and plasma is the liquid part of blood that carries cells, nutrients, and wastes.",
+      "svg": null
+    },
+    {
+      "id": "GS-10",
+      "difficulty": "hard",
+      "topic": "human body",
+      "passage": null,
+      "stem": "When you inhale, the diaphragm contracts and flattens. Why does this cause air to flow into the lungs?",
+      "choices": [
+        "The diaphragm pulls air directly into the lungs the way a muscle pulls on a bone.",
+        "The lungs contract on their own and draw air in through the windpipe.",
+        "The chest cavity gets larger, so the air pressure inside the lungs drops below the pressure outside.",
+        "The chest cavity gets smaller, so the air pressure inside the lungs rises above the pressure outside."
+      ],
+      "answer": 2,
+      "explanation": "Air always moves from higher pressure to lower pressure. Flattening the diaphragm increases the volume of the chest cavity, which lowers the pressure in the lungs, so outside air rushes in. The lungs have no muscle of their own and cannot contract by themselves.",
+      "svg": null
+    },
+    {
+      "id": "GS-11",
+      "difficulty": "easy",
+      "topic": "ecology",
+      "passage": null,
+      "stem": "In a food chain, organisms such as green plants and algae that make their own food using sunlight are called",
+      "choices": [
+        "producers",
+        "predators",
+        "decomposers",
+        "consumers"
+      ],
+      "answer": 0,
+      "explanation": "Producers use photosynthesis to turn sunlight, water, and carbon dioxide into food, and every other organism in the chain depends on them. Consumers eat other organisms, predators are consumers that hunt, and decomposers break down dead material.",
+      "svg": null
+    },
+    {
+      "id": "GS-12",
+      "difficulty": "medium",
+      "topic": "ecology",
+      "passage": null,
+      "stem": "In an energy pyramid, roughly what percentage of the energy stored at one trophic level is passed on to the next level?",
+      "choices": [
+        "10 percent",
+        "50 percent",
+        "90 percent",
+        "1 percent"
+      ],
+      "answer": 0,
+      "explanation": "Only about 10 percent of the energy at one level becomes stored energy in the next level. The other 90 percent is used for life processes or lost as heat. This is why food chains rarely have more than four or five links.",
+      "svg": null
+    },
+    {
+      "id": "GS-13",
+      "difficulty": "hard",
+      "topic": "ecology",
+      "passage": null,
+      "stem": "Lichens begin growing on bare rock left behind by a volcanic eruption, slowly forming soil for mosses and grasses. This is an example of",
+      "choices": [
+        "primary succession",
+        "secondary succession",
+        "eutrophication",
+        "a climax community"
+      ],
+      "answer": 0,
+      "explanation": "Primary succession happens where no soil exists, such as on new volcanic rock, and lichens are classic pioneer species. Secondary succession happens where soil already exists, as after a forest fire. A climax community is the stable end stage, and eutrophication is nutrient overloading of water.",
+      "svg": null
+    },
+    {
+      "id": "GS-14",
+      "difficulty": "medium",
+      "topic": "ecology",
+      "passage": null,
+      "stem": "A tick attaches to a deer and feeds on its blood, weakening the deer. This relationship is best described as",
+      "choices": [
+        "commensalism",
+        "parasitism",
+        "predation",
+        "mutualism"
+      ],
+      "answer": 1,
+      "explanation": "In parasitism one organism (the tick) benefits while the host is harmed but usually not killed. Mutualism benefits both partners, commensalism benefits one without affecting the other, and predation involves killing and eating the prey.",
+      "svg": null
+    },
+    {
+      "id": "GS-15",
+      "difficulty": "easy",
+      "topic": "geology",
+      "passage": null,
+      "stem": "Which type of rock forms when molten magma or lava cools and hardens?",
+      "choices": [
+        "metamorphic",
+        "igneous",
+        "mineral",
+        "sedimentary"
+      ],
+      "answer": 1,
+      "explanation": "Igneous rock, such as granite and basalt, forms from cooled molten material. Sedimentary rock forms from compressed layers of sediment, and metamorphic rock forms when existing rock is changed by heat and pressure. A mineral is a building block of rock, not a rock type.",
+      "svg": null
+    },
+    {
+      "id": "GS-16",
+      "difficulty": "medium",
+      "topic": "geology",
+      "passage": null,
+      "stem": "On the Mohs hardness scale, which mineral is rated the hardest, at 10?",
+      "choices": [
+        "quartz",
+        "talc",
+        "corundum",
+        "diamond"
+      ],
+      "answer": 3,
+      "explanation": "The Mohs scale runs from 1 (talc, the softest) to 10 (diamond, the hardest). Quartz is 7 and corundum is 9. A mineral can scratch any mineral with a lower number.",
+      "svg": null
+    },
+    {
+      "id": "GS-17",
+      "difficulty": "hard",
+      "topic": "geology",
+      "passage": null,
+      "stem": "Which of Earth's layers is the only one that is liquid?",
+      "choices": [
+        "crust",
+        "mantle",
+        "inner core",
+        "outer core"
+      ],
+      "answer": 3,
+      "explanation": "The outer core is molten iron and nickel, and its movement produces Earth's magnetic field. The inner core is solid because of the enormous pressure, the mantle is hot solid rock that flows very slowly, and the crust is the thin solid outer shell.",
+      "svg": null
+    },
+    {
+      "id": "GS-18",
+      "difficulty": "medium",
+      "topic": "geology",
+      "passage": null,
+      "stem": "Wind, rain, ice, and chemical reactions slowly break a boulder into smaller pieces where it sits, without carrying the pieces away. This process is called",
+      "choices": [
+        "deposition",
+        "weathering",
+        "subduction",
+        "erosion"
+      ],
+      "answer": 1,
+      "explanation": "Weathering breaks rock down in place. Erosion is the carrying away of the broken pieces by water, wind, or ice, and deposition is dropping them in a new location. Subduction is one tectonic plate sliding beneath another.",
+      "svg": null
+    },
+    {
+      "id": "GS-19",
+      "difficulty": "easy",
+      "topic": "meteorology",
+      "passage": null,
+      "stem": "Nearly all of Earth's weather occurs in which layer of the atmosphere, the one closest to the surface?",
+      "choices": [
+        "troposphere",
+        "stratosphere",
+        "mesosphere",
+        "thermosphere"
+      ],
+      "answer": 0,
+      "explanation": "The troposphere holds most of the atmosphere's water vapor and clouds, so weather happens there. The stratosphere above it contains the ozone layer, the mesosphere is where most meteors burn up, and the thermosphere is the very thin outer layer.",
+      "svg": null
+    },
+    {
+      "id": "GS-20",
+      "difficulty": "hard",
+      "topic": "meteorology",
+      "passage": null,
+      "stem": "A coastal city and an inland city sit at the same latitude. Why does the coastal city usually have cooler summers and milder winters?",
+      "choices": [
+        "Salt in sea spray lowers the air temperature near the shore in every season.",
+        "Ocean water reflects more sunlight than land, so the coast receives less solar energy all year.",
+        "Water has a high specific heat, so the ocean warms and cools much more slowly than land.",
+        "Sea level air is thinner than inland air, so it cannot hold as much heat."
+      ],
+      "answer": 2,
+      "explanation": "Water needs far more energy than land to change temperature, so the nearby ocean stays relatively cool in summer and relatively warm in winter and moderates the air above it. Reflection and salt do not control seasonal temperatures, and air at sea level is actually denser, not thinner.",
+      "svg": null
+    },
+    {
+      "id": "GS-21",
+      "difficulty": "medium",
+      "topic": "meteorology",
+      "passage": null,
+      "stem": "Which type of cloud is tall and towering, often with a flat anvil-shaped top, and produces thunderstorms?",
+      "choices": [
+        "cumulus",
+        "stratus",
+        "cumulonimbus",
+        "cirrus"
+      ],
+      "answer": 2,
+      "explanation": "Cumulonimbus clouds grow vertically through strong updrafts and bring heavy rain, lightning, and sometimes hail. Cirrus clouds are thin and wispy at high altitude, stratus clouds are flat gray layers, and ordinary cumulus clouds are the puffy fair-weather clouds.",
+      "svg": null
+    },
+    {
+      "id": "GS-22",
+      "difficulty": "hard",
+      "topic": "meteorology",
+      "passage": null,
+      "stem": "On a calm night the amount of water vapor in the air stays the same, yet the relative humidity rises toward morning. Why?",
+      "choices": [
+        "The air warms, and warmer air can hold less water vapor than cool air.",
+        "Water vapor is heavier than air and settles toward the ground overnight.",
+        "Plants release most of their water vapor after dark, adding moisture to the air.",
+        "The air cools, and cooler air can hold less water vapor, so the same amount of vapor is a larger share of the maximum."
+      ],
+      "answer": 3,
+      "explanation": "Relative humidity compares the water vapor present to the most the air can hold at its current temperature. As the air cools at night its capacity drops, so the same vapor becomes a higher percentage, which is why dew forms near dawn. Water vapor is actually lighter than dry air.",
+      "svg": null
+    },
+    {
+      "id": "GS-23",
+      "difficulty": "easy",
+      "topic": "astronomy",
+      "passage": null,
+      "stem": "Which planet is the largest in our solar system?",
+      "choices": [
+        "Saturn",
+        "Neptune",
+        "Earth",
+        "Jupiter"
+      ],
+      "answer": 3,
+      "explanation": "Jupiter is a gas giant with more than 300 times the mass of Earth and more than 11 times its diameter. Saturn is the second largest, Neptune is the fourth largest, and Earth is the largest of the rocky inner planets.",
+      "svg": null
+    },
+    {
+      "id": "GS-24",
+      "difficulty": "medium",
+      "topic": "astronomy",
+      "passage": null,
+      "stem": "What is the main cause of the seasons on Earth?",
+      "choices": [
+        "changes in Earth's distance from the Sun during the year",
+        "the gravitational pull of the Moon on Earth's atmosphere",
+        "the tilt of Earth's axis relative to its orbit around the Sun",
+        "changes in how much energy the Sun gives off during the year"
+      ],
+      "answer": 2,
+      "explanation": "Earth's axis is tilted about 23.5 degrees, so each hemisphere leans toward the Sun for part of the year and gets more direct sunlight and longer days. Earth is actually slightly closer to the Sun in January, when the Northern Hemisphere has winter, so distance is not the cause.",
+      "svg": null
+    },
+    {
+      "id": "GS-25",
+      "difficulty": "hard",
+      "topic": "astronomy",
+      "passage": null,
+      "stem": "During a solar eclipse, in which phase is the Moon?",
+      "choices": [
+        "full moon",
+        "first quarter",
+        "new moon",
+        "third quarter"
+      ],
+      "answer": 2,
+      "explanation": "A solar eclipse happens when the Moon passes directly between Earth and the Sun, which can only occur when the Moon's unlit side faces Earth, the new moon phase. A lunar eclipse, when Earth's shadow falls on the Moon, happens at full moon.",
+      "svg": null
+    },
+    {
+      "id": "GS-26",
+      "difficulty": "medium",
+      "topic": "astronomy",
+      "passage": null,
+      "stem": "The Sun produces its energy by",
+      "choices": [
+        "friction from the rapid rotation of its gases",
+        "nuclear fission of heavy elements such as uranium",
+        "burning hydrogen gas in the presence of oxygen",
+        "nuclear fusion of hydrogen into helium in its core"
+      ],
+      "answer": 3,
+      "explanation": "In the Sun's core, extreme temperature and pressure fuse hydrogen nuclei into helium, releasing enormous energy. Ordinary burning needs oxygen and could not power a star, fission splits heavy atoms and is how nuclear power plants work, and rotation does not generate the Sun's light.",
+      "svg": null
+    },
+    {
+      "id": "GS-27",
+      "difficulty": "easy",
+      "topic": "oceanography",
+      "passage": null,
+      "stem": "Ocean tides on Earth are caused mainly by the gravitational pull of the",
+      "choices": [
+        "Moon",
+        "other planets",
+        "Sun",
+        "wind"
+      ],
+      "answer": 0,
+      "explanation": "The Moon's gravity pulls more strongly on the side of Earth facing it, creating bulges of water that we experience as high tides. The Sun also affects tides but much less because it is so far away. Wind creates waves and currents, not tides.",
+      "svg": null
+    },
+    {
+      "id": "GS-28",
+      "difficulty": "hard",
+      "topic": "oceanography",
+      "passage": null,
+      "stem": "Compared with fresh water, seawater",
+      "choices": [
+        "is denser and freezes at a lower temperature",
+        "is less dense and freezes at a lower temperature",
+        "is denser and freezes at a higher temperature",
+        "is less dense and freezes at a higher temperature"
+      ],
+      "answer": 0,
+      "explanation": "Dissolved salt adds mass to each liter of water, making seawater denser, which is why objects float more easily in the ocean. Dissolved salt also lowers the freezing point, so seawater freezes at about -2 degrees Celsius instead of 0 degrees Celsius.",
+      "svg": null
+    },
+    {
+      "id": "GS-29",
+      "difficulty": "easy",
+      "topic": "chemistry",
+      "passage": null,
+      "stem": "What is the chemical symbol for sodium?",
+      "choices": [
+        "S",
+        "Na",
+        "K",
+        "So"
+      ],
+      "answer": 1,
+      "explanation": "Sodium's symbol Na comes from its Latin name, natrium. S is sulfur and K is potassium (from the Latin kalium). So is not the symbol of any element.",
+      "svg": null
+    },
+    {
+      "id": "GS-30",
+      "difficulty": "medium",
+      "topic": "chemistry",
+      "passage": null,
+      "stem": "An atom has 6 protons, 6 neutrons, and 6 electrons. What is its mass number?",
+      "choices": [
+        "24",
+        "12",
+        "6",
+        "18"
+      ],
+      "answer": 1,
+      "explanation": "Mass number is the number of protons plus neutrons, so 6 + 6 = 12. Electrons have almost no mass and are not counted. The atomic number is 6 (protons only), and 18 comes from wrongly adding the electrons.",
+      "svg": null
+    },
+    {
+      "id": "GS-31",
+      "difficulty": "hard",
+      "topic": "chemistry",
+      "passage": null,
+      "stem": "Hydrogen and oxygen react to form water according to the balanced equation 2H2 + O2 -> 2H2O. If 4 molecules of hydrogen react completely with enough oxygen, how many molecules of water are produced?",
+      "choices": [
+        "2",
+        "1",
+        "4",
+        "8"
+      ],
+      "answer": 2,
+      "explanation": "The equation shows that 2 molecules of H2 produce 2 molecules of H2O, a 1 to 1 ratio. So 4 molecules of H2 produce 4 molecules of water. Choosing 2 or 8 comes from misreading the coefficients as a 2 to 1 or 1 to 2 ratio.",
+      "svg": null
+    },
+    {
+      "id": "GS-32",
+      "difficulty": "medium",
+      "topic": "chemistry",
+      "passage": null,
+      "stem": "Which of the following is a chemical change rather than a physical change?",
+      "choices": [
+        "an iron nail rusting",
+        "a glass bottle shattering",
+        "ice melting into water",
+        "sugar dissolving in tea"
+      ],
+      "answer": 0,
+      "explanation": "Rusting forms a new substance, iron oxide, which is the mark of a chemical change. Melting, dissolving, and breaking only change the state, mixture, or shape of a substance without changing what it is made of.",
+      "svg": null
+    },
+    {
+      "id": "GS-33",
+      "difficulty": "hard",
+      "topic": "chemistry",
+      "passage": null,
+      "stem": "Elements in the same column (group) of the periodic table have similar chemical properties because they have the same number of",
+      "choices": [
+        "occupied electron shells",
+        "protons",
+        "valence electrons",
+        "neutrons"
+      ],
+      "answer": 2,
+      "explanation": "Chemical behavior depends on the electrons in the outermost shell, the valence electrons, and every element in a group has the same number of them. Each element has its own number of protons, and elements in the same row (period), not the same column, share the same number of occupied shells.",
+      "svg": null
+    },
+    {
+      "id": "GS-34",
+      "difficulty": "easy",
+      "topic": "physics",
+      "passage": null,
+      "stem": "What is the SI unit of force?",
+      "choices": [
+        "newton",
+        "joule",
+        "watt",
+        "pascal"
+      ],
+      "answer": 0,
+      "explanation": "The newton (N) is the force needed to accelerate 1 kilogram at 1 meter per second squared. The joule measures energy or work, the watt measures power, and the pascal measures pressure.",
+      "svg": null
+    },
+    {
+      "id": "GS-35",
+      "difficulty": "medium",
+      "topic": "physics",
+      "passage": null,
+      "stem": "A 10 kilogram object sits on Earth's surface, where the acceleration due to gravity is about 9.8 meters per second squared. What is its approximate weight?",
+      "choices": [
+        "980 newtons",
+        "10 newtons",
+        "1 newton",
+        "98 newtons"
+      ],
+      "answer": 3,
+      "explanation": "Weight equals mass times gravitational acceleration: 10 x 9.8 = 98 newtons. Mass is 10 kilograms, but weight is a force and must be in newtons. 980 comes from multiplying by 98 instead of 9.8.",
+      "svg": null
+    },
+    {
+      "id": "GS-36",
+      "difficulty": "medium",
+      "topic": "physics",
+      "passage": null,
+      "stem": "Which of the following is the clearest example of potential energy being converted into kinetic energy?",
+      "choices": [
+        "a spring being compressed",
+        "a boulder rolling down a hillside",
+        "a car braking to a stop",
+        "water boiling on a stove"
+      ],
+      "answer": 1,
+      "explanation": "The boulder's gravitational potential energy at the top of the hill becomes kinetic energy as it speeds up. A braking car turns kinetic energy into heat, compressing a spring stores kinetic energy as elastic potential energy, and boiling water involves heat energy, not motion of a whole object.",
+      "svg": null
+    },
+    {
+      "id": "GS-37",
+      "difficulty": "hard",
+      "topic": "physics",
+      "passage": null,
+      "stem": "A bowling ball and a tennis ball are dropped at the same time inside a vacuum chamber. They hit the bottom at the same instant because",
+      "choices": [
+        "the lighter ball has less inertia and so speeds up faster",
+        "the heavier ball is slowed by more air resistance",
+        "gravity gives every object the same acceleration regardless of its mass",
+        "both balls have the same weight in a vacuum"
+      ],
+      "answer": 2,
+      "explanation": "Near Earth's surface all objects accelerate at about 9.8 meters per second squared when gravity is the only force acting. In a vacuum there is no air resistance, so mass makes no difference to the fall. The balls still have different weights; weight does not disappear in a vacuum.",
+      "svg": null
+    },
+    {
+      "id": "GS-38",
+      "difficulty": "hard",
+      "topic": "physics",
+      "passage": null,
+      "stem": "An object has a mass of 40 grams and a volume of 50 cubic centimeters. When placed in water, which has a density of 1 gram per cubic centimeter, the object will",
+      "choices": [
+        "sink, because any object heavier than 25 grams sinks in water",
+        "float, because its density is 0.8 grams per cubic centimeter",
+        "sink, because its density is 1.25 grams per cubic centimeter",
+        "float, because its density is 2 grams per cubic centimeter"
+      ],
+      "answer": 1,
+      "explanation": "Density is mass divided by volume: 40 / 50 = 0.8 grams per cubic centimeter. Anything less dense than water floats. 1.25 comes from dividing volume by mass instead, and mass alone never decides whether an object floats.",
+      "svg": null
+    },
+    {
+      "id": "GS-39",
+      "difficulty": "medium",
+      "topic": "measurement",
+      "passage": null,
+      "stem": "Water freezes at 0 degrees Celsius. What is this temperature on the Kelvin scale?",
+      "choices": [
+        "about 100 K",
+        "about 373 K",
+        "about 32 K",
+        "about 273 K"
+      ],
+      "answer": 3,
+      "explanation": "Kelvin equals Celsius plus 273 (273.15 exactly), so 0 degrees Celsius is about 273 K. The Kelvin scale starts at absolute zero and has no negative values. 32 is the Fahrenheit freezing point, and 373 K is the boiling point of water.",
+      "svg": null
+    },
+    {
+      "id": "GS-40",
+      "difficulty": "easy",
+      "topic": "measurement",
+      "passage": null,
+      "stem": "In the metric system, which prefix means one thousandth (1/1000)?",
+      "choices": [
+        "micro-",
+        "centi-",
+        "kilo-",
+        "milli-"
+      ],
+      "answer": 3,
+      "explanation": "Milli- means one thousandth, so a millimeter is 1/1000 of a meter. Centi- means one hundredth, kilo- means one thousand, and micro- means one millionth.",
+      "svg": null
+    }
+  ]
+}

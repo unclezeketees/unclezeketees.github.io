@@ -1,0 +1,646 @@
+{
+  "subtest": "MK",
+  "name": "Mathematics Knowledge",
+  "items": [
+    {
+      "id": "MK-01",
+      "difficulty": "easy",
+      "topic": "order_of_operations",
+      "passage": null,
+      "stem": "What is the value of 6 + 4 x 3 - 2?",
+      "choices": [
+        "28",
+        "20",
+        "10",
+        "16"
+      ],
+      "answer": 3,
+      "explanation": "Multiply before adding or subtracting: 4 x 3 = 12, so 6 + 12 - 2 = 16. Working left to right gives (6 + 4) x 3 - 2 = 28, and subtracting first gives 6 + 4 x 1 = 10.",
+      "svg": null
+    },
+    {
+      "id": "MK-02",
+      "difficulty": "medium",
+      "topic": "order_of_operations",
+      "passage": null,
+      "stem": "Evaluate: 2 x (3 + 5)^2 / 4 - 7",
+      "choices": [
+        "25",
+        "7",
+        "57",
+        "39"
+      ],
+      "answer": 0,
+      "explanation": "Parentheses first: 3 + 5 = 8. Then the exponent: 8^2 = 64. Then multiply and divide left to right: 2 x 64 = 128 and 128 / 4 = 32. Finally 32 - 7 = 25. Multiplying by 2 before squaring gives 57, and squaring only the 5 gives 7.",
+      "svg": null
+    },
+    {
+      "id": "MK-03",
+      "difficulty": "easy",
+      "topic": "integers_absolute_value",
+      "passage": null,
+      "stem": "What is |-9| - |4|?",
+      "choices": [
+        "5",
+        "-13",
+        "13",
+        "-5"
+      ],
+      "answer": 0,
+      "explanation": "Absolute value is distance from zero, so it is never negative: |-9| = 9 and |4| = 4. Then 9 - 4 = 5. Dropping the absolute value bars and computing -9 - 4 gives the wrong answer -13.",
+      "svg": null
+    },
+    {
+      "id": "MK-04",
+      "difficulty": "medium",
+      "topic": "integers_absolute_value",
+      "passage": null,
+      "stem": "What is the value of -3 - (-8) + (-5)?",
+      "choices": [
+        "-6",
+        "0",
+        "-16",
+        "10"
+      ],
+      "answer": 1,
+      "explanation": "Subtracting a negative is the same as adding: -3 - (-8) = -3 + 8 = 5. Adding a negative is subtracting: 5 + (-5) = 0. Treating every sign as a minus gives -16, and treating every sign as a plus gives 10.",
+      "svg": null
+    },
+    {
+      "id": "MK-05",
+      "difficulty": "easy",
+      "topic": "fractions_decimals",
+      "passage": null,
+      "stem": "What is 3/4 + 5/6?",
+      "choices": [
+        "17/12",
+        "4/5",
+        "19/12",
+        "5/8"
+      ],
+      "answer": 2,
+      "explanation": "Use the common denominator 12: 3/4 = 9/12 and 5/6 = 10/12, so the sum is 19/12 (or 1 7/12). Adding the tops and bottoms separately gives 8/10 = 4/5, which is wrong.",
+      "svg": null
+    },
+    {
+      "id": "MK-06",
+      "difficulty": "medium",
+      "topic": "fractions_decimals",
+      "passage": null,
+      "stem": "What is (2/3) / (4/9)?",
+      "choices": [
+        "2/3",
+        "1/2",
+        "3/2",
+        "8/27"
+      ],
+      "answer": 2,
+      "explanation": "To divide by a fraction, multiply by its reciprocal: 2/3 x 9/4 = 18/12 = 3/2. Multiplying without flipping gives 8/27, and flipping the first fraction instead of the second gives 2/3.",
+      "svg": null
+    },
+    {
+      "id": "MK-07",
+      "difficulty": "easy",
+      "topic": "exponents_roots",
+      "passage": null,
+      "stem": "What is sqrt(81) + sqrt(16)?",
+      "choices": [
+        "13",
+        "97",
+        "5",
+        "36"
+      ],
+      "answer": 0,
+      "explanation": "sqrt(81) = 9 because 9 x 9 = 81, and sqrt(16) = 4 because 4 x 4 = 16. So the sum is 9 + 4 = 13. You cannot add under the root first; sqrt(97) is not 13.",
+      "svg": null
+    },
+    {
+      "id": "MK-08",
+      "difficulty": "medium",
+      "topic": "exponents_roots",
+      "passage": null,
+      "stem": "Which expression equals sqrt(72) in simplest radical form?",
+      "choices": [
+        "36 x sqrt(2)",
+        "6 x sqrt(2)",
+        "2 x sqrt(6)",
+        "8 x sqrt(3)"
+      ],
+      "answer": 1,
+      "explanation": "Find the largest perfect square factor: 72 = 36 x 2, so sqrt(72) = sqrt(36) x sqrt(2) = 6 x sqrt(2). Forgetting to take the square root of 36 gives 36 x sqrt(2). Using 72 = 8 x 9 but putting the 8 outside the root gives 8 x sqrt(3), which is wrong because 8 is not sqrt(9).",
+      "svg": null
+    },
+    {
+      "id": "MK-09",
+      "difficulty": "hard",
+      "topic": "exponents_roots",
+      "passage": null,
+      "stem": "Simplify: (2^-3 x 2^5) / 2^-1",
+      "choices": [
+        "2",
+        "1/8",
+        "32",
+        "8"
+      ],
+      "answer": 3,
+      "explanation": "When multiplying powers with the same base, add the exponents: -3 + 5 = 2, so the top is 2^2. When dividing, subtract: 2 - (-1) = 3, so the result is 2^3 = 8. Adding -1 instead of subtracting it gives 2^1 = 2, and dropping the negative signs gives 2^5 = 32.",
+      "svg": null
+    },
+    {
+      "id": "MK-10",
+      "difficulty": "hard",
+      "topic": "scientific_notation",
+      "passage": null,
+      "stem": "What is (6 x 10^8) / (3 x 10^-2) written in scientific notation?",
+      "choices": [
+        "2 x 10^-16",
+        "2 x 10^6",
+        "2 x 10^-6",
+        "2 x 10^10"
+      ],
+      "answer": 3,
+      "explanation": "Divide the number parts: 6 / 3 = 2. Divide the powers of ten by subtracting exponents: 8 - (-2) = 10. The answer is 2 x 10^10. Adding the exponents (8 + (-2) = 6) gives 2 x 10^6, and multiplying them gives the wrong 2 x 10^-16.",
+      "svg": null
+    },
+    {
+      "id": "MK-11",
+      "difficulty": "easy",
+      "topic": "factoring_primes",
+      "passage": null,
+      "stem": "Which of the following is a prime number?",
+      "choices": [
+        "57",
+        "59",
+        "63",
+        "51"
+      ],
+      "answer": 1,
+      "explanation": "A prime has exactly two factors, 1 and itself. 59 is not divisible by 2, 3, 5, or 7, so it is prime. The others are composite: 51 = 3 x 17, 57 = 3 x 19, and 63 = 7 x 9. A quick check: if the digits add to a multiple of 3, the number is divisible by 3 (5 + 1 = 6, 5 + 7 = 12, 6 + 3 = 9).",
+      "svg": null
+    },
+    {
+      "id": "MK-12",
+      "difficulty": "hard",
+      "topic": "factoring_primes",
+      "passage": null,
+      "stem": "What is the greatest common factor of 84 and 126?",
+      "choices": [
+        "21",
+        "14",
+        "42",
+        "252"
+      ],
+      "answer": 2,
+      "explanation": "Factor each: 84 = 2^2 x 3 x 7 and 126 = 2 x 3^2 x 7. The GCF uses the lowest power of each shared prime: 2 x 3 x 7 = 42. Check: 84 / 42 = 2 and 126 / 42 = 3. Both 14 and 21 divide both numbers but are not the greatest, and 252 is the least common multiple, not a factor.",
+      "svg": null
+    },
+    {
+      "id": "MK-13",
+      "difficulty": "easy",
+      "topic": "algebraic_expressions",
+      "passage": null,
+      "stem": "Simplify: 5x - 3y + 2x + 7y",
+      "choices": [
+        "7x - 4y",
+        "3x + 4y",
+        "7x + 4y",
+        "11xy"
+      ],
+      "answer": 2,
+      "explanation": "Combine like terms only: the x terms give 5x + 2x = 7x, and the y terms give -3y + 7y = 4y. The result is 7x + 4y. Unlike terms such as x and y cannot be merged into a single term like 11xy.",
+      "svg": null
+    },
+    {
+      "id": "MK-14",
+      "difficulty": "medium",
+      "topic": "algebraic_expressions",
+      "passage": null,
+      "stem": "Simplify: (a^3)^4 x a^2",
+      "choices": [
+        "a^12",
+        "a^14",
+        "a^9",
+        "a^24"
+      ],
+      "answer": 1,
+      "explanation": "A power raised to a power multiplies the exponents: (a^3)^4 = a^12. Multiplying powers with the same base adds the exponents: a^12 x a^2 = a^14. Adding everything gives a^9 and multiplying everything gives a^24, both wrong.",
+      "svg": null
+    },
+    {
+      "id": "MK-15",
+      "difficulty": "hard",
+      "topic": "algebraic_expressions",
+      "passage": null,
+      "stem": "If 2x + 5 is not equal to 0, which expression equals (4x^2 - 25) / (2x + 5)?",
+      "choices": [
+        "4x - 5",
+        "2x + 5",
+        "2x^2 - 5",
+        "2x - 5"
+      ],
+      "answer": 3,
+      "explanation": "4x^2 - 25 is a difference of squares: (2x)^2 - 5^2 = (2x + 5)(2x - 5). Dividing by (2x + 5) cancels that factor and leaves 2x - 5. You cannot simply cancel the 4x^2 with the 2x; test with x = 1: (4 - 25) / 7 = -3, and 2(1) - 5 = -3.",
+      "svg": null
+    },
+    {
+      "id": "MK-16",
+      "difficulty": "easy",
+      "topic": "linear_equations",
+      "passage": null,
+      "stem": "Solve for x: 3x - 7 = 11",
+      "choices": [
+        "x = -6",
+        "x = 6",
+        "x = 18",
+        "x = 4/3"
+      ],
+      "answer": 1,
+      "explanation": "Add 7 to both sides: 3x = 18. Divide both sides by 3: x = 6. Check: 3(6) - 7 = 11. Subtracting 7 instead of adding gives 3x = 4 and the wrong answer 4/3.",
+      "svg": null
+    },
+    {
+      "id": "MK-17",
+      "difficulty": "medium",
+      "topic": "linear_equations",
+      "passage": null,
+      "stem": "Solve for x: 5(x - 2) = 3x + 8",
+      "choices": [
+        "x = 5",
+        "x = 9/4",
+        "x = -1",
+        "x = 9"
+      ],
+      "answer": 3,
+      "explanation": "Distribute first: 5x - 10 = 3x + 8. Subtract 3x: 2x - 10 = 8. Add 10: 2x = 18, so x = 9. Forgetting to multiply the 2 by 5 (writing 5x - 2) gives x = 5, and a sign slip when moving the 10 gives x = -1.",
+      "svg": null
+    },
+    {
+      "id": "MK-18",
+      "difficulty": "medium",
+      "topic": "inequalities",
+      "passage": null,
+      "stem": "Solve for x: -4x + 3 > 15",
+      "choices": [
+        "x > 3",
+        "x < -3",
+        "x > -3",
+        "x < 3"
+      ],
+      "answer": 1,
+      "explanation": "Subtract 3 from both sides: -4x > 12. Divide by -4, and because you are dividing by a negative number, flip the inequality sign: x < -3. Check with x = -5: -4(-5) + 3 = 23, which is greater than 15. Forgetting to flip gives x > -3, which fails that check.",
+      "svg": null
+    },
+    {
+      "id": "MK-19",
+      "difficulty": "hard",
+      "topic": "inequalities",
+      "passage": null,
+      "stem": "Which describes all values of x that satisfy 2 <= 3x - 4 < 11?",
+      "choices": [
+        "2 <= x < 5",
+        "6 <= x < 15",
+        "2 < x <= 5",
+        "-2/3 <= x < 7/3"
+      ],
+      "answer": 0,
+      "explanation": "Do the same thing to all three parts. Add 4: 6 <= 3x < 15. Divide by 3: 2 <= x < 5. Subtracting 4 instead of adding gives -2/3 <= x < 7/3, and stopping before dividing gives 6 <= x < 15. Note that x = 2 is included (3(2) - 4 = 2) but x = 5 is not (3(5) - 4 = 11, which is not less than 11).",
+      "svg": null
+    },
+    {
+      "id": "MK-20",
+      "difficulty": "medium",
+      "topic": "systems_of_equations",
+      "passage": null,
+      "stem": "If x + y = 10 and x - y = 4, what is the value of x?",
+      "choices": [
+        "x = 14",
+        "x = 3",
+        "x = 6",
+        "x = 7"
+      ],
+      "answer": 3,
+      "explanation": "Add the two equations so y cancels: 2x = 14, so x = 7. Then y = 10 - 7 = 3. Stopping at 2x = 14 gives the wrong 14, and 3 is the value of y, not x.",
+      "svg": null
+    },
+    {
+      "id": "MK-21",
+      "difficulty": "hard",
+      "topic": "systems_of_equations",
+      "passage": null,
+      "stem": "If 2x + 3y = 12 and 4x - y = 10, what is the value of x + y?",
+      "choices": [
+        "1",
+        "3",
+        "2",
+        "5"
+      ],
+      "answer": 3,
+      "explanation": "Solve the second equation for y: y = 4x - 10. Substitute into the first: 2x + 3(4x - 10) = 12, so 14x - 30 = 12, 14x = 42, and x = 3. Then y = 4(3) - 10 = 2. The question asks for x + y = 5. The choices 3 and 2 are x and y alone, and 1 is x - y.",
+      "svg": null
+    },
+    {
+      "id": "MK-22",
+      "difficulty": "medium",
+      "topic": "quadratics",
+      "passage": null,
+      "stem": "Which is the factored form of x^2 - 5x - 14?",
+      "choices": [
+        "(x + 7)(x - 2)",
+        "(x - 7)(x - 2)",
+        "(x + 7)(x + 2)",
+        "(x - 7)(x + 2)"
+      ],
+      "answer": 3,
+      "explanation": "Find two numbers that multiply to -14 and add to -5: they are -7 and +2. So x^2 - 5x - 14 = (x - 7)(x + 2). Check by FOIL: x^2 + 2x - 7x - 14 = x^2 - 5x - 14. The pair (x + 7)(x - 2) gives +5x, the wrong sign.",
+      "svg": null
+    },
+    {
+      "id": "MK-23",
+      "difficulty": "hard",
+      "topic": "quadratics",
+      "passage": null,
+      "stem": "What are all the solutions of x^2 + 6x + 9 = 25?",
+      "choices": [
+        "x = 4 or x = -4",
+        "x = 2 or x = -8",
+        "x = 2 only",
+        "x = -2 or x = 8"
+      ],
+      "answer": 1,
+      "explanation": "The left side is a perfect square: x^2 + 6x + 9 = (x + 3)^2. So (x + 3)^2 = 25, which means x + 3 = 5 or x + 3 = -5. That gives x = 2 or x = -8. Forgetting the negative square root loses the solution -8. Check: (-8)^2 + 6(-8) + 9 = 64 - 48 + 9 = 25.",
+      "svg": null
+    },
+    {
+      "id": "MK-24",
+      "difficulty": "easy",
+      "topic": "functions",
+      "passage": null,
+      "stem": "If f(x) = 3x^2 - 2, what is f(-2)?",
+      "choices": [
+        "-14",
+        "10",
+        "34",
+        "-8"
+      ],
+      "answer": 1,
+      "explanation": "Substitute -2 for x: f(-2) = 3(-2)^2 - 2. Square first: (-2)^2 = 4, so 3(4) - 2 = 12 - 2 = 10. Treating (-2)^2 as -4 gives -14, and squaring 3 x (-2) = -6 first gives 34.",
+      "svg": null
+    },
+    {
+      "id": "MK-25",
+      "difficulty": "medium",
+      "topic": "functions",
+      "passage": null,
+      "stem": "If g(x) = 2x + 1 and h(x) = x^2, what is g(h(3))?",
+      "choices": [
+        "10",
+        "7",
+        "19",
+        "49"
+      ],
+      "answer": 2,
+      "explanation": "Work from the inside out. First h(3) = 3^2 = 9. Then g(9) = 2(9) + 1 = 19. Doing the functions in the other order, h(g(3)) = h(7) = 49, is the most common mistake.",
+      "svg": null
+    },
+    {
+      "id": "MK-26",
+      "difficulty": "easy",
+      "topic": "ratios",
+      "passage": null,
+      "stem": "Which ratio is equal to 18:24?",
+      "choices": [
+        "2:3",
+        "4:3",
+        "1:6",
+        "3:4"
+      ],
+      "answer": 3,
+      "explanation": "Divide both parts by their greatest common factor, 6: 18 / 6 = 3 and 24 / 6 = 4, so 18:24 = 3:4. The order matters, so 4:3 is wrong, and 1:6 is just the difference between the numbers, not a ratio.",
+      "svg": null
+    },
+    {
+      "id": "MK-27",
+      "difficulty": "medium",
+      "topic": "ratios",
+      "passage": null,
+      "stem": "Solve for n: 6/n = 9/24",
+      "choices": [
+        "16",
+        "4",
+        "36",
+        "21"
+      ],
+      "answer": 0,
+      "explanation": "Cross multiply: 6 x 24 = 9 x n, so 144 = 9n and n = 16. Check: 6/16 = 3/8 and 9/24 = 3/8. Multiplying the wrong pair (9 x 24 / 6) gives 36, and adding 15 to 6 because 9 + 15 = 24 gives 21; ratios scale by multiplying, not adding.",
+      "svg": null
+    },
+    {
+      "id": "MK-28",
+      "difficulty": "easy",
+      "topic": "geometry_angles_triangles",
+      "passage": null,
+      "stem": "Two angles of a triangle measure 48 degrees and 67 degrees. What is the measure of the third angle?",
+      "choices": [
+        "245 degrees",
+        "75 degrees",
+        "115 degrees",
+        "65 degrees"
+      ],
+      "answer": 3,
+      "explanation": "The angles of any triangle add to 180 degrees. 48 + 67 = 115, and 180 - 115 = 65 degrees. Using 360 degrees (the total for a quadrilateral) gives the wrong 245.",
+      "svg": null
+    },
+    {
+      "id": "MK-29",
+      "difficulty": "medium",
+      "topic": "geometry_angles_triangles",
+      "passage": null,
+      "stem": "A right triangle has legs of length 9 and 12. What is the length of the hypotenuse?",
+      "choices": [
+        "225",
+        "sqrt(63)",
+        "15",
+        "21"
+      ],
+      "answer": 2,
+      "explanation": "Pythagorean theorem: c^2 = a^2 + b^2 = 81 + 144 = 225, so c = sqrt(225) = 15. This is a 3-4-5 triangle scaled by 3. Forgetting the square root leaves 225, and subtracting the squares (as you would to find a leg) gives sqrt(63).",
+      "svg": null
+    },
+    {
+      "id": "MK-30",
+      "difficulty": "hard",
+      "topic": "geometry_angles_triangles",
+      "passage": null,
+      "stem": "In a triangle, the three angles measure 2x degrees, (3x + 10) degrees, and (x + 20) degrees. What is the measure of the largest angle?",
+      "choices": [
+        "25 degrees",
+        "85 degrees",
+        "50 degrees",
+        "45 degrees"
+      ],
+      "answer": 1,
+      "explanation": "The angles sum to 180: 2x + 3x + 10 + x + 20 = 180, so 6x + 30 = 180 and x = 25. The angles are 2(25) = 50, 3(25) + 10 = 85, and 25 + 20 = 45 degrees, and the largest is 85 degrees. Answering 25 stops at x instead of finding the angle.",
+      "svg": null
+    },
+    {
+      "id": "MK-31",
+      "difficulty": "easy",
+      "topic": "geometry_perimeter_area_volume",
+      "passage": null,
+      "stem": "A rectangle is 7 feet long and 12 feet wide. What is its area?",
+      "choices": [
+        "38 square feet",
+        "84 square feet",
+        "42 square feet",
+        "19 square feet"
+      ],
+      "answer": 1,
+      "explanation": "Area of a rectangle = length x width = 7 x 12 = 84 square feet. The perimeter, 2(7 + 12) = 38 feet, is a different measurement, and 42 is half the area (the triangle formula).",
+      "svg": null
+    },
+    {
+      "id": "MK-32",
+      "difficulty": "medium",
+      "topic": "geometry_perimeter_area_volume",
+      "passage": null,
+      "stem": "A triangle has a base of 14 centimeters and a height of 9 centimeters. What is its area?",
+      "choices": [
+        "23 square centimeters",
+        "63 square centimeters",
+        "46 square centimeters",
+        "126 square centimeters"
+      ],
+      "answer": 1,
+      "explanation": "Area of a triangle = (1/2) x base x height = (1/2) x 14 x 9 = 63 square centimeters. Forgetting the 1/2 gives 126, which is the area of a 14 by 9 rectangle, and 23 is just base + height.",
+      "svg": null
+    },
+    {
+      "id": "MK-33",
+      "difficulty": "hard",
+      "topic": "geometry_perimeter_area_volume",
+      "passage": null,
+      "stem": "A cube has a volume of 64 cubic inches. What is its total surface area?",
+      "choices": [
+        "384 square inches",
+        "16 square inches",
+        "64 square inches",
+        "96 square inches"
+      ],
+      "answer": 3,
+      "explanation": "Volume of a cube = side^3, and 4^3 = 64, so each edge is 4 inches. Each of the 6 faces is a 4 by 4 square with area 16, so the surface area is 6 x 16 = 96 square inches. Answering 16 counts only one face, and 384 wrongly uses the volume (64) as a face area.",
+      "svg": null
+    },
+    {
+      "id": "MK-34",
+      "difficulty": "medium",
+      "topic": "circles",
+      "passage": null,
+      "stem": "A circle has a diameter of 10 centimeters. What is its area? Use 3.14 for pi.",
+      "choices": [
+        "78.5 square centimeters",
+        "31.4 square centimeters",
+        "314 square centimeters",
+        "15.7 square centimeters"
+      ],
+      "answer": 0,
+      "explanation": "The radius is half the diameter: 10 / 2 = 5. Area = pi x r^2 = 3.14 x 25 = 78.5 square centimeters. Using the diameter instead of the radius gives 3.14 x 100 = 314, and 31.4 is the circumference (pi x d).",
+      "svg": null
+    },
+    {
+      "id": "MK-35",
+      "difficulty": "hard",
+      "topic": "circles",
+      "passage": null,
+      "stem": "A cylinder has a radius of 3 inches and a height of 10 inches. What is its volume? Use 3.14 for pi.",
+      "choices": [
+        "94.2 cubic inches",
+        "282.6 cubic inches",
+        "188.4 cubic inches",
+        "1130.4 cubic inches"
+      ],
+      "answer": 1,
+      "explanation": "Volume of a cylinder = (area of the circular base) x height = pi x r^2 x h = 3.14 x 9 x 10 = 282.6 cubic inches. Forgetting to square the radius gives 94.2, and squaring the diameter (6) instead of the radius gives 1130.4.",
+      "svg": null
+    },
+    {
+      "id": "MK-36",
+      "difficulty": "easy",
+      "topic": "coordinate_geometry",
+      "passage": null,
+      "stem": "What is the slope of the line that passes through the points (1, 2) and (4, 11)?",
+      "choices": [
+        "-3",
+        "3",
+        "1/3",
+        "9"
+      ],
+      "answer": 1,
+      "explanation": "Slope = (change in y) / (change in x) = (11 - 2) / (4 - 1) = 9 / 3 = 3. Putting the x change on top gives 1/3, and stopping at the rise alone gives 9.",
+      "svg": null
+    },
+    {
+      "id": "MK-37",
+      "difficulty": "medium",
+      "topic": "coordinate_geometry",
+      "passage": null,
+      "stem": "What is the midpoint of the segment with endpoints (-3, 5) and (7, -1)?",
+      "choices": [
+        "(4, 4)",
+        "(5, 3)",
+        "(2, 2)",
+        "(-5, -3)"
+      ],
+      "answer": 2,
+      "explanation": "Average the x-coordinates and average the y-coordinates: x = (-3 + 7) / 2 = 2 and y = (5 + (-1)) / 2 = 2. The midpoint is (2, 2). Subtracting instead of adding gives (5, 3), and forgetting to divide by 2 gives (4, 4).",
+      "svg": null
+    },
+    {
+      "id": "MK-38",
+      "difficulty": "hard",
+      "topic": "coordinate_geometry",
+      "passage": null,
+      "stem": "What is the distance between the points (-2, 3) and (4, -5)?",
+      "choices": [
+        "sqrt(68)",
+        "100",
+        "10",
+        "14"
+      ],
+      "answer": 2,
+      "explanation": "Distance = sqrt((x2 - x1)^2 + (y2 - y1)^2). The horizontal change is 4 - (-2) = 6 and the vertical change is -5 - 3 = -8, so the distance is sqrt(36 + 64) = sqrt(100) = 10. Forgetting the square root leaves 100, and mishandling the negative in 4 - (-2) gives sqrt(4 + 64) = sqrt(68).",
+      "svg": null
+    },
+    {
+      "id": "MK-39",
+      "difficulty": "medium",
+      "topic": "probability",
+      "passage": null,
+      "stem": "A bag holds 4 red marbles, 5 blue marbles, and 3 green marbles. If one marble is drawn at random, what is the probability that it is not blue?",
+      "choices": [
+        "1/3",
+        "5/12",
+        "7/12",
+        "7/5"
+      ],
+      "answer": 2,
+      "explanation": "There are 4 + 5 + 3 = 12 marbles in all. 'Not blue' means red or green: 4 + 3 = 7 favorable outcomes, so the probability is 7/12. You can also use 1 - P(blue) = 1 - 5/12 = 7/12. A probability is always between 0 and 1, so 7/5 is impossible.",
+      "svg": null
+    },
+    {
+      "id": "MK-40",
+      "difficulty": "hard",
+      "topic": "statistics",
+      "passage": null,
+      "stem": "Consider the data set 4, 9, 9, 11, 17. Which statement is true?",
+      "choices": [
+        "The mode is 11.",
+        "The mean is greater than the median.",
+        "The median is 10.",
+        "The mean and the mode are equal."
+      ],
+      "answer": 1,
+      "explanation": "Mean = (4 + 9 + 9 + 11 + 17) / 5 = 50 / 5 = 10. The median is the middle value of the ordered list, 9. The mode is the value that appears most often, also 9. So the mean (10) is greater than the median (9), and the mean is not equal to the mode. The large value 17 pulls the mean above the median.",
+      "svg": null
+    }
+  ]
+}

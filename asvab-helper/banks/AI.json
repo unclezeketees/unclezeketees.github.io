@@ -1,0 +1,646 @@
+{
+  "subtest": "AI",
+  "name": "Auto Information",
+  "items": [
+    {
+      "id": "AI-01",
+      "difficulty": "easy",
+      "topic": "engine",
+      "passage": null,
+      "stem": "In a four-stroke gasoline engine, what is the correct order of the four strokes?",
+      "choices": [
+        "Compression, intake, exhaust, power",
+        "Power, intake, compression, exhaust",
+        "Intake, compression, power, exhaust",
+        "Intake, power, compression, exhaust"
+      ],
+      "answer": 2,
+      "explanation": "The piston first pulls in the air-fuel mixture (intake), squeezes it (compression), the spark fires and pushes the piston down (power), and the burned gases are pushed out (exhaust). The mixture must be compressed before it can be burned, so any order that puts power before compression is wrong.",
+      "svg": null
+    },
+    {
+      "id": "AI-02",
+      "difficulty": "medium",
+      "topic": "engine",
+      "passage": null,
+      "stem": "During which stroke of a four-stroke engine are both valves closed while the piston moves upward in the cylinder?",
+      "choices": [
+        "Compression stroke",
+        "Intake stroke",
+        "Exhaust stroke",
+        "Power stroke"
+      ],
+      "answer": 0,
+      "explanation": "On the compression stroke both valves are shut so the rising piston can squeeze the mixture. On the power stroke both valves are also shut, but the piston is moving down. On the intake stroke the intake valve is open, and on the exhaust stroke the exhaust valve is open.",
+      "svg": null
+    },
+    {
+      "id": "AI-03",
+      "difficulty": "medium",
+      "topic": "engine",
+      "passage": null,
+      "stem": "In a four-stroke engine, how fast does the camshaft turn compared with the crankshaft?",
+      "choices": [
+        "Half as fast",
+        "Twice as fast",
+        "The same speed",
+        "One quarter as fast"
+      ],
+      "answer": 0,
+      "explanation": "Each valve needs to open only once per complete cycle, and one cycle takes two crankshaft revolutions. The timing belt or chain is therefore geared so the camshaft makes one turn for every two turns of the crankshaft.",
+      "svg": null
+    },
+    {
+      "id": "AI-04",
+      "difficulty": "hard",
+      "topic": "engine",
+      "passage": null,
+      "stem": "The timing belt breaks while an interference-type engine is running at highway speed. What is the most likely result?",
+      "choices": [
+        "The alternator stops charging but the engine is otherwise unharmed",
+        "The engine idles roughly until the belt is replaced",
+        "The pistons strike open valves and cause internal engine damage",
+        "The engine keeps running but loses about half its power"
+      ],
+      "answer": 2,
+      "explanation": "The timing belt keeps the camshaft and crankshaft in step. When it breaks, the camshaft stops while the crankshaft keeps spinning, so in an interference engine the pistons can hit valves that are left open, bending valves or damaging pistons. The engine stops immediately rather than running weakly.",
+      "svg": null
+    },
+    {
+      "id": "AI-05",
+      "difficulty": "easy",
+      "topic": "fuel_air",
+      "passage": null,
+      "stem": "What is the main job of the engine air filter?",
+      "choices": [
+        "To mix fuel into the incoming air",
+        "To cool the air before it enters the engine",
+        "To quiet the sound of the exhaust",
+        "To keep dirt and dust out of the air entering the engine"
+      ],
+      "answer": 3,
+      "explanation": "The air filter traps dust, sand, and debris so they do not wear the cylinders and sensors. It does not cool the air or add fuel, and exhaust noise is handled by the muffler at the other end of the engine.",
+      "svg": null
+    },
+    {
+      "id": "AI-06",
+      "difficulty": "medium",
+      "topic": "fuel_air",
+      "passage": null,
+      "stem": "In a modern fuel-injected gasoline engine, what does the throttle plate directly control?",
+      "choices": [
+        "The pressure in the fuel rail",
+        "The timing of the spark",
+        "The amount of fuel sprayed by the injectors",
+        "The amount of air entering the intake"
+      ],
+      "answer": 3,
+      "explanation": "The throttle plate is a valve in the throttle body that opens when the driver presses the gas pedal, letting more air into the engine. The engine computer then measures that airflow and commands the injectors to add the matching amount of fuel. Spark timing and fuel pressure are controlled separately.",
+      "svg": null
+    },
+    {
+      "id": "AI-07",
+      "difficulty": "hard",
+      "topic": "fuel_air",
+      "passage": null,
+      "stem": "A car starts and idles fine but loses power and hesitates when the driver accelerates hard or climbs a long hill. Which cause is most likely?",
+      "choices": [
+        "A failing alternator diode",
+        "A thermostat stuck open",
+        "A clogged fuel filter",
+        "A worn brake rotor"
+      ],
+      "answer": 2,
+      "explanation": "At idle the engine needs very little fuel, so a partly blocked filter can still keep up. Under heavy load the engine demands much more fuel than the restricted filter can pass, so the mixture leans out and power drops. The other choices affect warm-up, braking, or charging, not fuel delivery.",
+      "svg": null
+    },
+    {
+      "id": "AI-08",
+      "difficulty": "easy",
+      "topic": "ignition",
+      "passage": null,
+      "stem": "What is the function of a spark plug in a gasoline engine?",
+      "choices": [
+        "To open and close the intake valve",
+        "To meter fuel into the cylinder",
+        "To ignite the compressed air-fuel mixture",
+        "To lubricate the cylinder wall"
+      ],
+      "answer": 2,
+      "explanation": "The spark plug creates a high-voltage spark across its gap at the top of the compression stroke, lighting the mixture to start the power stroke. Fuel metering is done by the injectors, valves are opened by the camshaft, and lubrication is the oil system's job.",
+      "svg": null
+    },
+    {
+      "id": "AI-09",
+      "difficulty": "medium",
+      "topic": "ignition",
+      "passage": null,
+      "stem": "What does the ignition coil do?",
+      "choices": [
+        "It converts the battery's low voltage into the very high voltage needed to jump the spark plug gap",
+        "It stores electricity for starting the engine",
+        "It converts alternating current from the alternator into direct current",
+        "It controls how much current reaches the headlights"
+      ],
+      "answer": 0,
+      "explanation": "The coil is a step-up transformer. It takes the roughly 12 volts from the battery and boosts it to tens of thousands of volts so a spark can jump the plug gap under compression. Storing electricity is the battery's role, and converting alternating current is done by diodes inside the alternator.",
+      "svg": null
+    },
+    {
+      "id": "AI-10",
+      "difficulty": "hard",
+      "topic": "ignition",
+      "passage": null,
+      "stem": "A technician finds that cylinder 3 is misfiring on an engine with one ignition coil per cylinder. She swaps the coil from cylinder 3 with the coil from cylinder 1, and the misfire moves to cylinder 1. What does this prove?",
+      "choices": [
+        "The coil that was on cylinder 3 is faulty",
+        "Cylinder 1 has low compression",
+        "The spark plug on cylinder 3 is fouled",
+        "The fuel injector on cylinder 3 is clogged"
+      ],
+      "answer": 0,
+      "explanation": "Swapping parts is a basic troubleshooting method. If the problem follows the part that was moved, that part is the cause. The misfire followed the coil to cylinder 1, so the coil is bad. If the plug, injector, or compression on cylinder 3 were the problem, the misfire would have stayed on cylinder 3.",
+      "svg": null
+    },
+    {
+      "id": "AI-11",
+      "difficulty": "easy",
+      "topic": "cooling",
+      "passage": null,
+      "stem": "What does the thermostat in an engine's cooling system do?",
+      "choices": [
+        "It pumps coolant through the radiator",
+        "It filters dirt out of the coolant",
+        "It measures the amount of coolant in the system",
+        "It blocks coolant flow to the radiator until the engine reaches operating temperature"
+      ],
+      "answer": 3,
+      "explanation": "The thermostat is a temperature-controlled valve. It stays closed when the engine is cold so the engine warms up quickly, then opens to let coolant circulate through the radiator. The water pump moves the coolant, and nothing in a normal system filters it.",
+      "svg": null
+    },
+    {
+      "id": "AI-12",
+      "difficulty": "medium",
+      "topic": "cooling",
+      "passage": null,
+      "stem": "Why is an automotive cooling system kept under pressure by the radiator cap?",
+      "choices": [
+        "Pressure makes the water pump turn faster",
+        "Pressure keeps the thermostat from opening too soon",
+        "Pressure lowers the freezing point of the coolant",
+        "Pressure raises the boiling point of the coolant"
+      ],
+      "answer": 3,
+      "explanation": "Liquids boil at a higher temperature when pressure is increased. A cap rated around 15 psi lets the coolant run well above 212 degrees Fahrenheit without boiling. Antifreeze, not pressure, is what lowers the freezing point.",
+      "svg": null
+    },
+    {
+      "id": "AI-13",
+      "difficulty": "hard",
+      "topic": "cooling",
+      "passage": null,
+      "stem": "A car takes a very long time to reach normal operating temperature in winter, and the heater blows only lukewarm air even after a long drive. Which cause is most likely?",
+      "choices": [
+        "The thermostat is stuck closed",
+        "The thermostat is stuck open",
+        "The water pump has failed",
+        "The radiator is clogged"
+      ],
+      "answer": 1,
+      "explanation": "With the thermostat stuck open, coolant flows through the radiator from the moment the engine starts, so the engine never builds up heat quickly and the heater core gets only mildly warm coolant. A stuck-closed thermostat, a clogged radiator, or a dead water pump would all cause overheating, the opposite symptom.",
+      "svg": null
+    },
+    {
+      "id": "AI-14",
+      "difficulty": "easy",
+      "topic": "lubrication",
+      "passage": null,
+      "stem": "What is the purpose of the engine oil filter?",
+      "choices": [
+        "To add detergents to the oil",
+        "To cool the oil before it returns to the pan",
+        "To keep the oil from leaking past the piston rings",
+        "To remove dirt and metal particles from the oil"
+      ],
+      "answer": 3,
+      "explanation": "Oil picks up tiny bits of metal, carbon, and dirt as it circulates. The filter traps those particles so they do not scratch bearings and cylinder walls. Detergents are already blended into the oil, and the rings themselves control oil at the pistons.",
+      "svg": null
+    },
+    {
+      "id": "AI-15",
+      "difficulty": "medium",
+      "topic": "lubrication",
+      "passage": null,
+      "stem": "Compared with 10W-30 motor oil, 5W-30 motor oil",
+      "choices": [
+        "should never be used in winter",
+        "is thicker at normal operating temperature",
+        "contains less detergent",
+        "flows more easily when the engine is cold"
+      ],
+      "answer": 3,
+      "explanation": "The number before the W (for winter) describes how the oil behaves when cold, and a lower number means it flows more easily on a cold start. Both oils act like a 30-weight oil once the engine is at operating temperature, so they are equally thick when hot.",
+      "svg": null
+    },
+    {
+      "id": "AI-16",
+      "difficulty": "hard",
+      "topic": "lubrication",
+      "passage": null,
+      "stem": "When checking the dipstick, a driver finds the oil is a light brown, milky color like a coffee drink. What does this most likely indicate?",
+      "choices": [
+        "Gasoline has leaked into the oil",
+        "Coolant is mixing with the oil, often from a failed head gasket",
+        "The oil filter is clogged",
+        "The oil is simply due for a change"
+      ],
+      "answer": 1,
+      "explanation": "Oil and water do not mix, so when coolant leaks into the crankcase it whips into a milky, light-brown emulsion. Old oil turns dark, not milky, and fuel in the oil makes it thin and smell like gasoline. A clogged filter does not change the oil's color.",
+      "svg": null
+    },
+    {
+      "id": "AI-17",
+      "difficulty": "easy",
+      "topic": "exhaust_emissions",
+      "passage": null,
+      "stem": "What is the main job of the muffler?",
+      "choices": [
+        "To cool the exhaust gases before they reach the catalytic converter",
+        "To measure the oxygen in the exhaust",
+        "To change harmful gases into harmless ones",
+        "To reduce the noise of the exhaust"
+      ],
+      "answer": 3,
+      "explanation": "The muffler uses chambers and baffles to quiet the loud pulses of exhaust leaving the engine. Changing harmful gases is the catalytic converter's job, and measuring oxygen is done by the oxygen sensor.",
+      "svg": null
+    },
+    {
+      "id": "AI-18",
+      "difficulty": "medium",
+      "topic": "exhaust_emissions",
+      "passage": null,
+      "stem": "What does a catalytic converter do?",
+      "choices": [
+        "It recirculates exhaust gas back into the intake",
+        "It filters soot particles out of the exhaust",
+        "It stores unburned fuel vapor from the gas tank",
+        "It changes carbon monoxide, unburned fuel, and nitrogen oxides into less harmful gases"
+      ],
+      "answer": 3,
+      "explanation": "The converter contains precious metals that trigger chemical reactions turning carbon monoxide, hydrocarbons, and nitrogen oxides into carbon dioxide, water, and nitrogen. Recirculating exhaust is the EGR valve's job, and storing fuel vapor is done by the charcoal canister.",
+      "svg": null
+    },
+    {
+      "id": "AI-19",
+      "difficulty": "hard",
+      "topic": "exhaust_emissions",
+      "passage": null,
+      "stem": "The oxygen sensor mounted in the exhaust ahead of the catalytic converter is used mainly to",
+      "choices": [
+        "measure the temperature of the exhaust gas",
+        "give the engine computer feedback so it can adjust the air-fuel mixture",
+        "check whether the muffler is leaking",
+        "measure back pressure in the exhaust pipe"
+      ],
+      "answer": 1,
+      "explanation": "The upstream oxygen sensor reports how much oxygen is left in the exhaust, which tells the computer whether the mixture was rich or lean so it can correct the injector pulse. A second sensor after the converter checks how well the converter is working. Neither sensor measures temperature or pressure.",
+      "svg": null
+    },
+    {
+      "id": "AI-20",
+      "difficulty": "easy",
+      "topic": "electrical",
+      "passage": null,
+      "stem": "Which part produces electricity to run the vehicle's accessories and recharge the battery while the engine is running?",
+      "choices": [
+        "Ignition coil",
+        "Alternator",
+        "Starter",
+        "Solenoid"
+      ],
+      "answer": 1,
+      "explanation": "The alternator is spun by the engine's drive belt and generates the current that powers lights and accessories and keeps the battery charged. The starter uses battery power to crank the engine, and the coil and solenoid are not power sources.",
+      "svg": null
+    },
+    {
+      "id": "AI-21",
+      "difficulty": "medium",
+      "topic": "electrical",
+      "passage": null,
+      "stem": "A 15 amp fuse for the radio has blown. The correct replacement is",
+      "choices": [
+        "a short piece of wire until a fuse can be found",
+        "another 15 amp fuse",
+        "a 20 amp fuse, so it will not blow again",
+        "a 10 amp fuse, to be on the safe side"
+      ],
+      "answer": 1,
+      "explanation": "A fuse is sized to protect the wiring in its circuit by melting before the wire overheats. A higher rating allows dangerous current to flow, a lower rating will blow under normal load, and a wire jumper offers no protection at all. If the new 15 amp fuse blows too, the circuit has a fault that needs repair.",
+      "svg": null
+    },
+    {
+      "id": "AI-22",
+      "difficulty": "hard",
+      "topic": "electrical",
+      "passage": null,
+      "stem": "The battery warning light comes on while a car is cruising at highway speed with the engine running normally. What does this most directly indicate?",
+      "choices": [
+        "The charging system is not producing enough voltage",
+        "The starter motor is drawing too much current",
+        "The battery terminals are corroded",
+        "The battery has a dead cell"
+      ],
+      "answer": 0,
+      "explanation": "While the engine runs, the alternator should supply the electrical system. The warning light turns on when system voltage drops below what the alternator should produce, which points to the alternator, its belt, or its wiring. A weak battery or corroded terminals usually show up as hard starting, not as a light while driving.",
+      "svg": null
+    },
+    {
+      "id": "AI-23",
+      "difficulty": "easy",
+      "topic": "drivetrain",
+      "passage": null,
+      "stem": "In a car with a manual transmission, what does pressing the clutch pedal do?",
+      "choices": [
+        "It disconnects the engine from the transmission",
+        "It applies the parking brake",
+        "It shifts the transmission into the next gear",
+        "It locks the transmission in neutral"
+      ],
+      "answer": 0,
+      "explanation": "The clutch disc is normally pressed against the engine's flywheel so the engine turns the transmission. Pressing the pedal pulls the disc away, interrupting the power flow so the driver can shift gears or stop without stalling. The gear itself is changed with the shift lever.",
+      "svg": null
+    },
+    {
+      "id": "AI-24",
+      "difficulty": "medium",
+      "topic": "drivetrain",
+      "passage": null,
+      "stem": "What is the purpose of the differential?",
+      "choices": [
+        "To change the gear ratio when the car speeds up",
+        "To connect the engine to the transmission",
+        "To let the drive wheels turn at different speeds when the car goes around a corner",
+        "To absorb bumps between the axle and the body"
+      ],
+      "answer": 2,
+      "explanation": "In a turn, the outside wheel travels a longer path than the inside wheel. The differential's gears let the two drive wheels spin at different speeds while still delivering power to both. Changing ratios is the transmission's job, and absorbing bumps belongs to the suspension.",
+      "svg": null
+    },
+    {
+      "id": "AI-25",
+      "difficulty": "medium",
+      "topic": "drivetrain",
+      "passage": null,
+      "stem": "In an automatic transmission, which component takes the place of the clutch found in a manual transmission?",
+      "choices": [
+        "Driveshaft",
+        "Flywheel",
+        "Torque converter",
+        "Universal joint"
+      ],
+      "answer": 2,
+      "explanation": "The torque converter is a fluid coupling between the engine and the automatic transmission. It lets the engine keep idling while the car is stopped in gear and transfers power smoothly as the car moves off. The driveshaft and universal joints carry power toward the wheels, and the flywheel is bolted to the crankshaft.",
+      "svg": null
+    },
+    {
+      "id": "AI-26",
+      "difficulty": "hard",
+      "topic": "drivetrain",
+      "passage": null,
+      "stem": "A front-wheel-drive car makes a rhythmic clicking noise from one front wheel only when turning sharply, and the noise disappears when driving straight. Which part is most likely worn?",
+      "choices": [
+        "Tie rod end",
+        "Brake caliper",
+        "Outer constant velocity joint",
+        "Wheel bearing"
+      ],
+      "answer": 2,
+      "explanation": "The outer CV joint on each front axle shaft must transmit power while the wheel is steered to a sharp angle. When the joint wears, the balls inside slap in their worn tracks and click each time the wheel rotates in a turn. A worn wheel bearing hums or growls at all times, and brake and steering parts do not click in time with wheel rotation.",
+      "svg": null
+    },
+    {
+      "id": "AI-27",
+      "difficulty": "easy",
+      "topic": "brakes",
+      "passage": null,
+      "stem": "In a disc brake, the brake pads are squeezed against which part to slow the wheel?",
+      "choices": [
+        "Drum",
+        "Master cylinder",
+        "Rotor",
+        "Brake shoe"
+      ],
+      "answer": 2,
+      "explanation": "A disc brake uses a caliper to clamp two pads against a spinning metal disc called the rotor. A drum brake works differently, pushing shoes outward against the inside of a drum. The master cylinder supplies the hydraulic pressure but is not touched by the pads.",
+      "svg": null
+    },
+    {
+      "id": "AI-28",
+      "difficulty": "medium",
+      "topic": "brakes",
+      "passage": null,
+      "stem": "What is the function of the brake master cylinder?",
+      "choices": [
+        "To convert the force of the driver's foot into hydraulic pressure",
+        "To prevent the wheels from locking during hard stops",
+        "To store spare brake fluid for emergencies",
+        "To press the brake pads against the rotor"
+      ],
+      "answer": 0,
+      "explanation": "The master cylinder is a piston pump worked by the brake pedal. It pressurizes the brake fluid, and that pressure travels through the lines to the calipers and wheel cylinders. Preventing lockup is the anti-lock system's job, and the pads are pressed by the calipers.",
+      "svg": null
+    },
+    {
+      "id": "AI-29",
+      "difficulty": "hard",
+      "topic": "brakes",
+      "passage": null,
+      "stem": "During a hard stop on a wet road, the brake pedal pulses rapidly under the driver's foot and a buzzing or grinding sound is heard, but the car stops in a straight line. What is happening?",
+      "choices": [
+        "The anti-lock braking system is working normally",
+        "The brake rotors are badly warped",
+        "The master cylinder is losing pressure",
+        "The brake pads have worn down to bare metal"
+      ],
+      "answer": 0,
+      "explanation": "ABS senses a wheel about to lock and rapidly releases and reapplies pressure to that wheel many times per second, which the driver feels as a fast pulsing and hears as a buzz. This is normal and the driver should keep firm pressure on the pedal. Warped rotors pulse during light braking too, and worn-out pads grind every time the brakes are used.",
+      "svg": null
+    },
+    {
+      "id": "AI-30",
+      "difficulty": "easy",
+      "topic": "steering_suspension",
+      "passage": null,
+      "stem": "What is the main purpose of a shock absorber?",
+      "choices": [
+        "To reduce the effort needed to turn the steering wheel",
+        "To hold up the weight of the vehicle",
+        "To control the bouncing of the springs after a bump",
+        "To keep the wheels pointed straight ahead"
+      ],
+      "answer": 2,
+      "explanation": "Springs support the vehicle's weight, but on their own they would keep bouncing after every bump. The shock absorber dampens that motion by forcing fluid through small passages, settling the car quickly. Steering effort and wheel direction are handled by the steering system and alignment.",
+      "svg": null
+    },
+    {
+      "id": "AI-31",
+      "difficulty": "medium",
+      "topic": "steering_suspension",
+      "passage": null,
+      "stem": "In wheel alignment, the term toe refers to",
+      "choices": [
+        "the tilt of the steering axis forward or backward when viewed from the side",
+        "the height of the vehicle body above the ground",
+        "the tilt of the top of the tire inward or outward when viewed from the front",
+        "the difference between the distance across the front edges and the rear edges of the two tires on the same axle"
+      ],
+      "answer": 3,
+      "explanation": "Toe is measured looking down from above. If the fronts of the tires are closer together than the rears, the wheels have toe-in; if farther apart, toe-out. The inward or outward tilt seen from the front is camber, and the steering axis tilt seen from the side is caster.",
+      "svg": null
+    },
+    {
+      "id": "AI-32",
+      "difficulty": "hard",
+      "topic": "steering_suspension",
+      "passage": null,
+      "stem": "Which alignment angle has the greatest effect on the steering wheel returning to center on its own after a turn?",
+      "choices": [
+        "Camber",
+        "Ride height",
+        "Caster",
+        "Toe"
+      ],
+      "answer": 2,
+      "explanation": "Caster is the backward tilt of the steering axis, like the angled fork on a bicycle or the wheels on a shopping cart. Positive caster makes the wheels want to trail straight behind the steering pivot, so the wheel self-centers and the car tracks straight. Camber mainly affects tire wear and cornering grip, and toe mainly affects tire wear and straight-line tracking.",
+      "svg": null
+    },
+    {
+      "id": "AI-33",
+      "difficulty": "easy",
+      "topic": "tires",
+      "passage": null,
+      "stem": "Where should a driver look to find the correct air pressure for the tires on a passenger car?",
+      "choices": [
+        "The gas station air pump setting",
+        "The placard on the driver's door jamb or the owner's manual",
+        "The maximum pressure molded into the tire sidewall",
+        "The number printed on the valve stem cap"
+      ],
+      "answer": 1,
+      "explanation": "The vehicle manufacturer sets the recommended pressure for that car and lists it on a label in the door jamb and in the manual. The number on the sidewall is the tire's maximum safe pressure, not the recommended one, and is usually higher than the car needs.",
+      "svg": null
+    },
+    {
+      "id": "AI-34",
+      "difficulty": "medium",
+      "topic": "tires",
+      "passage": null,
+      "stem": "Why are tires rotated to different positions on the vehicle at regular intervals?",
+      "choices": [
+        "To keep the wheel bearings lubricated",
+        "To make all four tires wear at about the same rate",
+        "To reset the tire pressure monitoring system",
+        "To correct the wheel alignment"
+      ],
+      "answer": 1,
+      "explanation": "Drive wheels and steering wheels wear tires differently from the other positions. Moving the tires around spreads the wear evenly so the set lasts longer and handles consistently. Rotation does nothing for alignment, bearings, or pressure sensors.",
+      "svg": null
+    },
+    {
+      "id": "AI-35",
+      "difficulty": "hard",
+      "topic": "tires",
+      "passage": null,
+      "stem": "A tire shows heavy wear down the center of the tread while both outer edges still have deep tread. What is the most likely cause?",
+      "choices": [
+        "The wheel has too much negative camber",
+        "The tire has been run overinflated",
+        "The shock absorber on that corner is worn out",
+        "The tire has been run underinflated"
+      ],
+      "answer": 1,
+      "explanation": "Too much air pressure makes the tread bulge in the middle so the center carries most of the load and wears fastest. Underinflation does the opposite, wearing both edges. Camber problems wear one edge only, and a worn shock causes a scalloped or cupped pattern around the tire.",
+      "svg": null
+    },
+    {
+      "id": "AI-36",
+      "difficulty": "easy",
+      "topic": "diagnosis",
+      "passage": null,
+      "stem": "The check engine light on the dashboard means that",
+      "choices": [
+        "the engine is overheating",
+        "the engine oil needs to be changed",
+        "the engine computer has detected a fault and stored a trouble code",
+        "the fuel tank is almost empty"
+      ],
+      "answer": 2,
+      "explanation": "The check engine light is the onboard diagnostic system's way of saying it found a problem in the engine or emissions controls and saved a code describing it. A technician reads the code with a scan tool plugged into the diagnostic port. Oil, temperature, and fuel level each have their own separate warning lights or gauges.",
+      "svg": null
+    },
+    {
+      "id": "AI-37",
+      "difficulty": "medium",
+      "topic": "diagnosis",
+      "passage": null,
+      "stem": "Thick blue-gray smoke coming from the tailpipe most likely means the engine is",
+      "choices": [
+        "leaking coolant into the cylinders",
+        "burning engine oil",
+        "running too rich on fuel",
+        "running too lean on fuel"
+      ],
+      "answer": 1,
+      "explanation": "Each color of exhaust smoke points to a different problem. Blue or blue-gray smoke means oil is getting into the combustion chamber past worn rings or valve seals. Black smoke means too much fuel, and white steamy smoke means coolant is leaking into a cylinder.",
+      "svg": null
+    },
+    {
+      "id": "AI-38",
+      "difficulty": "hard",
+      "topic": "diagnosis",
+      "passage": null,
+      "stem": "A gasoline engine cranks over at normal speed but will not start. Which of the following could NOT be the cause?",
+      "choices": [
+        "The battery is discharged",
+        "No fuel is reaching the cylinders",
+        "No spark is reaching the spark plugs",
+        "The timing belt has broken"
+      ],
+      "answer": 0,
+      "explanation": "A gasoline engine needs fuel, spark, and compression to start. Since the starter is spinning the engine at normal speed, the battery is clearly doing its job and can be ruled out. Missing fuel, missing spark, or a broken timing belt that kills compression and valve timing could each keep the engine from firing.",
+      "svg": null
+    },
+    {
+      "id": "AI-39",
+      "difficulty": "medium",
+      "topic": "hybrid_ev",
+      "passage": null,
+      "stem": "In a hybrid or electric vehicle, what happens during regenerative braking?",
+      "choices": [
+        "The brake pads are applied more firmly by an electric pump",
+        "Friction heat from the brakes is used to warm the battery",
+        "The electric motor works as a generator and sends energy back to the battery",
+        "The gasoline engine shuts off to save fuel"
+      ],
+      "answer": 2,
+      "explanation": "When the driver slows down, the drive motor is switched to act as a generator. The car's motion turns the motor, which produces electricity that recharges the battery while also slowing the vehicle. This recovers energy that friction brakes would have thrown away as heat.",
+      "svg": null
+    },
+    {
+      "id": "AI-40",
+      "difficulty": "medium",
+      "topic": "hybrid_ev",
+      "passage": null,
+      "stem": "Which maintenance item does a battery-electric vehicle NOT need?",
+      "choices": [
+        "Cabin air filter replacement",
+        "Engine oil changes",
+        "Brake fluid replacement",
+        "Tire rotation"
+      ],
+      "answer": 1,
+      "explanation": "A battery-electric vehicle has no gasoline engine, so there is no engine oil to change. It still rides on tires that wear, uses hydraulic brakes with fluid that absorbs moisture over time, and has a cabin air filter for the ventilation system.",
+      "svg": null
+    }
+  ]
+}

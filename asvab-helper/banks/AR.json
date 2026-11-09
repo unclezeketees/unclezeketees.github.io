@@ -1,0 +1,646 @@
+{
+  "subtest": "AR",
+  "name": "Arithmetic Reasoning",
+  "items": [
+    {
+      "id": "AR-01",
+      "difficulty": "easy",
+      "topic": "whole numbers",
+      "passage": null,
+      "stem": "A supply warehouse receives 14 crates of canned food. Each crate holds 36 cans. How many cans were received in all?",
+      "choices": [
+        "50 cans",
+        "420 cans",
+        "494 cans",
+        "504 cans"
+      ],
+      "answer": 3,
+      "explanation": "Multiply the crates by the cans per crate: 14 x 36 = 504. Adding gives 50, using 30 instead of 36 gives 420, and 494 comes from a carrying slip (360 + 144 = 504, not 494).",
+      "svg": null
+    },
+    {
+      "id": "AR-02",
+      "difficulty": "medium",
+      "topic": "whole numbers",
+      "passage": null,
+      "stem": "A shipment of 1,250 pounds of rice must be packed into bags that each hold 45 pounds. How many bags are needed to pack all of the rice?",
+      "choices": [
+        "25",
+        "27",
+        "28",
+        "30"
+      ],
+      "answer": 2,
+      "explanation": "1,250 / 45 = 27 with a remainder of 35 pounds (45 x 27 = 1,215). The leftover 35 pounds still needs a bag, so 28 bags are needed. Choosing 27 ignores the remainder, and 25 comes from rounding 45 up to 50.",
+      "svg": null
+    },
+    {
+      "id": "AR-03",
+      "difficulty": "hard",
+      "topic": "multi-step",
+      "passage": null,
+      "stem": "Six friends rent a boat for a flat fee of $180 plus $0.40 for every mile traveled. They travel 75 miles and split the total cost evenly. How much does each person pay?",
+      "choices": [
+        "$30.00",
+        "$35.00",
+        "$80.00",
+        "$210.00"
+      ],
+      "answer": 1,
+      "explanation": "Mileage charge: 75 x $0.40 = $30. Total cost: $180 + $30 = $210. Split six ways: $210 / 6 = $35 each. The $30 forgets the flat fee and is just the mileage, $210 forgets to split the cost, and $80 uses $4.00 per mile.",
+      "svg": null
+    },
+    {
+      "id": "AR-04",
+      "difficulty": "medium",
+      "topic": "fractions",
+      "passage": null,
+      "stem": "A 24-gallon fuel tank is 5/8 full. How many gallons are needed to fill the tank?",
+      "choices": [
+        "3 gallons",
+        "9 gallons",
+        "15 gallons",
+        "19 gallons"
+      ],
+      "answer": 1,
+      "explanation": "The tank holds 5/8 x 24 = 15 gallons now, so it needs 24 - 15 = 9 gallons. The 15 is the amount already in the tank, 3 is one eighth of the tank, and 19 subtracts the numerator 5 from 24.",
+      "svg": null
+    },
+    {
+      "id": "AR-05",
+      "difficulty": "easy",
+      "topic": "whole numbers",
+      "passage": null,
+      "stem": "A petition needs 275 signatures. So far 189 people have signed. How many more signatures are needed?",
+      "choices": [
+        "76",
+        "86",
+        "96",
+        "464"
+      ],
+      "answer": 1,
+      "explanation": "Subtract what is already collected from the goal: 275 - 189 = 86. Adding the numbers gives 464, and 96 or 76 come from borrowing errors in the subtraction.",
+      "svg": null
+    },
+    {
+      "id": "AR-06",
+      "difficulty": "medium",
+      "topic": "fractions",
+      "passage": null,
+      "stem": "A board 7 1/2 feet long is cut into pieces that are each 1 1/4 feet long. How many pieces can be cut from the board?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "9"
+      ],
+      "answer": 1,
+      "explanation": "Divide the length by the size of each piece: 7 1/2 / 1 1/4 = 15/2 x 4/5 = 60/10 = 6 pieces. Multiplying instead gives about 9, and 5 or 7 are miscounts.",
+      "svg": null
+    },
+    {
+      "id": "AR-07",
+      "difficulty": "hard",
+      "topic": "percents",
+      "passage": null,
+      "stem": "A bicycle priced at $250 is marked 20% off. Sales tax of 8% is then added to the sale price. What is the final cost?",
+      "choices": [
+        "$200.00",
+        "$216.00",
+        "$220.00",
+        "$270.00"
+      ],
+      "answer": 1,
+      "explanation": "Sale price: $250 x 0.80 = $200. Tax: 8% of $200 = $16, so the final cost is $216. The $200 forgets the tax, $220 subtracts 20% and adds 8% as a single 12% discount on $250, and $270 taxes the full price with no discount.",
+      "svg": null
+    },
+    {
+      "id": "AR-08",
+      "difficulty": "medium",
+      "topic": "decimals",
+      "passage": null,
+      "stem": "A plank is 2.4 meters long. Three pieces, each 0.65 meter long, are cut from it. How much of the plank is left?",
+      "choices": [
+        "0.45 meter",
+        "0.55 meter",
+        "1.75 meters",
+        "1.95 meters"
+      ],
+      "answer": 0,
+      "explanation": "Three pieces use 3 x 0.65 = 1.95 meters, leaving 2.4 - 1.95 = 0.45 meter. Subtracting only one piece gives 1.75, 1.95 is the amount cut off, and 0.55 is a borrowing slip.",
+      "svg": null
+    },
+    {
+      "id": "AR-09",
+      "difficulty": "easy",
+      "topic": "fractions",
+      "passage": null,
+      "stem": "A recipe calls for 3/4 cup of sugar. A cook wants to make three times the recipe. How much sugar is needed?",
+      "choices": [
+        "9/12 cup",
+        "1 3/4 cups",
+        "2 1/4 cups",
+        "3 3/4 cups"
+      ],
+      "answer": 2,
+      "explanation": "Multiply the fraction by 3: 3/4 x 3 = 9/4 = 2 1/4 cups. Multiplying the denominator as well (9/12) just gives 3/4 again, and 1 3/4 or 3 3/4 come from adding instead of multiplying.",
+      "svg": null
+    },
+    {
+      "id": "AR-10",
+      "difficulty": "hard",
+      "topic": "rates",
+      "passage": null,
+      "stem": "A driver travels 120 miles to a port at 40 miles per hour and returns along the same route at 60 miles per hour. What is the average speed for the whole round trip?",
+      "choices": [
+        "40 mph",
+        "48 mph",
+        "50 mph",
+        "60 mph"
+      ],
+      "answer": 1,
+      "explanation": "Going takes 120 / 40 = 3 hours and returning takes 120 / 60 = 2 hours. Total distance 240 miles over total time 5 hours gives 240 / 5 = 48 mph. Simply averaging 40 and 60 gives 50, which is wrong because more time is spent at the slower speed.",
+      "svg": null
+    },
+    {
+      "id": "AR-11",
+      "difficulty": "easy",
+      "topic": "decimals",
+      "passage": null,
+      "stem": "Gasoline costs $3.40 per gallon. How much does it cost to buy 12 gallons?",
+      "choices": [
+        "$4.08",
+        "$15.40",
+        "$40.80",
+        "$408.00"
+      ],
+      "answer": 2,
+      "explanation": "Multiply price by quantity: $3.40 x 12 = $40.80. The choices $4.08 and $408.00 have the decimal point in the wrong place, and $15.40 comes from adding 3.40 and 12.",
+      "svg": null
+    },
+    {
+      "id": "AR-12",
+      "difficulty": "medium",
+      "topic": "percents",
+      "passage": null,
+      "stem": "A restaurant bill is $48.00 before tax. If the sales tax is 6%, what is the total bill?",
+      "choices": [
+        "$2.88",
+        "$45.12",
+        "$50.48",
+        "$50.88"
+      ],
+      "answer": 3,
+      "explanation": "Tax is 6% of $48 = $2.88, so the total is $48.00 + $2.88 = $50.88. The $2.88 choice is the tax alone, $45.12 subtracts the tax, and $50.48 comes from miscomputing 6% of $48 as $2.48 (48 x 6 = 288, so it is $2.88).",
+      "svg": null
+    },
+    {
+      "id": "AR-13",
+      "difficulty": "hard",
+      "topic": "rates",
+      "passage": null,
+      "stem": "Three painters working at the same rate can paint a building in 12 days. Two painters work on the building for 6 days, then two more painters join them. How many more days will it take the four painters to finish?",
+      "choices": [
+        "6 days",
+        "9 days",
+        "12 days",
+        "18 days"
+      ],
+      "answer": 0,
+      "explanation": "The whole job is 3 x 12 = 36 painter-days. Two painters for 6 days complete 2 x 6 = 12 painter-days, leaving 24. Four painters finish 24 painter-days in 24 / 4 = 6 days. Choosing 9 (36 / 4) ignores the work already done, and 12 reuses the original time.",
+      "svg": null
+    },
+    {
+      "id": "AR-14",
+      "difficulty": "medium",
+      "topic": "percents",
+      "passage": null,
+      "stem": "Last year a school had 400 students. This year it has 500 students. By what percent did enrollment increase?",
+      "choices": [
+        "20%",
+        "25%",
+        "100%",
+        "125%"
+      ],
+      "answer": 1,
+      "explanation": "Percent change = change / original = 100 / 400 = 0.25 = 25%. Dividing by the new amount (100 / 500) gives 20%, 100% treats the raw change as a percent, and 125% is the new total compared to the old one.",
+      "svg": null
+    },
+    {
+      "id": "AR-15",
+      "difficulty": "easy",
+      "topic": "percents",
+      "passage": null,
+      "stem": "A jacket that normally sells for $60 is on sale for 25% off. What is the sale price?",
+      "choices": [
+        "$15.00",
+        "$35.00",
+        "$45.00",
+        "$48.00"
+      ],
+      "answer": 2,
+      "explanation": "The discount is 25% of $60, which is $15, so the sale price is $60 - $15 = $45. The $15 choice is the discount itself, $35 subtracts 25 dollars instead of 25 percent, and $48 is a 20% discount.",
+      "svg": null
+    },
+    {
+      "id": "AR-16",
+      "difficulty": "medium",
+      "topic": "percents",
+      "passage": null,
+      "stem": "A sailor deposits $2,000 in an account that pays 4% simple interest per year. How much interest is earned in 3 years?",
+      "choices": [
+        "$24.00",
+        "$80.00",
+        "$240.00",
+        "$2,240.00"
+      ],
+      "answer": 2,
+      "explanation": "Simple interest = principal x rate x time = $2,000 x 0.04 x 3 = $240. The $80 is only one year of interest, $2,240 is the balance including the principal, and $24 uses 0.4% instead of 4%.",
+      "svg": null
+    },
+    {
+      "id": "AR-17",
+      "difficulty": "hard",
+      "topic": "ratios and proportions",
+      "passage": null,
+      "stem": "Punch is made from juice, soda, and water in a ratio of 3 to 2 to 1. If 18 cups of juice are used, how many cups of punch are made in total?",
+      "choices": [
+        "18 cups",
+        "24 cups",
+        "36 cups",
+        "108 cups"
+      ],
+      "answer": 2,
+      "explanation": "Juice is 3 parts and equals 18 cups, so one part is 6 cups. The punch has 3 + 2 + 1 = 6 parts, so the total is 6 x 6 = 36 cups. The 18 cups is only the soda plus water (12 + 6), 24 adds one part to the juice, and 108 multiplies 18 by 6 without finding the size of a part.",
+      "svg": null
+    },
+    {
+      "id": "AR-18",
+      "difficulty": "medium",
+      "topic": "ratios and proportions",
+      "passage": null,
+      "stem": "Cleaning solution is mixed from concentrate and water in a ratio of 2 to 5. How many gallons of water are needed to make 21 gallons of solution?",
+      "choices": [
+        "3 gallons",
+        "6 gallons",
+        "14 gallons",
+        "15 gallons"
+      ],
+      "answer": 3,
+      "explanation": "The ratio has 2 + 5 = 7 parts, so each part is 21 / 7 = 3 gallons. Water is 5 parts: 5 x 3 = 15 gallons. The 6 gallons is the concentrate, 3 gallons is one part, and 14 subtracts the 7 parts from 21.",
+      "svg": null
+    },
+    {
+      "id": "AR-19",
+      "difficulty": "easy",
+      "topic": "ratios and proportions",
+      "passage": null,
+      "stem": "At a marina the ratio of boats to crew members is 2 to 7. If there are 14 boats, how many crew members are there?",
+      "choices": [
+        "4",
+        "19",
+        "49",
+        "98"
+      ],
+      "answer": 2,
+      "explanation": "14 boats is 7 times the 2 in the ratio, so multiply the crew side by 7 as well: 7 x 7 = 49. Dividing the wrong way gives 4, adding the difference of 5 gives 19, and 98 multiplies 14 by 7 without first dividing by 2.",
+      "svg": null
+    },
+    {
+      "id": "AR-20",
+      "difficulty": "hard",
+      "topic": "unit conversion",
+      "passage": null,
+      "stem": "A faucet leaks 2 fluid ounces of water every minute. How many gallons of water leak in one full day? (1 gallon = 128 fluid ounces)",
+      "choices": [
+        "22.5 gallons",
+        "45 gallons",
+        "90 gallons",
+        "180 gallons"
+      ],
+      "answer": 0,
+      "explanation": "A day has 60 x 24 = 1,440 minutes, so the leak is 2 x 1,440 = 2,880 ounces. Divide by 128 ounces per gallon: 2,880 / 128 = 22.5 gallons. The other choices divide by 64 (a half gallon), 32 (a quart), or 16 (a pint) instead of 128.",
+      "svg": null
+    },
+    {
+      "id": "AR-21",
+      "difficulty": "easy",
+      "topic": "rates",
+      "passage": null,
+      "stem": "A delivery truck averages 55 miles per hour for 4 hours. How far does it travel?",
+      "choices": [
+        "59 miles",
+        "165 miles",
+        "200 miles",
+        "220 miles"
+      ],
+      "answer": 3,
+      "explanation": "Distance = rate x time = 55 x 4 = 220 miles. Adding gives 59, rounding 55 down to 50 gives 200, and 165 uses 3 hours instead of 4.",
+      "svg": null
+    },
+    {
+      "id": "AR-22",
+      "difficulty": "medium",
+      "topic": "rates",
+      "passage": null,
+      "stem": "One pump can fill a tank in 6 hours. A second pump can fill the same tank in 3 hours. How long will it take both pumps working together to fill the tank?",
+      "choices": [
+        "2 hours",
+        "3 hours",
+        "4.5 hours",
+        "9 hours"
+      ],
+      "answer": 0,
+      "explanation": "Add the rates: 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 tank per hour, so the job takes 2 hours. Averaging the times gives 4.5, adding them gives 9, and 3 hours ignores the slower pump entirely.",
+      "svg": null
+    },
+    {
+      "id": "AR-23",
+      "difficulty": "hard",
+      "topic": "averages",
+      "passage": null,
+      "stem": "After four tests, a student's average score is 78. What score does the student need on the fifth test to raise the average to 80?",
+      "choices": [
+        "80",
+        "82",
+        "88",
+        "90"
+      ],
+      "answer": 2,
+      "explanation": "Four tests averaging 78 total 4 x 78 = 312 points. Five tests averaging 80 need 5 x 80 = 400 points. The fifth test must supply 400 - 312 = 88. Scoring 80 would only pull the average part way up, and 82 or 90 come from adding the 2-point rise to the wrong number.",
+      "svg": null
+    },
+    {
+      "id": "AR-24",
+      "difficulty": "medium",
+      "topic": "rates",
+      "passage": null,
+      "stem": "A 16-ounce jar of peanut butter costs $3.20 and a 24-ounce jar costs $4.56. What is the cost per ounce of the better buy?",
+      "choices": [
+        "$0.19",
+        "$0.20",
+        "$0.29",
+        "$1.36"
+      ],
+      "answer": 0,
+      "explanation": "Small jar: $3.20 / 16 = $0.20 per ounce. Large jar: $4.56 / 24 = $0.19 per ounce, so the large jar is the better buy at $0.19. The $0.29 divides $4.56 by 16, and $1.36 is just the price difference.",
+      "svg": null
+    },
+    {
+      "id": "AR-25",
+      "difficulty": "easy",
+      "topic": "unit conversion",
+      "passage": null,
+      "stem": "A roll of fabric is 3.5 yards long. How many inches is that?",
+      "choices": [
+        "10.5 inches",
+        "42 inches",
+        "105 inches",
+        "126 inches"
+      ],
+      "answer": 3,
+      "explanation": "There are 36 inches in a yard, so 3.5 x 36 = 126 inches. Using 12 (inches per foot) gives 42, using 3 (feet per yard) gives 10.5, and 105 uses 30 inches per yard.",
+      "svg": null
+    },
+    {
+      "id": "AR-26",
+      "difficulty": "medium",
+      "topic": "unit conversion",
+      "passage": null,
+      "stem": "A room measures 12 feet by 15 feet. Carpet is sold by the square yard. How many square yards of carpet are needed to cover the floor?",
+      "choices": [
+        "20 square yards",
+        "60 square yards",
+        "180 square yards",
+        "540 square yards"
+      ],
+      "answer": 0,
+      "explanation": "Area = 12 x 15 = 180 square feet. One square yard is 3 feet x 3 feet = 9 square feet, so 180 / 9 = 20 square yards. Dividing by 3 instead of 9 gives 60, 180 is still in square feet, and 540 multiplies by 3.",
+      "svg": null
+    },
+    {
+      "id": "AR-27",
+      "difficulty": "hard",
+      "topic": "probability",
+      "passage": null,
+      "stem": "A box contains 4 red and 6 blue pens. Two pens are drawn at random without replacement. What is the probability that both pens are red?",
+      "choices": [
+        "2/15",
+        "4/25",
+        "1/3",
+        "2/5"
+      ],
+      "answer": 0,
+      "explanation": "First draw: 4 red out of 10, or 4/10. Second draw (one red already gone): 3 red out of 9, or 3/9. Multiply: 4/10 x 3/9 = 12/90 = 2/15. The 4/25 comes from 4/10 x 4/10, as if the first pen were put back, and 2/5 is the chance of one red pen only.",
+      "svg": null
+    },
+    {
+      "id": "AR-28",
+      "difficulty": "medium",
+      "topic": "probability",
+      "passage": null,
+      "stem": "Two fair six-sided dice are rolled. What is the probability that the two numbers add up to 7?",
+      "choices": [
+        "1/36",
+        "1/12",
+        "1/6",
+        "7/36"
+      ],
+      "answer": 2,
+      "explanation": "There are 6 x 6 = 36 equally likely rolls. Six of them total 7: 1-6, 2-5, 3-4, 4-3, 5-2, 6-1. So the probability is 6/36 = 1/6. Counting only 3 unordered pairs gives 1/12, and 7/36 wrongly uses the target sum as the count.",
+      "svg": null
+    },
+    {
+      "id": "AR-29",
+      "difficulty": "easy",
+      "topic": "averages",
+      "passage": null,
+      "stem": "A student scored 82, 90, 76, and 88 on four quizzes. What is the average score?",
+      "choices": [
+        "83",
+        "84",
+        "112",
+        "336"
+      ],
+      "answer": 1,
+      "explanation": "Add the scores (82 + 90 + 76 + 88 = 336) and divide by the number of quizzes: 336 / 4 = 84. 336 is the sum alone, 112 divides by 3 instead of 4, and 83 is an addition slip.",
+      "svg": null
+    },
+    {
+      "id": "AR-30",
+      "difficulty": "hard",
+      "topic": "perimeter and area",
+      "passage": null,
+      "stem": "A rectangular yard is 30 feet by 20 feet. A shed that is 10 feet by 8 feet sits in the yard. The rest of the yard will be covered with sod costing $0.50 per square foot. How much will the sod cost?",
+      "choices": [
+        "$260.00",
+        "$300.00",
+        "$340.00",
+        "$520.00"
+      ],
+      "answer": 0,
+      "explanation": "Yard area: 30 x 20 = 600 square feet. Shed area: 10 x 8 = 80 square feet. Grass area: 600 - 80 = 520 square feet, costing 520 x $0.50 = $260. The $300 forgets to remove the shed, $340 adds the shed instead of subtracting, and $520 is the area, not the cost.",
+      "svg": null
+    },
+    {
+      "id": "AR-31",
+      "difficulty": "easy",
+      "topic": "probability",
+      "passage": null,
+      "stem": "A bag holds 5 red, 3 blue, and 4 green marbles. If one marble is drawn at random, what is the probability that it is blue?",
+      "choices": [
+        "1/4",
+        "1/3",
+        "3/5",
+        "3/4"
+      ],
+      "answer": 0,
+      "explanation": "Probability = favorable / total = 3 / 12 = 1/4. Leaving the blue marbles out of the total gives 3/9 = 1/3, comparing blue to red gives 3/5, and 3/4 is the chance of NOT drawing blue.",
+      "svg": null
+    },
+    {
+      "id": "AR-32",
+      "difficulty": "medium",
+      "topic": "perimeter and area",
+      "passage": null,
+      "stem": "A rectangular garden is 18 feet long and 12 feet wide. It will be fenced on all sides except for a 4-foot gate opening. How many feet of fencing are needed?",
+      "choices": [
+        "52 feet",
+        "56 feet",
+        "60 feet",
+        "212 feet"
+      ],
+      "answer": 1,
+      "explanation": "Perimeter = 2 x (18 + 12) = 60 feet. Subtract the 4-foot gate: 60 - 4 = 56 feet. The 60 forgets the gate, 52 subtracts the gate twice, and 212 uses the area (216) minus 4.",
+      "svg": null
+    },
+    {
+      "id": "AR-33",
+      "difficulty": "hard",
+      "topic": "multi-step",
+      "passage": null,
+      "stem": "A theater has 25 rows with 18 seats in each row. Adult tickets cost $12 and child tickets cost $8. On a sold-out night, 150 of the tickets sold were child tickets. How much money did the theater take in?",
+      "choices": [
+        "$1,200.00",
+        "$3,600.00",
+        "$4,200.00",
+        "$4,800.00"
+      ],
+      "answer": 3,
+      "explanation": "Seats: 25 x 18 = 450. Adult tickets: 450 - 150 = 300, worth 300 x $12 = $3,600. Child tickets: 150 x $8 = $1,200. Total $3,600 + $1,200 = $4,800. The $3,600 leaves out the children, $1,200 leaves out the adults, and $4,200 swaps the two ticket prices.",
+      "svg": null
+    },
+    {
+      "id": "AR-34",
+      "difficulty": "medium",
+      "topic": "perimeter and area",
+      "passage": null,
+      "stem": "A floor measures 14 feet by 10 feet. It will be covered with square tiles that are 2 feet on each side. How many tiles are needed?",
+      "choices": [
+        "35",
+        "48",
+        "70",
+        "140"
+      ],
+      "answer": 0,
+      "explanation": "Floor area = 14 x 10 = 140 square feet. Each tile covers 2 x 2 = 4 square feet, so 140 / 4 = 35 tiles. Dividing by 2 instead of 4 gives 70, 140 is the area itself, and 48 is the perimeter of the floor.",
+      "svg": null
+    },
+    {
+      "id": "AR-35",
+      "difficulty": "easy",
+      "topic": "money",
+      "passage": null,
+      "stem": "A sandwich costs $6.75 and a drink costs $2.25. If you pay for both with a $20 bill, how much change do you get?",
+      "choices": [
+        "$9.00",
+        "$11.00",
+        "$13.25",
+        "$17.75"
+      ],
+      "answer": 1,
+      "explanation": "Add the items first: $6.75 + $2.25 = $9.00. Then subtract from $20: $20.00 - $9.00 = $11.00. The $9.00 choice is the total spent, and $13.25 or $17.75 subtract only one item.",
+      "svg": null
+    },
+    {
+      "id": "AR-36",
+      "difficulty": "medium",
+      "topic": "money",
+      "passage": null,
+      "stem": "A mechanic earns $14 per hour for the first 40 hours in a week and 1.5 times that rate for each hour over 40. How much does she earn in a week when she works 46 hours?",
+      "choices": [
+        "$560.00",
+        "$602.00",
+        "$644.00",
+        "$686.00"
+      ],
+      "answer": 3,
+      "explanation": "Regular pay: 40 x $14 = $560. Overtime rate: 1.5 x $14 = $21, so 6 overtime hours earn 6 x $21 = $126. Total $560 + $126 = $686. Paying all 46 hours at $14 gives $644, $560 leaves out the overtime entirely, and $602 pays the overtime hours at only half rate.",
+      "svg": null
+    },
+    {
+      "id": "AR-37",
+      "difficulty": "hard",
+      "topic": "fractions",
+      "passage": null,
+      "stem": "A crew finished 1/3 of a paving job on Monday. On Tuesday the crew finished 2/5 of the work that remained. What fraction of the whole job is still left to do?",
+      "choices": [
+        "4/15",
+        "2/5",
+        "3/5",
+        "11/15"
+      ],
+      "answer": 1,
+      "explanation": "After Monday, 1 - 1/3 = 2/3 remains. Tuesday's work is 2/5 of that: 2/5 x 2/3 = 4/15 of the whole job. Left: 2/3 - 4/15 = 10/15 - 4/15 = 6/15 = 2/5. The 4/15 is what was done Tuesday (and also what you get by wrongly subtracting 1/3 and 2/5 straight from 1), and 3/5 forgets Monday.",
+      "svg": null
+    },
+    {
+      "id": "AR-38",
+      "difficulty": "medium",
+      "topic": "time",
+      "passage": null,
+      "stem": "A flight departs at 9:50 AM and lands at 1:35 PM the same day. How long is the flight?",
+      "choices": [
+        "2 hours 45 minutes",
+        "3 hours 15 minutes",
+        "3 hours 45 minutes",
+        "4 hours 15 minutes"
+      ],
+      "answer": 2,
+      "explanation": "From 9:50 AM to 12:50 PM is 3 hours, and from 12:50 PM to 1:35 PM is 45 more minutes, for 3 hours 45 minutes. The 4 hours 15 minutes comes from subtracting 50 from 35 the wrong way, and 2 hours 45 minutes miscounts across noon.",
+      "svg": null
+    },
+    {
+      "id": "AR-39",
+      "difficulty": "easy",
+      "topic": "time",
+      "passage": null,
+      "stem": "A shift starts at 7:45 AM and lasts 8.5 hours. At what time does the shift end?",
+      "choices": [
+        "3:15 PM",
+        "3:45 PM",
+        "4:15 PM",
+        "4:35 PM"
+      ],
+      "answer": 2,
+      "explanation": "8.5 hours is 8 hours 30 minutes. 7:45 AM plus 8 hours is 3:45 PM, plus 30 more minutes is 4:15 PM. The 3:45 PM choice forgets the half hour, and 4:35 PM treats 0.5 hour as 50 minutes.",
+      "svg": null
+    },
+    {
+      "id": "AR-40",
+      "difficulty": "hard",
+      "topic": "decimals",
+      "passage": null,
+      "stem": "Before a trip a car's odometer read 45,218.4 miles. After the trip it read 45,530.4 miles, and the car had used 13 gallons of gas. At the same mileage rate, how many gallons would a 480-mile trip use?",
+      "choices": [
+        "13 gallons",
+        "20 gallons",
+        "24 gallons",
+        "40 gallons"
+      ],
+      "answer": 1,
+      "explanation": "Trip length: 45,530.4 - 45,218.4 = 312 miles. Fuel economy: 312 / 13 = 24 miles per gallon. A 480-mile trip needs 480 / 24 = 20 gallons. The 24 is the miles per gallon, not gallons, 13 repeats the first trip, and 40 divides 480 by 12.",
+      "svg": null
+    }
+  ]
+}

@@ -1,0 +1,646 @@
+{
+  "subtest": "EI",
+  "name": "Electronics Information",
+  "items": [
+    {
+      "id": "EI-01",
+      "difficulty": "easy",
+      "topic": "principles",
+      "passage": null,
+      "stem": "Which unit is used to measure electrical resistance?",
+      "choices": [
+        "Ohm",
+        "Watt",
+        "Volt",
+        "Ampere"
+      ],
+      "answer": 0,
+      "explanation": "Resistance is measured in ohms. The volt measures voltage (electrical pressure), the ampere measures current (flow of charge), and the watt measures power.",
+      "svg": null
+    },
+    {
+      "id": "EI-02",
+      "difficulty": "easy",
+      "topic": "principles",
+      "passage": null,
+      "stem": "A 12 volt battery is connected across a single 4 ohm resistor. How much current flows in the circuit?",
+      "choices": [
+        "0.33 amps",
+        "3 amps",
+        "8 amps",
+        "48 amps"
+      ],
+      "answer": 1,
+      "explanation": "Ohm's law says I = V / R, so I = 12 volts / 4 ohms = 3 amps. Multiplying gives 48, dividing the wrong way gives 0.33, and subtracting gives 8; only division of voltage by resistance is correct.",
+      "svg": null
+    },
+    {
+      "id": "EI-03",
+      "difficulty": "medium",
+      "topic": "principles",
+      "passage": null,
+      "stem": "A 3 ohm resistor and a 5 ohm resistor are connected in series across a 24 volt source. What is the voltage across the 5 ohm resistor?",
+      "choices": [
+        "9 volts",
+        "15 volts",
+        "24 volts",
+        "40 volts"
+      ],
+      "answer": 1,
+      "explanation": "In series the total resistance is 3 + 5 = 8 ohms, so the current is 24 / 8 = 3 amps everywhere in the loop. The drop across the 5 ohm resistor is 3 amps x 5 ohms = 15 volts; the 3 ohm resistor gets the other 9 volts, and the two drops add up to the full 24 volts.",
+      "svg": null
+    },
+    {
+      "id": "EI-04",
+      "difficulty": "medium",
+      "topic": "principles",
+      "passage": null,
+      "stem": "A 6 ohm resistor and a 3 ohm resistor are connected in parallel. What is the total resistance of the pair?",
+      "choices": [
+        "2 ohms",
+        "4.5 ohms",
+        "9 ohms",
+        "18 ohms"
+      ],
+      "answer": 0,
+      "explanation": "For two resistors in parallel, total resistance = (R1 x R2) / (R1 + R2) = (6 x 3) / (6 + 3) = 18 / 9 = 2 ohms. A parallel total is always less than the smallest branch, so 4.5 (the average), 9 (the sum) and 18 (the product) are all impossible.",
+      "svg": null
+    },
+    {
+      "id": "EI-05",
+      "difficulty": "medium",
+      "topic": "principles",
+      "passage": null,
+      "stem": "A light bulb is rated 60 watts at 120 volts. How much current does it draw when operating normally?",
+      "choices": [
+        "0.2 amps",
+        "0.5 amps",
+        "2 amps",
+        "60 amps"
+      ],
+      "answer": 1,
+      "explanation": "Power P = V x I, so I = P / V = 60 watts / 120 volts = 0.5 amps. Dividing the other way (120 / 60) gives the wrong answer of 2 amps.",
+      "svg": null
+    },
+    {
+      "id": "EI-06",
+      "difficulty": "easy",
+      "topic": "principles",
+      "passage": null,
+      "stem": "Which of the following materials is the best conductor of electricity?",
+      "choices": [
+        "Dry wood",
+        "Rubber",
+        "Glass",
+        "Copper"
+      ],
+      "answer": 3,
+      "explanation": "Copper is a metal with many free electrons, which makes it an excellent conductor and the usual choice for wiring. Rubber, glass and dry wood have very few free electrons, so they are insulators.",
+      "svg": null
+    },
+    {
+      "id": "EI-07",
+      "difficulty": "easy",
+      "topic": "principles",
+      "passage": null,
+      "stem": "Which of the following supplies direct current (DC)?",
+      "choices": [
+        "A flashlight battery",
+        "A power plant generator",
+        "A doorbell transformer",
+        "A wall outlet in a house"
+      ],
+      "answer": 0,
+      "explanation": "A battery pushes current in one direction only, which is direct current. Household outlets, power plant generators and transformers all work with alternating current, which reverses direction many times each second.",
+      "svg": null
+    },
+    {
+      "id": "EI-08",
+      "difficulty": "medium",
+      "topic": "principles",
+      "passage": null,
+      "stem": "Household power in the United States is described as 120 volts at 60 hertz. What does the 60 hertz tell you?",
+      "choices": [
+        "The voltage peaks at 60 volts",
+        "The outlet can supply up to 60 amps",
+        "Each outlet delivers 60 watts",
+        "The current changes direction and completes 60 full cycles every second"
+      ],
+      "answer": 3,
+      "explanation": "Hertz is the unit of frequency, meaning cycles per second. At 60 hertz the alternating current goes through 60 complete back-and-forth cycles each second. Frequency has nothing to do with the voltage, current capacity or power of the outlet.",
+      "svg": null
+    },
+    {
+      "id": "EI-09",
+      "difficulty": "hard",
+      "topic": "principles",
+      "passage": null,
+      "stem": "Two 8 ohm resistors are connected in parallel, and that pair is connected in series with a 6 ohm resistor across a 20 volt source. What is the total current drawn from the source?",
+      "choices": [
+        "0.9 amps",
+        "1.4 amps",
+        "2 amps",
+        "5 amps"
+      ],
+      "answer": 2,
+      "explanation": "Two equal 8 ohm resistors in parallel act like a single 4 ohm resistor. Adding the 6 ohm resistor in series gives 4 + 6 = 10 ohms total, so I = 20 volts / 10 ohms = 2 amps. Treating all three resistors as series (22 ohms) gives 0.9 amps, which is the common mistake.",
+      "svg": null
+    },
+    {
+      "id": "EI-10",
+      "difficulty": "hard",
+      "topic": "components",
+      "passage": null,
+      "stem": "A resistor has four color bands: yellow, violet, orange, gold. What are its resistance and tolerance?",
+      "choices": [
+        "470 ohms, 5 percent",
+        "4,700 ohms, 5 percent",
+        "47,000 ohms, 5 percent",
+        "47,000 ohms, 10 percent"
+      ],
+      "answer": 2,
+      "explanation": "Yellow is 4 and violet is 7, giving the digits 47. The third band, orange, is the multiplier 10^3, so the value is 47 x 1,000 = 47,000 ohms (47 kilohms). A gold fourth band means 5 percent tolerance; silver would mean 10 percent.",
+      "svg": null
+    },
+    {
+      "id": "EI-11",
+      "difficulty": "easy",
+      "topic": "components",
+      "passage": null,
+      "stem": "Which component stores electrical energy in an electric field between two conductive plates separated by an insulator?",
+      "choices": [
+        "Capacitor",
+        "Inductor",
+        "Diode",
+        "Resistor"
+      ],
+      "answer": 0,
+      "explanation": "A capacitor is two plates separated by an insulating dielectric; it stores charge and its value is measured in farads. Its schematic symbol is two parallel lines of equal length. An inductor stores energy in a magnetic field instead, and a resistor only converts energy to heat.",
+      "svg": null
+    },
+    {
+      "id": "EI-12",
+      "difficulty": "medium",
+      "topic": "components",
+      "passage": null,
+      "stem": "An inductor is a coil of wire, often wound on an iron core. What does an inductor oppose in a circuit?",
+      "choices": [
+        "Any change in resistance",
+        "Any flow of voltage",
+        "Any flow of current",
+        "Any change in current"
+      ],
+      "answer": 3,
+      "explanation": "An inductor builds a magnetic field when current flows, and that field resists any change in the current, either an increase or a decrease. Inductance is measured in henrys. An inductor passes steady DC easily, so it does not oppose current itself.",
+      "svg": null
+    },
+    {
+      "id": "EI-13",
+      "difficulty": "medium",
+      "topic": "components",
+      "passage": null,
+      "stem": "The schematic symbol for a diode is a triangle pointing toward a short bar. In which direction does conventional current flow through the diode?",
+      "choices": [
+        "In the direction the triangle points, from the triangle toward the bar",
+        "From the bar toward the triangle",
+        "Equally well in both directions",
+        "Only when the voltage is alternating"
+      ],
+      "answer": 0,
+      "explanation": "The triangle side is the anode and the bar side is the cathode. A diode conducts conventional current from anode to cathode, which is the direction the triangle points, and blocks it the other way. That one-way behavior is what makes diodes useful as rectifiers.",
+      "svg": null
+    },
+    {
+      "id": "EI-14",
+      "difficulty": "medium",
+      "topic": "components",
+      "passage": null,
+      "stem": "A transistor has three terminals called the emitter, base and collector. In most circuits a transistor is used to",
+      "choices": [
+        "limit current by converting energy to heat",
+        "store a charge for later use",
+        "amplify a signal or act as an electronic switch",
+        "step voltage up or down"
+      ],
+      "answer": 2,
+      "explanation": "A small current or voltage at the base controls a much larger current between the collector and emitter, so a transistor can amplify weak signals or switch a load on and off with no moving parts. Storing charge is a capacitor's job, changing voltage is a transformer's job, and limiting current by heating is a resistor's job.",
+      "svg": null
+    },
+    {
+      "id": "EI-15",
+      "difficulty": "medium",
+      "topic": "components",
+      "passage": null,
+      "stem": "A transformer has 100 turns on its primary winding and 500 turns on its secondary winding. If 24 volts AC is applied to the primary, what is the secondary voltage?",
+      "choices": [
+        "4.8 volts",
+        "48 volts",
+        "120 volts",
+        "600 volts"
+      ],
+      "answer": 2,
+      "explanation": "Transformer voltage follows the turns ratio: Vs / Vp = Ns / Np, so Vs = 24 volts x (500 / 100) = 24 x 5 = 120 volts. More turns on the secondary means a step-up transformer. Dividing instead of multiplying gives 4.8 volts, the step-down mistake.",
+      "svg": null
+    },
+    {
+      "id": "EI-16",
+      "difficulty": "hard",
+      "topic": "components",
+      "passage": null,
+      "stem": "An ideal step-down transformer with a 10 to 1 turns ratio takes 120 volts on the primary and supplies 12 volts to a load drawing 5 amps. What is the current in the primary winding?",
+      "choices": [
+        "0.05 amps",
+        "0.5 amps",
+        "5 amps",
+        "50 amps"
+      ],
+      "answer": 1,
+      "explanation": "An ideal transformer passes power through unchanged: secondary power is 12 volts x 5 amps = 60 watts, so the primary must also carry 60 watts, which at 120 volts is 60 / 120 = 0.5 amps. Current changes opposite to voltage: when voltage steps down by 10, current steps up by 10, so the primary current is one tenth of the secondary current.",
+      "svg": null
+    },
+    {
+      "id": "EI-17",
+      "difficulty": "easy",
+      "topic": "components",
+      "passage": null,
+      "stem": "What is the main advantage of a circuit breaker over a fuse?",
+      "choices": [
+        "It protects against voltage instead of current",
+        "It never needs to be replaced",
+        "It allows more current to pass before tripping",
+        "It can be reset and reused after it trips"
+      ],
+      "answer": 3,
+      "explanation": "Both devices open the circuit when current gets too high. A fuse does this by melting a metal strip and must be replaced, while a breaker trips a mechanical switch that can simply be reset. Both respond to excess current, not voltage, and a breaker can still wear out eventually.",
+      "svg": null
+    },
+    {
+      "id": "EI-18",
+      "difficulty": "medium",
+      "topic": "components",
+      "passage": null,
+      "stem": "A relay is best described as",
+      "choices": [
+        "a switch operated by an electromagnet so a small current can control a larger one",
+        "a resistor whose value changes with temperature",
+        "a coil that stores energy in a magnetic field",
+        "a device that converts AC to DC"
+      ],
+      "answer": 0,
+      "explanation": "A relay has a coil and a set of contacts. A small control current energizes the coil, and the resulting magnetic field pulls the contacts closed (or open), switching a much larger current in a separate circuit. This is how a car's small ignition switch can control the heavy current to the starter motor.",
+      "svg": null
+    },
+    {
+      "id": "EI-19",
+      "difficulty": "hard",
+      "topic": "components",
+      "passage": null,
+      "stem": "A technician wants a single switch that reverses a small DC motor by swapping the polarity of its two leads in one motion. Which switch type does the job?",
+      "choices": [
+        "Double-pole single-throw (DPST)",
+        "Double-pole double-throw (DPDT)",
+        "Single-pole single-throw (SPST)",
+        "Single-pole double-throw (SPDT)"
+      ],
+      "answer": 1,
+      "explanation": "A DPDT switch has two poles (one for each motor lead) and two throw positions, with six terminals. Cross-wiring the outer terminals lets one flip connect the motor leads to the supply either way around, reversing polarity and the motor's direction. An SPST is a simple on-off switch, an SPDT routes one line to either of two outputs, and a DPST only turns two lines on and off together.",
+      "svg": null
+    },
+    {
+      "id": "EI-20",
+      "difficulty": "easy",
+      "topic": "circuits",
+      "passage": null,
+      "stem": "A wire in a simple flashlight circuit breaks in two. What has happened to the circuit?",
+      "choices": [
+        "Its resistance has dropped to zero",
+        "Its voltage has dropped to zero",
+        "It has become an open circuit, so no current flows",
+        "It has become a short circuit, so current increases"
+      ],
+      "answer": 2,
+      "explanation": "A break in the path is an open circuit. Current needs a complete loop, so none flows and the bulb goes out. The battery voltage is still present across the gap, but the resistance of the gap is effectively infinite, not zero.",
+      "svg": null
+    },
+    {
+      "id": "EI-21",
+      "difficulty": "medium",
+      "topic": "circuits",
+      "passage": null,
+      "stem": "A short circuit is dangerous mainly because it",
+      "choices": [
+        "raises the resistance of the wiring",
+        "reverses the polarity of the power source",
+        "stops all current flow in the circuit",
+        "creates a very low resistance path that lets a very large current flow"
+      ],
+      "answer": 3,
+      "explanation": "A short circuit is an unintended path of very low resistance around the load, for example two bare wires touching. By Ohm's law, very low resistance with the same voltage means very high current, which overheats wires and can start fires. Fuses and breakers exist to open the circuit when this happens.",
+      "svg": null
+    },
+    {
+      "id": "EI-22",
+      "difficulty": "hard",
+      "topic": "circuits",
+      "passage": null,
+      "stem": "A string of ten identical lamps is wired in series to a 120 volt source. One lamp is removed from its socket and all the others go dark. If a voltmeter is placed across the empty socket, what will it read?",
+      "choices": [
+        "0 volts",
+        "12 volts",
+        "108 volts",
+        "120 volts"
+      ],
+      "answer": 3,
+      "explanation": "With the lamp removed the circuit is open and no current flows, so there is no voltage drop across any of the remaining lamps. The full source voltage therefore appears across the gap, and the meter reads 120 volts. The reading would be 12 volts only while all ten lamps were in place and conducting.",
+      "svg": null
+    },
+    {
+      "id": "EI-23",
+      "difficulty": "hard",
+      "topic": "circuits",
+      "passage": null,
+      "stem": "Inside a metal-cased power tool, a frayed hot wire touches the metal case. What is the purpose of the equipment grounding wire in this situation?",
+      "choices": [
+        "To give the fault current a low resistance path back to the panel so the breaker trips quickly",
+        "To carry the tool's normal operating current back to the source",
+        "To lower the voltage of the hot wire to a safe level",
+        "To prevent static electricity from building up on the case"
+      ],
+      "answer": 0,
+      "explanation": "The grounding conductor connects the metal case to ground. When a hot wire faults to the case, a large current flows through the ground wire, which trips the breaker or blows the fuse and removes the hazard instead of leaving the case energized. Normal return current flows on the neutral wire, not the ground wire.",
+      "svg": null
+    },
+    {
+      "id": "EI-24",
+      "difficulty": "easy",
+      "topic": "safety-wiring",
+      "passage": null,
+      "stem": "In standard United States household wiring, the bare copper or green insulated wire is the",
+      "choices": [
+        "neutral wire",
+        "ground wire",
+        "switched wire",
+        "hot wire"
+      ],
+      "answer": 1,
+      "explanation": "Green or bare copper is always the equipment ground. Black (and sometimes red) is hot, and white or gray is the neutral that carries normal return current.",
+      "svg": null
+    },
+    {
+      "id": "EI-25",
+      "difficulty": "medium",
+      "topic": "safety-wiring",
+      "passage": null,
+      "stem": "Which statement about American Wire Gauge (AWG) sizes is correct?",
+      "choices": [
+        "12 AWG wire is thicker than 14 AWG wire and can safely carry more current",
+        "12 AWG wire is thinner than 14 AWG wire and can safely carry more current",
+        "12 AWG wire is thicker than 14 AWG wire but carries less current",
+        "12 AWG and 14 AWG wire carry the same current because both are copper"
+      ],
+      "answer": 0,
+      "explanation": "In the AWG system a smaller number means a larger diameter wire. Thicker wire has less resistance and so can carry more current without overheating. That is why 14 AWG is used on 15 amp household circuits while 12 AWG is used on 20 amp circuits.",
+      "svg": null
+    },
+    {
+      "id": "EI-26",
+      "difficulty": "hard",
+      "topic": "safety-wiring",
+      "passage": null,
+      "stem": "A ground fault circuit interrupter (GFCI) outlet is required near sinks and in bathrooms. What condition causes a GFCI to trip?",
+      "choices": [
+        "The voltage at the outlet rises above 120 volts",
+        "A plug is inserted with reversed polarity",
+        "The current leaving on the hot wire does not equal the current returning on the neutral wire",
+        "The total current exceeds the circuit breaker rating"
+      ],
+      "answer": 2,
+      "explanation": "A GFCI constantly compares the hot and neutral currents. If some current is leaking to ground, possibly through a person, the two no longer match, and the GFCI opens the circuit in a fraction of a second at a difference of only a few thousandths of an amp. Overcurrent protection is the job of the breaker, not the GFCI.",
+      "svg": null
+    },
+    {
+      "id": "EI-27",
+      "difficulty": "medium",
+      "topic": "safety-wiring",
+      "passage": null,
+      "stem": "An electrolytic capacitor is marked with a plus sign on one lead. A technician connects it to a DC supply with the positive supply lead on the capacitor's unmarked (negative) lead. What is the most likely result?",
+      "choices": [
+        "The capacitor simply stores half as much charge",
+        "The supply voltage doubles across the capacitor",
+        "The capacitor works normally because capacitors have no polarity",
+        "The capacitor can overheat, leak or burst because its polarity is reversed"
+      ],
+      "answer": 3,
+      "explanation": "Electrolytic capacitors are polarized and must be connected with their marked positive lead to the higher voltage. Reversed polarity breaks down the thin oxide layer inside, causing heating, gas buildup and often a ruptured case. Observing polarity (red to positive, black to negative on DC) is a basic wiring rule.",
+      "svg": null
+    },
+    {
+      "id": "EI-28",
+      "difficulty": "easy",
+      "topic": "batteries",
+      "passage": null,
+      "stem": "Four 1.5 volt cells are connected in series, positive to negative. What is the total voltage of the battery pack?",
+      "choices": [
+        "1.5 volts",
+        "4.5 volts",
+        "6 volts",
+        "7.5 volts"
+      ],
+      "answer": 2,
+      "explanation": "Voltages add in series: 4 x 1.5 volts = 6 volts. Connecting the same cells in parallel would leave the voltage at 1.5 volts but increase how long the pack could deliver current.",
+      "svg": null
+    },
+    {
+      "id": "EI-29",
+      "difficulty": "medium",
+      "topic": "batteries",
+      "passage": null,
+      "stem": "Two identical 12 volt batteries, each rated 50 amp-hours, are connected in parallel. What does the combination provide?",
+      "choices": [
+        "24 volts and 50 amp-hours",
+        "24 volts and 100 amp-hours",
+        "12 volts and 50 amp-hours",
+        "12 volts and 100 amp-hours"
+      ],
+      "answer": 3,
+      "explanation": "Parallel connections keep the voltage the same and add the capacities, so the pair supplies 12 volts for twice as long, 100 amp-hours. A series connection would give 24 volts at 50 amp-hours instead.",
+      "svg": null
+    },
+    {
+      "id": "EI-30",
+      "difficulty": "hard",
+      "topic": "batteries",
+      "passage": null,
+      "stem": "A 12 volt battery rated at 40 amp-hours powers a 48 watt lamp. About how long can the battery run the lamp before it is discharged?",
+      "choices": [
+        "4 hours",
+        "10 hours",
+        "20 hours",
+        "40 hours"
+      ],
+      "answer": 1,
+      "explanation": "First find the current: I = P / V = 48 watts / 12 volts = 4 amps. An amp-hour rating is current multiplied by time, so time = 40 amp-hours / 4 amps = 10 hours. Choosing 4 hours confuses the current with the time.",
+      "svg": null
+    },
+    {
+      "id": "EI-31",
+      "difficulty": "easy",
+      "topic": "magnetism-motors",
+      "passage": null,
+      "stem": "An electric motor converts",
+      "choices": [
+        "electrical energy into mechanical energy",
+        "chemical energy into electrical energy",
+        "heat energy into mechanical energy",
+        "mechanical energy into electrical energy"
+      ],
+      "answer": 0,
+      "explanation": "A motor uses the force between magnetic fields produced by current to turn a shaft, turning electrical energy into motion. A generator does the reverse, and a battery converts chemical energy to electrical energy.",
+      "svg": null
+    },
+    {
+      "id": "EI-32",
+      "difficulty": "medium",
+      "topic": "magnetism-motors",
+      "passage": null,
+      "stem": "Which change would make an electromagnet stronger?",
+      "choices": [
+        "Reducing the current through the coil",
+        "Adding more turns of wire to the coil",
+        "Replacing the iron core with a wooden one",
+        "Using fewer turns of wire in the coil"
+      ],
+      "answer": 1,
+      "explanation": "The strength of an electromagnet increases with more turns of wire, more current, and a core of soft iron that concentrates the magnetic field. Fewer turns, less current or a non-magnetic core all weaken it.",
+      "svg": null
+    },
+    {
+      "id": "EI-33",
+      "difficulty": "hard",
+      "topic": "magnetism-motors",
+      "passage": null,
+      "stem": "A coil of wire is held perfectly still inside a steady, unchanging magnetic field. What voltage is induced in the coil?",
+      "choices": [
+        "An AC voltage at 60 hertz",
+        "A voltage that increases the longer the coil sits in the field",
+        "Zero, because induction requires a changing magnetic field or relative motion",
+        "A steady DC voltage proportional to the field strength"
+      ],
+      "answer": 2,
+      "explanation": "Electromagnetic induction produces voltage only when the magnetic field through the coil changes, which happens when the coil or magnet moves or when the field itself varies. This is why a generator must spin and why a transformer works on AC but not on steady DC. A stationary coil in a constant field produces nothing.",
+      "svg": null
+    },
+    {
+      "id": "EI-34",
+      "difficulty": "easy",
+      "topic": "terms",
+      "passage": null,
+      "stem": "The function of a rectifier is to",
+      "choices": [
+        "convert direct current to alternating current",
+        "increase the frequency of a signal",
+        "reduce voltage without changing current",
+        "convert alternating current to direct current"
+      ],
+      "answer": 3,
+      "explanation": "A rectifier uses diodes, which pass current in one direction only, to change AC into pulsing DC. A full-wave bridge rectifier uses four diodes. The reverse job, DC to AC, is done by an inverter.",
+      "svg": null
+    },
+    {
+      "id": "EI-35",
+      "difficulty": "easy",
+      "topic": "terms",
+      "passage": null,
+      "stem": "Which of the following is a semiconductor material widely used to make diodes and transistors?",
+      "choices": [
+        "Silicon",
+        "Rubber",
+        "Aluminum",
+        "Copper"
+      ],
+      "answer": 0,
+      "explanation": "Silicon conducts electricity better than an insulator but worse than a metal, and its conductivity can be controlled by adding tiny amounts of impurities, a process called doping. Copper and aluminum are conductors, and rubber is an insulator.",
+      "svg": null
+    },
+    {
+      "id": "EI-36",
+      "difficulty": "medium",
+      "topic": "terms",
+      "passage": null,
+      "stem": "An amplifier receives a 2 millivolt input signal and produces a 200 millivolt output signal of the same shape. What is the voltage gain of the amplifier?",
+      "choices": [
+        "0.01",
+        "10",
+        "100",
+        "198"
+      ],
+      "answer": 2,
+      "explanation": "Voltage gain is output divided by input: 200 millivolts / 2 millivolts = 100. Subtracting the signals (198) or dividing the wrong way (0.01) are the common errors. An amplifier increases the amplitude of a signal without changing its shape or frequency.",
+      "svg": null
+    },
+    {
+      "id": "EI-37",
+      "difficulty": "hard",
+      "topic": "terms",
+      "passage": null,
+      "stem": "Radio waves travel at about 300,000,000 meters per second. What is the wavelength of a 300 megahertz radio signal, which matters when choosing the length of its antenna?",
+      "choices": [
+        "0.1 meter",
+        "1 meter",
+        "10 meters",
+        "100 meters"
+      ],
+      "answer": 1,
+      "explanation": "Wavelength = speed / frequency. 300 megahertz is 300,000,000 cycles per second, so wavelength = 300,000,000 / 300,000,000 = 1 meter. Higher frequency means shorter wavelength, so higher frequency radios can use shorter antennas.",
+      "svg": null
+    },
+    {
+      "id": "EI-38",
+      "difficulty": "medium",
+      "topic": "measurement",
+      "passage": null,
+      "stem": "To measure the current flowing through a lamp with a multimeter, how should the meter be connected?",
+      "choices": [
+        "In parallel with the lamp, without disturbing the wiring",
+        "In series with the lamp, so all the lamp current passes through the meter",
+        "Across the power source terminals",
+        "Across the lamp while the power is off"
+      ],
+      "answer": 1,
+      "explanation": "An ammeter must be placed in the path of the current, which means opening the circuit and inserting the meter in series with the load. A voltmeter, by contrast, is connected in parallel across the two points being measured. Connecting an ammeter in parallel across a source is a short circuit and can damage the meter.",
+      "svg": null
+    },
+    {
+      "id": "EI-39",
+      "difficulty": "hard",
+      "topic": "measurement",
+      "passage": null,
+      "stem": "With the power off, a technician sets a multimeter to the ohms range and touches the probes to the two ends of a fuse. The display shows OL (over limit). What does this tell the technician?",
+      "choices": [
+        "The meter battery is dead",
+        "The fuse is good and has very low resistance",
+        "The fuse is blown, so the path through it is open",
+        "The fuse is rated for more current than the meter can measure"
+      ],
+      "answer": 2,
+      "explanation": "A good fuse is a continuous strip of metal and reads close to zero ohms. OL means the resistance is higher than the meter can display, which is what an open circuit looks like, so the fuse element has melted. The reading has nothing to do with the fuse's current rating.",
+      "svg": null
+    },
+    {
+      "id": "EI-40",
+      "difficulty": "hard",
+      "topic": "measurement",
+      "passage": null,
+      "stem": "A technician measures a resistor with an ohmmeter while it is still soldered into a circuit board, and the reading is well below the resistor's marked value even though the resistor is good. What is the most likely reason?",
+      "choices": [
+        "The meter is set to the wrong voltage range",
+        "Solder always adds resistance to a measurement",
+        "Ohmmeters only work on resistors above 1,000 ohms",
+        "Other components on the board form parallel paths that lower the measured resistance"
+      ],
+      "answer": 3,
+      "explanation": "An ohmmeter measures the total resistance between its probes. In a circuit, other parts connected across the same two points provide extra paths for the meter's test current, and parallel paths always lower the total resistance. For an accurate reading, disconnect at least one lead of the resistor, and always measure resistance with the circuit powered off.",
+      "svg": null
+    }
+  ]
+}

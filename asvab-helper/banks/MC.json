@@ -1,0 +1,646 @@
+{
+ "subtest": "MC",
+ "name": "Mechanical Comprehension",
+ "items": [
+  {
+   "id": "MC-01",
+   "difficulty": "easy",
+   "topic": "levers",
+   "passage": null,
+   "stem": "The diagram shows three levers. F is the fulcrum, L is the load, and E is where the effort is applied. Which lever is a second-class lever?",
+   "choices": [
+    "A",
+    "B",
+    "C",
+    "All three are the same class"
+   ],
+   "answer": 1,
+   "explanation": "A lever's class is set by what sits in the middle. In a first-class lever the fulcrum is in the middle (A, like a seesaw). In a second-class lever the load is in the middle (B, like a wheelbarrow). In a third-class lever the effort is in the middle (C, like a broom or tweezers).",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><text x=\"28\" y=\"44\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><line x1=\"60\" y1=\"40\" x2=\"280\" y2=\"40\"/><polygon points=\"170,40 160.4,52 179.6,52\" fill=\"currentColor\" stroke=\"none\"/><text x=\"170\" y=\"65\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">F</text><rect x=\"80\" y=\"22\" width=\"20\" height=\"18\"/><text x=\"90\" y=\"36\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">L</text><line x1=\"250\" y1=\"8\" x2=\"250\" y2=\"29\"/><polygon points=\"250,38 245.9,29 254.1,29\" fill=\"currentColor\" stroke=\"none\"/><text x=\"260\" y=\"24\" font-size=\"12\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">E</text><text x=\"28\" y=\"100\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><line x1=\"60\" y1=\"96\" x2=\"280\" y2=\"96\"/><polygon points=\"80,96 70.4,108 89.6,108\" fill=\"currentColor\" stroke=\"none\"/><text x=\"80\" y=\"121\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">F</text><rect x=\"160\" y=\"78\" width=\"20\" height=\"18\"/><text x=\"170\" y=\"92\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">L</text><line x1=\"255\" y1=\"64\" x2=\"255\" y2=\"85\"/><polygon points=\"255,94 250.9,85 259.1,85\" fill=\"currentColor\" stroke=\"none\"/><text x=\"265\" y=\"80\" font-size=\"12\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">E</text><text x=\"28\" y=\"156\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">C</text><line x1=\"60\" y1=\"152\" x2=\"280\" y2=\"152\"/><polygon points=\"80,152 70.4,164 89.6,164\" fill=\"currentColor\" stroke=\"none\"/><text x=\"80\" y=\"177\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">F</text><rect x=\"245\" y=\"134\" width=\"20\" height=\"18\"/><text x=\"255\" y=\"148\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">L</text><line x1=\"170\" y1=\"120\" x2=\"170\" y2=\"141\"/><polygon points=\"170,150 165.9,141 174.1,141\" fill=\"currentColor\" stroke=\"none\"/><text x=\"180\" y=\"136\" font-size=\"12\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">E</text></g></svg>"
+  },
+  {
+   "id": "MC-02",
+   "difficulty": "medium",
+   "topic": "levers",
+   "passage": null,
+   "stem": "The lever in the diagram rests on a fulcrum. A 120 lb load sits 2 ft from the fulcrum and the effort is applied 6 ft from the fulcrum on the other side. Ignoring the weight of the bar, what effort is needed to balance the load?",
+   "choices": [
+    "20 lb",
+    "40 lb",
+    "60 lb",
+    "360 lb"
+   ],
+   "answer": 1,
+   "explanation": "Balance means effort x effort arm = load x load arm: E x 6 = 120 x 2 = 240, so E = 40 lb. The mechanical advantage is 6/2 = 3, and 120/3 = 40. Multiplying 120 x 2 x 1.5 or dividing 120 by 2 gives the wrong distractors.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"30\" y1=\"100\" x2=\"290\" y2=\"100\"/><polygon points=\"95,100 85.4,112 104.6,112\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"15\" y=\"76\" width=\"50\" height=\"24\"/><text x=\"40\" y=\"92\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">120 lb</text><line x1=\"290\" y1=\"52\" x2=\"290\" y2=\"89\"/><polygon points=\"290,98 285.9,89 294.1,89\" fill=\"currentColor\" stroke=\"none\"/><text x=\"280\" y=\"48\" font-size=\"13\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">? lb</text><line x1=\"30\" y1=\"134\" x2=\"95\" y2=\"134\"/><line x1=\"30\" y1=\"129\" x2=\"30\" y2=\"139\"/><line x1=\"95\" y1=\"129\" x2=\"95\" y2=\"139\"/><text x=\"62.5\" y=\"148\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">2 ft</text><line x1=\"95\" y1=\"134\" x2=\"290\" y2=\"134\"/><line x1=\"95\" y1=\"129\" x2=\"95\" y2=\"139\"/><line x1=\"290\" y1=\"129\" x2=\"290\" y2=\"139\"/><text x=\"192.5\" y=\"148\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">6 ft</text></g></svg>"
+  },
+  {
+   "id": "MC-03",
+   "difficulty": "easy",
+   "topic": "levers",
+   "passage": null,
+   "stem": "Which of these tools is a third-class lever, with the effort applied between the fulcrum and the load?",
+   "choices": [
+    "A pair of tweezers",
+    "A wheelbarrow",
+    "A seesaw",
+    "A claw hammer pulling a nail"
+   ],
+   "answer": 0,
+   "explanation": "Tweezers pivot where the two arms join, you squeeze in the middle, and the load is at the tips, so the effort is between the fulcrum and the load. A wheelbarrow is second class (load in the middle). A seesaw and a claw hammer are first class (fulcrum in the middle).",
+   "svg": null
+  },
+  {
+   "id": "MC-04",
+   "difficulty": "medium",
+   "topic": "pulleys",
+   "passage": null,
+   "stem": "The block and tackle in the diagram lifts a 200 lb load. The upper block is fixed to the ceiling and the lower block moves with the load. Ignoring friction and the weight of the blocks, about how much pull is needed on the free end of the rope?",
+   "choices": [
+    "25 lb",
+    "50 lb",
+    "100 lb",
+    "200 lb"
+   ],
+   "answer": 1,
+   "explanation": "Count the rope segments that support the moving block: four. Each carries one quarter of the load, so the pull is 200/4 = 50 lb. Counting the two pulleys instead of the four rope segments gives 100 lb, which is wrong. The trade-off is that you must pull 4 ft of rope for every 1 ft the load rises.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"90\" y1=\"14\" x2=\"200\" y2=\"14\"/><line x1=\"96.9\" y1=\"14\" x2=\"90.9\" y2=\"21\"/><line x1=\"110.6\" y1=\"14\" x2=\"104.6\" y2=\"21\"/><line x1=\"124.4\" y1=\"14\" x2=\"118.4\" y2=\"21\"/><line x1=\"138.1\" y1=\"14\" x2=\"132.1\" y2=\"21\"/><line x1=\"151.9\" y1=\"14\" x2=\"145.9\" y2=\"21\"/><line x1=\"165.6\" y1=\"14\" x2=\"159.6\" y2=\"21\"/><line x1=\"179.4\" y1=\"14\" x2=\"173.4\" y2=\"21\"/><line x1=\"193.1\" y1=\"14\" x2=\"187.1\" y2=\"21\"/><line x1=\"140\" y1=\"14\" x2=\"140\" y2=\"30\"/><rect x=\"96\" y=\"30\" width=\"88\" height=\"28\"/><circle cx=\"130\" cy=\"44\" r=\"10\"/><circle cx=\"130\" cy=\"44\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"150\" cy=\"44\" r=\"10\"/><circle cx=\"150\" cy=\"44\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><rect x=\"96\" y=\"100\" width=\"68\" height=\"28\"/><circle cx=\"110\" cy=\"114\" r=\"10\"/><circle cx=\"110\" cy=\"114\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"150\" cy=\"114\" r=\"10\"/><circle cx=\"150\" cy=\"114\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><line x1=\"100\" y1=\"58\" x2=\"100\" y2=\"114\"/><path d=\"M100,114 A10,10 0 0 0 120,114\"/><line x1=\"120\" y1=\"114\" x2=\"120\" y2=\"44\"/><path d=\"M120,44 A10,10 0 0 1 140,44\"/><line x1=\"140\" y1=\"44\" x2=\"140\" y2=\"114\"/><path d=\"M140,114 A10,10 0 0 0 160,114\"/><line x1=\"160\" y1=\"114\" x2=\"160\" y2=\"44\"/><path d=\"M160,44 A10,10 0 0 1 180,44\"/><line x1=\"180\" y1=\"44\" x2=\"180\" y2=\"141\"/><polygon points=\"180,150 175.9,141 184.1,141\" fill=\"currentColor\" stroke=\"none\"/><text x=\"192\" y=\"150\" font-size=\"13\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">pull</text><line x1=\"130\" y1=\"128\" x2=\"130\" y2=\"140\"/><rect x=\"100\" y=\"140\" width=\"60\" height=\"24\"/><text x=\"130\" y=\"156\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">200 lb</text><text x=\"40\" y=\"48\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">fixed</text><text x=\"40\" y=\"62\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">block</text><text x=\"40\" y=\"118\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">moving</text><text x=\"40\" y=\"132\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">block</text></g></svg>"
+  },
+  {
+   "id": "MC-05",
+   "difficulty": "easy",
+   "topic": "pulleys",
+   "passage": null,
+   "stem": "In the diagram, pulley A is fixed to the ceiling and pulley B is a movable pulley that rises with its load. Each supports a 100 lb weight. Ignoring friction, which statement is correct?",
+   "choices": [
+    "A needs about 100 lb of pull and B needs about 50 lb",
+    "A needs about 50 lb of pull and B needs about 100 lb",
+    "Both need about 100 lb of pull",
+    "Both need about 50 lb of pull"
+   ],
+   "answer": 0,
+   "explanation": "A single fixed pulley only changes the direction of the pull, so the force is still 100 lb. A movable pulley is held up by two rope segments, so each carries 50 lb and the pull is 50 lb (but you pull twice as much rope).",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"20\" y1=\"14\" x2=\"300\" y2=\"14\"/><line x1=\"37.5\" y1=\"14\" x2=\"31.5\" y2=\"21\"/><line x1=\"72.5\" y1=\"14\" x2=\"66.5\" y2=\"21\"/><line x1=\"107.5\" y1=\"14\" x2=\"101.5\" y2=\"21\"/><line x1=\"142.5\" y1=\"14\" x2=\"136.5\" y2=\"21\"/><line x1=\"177.5\" y1=\"14\" x2=\"171.5\" y2=\"21\"/><line x1=\"212.5\" y1=\"14\" x2=\"206.5\" y2=\"21\"/><line x1=\"247.5\" y1=\"14\" x2=\"241.5\" y2=\"21\"/><line x1=\"282.5\" y1=\"14\" x2=\"276.5\" y2=\"21\"/><line x1=\"80\" y1=\"14\" x2=\"80\" y2=\"36\"/><circle cx=\"80\" cy=\"50\" r=\"14\"/><circle cx=\"80\" cy=\"50\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><line x1=\"66\" y1=\"50\" x2=\"66\" y2=\"110\"/><rect x=\"42\" y=\"110\" width=\"48\" height=\"24\"/><text x=\"66\" y=\"126\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">100 lb</text><line x1=\"94\" y1=\"50\" x2=\"94\" y2=\"121\"/><polygon points=\"94,130 90,121 98,121\" fill=\"currentColor\" stroke=\"none\"/><text x=\"104\" y=\"130\" font-size=\"12\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">pull</text><text x=\"80\" y=\"170\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><line x1=\"206\" y1=\"14\" x2=\"206\" y2=\"90\"/><circle cx=\"220\" cy=\"90\" r=\"14\"/><circle cx=\"220\" cy=\"90\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><line x1=\"220\" y1=\"104\" x2=\"220\" y2=\"120\"/><rect x=\"196\" y=\"120\" width=\"48\" height=\"24\"/><text x=\"220\" y=\"136\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">100 lb</text><line x1=\"234\" y1=\"90\" x2=\"234\" y2=\"29\"/><polygon points=\"234,20 238.1,29 229.9,29\" fill=\"currentColor\" stroke=\"none\"/><text x=\"244\" y=\"50\" font-size=\"12\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">pull</text><text x=\"220\" y=\"170\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text></g></svg>"
+  },
+  {
+   "id": "MC-06",
+   "difficulty": "medium",
+   "topic": "inclined planes",
+   "passage": null,
+   "stem": "A 400 lb barrel is pushed up the ramp in the diagram. The ramp is 12 ft long along the slope and rises 3 ft. Ignoring friction, what force is needed to push the barrel up the ramp?",
+   "choices": [
+    "100 lb",
+    "133 lb",
+    "400 lb",
+    "1,600 lb"
+   ],
+   "answer": 0,
+   "explanation": "The ideal mechanical advantage of a ramp is length divided by height: 12/3 = 4. The needed force is 400/4 = 100 lb. Dividing the weight by the height alone (400/3) or multiplying by the ratio (400 x 4) are common errors.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"30,150 270,150 270,60\" fill=\"currentColor\" fill-opacity=\"0.15\"/><line x1=\"10\" y1=\"150\" x2=\"310\" y2=\"150\"/><line x1=\"22.5\" y1=\"150\" x2=\"16.5\" y2=\"157\"/><line x1=\"47.5\" y1=\"150\" x2=\"41.5\" y2=\"157\"/><line x1=\"72.5\" y1=\"150\" x2=\"66.5\" y2=\"157\"/><line x1=\"97.5\" y1=\"150\" x2=\"91.5\" y2=\"157\"/><line x1=\"122.5\" y1=\"150\" x2=\"116.5\" y2=\"157\"/><line x1=\"147.5\" y1=\"150\" x2=\"141.5\" y2=\"157\"/><line x1=\"172.5\" y1=\"150\" x2=\"166.5\" y2=\"157\"/><line x1=\"197.5\" y1=\"150\" x2=\"191.5\" y2=\"157\"/><line x1=\"222.5\" y1=\"150\" x2=\"216.5\" y2=\"157\"/><line x1=\"247.5\" y1=\"150\" x2=\"241.5\" y2=\"157\"/><line x1=\"272.5\" y1=\"150\" x2=\"266.5\" y2=\"157\"/><line x1=\"297.5\" y1=\"150\" x2=\"291.5\" y2=\"157\"/><circle cx=\"120.3\" cy=\"101.6\" r=\"18\"/><text x=\"120.3\" y=\"105.6\" font-size=\"11\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">400 lb</text><text x=\"132.6\" y=\"65.3\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">12 ft</text><line x1=\"284\" y1=\"60\" x2=\"284\" y2=\"150\"/><line x1=\"279\" y1=\"60\" x2=\"289\" y2=\"60\"/><line x1=\"279\" y1=\"150\" x2=\"289\" y2=\"150\"/><text x=\"290\" y=\"109\" font-size=\"12\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">3 ft</text><line x1=\"64.1\" y1=\"122.7\" x2=\"91.3\" y2=\"112.5\"/><polygon points=\"99.7,109.4 92.7,116.3 89.9,108.7\" fill=\"currentColor\" stroke=\"none\"/><text x=\"56\" y=\"116.5\" font-size=\"12\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">push</text></g></svg>"
+  },
+  {
+   "id": "MC-07",
+   "difficulty": "medium",
+   "topic": "wedges",
+   "passage": null,
+   "stem": "Two steel wedges have the same length, but one is thinner at the back than the other. Compared with the thicker wedge, the thinner wedge driven into a log",
+   "choices": [
+    "needs less force per blow but must be driven farther to open the same gap",
+    "needs more force per blow but splits the log in fewer blows",
+    "has a smaller mechanical advantage",
+    "produces the same splitting force from the same blow"
+   ],
+   "answer": 0,
+   "explanation": "A wedge is a moving inclined plane. Its mechanical advantage is length divided by thickness, so a thinner wedge of the same length has a larger mechanical advantage and multiplies the hammer blow more. The price is distance: it must travel farther into the log to spread the wood the same amount.",
+   "svg": null
+  },
+  {
+   "id": "MC-08",
+   "difficulty": "medium",
+   "topic": "screws",
+   "passage": null,
+   "stem": "A bolt has 16 threads per inch. How many complete turns of the nut move it 3/4 inch along the bolt?",
+   "choices": [
+    "4",
+    "12",
+    "16",
+    "24"
+   ],
+   "answer": 1,
+   "explanation": "Each full turn moves the nut one thread pitch, which is 1/16 inch. To move 3/4 inch takes (3/4) / (1/16) = (3/4) x 16 = 12 turns. The fine pitch is why a screw is such a strong force multiplier: many turns for a small advance.",
+   "svg": null
+  },
+  {
+   "id": "MC-09",
+   "difficulty": "medium",
+   "topic": "wheel and axle",
+   "passage": null,
+   "stem": "The windlass in the diagram has a wheel of radius 12 in on the same shaft as an axle of radius 3 in. A 30 lb pull on a rope wrapped around the wheel lifts a load on a rope wrapped around the axle. Ignoring friction, what is the largest load it can lift?",
+   "choices": [
+    "7.5 lb",
+    "30 lb",
+    "90 lb",
+    "120 lb"
+   ],
+   "answer": 3,
+   "explanation": "A wheel and axle is a lever that turns: effort x wheel radius = load x axle radius. 30 x 12 = load x 3, so load = 360/3 = 120 lb. The mechanical advantage is 12/3 = 4. Dividing instead of multiplying gives 7.5 lb.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"110\" cy=\"82\" r=\"52\"/><circle cx=\"110\" cy=\"82\" r=\"13\" fill=\"currentColor\" fill-opacity=\"0.15\"/><circle cx=\"110\" cy=\"82\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><line x1=\"58\" y1=\"82\" x2=\"58\" y2=\"122\"/><line x1=\"58\" y1=\"122\" x2=\"58\" y2=\"151\"/><polygon points=\"58,160 54,151 62,151\" fill=\"currentColor\" stroke=\"none\"/><text x=\"50\" y=\"144\" font-size=\"13\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">30 lb</text><line x1=\"123\" y1=\"82\" x2=\"123\" y2=\"142\"/><rect x=\"105\" y=\"142\" width=\"36\" height=\"22\"/><text x=\"123\" y=\"157\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">?</text><text x=\"200\" y=\"70\" font-size=\"13\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">Wheel radius 12 in</text><text x=\"200\" y=\"92\" font-size=\"13\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">Axle radius 3 in</text></g></svg>"
+  },
+  {
+   "id": "MC-10",
+   "difficulty": "easy",
+   "topic": "gears",
+   "passage": null,
+   "stem": "Three gears A, B, and C mesh in a row as shown, and gear A turns clockwise. Which way does gear C turn?",
+   "choices": [
+    "Clockwise",
+    "Counterclockwise",
+    "Clockwise only if B has more teeth than A",
+    "Counterclockwise only if B has more teeth than A"
+   ],
+   "answer": 0,
+   "explanation": "Every pair of meshing gears turns in opposite directions. A clockwise makes B counterclockwise, and B counterclockwise makes C clockwise. The middle gear is an idler: its size changes nothing about direction or the speed ratio between A and C.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"71,92 75,93 75,97 71,98 70,102 73,105 71,108 67,107 64,110 65,114 62,116 59,113 55,114 54,118 50,118 49,114 45,113 42,116 39,114 40,110 37,107 33,108 31,105 34,102 33,98 29,97 29,93 33,92 34,88 31,85 33,82 37,83 40,80 39,76 42,74 45,77 49,76 50,72 54,72 55,76 59,77 62,74 65,76 64,80 67,83 71,82 73,85 70,88\"/><circle cx=\"52\" cy=\"95\" r=\"3.5\" fill=\"currentColor\" stroke=\"none\"/><polygon points=\"75,92 71,91 71,88 76,87 77,82 74,79 75,77 80,78 83,73 80,70 83,67 86,70 91,67 90,62 92,61 95,64 100,63 101,58 104,58 105,62 111,62 112,58 115,58 116,63 121,64 124,61 126,62 125,67 130,70 133,67 136,70 133,73 136,78 141,77 142,79 139,82 140,87 145,88 145,91 141,92 141,98 145,99 145,102 140,103 139,108 142,111 141,113 136,112 133,117 136,120 133,123 130,120 125,123 126,128 124,129 121,126 116,127 115,132 112,132 111,128 105,128 104,132 101,132 100,127 95,126 92,129 90,128 91,123 86,120 83,123 80,120 83,117 80,112 75,113 74,111 77,108 76,103 71,102 71,99 75,98\"/><circle cx=\"108\" cy=\"95\" r=\"3.5\" fill=\"currentColor\" stroke=\"none\"/><polygon points=\"145,93 141,91 142,87 146,88 149,83 146,80 149,77 152,80 157,77 156,73 160,72 162,76 166,76 168,72 172,73 171,77 176,80 179,77 182,80 179,83 182,88 186,87 187,91 183,93 183,97 187,99 186,103 182,102 179,107 182,110 179,113 176,110 171,113 172,117 168,118 166,114 162,114 160,118 156,117 157,113 152,110 149,113 146,110 149,107 146,102 142,103 141,99 145,97\"/><circle cx=\"164\" cy=\"95\" r=\"3.5\" fill=\"currentColor\" stroke=\"none\"/><text x=\"52\" y=\"134\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><text x=\"108\" y=\"148\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><text x=\"164\" y=\"134\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">C</text><path d=\"M19.1,83 A35,35 0 0 1 69.5,64.7\"/><polygon points=\"69.5,64.7 59.7,63.7 63.7,56.7\" fill=\"currentColor\" stroke=\"none\"/></g></svg>"
+  },
+  {
+   "id": "MC-11",
+   "difficulty": "medium",
+   "topic": "gears",
+   "passage": null,
+   "stem": "Gear A drives gear B in the diagram. Using the tooth counts shown, how many complete turns does gear B make while gear A makes 9 turns?",
+   "choices": [
+    "3",
+    "6",
+    "12",
+    "27"
+   ],
+   "answer": 0,
+   "explanation": "Meshing teeth pass one for one, so turns of A x teeth of A = turns of B x teeth of B. 9 x 12 = 108 teeth pass, and 108/36 = 3 turns of B. The larger gear always turns slower. Multiplying 9 by the 3 to 1 ratio instead of dividing gives 27.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"76,92 80,93 80,97 76,98 75,102 78,105 76,108 72,107 69,110 70,114 67,116 64,113 60,114 59,118 55,118 54,114 50,113 47,116 44,114 45,110 42,107 38,108 36,105 39,102 38,98 34,97 34,93 38,92 39,88 36,85 38,82 42,83 45,80 44,76 47,74 50,77 54,76 55,72 59,72 60,76 64,77 67,74 70,76 69,80 72,83 76,82 78,85 75,88\"/><circle cx=\"57\" cy=\"95\" r=\"3.5\" fill=\"currentColor\" stroke=\"none\"/><polygon points=\"80,92 76,91 76,88 80,87 81,82 77,80 78,77 83,76 84,72 81,69 82,66 87,67 89,62 86,59 88,56 92,58 96,54 94,50 96,48 100,50 104,46 102,42 105,40 108,43 113,41 112,36 115,35 118,38 122,37 123,32 126,31 128,35 133,34 134,30 137,30 138,34 144,34 145,30 148,30 149,34 154,35 156,31 159,32 160,37 164,38 167,35 170,36 169,41 174,43 177,40 180,42 178,46 182,50 186,48 188,50 186,54 190,58 194,56 196,59 193,62 195,67 200,66 201,69 198,72 199,76 204,77 205,80 201,82 202,87 206,88 206,91 202,92 202,98 206,99 206,102 202,103 201,108 205,110 204,113 199,114 198,118 201,121 200,124 195,123 193,128 196,131 194,134 190,132 186,136 188,140 186,142 182,140 178,144 180,148 177,150 174,147 169,149 170,154 167,155 164,152 160,153 159,158 156,159 154,155 149,156 148,160 145,160 144,156 138,156 137,160 134,160 133,156 128,155 126,159 123,158 122,153 118,152 115,155 112,154 113,149 108,147 105,150 102,148 104,144 100,140 96,142 94,140 96,136 92,132 88,134 86,131 89,128 87,123 82,124 81,121 84,118 83,114 78,113 77,110 81,108 80,103 76,102 76,99 80,98\"/><circle cx=\"141\" cy=\"95\" r=\"3.5\" fill=\"currentColor\" stroke=\"none\"/><text x=\"57\" y=\"62\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><text x=\"57\" y=\"136\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">12 teeth</text><text x=\"141\" y=\"22\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><text x=\"141\" y=\"176\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">36 teeth</text><path d=\"M25.1,86.5 A33,33 0 0 1 68.3,64\"/><polygon points=\"68.3,64 58.4,64.7 61.2,57.1\" fill=\"currentColor\" stroke=\"none\"/></g></svg>"
+  },
+  {
+   "id": "MC-12",
+   "difficulty": "hard",
+   "topic": "gears",
+   "passage": null,
+   "stem": "In the compound gear train shown, gear A drives gear B. Gear C is fixed to the same shaft as B, so it turns with B, and C drives gear D. Using the tooth counts shown, if A turns at 600 rpm, how fast does D turn?",
+   "choices": [
+    "100 rpm",
+    "200 rpm",
+    "300 rpm",
+    "1,800 rpm"
+   ],
+   "answer": 0,
+   "explanation": "Work one stage at a time. A to B: 600 x 8/24 = 200 rpm, and C turns at 200 rpm because it shares B's shaft. C to D: 200 x 12/24 = 100 rpm. Stopping after the first stage gives 200 rpm, and B and D having the same tooth count does not make them turn at the same speed.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"50,90 54,90 54,94 50,94 48,99 51,102 48,105 45,102 40,104 40,108 36,108 36,104 31,102 28,105 25,102 28,99 26,94 22,94 22,90 26,90 28,85 25,82 28,79 31,82 36,80 36,76 40,76 40,80 45,82 48,79 51,82 48,85\"/><circle cx=\"38\" cy=\"92\" r=\"3.5\" fill=\"currentColor\" stroke=\"none\"/><polygon points=\"54,89 50,88 50,85 55,84 56,79 52,77 54,73 58,74 60,70 58,66 60,64 64,65 67,62 66,58 68,56 72,58 76,56 75,52 79,50 81,54 86,53 87,48 90,48 91,52 97,52 98,48 101,48 102,53 107,54 109,50 113,52 112,56 116,58 120,56 122,58 121,62 124,65 128,64 130,66 128,70 130,74 134,73 136,77 132,79 133,84 138,85 138,88 134,89 134,95 138,96 138,99 133,100 132,105 136,107 134,111 130,110 128,114 130,118 128,120 124,119 121,122 122,126 120,128 116,126 112,128 113,132 109,134 107,130 102,131 101,136 98,136 97,132 91,132 90,136 87,136 86,131 81,130 79,134 75,132 76,128 72,126 68,128 66,126 67,122 64,119 60,120 58,118 60,114 58,110 54,111 52,107 56,105 55,100 50,99 50,96 54,95\"/><circle cx=\"94\" cy=\"92\" r=\"3.5\" fill=\"currentColor\" stroke=\"none\"/><polygon points=\"113,89 117,90 117,94 113,95 112,99 115,102 113,105 109,104 106,107 107,111 104,113 101,110 97,111 96,115 92,115 91,111 87,110 84,113 81,111 82,107 79,104 75,105 73,102 76,99 75,95 71,94 71,90 75,89 76,85 73,82 75,79 79,80 82,77 81,73 84,71 87,74 91,73 92,69 96,69 97,73 101,74 104,71 107,73 106,77 109,80 113,79 115,82 112,85\" fill=\"currentColor\" fill-opacity=\"0.15\"/><circle cx=\"94\" cy=\"92\" r=\"3.5\" fill=\"currentColor\" stroke=\"none\"/><polygon points=\"117,89 113,88 113,85 118,84 119,79 115,77 117,73 121,74 123,70 121,66 123,64 127,65 130,62 129,58 131,56 135,58 139,56 138,52 142,50 144,54 149,53 150,48 153,48 154,52 160,52 161,48 164,48 165,53 170,54 172,50 176,52 175,56 179,58 183,56 185,58 184,62 187,65 191,64 193,66 191,70 193,74 197,73 199,77 195,79 196,84 201,85 201,88 197,89 197,95 201,96 201,99 196,100 195,105 199,107 197,111 193,110 191,114 193,118 191,120 187,119 184,122 185,126 183,128 179,126 175,128 176,132 172,134 170,130 165,131 164,136 161,136 160,132 154,132 153,136 150,136 149,131 144,130 142,134 138,132 139,128 135,126 131,128 129,126 130,122 127,119 123,120 121,118 123,114 121,110 117,111 115,107 119,105 118,100 113,99 113,96 117,95\"/><circle cx=\"157\" cy=\"92\" r=\"3.5\" fill=\"currentColor\" stroke=\"none\"/><text x=\"38\" y=\"68\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A 8T</text><text x=\"94\" y=\"42\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B 24T</text><text x=\"94\" y=\"152\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">C 12T (on B shaft)</text><text x=\"157\" y=\"42\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">D 24T</text><line x1=\"94\" y1=\"92\" x2=\"111\" y2=\"92\"/></g></svg>"
+  },
+  {
+   "id": "MC-13",
+   "difficulty": "medium",
+   "topic": "belts",
+   "passage": null,
+   "stem": "Pulley A is driven clockwise as shown. An open belt connects A to B, and a crossed belt connects B to C. Which way does pulley C turn?",
+   "choices": [
+    "Clockwise",
+    "Counterclockwise",
+    "The same way as B only if B and C are the same size",
+    "It cannot turn because the belt is crossed"
+   ],
+   "answer": 1,
+   "explanation": "An open belt makes both pulleys turn the same way, so B turns clockwise like A. A crossed belt reverses direction, so C turns counterclockwise. Pulley size changes speed, never direction.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"58\" cy=\"95\" r=\"26\"/><circle cx=\"58\" cy=\"95\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"160\" cy=\"95\" r=\"26\"/><circle cx=\"160\" cy=\"95\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"262\" cy=\"95\" r=\"26\"/><circle cx=\"262\" cy=\"95\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><line x1=\"58\" y1=\"69\" x2=\"160\" y2=\"69\"/><line x1=\"58\" y1=\"121\" x2=\"160\" y2=\"121\"/><line x1=\"160\" y1=\"69\" x2=\"262\" y2=\"121\"/><line x1=\"160\" y1=\"121\" x2=\"262\" y2=\"69\"/><text x=\"58\" y=\"145\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><text x=\"160\" y=\"145\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><text x=\"262\" y=\"145\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">C</text><path d=\"M22.3,82 A38,38 0 0 1 82.4,65.9\"/><polygon points=\"82.4,65.9 72.9,63.2 78.1,57\" fill=\"currentColor\" stroke=\"none\"/><text x=\"58\" y=\"30\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">drive</text></g></svg>"
+  },
+  {
+   "id": "MC-14",
+   "difficulty": "medium",
+   "topic": "belts",
+   "passage": null,
+   "stem": "A 4-inch pulley on a motor shaft turns at 900 rpm and drives a 12-inch pulley with a belt. How fast does the 12-inch pulley turn?",
+   "choices": [
+    "300 rpm",
+    "450 rpm",
+    "900 rpm",
+    "2,700 rpm"
+   ],
+   "answer": 0,
+   "explanation": "The belt moves at the same speed over both pulleys, so rpm x diameter is the same for each: 900 x 4 = rpm x 12, giving 300 rpm. The larger pulley turns slower; 2,700 rpm is what you get by multiplying instead of dividing.",
+   "svg": null
+  },
+  {
+   "id": "MC-15",
+   "difficulty": "medium",
+   "topic": "materials",
+   "passage": null,
+   "stem": "In a power drill, a small plastic gear meshes with a steel gear. The drill bit jams solid while the motor keeps trying to turn. What is most likely to happen?",
+   "choices": [
+    "The teeth of the plastic gear strip, because plastic is weaker than steel and the teeth carry the full motor torque",
+    "The teeth of the steel gear strip first, because the larger gear carries more force",
+    "Both gears strip equally, because meshing teeth always share damage equally",
+    "Nothing is damaged, because a jam removes the force from the gear teeth"
+   ],
+   "answer": 0,
+   "explanation": "Meshing teeth push on each other with the same force, so the weaker material fails first. A jam is the worst case: the motor's full torque is stopped at the teeth instead of being spent turning the bit. Plastic gears are often used on purpose as a cheap part that fails before the expensive parts do.",
+   "svg": null
+  },
+  {
+   "id": "MC-16",
+   "difficulty": "easy",
+   "topic": "work",
+   "passage": null,
+   "stem": "A worker lifts a 40 lb box straight up onto a shelf 5 ft above the floor. How much work is done on the box?",
+   "choices": [
+    "8 ft-lb",
+    "45 ft-lb",
+    "200 ft-lb",
+    "400 ft-lb"
+   ],
+   "answer": 2,
+   "explanation": "Work equals force times the distance moved in the direction of the force: 40 lb x 5 ft = 200 ft-lb. Adding (45) or dividing (8) the numbers is not work. Carrying the box sideways at the same height would do no work against gravity.",
+   "svg": null
+  },
+  {
+   "id": "MC-17",
+   "difficulty": "hard",
+   "topic": "power",
+   "passage": null,
+   "stem": "A hoist raises a 1,100 lb engine 20 ft in 40 seconds. One horsepower equals 550 ft-lb per second. What power is the hoist delivering?",
+   "choices": [
+    "0.5 hp",
+    "1 hp",
+    "2 hp",
+    "40 hp"
+   ],
+   "answer": 1,
+   "explanation": "Work = 1,100 x 20 = 22,000 ft-lb. Power = work / time = 22,000 / 40 = 550 ft-lb per second, which is exactly 1 hp. Forgetting to divide by the time gives 40 hp; dividing by 20 instead of 40 gives 2 hp.",
+   "svg": null
+  },
+  {
+   "id": "MC-18",
+   "difficulty": "medium",
+   "topic": "energy",
+   "passage": null,
+   "stem": "A 20 lb rock rests on a ledge 10 ft above the ground, so it has 200 ft-lb of potential energy. It falls off. Ignoring air resistance, how much kinetic energy does it have when it is 4 ft above the ground?",
+   "choices": [
+    "80 ft-lb",
+    "120 ft-lb",
+    "200 ft-lb",
+    "280 ft-lb"
+   ],
+   "answer": 1,
+   "explanation": "Total energy stays at 200 ft-lb. At 4 ft the remaining potential energy is 20 x 4 = 80 ft-lb, so the kinetic energy is 200 - 80 = 120 ft-lb. The 80 ft-lb answer is the potential energy, not the kinetic energy; energy is never added (280) during a free fall.",
+   "svg": null
+  },
+  {
+   "id": "MC-19",
+   "difficulty": "hard",
+   "topic": "efficiency",
+   "passage": null,
+   "stem": "A mechanic uses a jack to raise a 1,500 lb car 6 inches. To do it, he pushes the handle with 60 lb of force through a total handle travel of 25 ft. What is the efficiency of the jack?",
+   "choices": [
+    "25%",
+    "50%",
+    "75%",
+    "100%"
+   ],
+   "answer": 1,
+   "explanation": "Convert to matching units first: 6 inches is 0.5 ft. Work out = 1,500 x 0.5 = 750 ft-lb. Work in = 60 x 25 = 1,500 ft-lb. Efficiency = 750/1,500 = 50%. The missing half is lost to friction in the jack. No real machine reaches 100%.",
+   "svg": null
+  },
+  {
+   "id": "MC-20",
+   "difficulty": "easy",
+   "topic": "forces",
+   "passage": null,
+   "stem": "Two people push on the crate in the diagram. One pushes it to the right with 50 lb and the other pushes it to the left with 20 lb. Ignoring friction, what is the net force on the crate?",
+   "choices": [
+    "30 lb to the right",
+    "30 lb to the left",
+    "70 lb to the right",
+    "0 lb, the forces cancel"
+   ],
+   "answer": 0,
+   "explanation": "Forces in opposite directions subtract: 50 - 20 = 30 lb, in the direction of the larger force (right). Forces add to 70 lb only when they act in the same direction, and they cancel only when they are equal.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"20\" y1=\"140\" x2=\"300\" y2=\"140\"/><line x1=\"31.7\" y1=\"140\" x2=\"25.7\" y2=\"147\"/><line x1=\"55\" y1=\"140\" x2=\"49\" y2=\"147\"/><line x1=\"78.3\" y1=\"140\" x2=\"72.3\" y2=\"147\"/><line x1=\"101.7\" y1=\"140\" x2=\"95.7\" y2=\"147\"/><line x1=\"125\" y1=\"140\" x2=\"119\" y2=\"147\"/><line x1=\"148.3\" y1=\"140\" x2=\"142.3\" y2=\"147\"/><line x1=\"171.7\" y1=\"140\" x2=\"165.7\" y2=\"147\"/><line x1=\"195\" y1=\"140\" x2=\"189\" y2=\"147\"/><line x1=\"218.3\" y1=\"140\" x2=\"212.3\" y2=\"147\"/><line x1=\"241.7\" y1=\"140\" x2=\"235.7\" y2=\"147\"/><line x1=\"265\" y1=\"140\" x2=\"259\" y2=\"147\"/><line x1=\"288.3\" y1=\"140\" x2=\"282.3\" y2=\"147\"/><rect x=\"120\" y=\"80\" width=\"80\" height=\"60\"/><text x=\"160\" y=\"114\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">crate</text><line x1=\"200\" y1=\"110\" x2=\"261\" y2=\"110\"/><polygon points=\"270,110 261,114 261,106\" fill=\"currentColor\" stroke=\"none\"/><text x=\"236\" y=\"100\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">50 lb</text><line x1=\"120\" y1=\"110\" x2=\"89\" y2=\"110\"/><polygon points=\"80,110 89,106 89,114\" fill=\"currentColor\" stroke=\"none\"/><text x=\"100\" y=\"100\" font-size=\"13\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">20 lb</text></g></svg>"
+  },
+  {
+   "id": "MC-21",
+   "difficulty": "medium",
+   "topic": "torque",
+   "passage": null,
+   "stem": "A 60 lb child sits 4 ft from the center of the seesaw in the diagram. How far from the center must an 80 lb child sit on the other side to balance it?",
+   "choices": [
+    "2 ft",
+    "3 ft",
+    "4 ft",
+    "5.3 ft"
+   ],
+   "answer": 1,
+   "explanation": "Balance the torques (weight x distance) on each side: 60 x 4 = 240, so 80 x d = 240 and d = 3 ft. The heavier child sits closer to the center. Dividing the other way (80 x 4 / 60) gives about 5.3 ft, which would make the seesaw tip toward the heavier child.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"20\" y1=\"110\" x2=\"300\" y2=\"110\"/><polygon points=\"160,110 148.8,124 171.2,124\" fill=\"currentColor\" stroke=\"none\"/><line x1=\"100\" y1=\"124\" x2=\"220\" y2=\"124\"/><line x1=\"110\" y1=\"124\" x2=\"104\" y2=\"131\"/><line x1=\"130\" y1=\"124\" x2=\"124\" y2=\"131\"/><line x1=\"150\" y1=\"124\" x2=\"144\" y2=\"131\"/><line x1=\"170\" y1=\"124\" x2=\"164\" y2=\"131\"/><line x1=\"190\" y1=\"124\" x2=\"184\" y2=\"131\"/><line x1=\"210\" y1=\"124\" x2=\"204\" y2=\"131\"/><rect x=\"24\" y=\"84\" width=\"48\" height=\"24\"/><text x=\"48\" y=\"100\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">60 lb</text><line x1=\"48\" y1=\"146\" x2=\"160\" y2=\"146\"/><line x1=\"48\" y1=\"141\" x2=\"48\" y2=\"151\"/><line x1=\"160\" y1=\"141\" x2=\"160\" y2=\"151\"/><text x=\"104\" y=\"160\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">4 ft</text><rect x=\"236.8\" y=\"84\" width=\"48\" height=\"24\"/><text x=\"260.8\" y=\"100\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">80 lb</text><line x1=\"160\" y1=\"146\" x2=\"260.8\" y2=\"146\"/><line x1=\"160\" y1=\"141\" x2=\"160\" y2=\"151\"/><line x1=\"260.8\" y1=\"141\" x2=\"260.8\" y2=\"151\"/><text x=\"210.4\" y=\"160\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">? ft</text></g></svg>"
+  },
+  {
+   "id": "MC-22",
+   "difficulty": "hard",
+   "topic": "structures",
+   "passage": null,
+   "stem": "A light 12 ft beam rests on post A and post B at its ends. A 300 lb load is placed 3 ft from post A, as shown. How much of the load does post B carry?",
+   "choices": [
+    "75 lb",
+    "150 lb",
+    "225 lb",
+    "300 lb"
+   ],
+   "answer": 0,
+   "explanation": "Take moments about post A. The load's moment is 300 x 3 = 900 ft-lb, and post B's upward force balances it at 12 ft: B x 12 = 900, so B = 75 lb. Post A carries the rest, 225 lb. The post closer to the load carries more; 150 lb would be right only if the load were centered.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"42\" y=\"80\" width=\"236\" height=\"10\"/><rect x=\"42\" y=\"90\" width=\"16\" height=\"60\"/><rect x=\"262\" y=\"90\" width=\"16\" height=\"60\"/><line x1=\"20\" y1=\"150\" x2=\"300\" y2=\"150\"/><line x1=\"31.7\" y1=\"150\" x2=\"25.7\" y2=\"157\"/><line x1=\"55\" y1=\"150\" x2=\"49\" y2=\"157\"/><line x1=\"78.3\" y1=\"150\" x2=\"72.3\" y2=\"157\"/><line x1=\"101.7\" y1=\"150\" x2=\"95.7\" y2=\"157\"/><line x1=\"125\" y1=\"150\" x2=\"119\" y2=\"157\"/><line x1=\"148.3\" y1=\"150\" x2=\"142.3\" y2=\"157\"/><line x1=\"171.7\" y1=\"150\" x2=\"165.7\" y2=\"157\"/><line x1=\"195\" y1=\"150\" x2=\"189\" y2=\"157\"/><line x1=\"218.3\" y1=\"150\" x2=\"212.3\" y2=\"157\"/><line x1=\"241.7\" y1=\"150\" x2=\"235.7\" y2=\"157\"/><line x1=\"265\" y1=\"150\" x2=\"259\" y2=\"157\"/><line x1=\"288.3\" y1=\"150\" x2=\"282.3\" y2=\"157\"/><text x=\"50\" y=\"168\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><text x=\"270\" y=\"168\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><rect x=\"77\" y=\"54\" width=\"56\" height=\"26\"/><text x=\"105\" y=\"71\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">300 lb</text><line x1=\"50\" y1=\"40\" x2=\"105\" y2=\"40\"/><line x1=\"50\" y1=\"35\" x2=\"50\" y2=\"45\"/><line x1=\"105\" y1=\"35\" x2=\"105\" y2=\"45\"/><text x=\"77.5\" y=\"54\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">3 ft</text><line x1=\"105\" y1=\"40\" x2=\"270\" y2=\"40\"/><line x1=\"105\" y1=\"35\" x2=\"105\" y2=\"45\"/><line x1=\"270\" y1=\"35\" x2=\"270\" y2=\"45\"/><text x=\"187.5\" y=\"54\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">9 ft</text></g></svg>"
+  },
+  {
+   "id": "MC-23",
+   "difficulty": "easy",
+   "topic": "torque",
+   "passage": null,
+   "stem": "Wrenches A and B in the diagram fit the same nut. A is 6 in long and B is 12 in long, and the same 20 lb force is applied at the end of each handle. Compared with wrench A, how much torque does wrench B put on the nut?",
+   "choices": [
+    "Half as much",
+    "The same",
+    "Twice as much",
+    "Four times as much"
+   ],
+   "answer": 2,
+   "explanation": "Torque = force x distance from the pivot. A gives 20 x 6 = 120 in-lb and B gives 20 x 12 = 240 in-lb, so B gives twice the torque. This is why wrenches and breaker bars are made long: the same hand force turns a tighter nut.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"49,60 44.5,67.8 35.5,67.8 31,60 35.5,52.2 44.5,52.2\" fill=\"currentColor\" fill-opacity=\"0.15\"/><rect x=\"49\" y=\"53\" width=\"10\" height=\"14\" fill=\"currentColor\" fill-opacity=\"0.15\"/><rect x=\"59\" y=\"56\" width=\"81\" height=\"8\"/><line x1=\"136\" y1=\"20\" x2=\"136\" y2=\"43\"/><polygon points=\"136,52 131.9,43 140.1,43\" fill=\"currentColor\" stroke=\"none\"/><text x=\"136\" y=\"14\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">20 lb</text><line x1=\"40\" y1=\"82\" x2=\"140\" y2=\"82\"/><line x1=\"40\" y1=\"77\" x2=\"40\" y2=\"87\"/><line x1=\"140\" y1=\"77\" x2=\"140\" y2=\"87\"/><text x=\"90\" y=\"96\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">6 in</text><text x=\"20\" y=\"64\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><polygon points=\"49,140 44.5,147.8 35.5,147.8 31,140 35.5,132.2 44.5,132.2\" fill=\"currentColor\" fill-opacity=\"0.15\"/><rect x=\"49\" y=\"133\" width=\"10\" height=\"14\" fill=\"currentColor\" fill-opacity=\"0.15\"/><rect x=\"59\" y=\"136\" width=\"181\" height=\"8\"/><line x1=\"236\" y1=\"100\" x2=\"236\" y2=\"123\"/><polygon points=\"236,132 231.9,123 240.1,123\" fill=\"currentColor\" stroke=\"none\"/><text x=\"236\" y=\"94\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">20 lb</text><line x1=\"40\" y1=\"162\" x2=\"240\" y2=\"162\"/><line x1=\"40\" y1=\"157\" x2=\"40\" y2=\"167\"/><line x1=\"240\" y1=\"157\" x2=\"240\" y2=\"167\"/><text x=\"140\" y=\"176\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">12 in</text><text x=\"20\" y=\"144\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text></g></svg>"
+  },
+  {
+   "id": "MC-24",
+   "difficulty": "hard",
+   "topic": "torque",
+   "passage": null,
+   "stem": "On the balanced beam in the diagram, a 40 lb weight sits 2 ft to the left of the fulcrum and a 20 lb weight sits 5 ft to the left. A single weight 6 ft to the right balances them. How much does it weigh?",
+   "choices": [
+    "20 lb",
+    "30 lb",
+    "45 lb",
+    "60 lb"
+   ],
+   "answer": 1,
+   "explanation": "Add the left-side torques: 40 x 2 + 20 x 5 = 80 + 100 = 180 ft-lb. The right side must match: W x 6 = 180, so W = 30 lb. Simply adding the weights (60 lb) ignores the distances.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"20\" y1=\"110\" x2=\"315\" y2=\"110\"/><polygon points=\"165,110 153.8,124 176.2,124\" fill=\"currentColor\" stroke=\"none\"/><line x1=\"105\" y1=\"124\" x2=\"225\" y2=\"124\"/><line x1=\"115\" y1=\"124\" x2=\"109\" y2=\"131\"/><line x1=\"135\" y1=\"124\" x2=\"129\" y2=\"131\"/><line x1=\"155\" y1=\"124\" x2=\"149\" y2=\"131\"/><line x1=\"175\" y1=\"124\" x2=\"169\" y2=\"131\"/><line x1=\"195\" y1=\"124\" x2=\"189\" y2=\"131\"/><line x1=\"215\" y1=\"124\" x2=\"209\" y2=\"131\"/><rect x=\"95\" y=\"84\" width=\"44\" height=\"24\"/><text x=\"117\" y=\"100\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">40 lb</text><rect x=\"23\" y=\"84\" width=\"44\" height=\"24\"/><text x=\"45\" y=\"100\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">20 lb</text><line x1=\"117\" y1=\"140\" x2=\"165\" y2=\"140\"/><line x1=\"117\" y1=\"135\" x2=\"117\" y2=\"145\"/><line x1=\"165\" y1=\"135\" x2=\"165\" y2=\"145\"/><text x=\"141\" y=\"154\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">2 ft</text><line x1=\"45\" y1=\"164\" x2=\"165\" y2=\"164\"/><line x1=\"45\" y1=\"159\" x2=\"45\" y2=\"169\"/><line x1=\"165\" y1=\"159\" x2=\"165\" y2=\"169\"/><text x=\"105\" y=\"178\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">5 ft</text><rect x=\"287\" y=\"84\" width=\"44\" height=\"24\"/><text x=\"309\" y=\"100\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">? lb</text><line x1=\"165\" y1=\"140\" x2=\"309\" y2=\"140\"/><line x1=\"165\" y1=\"135\" x2=\"165\" y2=\"145\"/><line x1=\"309\" y1=\"135\" x2=\"309\" y2=\"145\"/><text x=\"237\" y=\"154\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">6 ft</text></g></svg>"
+  },
+  {
+   "id": "MC-25",
+   "difficulty": "easy",
+   "topic": "fluids",
+   "passage": null,
+   "stem": "The tank in the diagram is full of water and has three small holes, A, B, and C, in its side. From which hole does water leave with the greatest pressure?",
+   "choices": [
+    "A",
+    "B",
+    "C",
+    "The pressure is the same at all three"
+   ],
+   "answer": 2,
+   "explanation": "Water pressure increases with depth because of the weight of the water above. Hole C is deepest, so its pressure and exit speed are greatest. The shape or width of the tank does not matter, only the depth below the surface.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"70\" y=\"30\" width=\"120\" height=\"130\"/><rect x=\"70\" y=\"44\" width=\"120\" height=\"116\" fill=\"currentColor\" fill-opacity=\"0.15\"/><line x1=\"30\" y1=\"160\" x2=\"300\" y2=\"160\"/><line x1=\"41.2\" y1=\"160\" x2=\"35.2\" y2=\"167\"/><line x1=\"63.8\" y1=\"160\" x2=\"57.8\" y2=\"167\"/><line x1=\"86.2\" y1=\"160\" x2=\"80.2\" y2=\"167\"/><line x1=\"108.8\" y1=\"160\" x2=\"102.8\" y2=\"167\"/><line x1=\"131.2\" y1=\"160\" x2=\"125.2\" y2=\"167\"/><line x1=\"153.8\" y1=\"160\" x2=\"147.8\" y2=\"167\"/><line x1=\"176.2\" y1=\"160\" x2=\"170.2\" y2=\"167\"/><line x1=\"198.8\" y1=\"160\" x2=\"192.8\" y2=\"167\"/><line x1=\"221.2\" y1=\"160\" x2=\"215.2\" y2=\"167\"/><line x1=\"243.8\" y1=\"160\" x2=\"237.8\" y2=\"167\"/><line x1=\"266.2\" y1=\"160\" x2=\"260.2\" y2=\"167\"/><line x1=\"288.8\" y1=\"160\" x2=\"282.8\" y2=\"167\"/><circle cx=\"190\" cy=\"60\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M190,60 Q205.4,64 212,160\"/><text x=\"178\" y=\"64\" font-size=\"13\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">A</text><circle cx=\"190\" cy=\"98\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M190,98 Q218.0,102 230,160\"/><text x=\"178\" y=\"102\" font-size=\"13\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">B</text><circle cx=\"190\" cy=\"138\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M190,138 Q232.0,142 250,160\"/><text x=\"178\" y=\"142\" font-size=\"13\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">C</text></g></svg>"
+  },
+  {
+   "id": "MC-26",
+   "difficulty": "medium",
+   "topic": "hydraulics",
+   "passage": null,
+   "stem": "In the hydraulic press shown, a 40 lb force pushes down on the small piston, which has an area of 2 sq in. The large piston has an area of 20 sq in. What force does the large piston push up with?",
+   "choices": [
+    "4 lb",
+    "40 lb",
+    "400 lb",
+    "800 lb"
+   ],
+   "answer": 2,
+   "explanation": "The pressure in the fluid is 40 lb / 2 sq in = 20 psi, and Pascal's principle says it is the same everywhere in the fluid. On 20 sq in that pressure produces 20 x 20 = 400 lb. The force multiplies by the area ratio 20/2 = 10. Dividing instead gives 4 lb.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"50,60 50,150 270,150 270,60\"/><polyline points=\"90,60 90,120 150,120 150,60\"/><polygon points=\"50,100 90,100 90,120 150,120 150,88 270,88 270,150 50,150\" fill=\"currentColor\" fill-opacity=\"0.15\"/><rect x=\"52\" y=\"92\" width=\"36\" height=\"8\" fill=\"currentColor\" fill-opacity=\"0.15\"/><line x1=\"70\" y1=\"92\" x2=\"70\" y2=\"60\"/><rect x=\"152\" y=\"80\" width=\"116\" height=\"8\" fill=\"currentColor\" fill-opacity=\"0.15\"/><line x1=\"210\" y1=\"80\" x2=\"210\" y2=\"60\"/><line x1=\"70\" y1=\"20\" x2=\"70\" y2=\"49\"/><polygon points=\"70,58 66,49 74,49\" fill=\"currentColor\" stroke=\"none\"/><text x=\"82\" y=\"30\" font-size=\"13\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">40 lb</text><line x1=\"210\" y1=\"58\" x2=\"210\" y2=\"29\"/><polygon points=\"210,20 214.1,29 205.9,29\" fill=\"currentColor\" stroke=\"none\"/><text x=\"222\" y=\"30\" font-size=\"13\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">? lb</text><text x=\"70\" y=\"170\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">Area 2 sq in</text><text x=\"210\" y=\"170\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">Area 20 sq in</text></g></svg>"
+  },
+  {
+   "id": "MC-27",
+   "difficulty": "hard",
+   "topic": "hydraulics",
+   "passage": null,
+   "stem": "The pump piston of a hydraulic jack has an area of 1 sq in and the lift piston has an area of 25 sq in. Each pump stroke pushes the small piston down 5 inches. How far does the lift piston rise on each stroke?",
+   "choices": [
+    "0.2 in",
+    "1 in",
+    "5 in",
+    "125 in"
+   ],
+   "answer": 0,
+   "explanation": "The fluid is not compressed, so the volume pushed out of the small cylinder equals the volume entering the large one: 1 x 5 = 25 x d, so d = 5/25 = 0.2 in. The jack multiplies force 25 times but divides distance by 25, which is why you pump many times to raise a car a few inches.",
+   "svg": null
+  },
+  {
+   "id": "MC-28",
+   "difficulty": "easy",
+   "topic": "fluids",
+   "passage": null,
+   "stem": "According to Pascal's principle, when pressure is applied to a confined fluid, the pressure",
+   "choices": [
+    "is transmitted undiminished to every part of the fluid and the container walls",
+    "is greatest near the point where it is applied and fades with distance",
+    "acts only in the direction of the applied force",
+    "is lost as the fluid is squeezed into a smaller volume"
+   ],
+   "answer": 0,
+   "explanation": "A confined liquid passes pressure on equally in all directions without loss. That is what lets a hydraulic brake pedal push on all four wheel cylinders at once with the same pressure. Liquids are nearly incompressible, so they do not absorb the pressure.",
+   "svg": null
+  },
+  {
+   "id": "MC-29",
+   "difficulty": "hard",
+   "topic": "fluids",
+   "passage": null,
+   "stem": "Containers A, B, and C in the diagram have different shapes but are filled with water to the same depth of 10 inches. In which container is the water pressure on the bottom greatest?",
+   "choices": [
+    "A",
+    "B",
+    "C",
+    "The pressure is the same in all three"
+   ],
+   "answer": 3,
+   "explanation": "Pressure at a depth depends only on the depth and the liquid, not on the shape or width of the container or how much water it holds. All three bottoms are 10 inches below the surface, so the pressure is equal. The total force on each bottom differs because the bottom areas differ, but the question asks about pressure.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"10\" y1=\"150\" x2=\"310\" y2=\"150\"/><line x1=\"22.5\" y1=\"150\" x2=\"16.5\" y2=\"157\"/><line x1=\"47.5\" y1=\"150\" x2=\"41.5\" y2=\"157\"/><line x1=\"72.5\" y1=\"150\" x2=\"66.5\" y2=\"157\"/><line x1=\"97.5\" y1=\"150\" x2=\"91.5\" y2=\"157\"/><line x1=\"122.5\" y1=\"150\" x2=\"116.5\" y2=\"157\"/><line x1=\"147.5\" y1=\"150\" x2=\"141.5\" y2=\"157\"/><line x1=\"172.5\" y1=\"150\" x2=\"166.5\" y2=\"157\"/><line x1=\"197.5\" y1=\"150\" x2=\"191.5\" y2=\"157\"/><line x1=\"222.5\" y1=\"150\" x2=\"216.5\" y2=\"157\"/><line x1=\"247.5\" y1=\"150\" x2=\"241.5\" y2=\"157\"/><line x1=\"272.5\" y1=\"150\" x2=\"266.5\" y2=\"157\"/><line x1=\"297.5\" y1=\"150\" x2=\"291.5\" y2=\"157\"/><polyline points=\"40,40 40,150 80,150 80,40\"/><rect x=\"40\" y=\"60\" width=\"40\" height=\"90\" fill=\"currentColor\" fill-opacity=\"0.15\"/><polyline points=\"110,40 110,150 210,150 210,40\"/><rect x=\"110\" y=\"60\" width=\"100\" height=\"90\" fill=\"currentColor\" fill-opacity=\"0.15\"/><polyline points=\"228,40 248,150 288,150 308,40\"/><polygon points=\"232,60 248,150 288,150 304,60\" fill=\"currentColor\" fill-opacity=\"0.15\"/><line x1=\"30\" y1=\"60\" x2=\"312\" y2=\"60\" stroke-dasharray=\"4,4\"/><line x1=\"22\" y1=\"60\" x2=\"22\" y2=\"150\"/><line x1=\"17\" y1=\"60\" x2=\"27\" y2=\"60\"/><line x1=\"17\" y1=\"150\" x2=\"27\" y2=\"150\"/><text x=\"14\" y=\"109\" font-size=\"12\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">10 in</text><text x=\"60\" y=\"170\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><text x=\"160\" y=\"170\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><text x=\"268\" y=\"170\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">C</text></g></svg>"
+  },
+  {
+   "id": "MC-30",
+   "difficulty": "medium",
+   "topic": "buoyancy",
+   "passage": null,
+   "stem": "A metal casting weighs 30 lb on a scale in air. When it hangs from the scale fully underwater, it pushes aside water that weighs 4 lb. What does the scale read underwater?",
+   "choices": [
+    "4 lb",
+    "26 lb",
+    "30 lb",
+    "34 lb"
+   ],
+   "answer": 1,
+   "explanation": "Archimedes' principle: the water pushes up on the casting with a force equal to the weight of the water it displaces, 4 lb. The scale reads 30 - 4 = 26 lb. The casting sinks because it weighs more than the water it displaces, but it still feels lighter.",
+   "svg": null
+  },
+  {
+   "id": "MC-31",
+   "difficulty": "medium",
+   "topic": "siphons",
+   "passage": null,
+   "stem": "The diagram shows a siphon draining the tank into a bucket. A is the end of the tube under the water, B is the top of the tube, and C is the outlet. Once the tube is full of water, it keeps flowing as long as",
+   "choices": [
+    "C stays below the water surface in the tank and the tube stays full of water",
+    "B stays below the water surface in the tank",
+    "A is at exactly the same height as C",
+    "the bucket is raised higher than the tank"
+   ],
+   "answer": 0,
+   "explanation": "A siphon is driven by the height difference between the water surface in the tank and the outlet C. Water in the long leg falls and pulls water over the top behind it. The top B must be above the surface (that is how it gets over the rim), and if air enters the tube or C rises above the surface the flow stops.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"10\" y1=\"165\" x2=\"310\" y2=\"165\"/><line x1=\"22.5\" y1=\"165\" x2=\"16.5\" y2=\"172\"/><line x1=\"47.5\" y1=\"165\" x2=\"41.5\" y2=\"172\"/><line x1=\"72.5\" y1=\"165\" x2=\"66.5\" y2=\"172\"/><line x1=\"97.5\" y1=\"165\" x2=\"91.5\" y2=\"172\"/><line x1=\"122.5\" y1=\"165\" x2=\"116.5\" y2=\"172\"/><line x1=\"147.5\" y1=\"165\" x2=\"141.5\" y2=\"172\"/><line x1=\"172.5\" y1=\"165\" x2=\"166.5\" y2=\"172\"/><line x1=\"197.5\" y1=\"165\" x2=\"191.5\" y2=\"172\"/><line x1=\"222.5\" y1=\"165\" x2=\"216.5\" y2=\"172\"/><line x1=\"247.5\" y1=\"165\" x2=\"241.5\" y2=\"172\"/><line x1=\"272.5\" y1=\"165\" x2=\"266.5\" y2=\"172\"/><line x1=\"297.5\" y1=\"165\" x2=\"291.5\" y2=\"172\"/><polyline points=\"40,40 40,150 160,150 160,40\"/><rect x=\"40\" y=\"70\" width=\"120\" height=\"80\" fill=\"currentColor\" fill-opacity=\"0.15\"/><polyline points=\"210,110 210,165 290,165 290,110\"/><path d=\"M120,140 L120,30 Q120,20 130,20 L170,20 Q180,20 180,30 L180,150\"/><circle cx=\"120\" cy=\"140\" r=\"4\" fill=\"currentColor\" stroke=\"none\"/><text x=\"108\" y=\"144\" font-size=\"14\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">A</text><text x=\"150\" y=\"14\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><circle cx=\"180\" cy=\"150\" r=\"4\" fill=\"currentColor\" stroke=\"none\"/><text x=\"194\" y=\"154\" font-size=\"14\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">C</text><text x=\"100\" y=\"62\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">water</text></g></svg>"
+  },
+  {
+   "id": "MC-32",
+   "difficulty": "hard",
+   "topic": "springs",
+   "passage": null,
+   "stem": "A coil spring is 6 inches long with nothing hanging from it and 8 inches long with a 10 lb weight hanging from it. Within its elastic limit, how long will it be with a 25 lb weight hanging from it?",
+   "choices": [
+    "10 in",
+    "11 in",
+    "15 in",
+    "20 in"
+   ],
+   "answer": 1,
+   "explanation": "Hooke's law: stretch is proportional to load. 10 lb stretches the spring 2 inches, so 25 lb stretches it 2 x 2.5 = 5 inches, and the length is 6 + 5 = 11 inches. Scaling the whole loaded length (8 x 2.5 = 20) is the common mistake; only the stretch scales, not the spring's free length.",
+   "svg": null
+  },
+  {
+   "id": "MC-33",
+   "difficulty": "hard",
+   "topic": "springs",
+   "passage": null,
+   "stem": "Two identical springs hold the same weight W in two ways, as shown. In A the springs hang side by side from the ceiling and share the weight. In B they hang end to end. If the weight in A drops 1 inch when it is hung, how far does the weight in B drop?",
+   "choices": [
+    "1 inch",
+    "2 inches",
+    "4 inches",
+    "8 inches"
+   ],
+   "answer": 2,
+   "explanation": "In A each spring carries half of W and stretches 1 inch, so a single spring under the full W would stretch 2 inches. In B each spring carries the full W, so each stretches 2 inches and the stretches add: 4 inches. Springs side by side are stiffer; springs end to end are softer.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"20\" y1=\"20\" x2=\"300\" y2=\"20\"/><line x1=\"31.7\" y1=\"20\" x2=\"25.7\" y2=\"27\"/><line x1=\"55\" y1=\"20\" x2=\"49\" y2=\"27\"/><line x1=\"78.3\" y1=\"20\" x2=\"72.3\" y2=\"27\"/><line x1=\"101.7\" y1=\"20\" x2=\"95.7\" y2=\"27\"/><line x1=\"125\" y1=\"20\" x2=\"119\" y2=\"27\"/><line x1=\"148.3\" y1=\"20\" x2=\"142.3\" y2=\"27\"/><line x1=\"171.7\" y1=\"20\" x2=\"165.7\" y2=\"27\"/><line x1=\"195\" y1=\"20\" x2=\"189\" y2=\"27\"/><line x1=\"218.3\" y1=\"20\" x2=\"212.3\" y2=\"27\"/><line x1=\"241.7\" y1=\"20\" x2=\"235.7\" y2=\"27\"/><line x1=\"265\" y1=\"20\" x2=\"259\" y2=\"27\"/><line x1=\"288.3\" y1=\"20\" x2=\"282.3\" y2=\"27\"/><polyline points=\"60,20 60,26 70,30 50,34 70,38 50,42 70,46 50,50 70,54 50,58 70,62 50,66 70,70 50,74 60,74 60,80\"/><polyline points=\"110,20 110,26 120,30 100,34 120,38 100,42 120,46 100,50 120,54 100,58 120,62 100,66 120,70 100,74 110,74 110,80\"/><rect x=\"48\" y=\"80\" width=\"74\" height=\"8\"/><line x1=\"85\" y1=\"88\" x2=\"85\" y2=\"100\"/><rect x=\"65\" y=\"100\" width=\"40\" height=\"24\"/><text x=\"85\" y=\"116\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">W</text><text x=\"85\" y=\"160\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><polyline points=\"230,20 230,26 240,29.3 220,32.7 240,36 220,39.3 240,42.7 220,46 240,49.3 220,52.7 240,56 220,59.3 240,62.7 220,66 230,66 230,72\"/><circle cx=\"230\" cy=\"76\" r=\"4\" fill=\"currentColor\" stroke=\"none\"/><polyline points=\"230,80 230,86 240,89.3 220,92.7 240,96 220,99.3 240,102.7 220,106 240,109.3 220,112.7 240,116 220,119.3 240,122.7 220,126 230,126 230,132\"/><rect x=\"210\" y=\"132\" width=\"40\" height=\"24\"/><text x=\"230\" y=\"148\" font-size=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">W</text><text x=\"230\" y=\"174\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text></g></svg>"
+  },
+  {
+   "id": "MC-34",
+   "difficulty": "easy",
+   "topic": "friction",
+   "passage": null,
+   "stem": "The block in the diagram is sliding down the ramp. Which arrow shows the direction of the friction force acting on the block?",
+   "choices": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "answer": 0,
+   "explanation": "Sliding friction always acts along the surface, opposite to the direction of motion. The block moves down the slope, so friction points up the slope (A). B is the direction of motion, C is the direction the block presses into the ramp, and D is the pull of gravity.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"20,160 290,160 290,50\" fill=\"currentColor\" fill-opacity=\"0.15\"/><polygon points=\"148.1,107.8 188.9,91.2 199.4,117.1 158.7,133.7\"/><line x1=\"173.8\" y1=\"112.5\" x2=\"219.2\" y2=\"94\"/><polygon points=\"227.5,90.6 220.7,97.7 217.6,90.2\" fill=\"currentColor\" stroke=\"none\"/><text x=\"238.6\" y=\"90.1\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><line x1=\"173.8\" y1=\"112.5\" x2=\"128.4\" y2=\"131\"/><polygon points=\"120.1,134.3 126.9,127.2 129.9,134.7\" fill=\"currentColor\" stroke=\"none\"/><text x=\"109\" y=\"142.9\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><line x1=\"173.8\" y1=\"112.5\" x2=\"161.3\" y2=\"81.9\"/><polygon points=\"157.9,73.6 165.1,80.4 157.6,83.4\" fill=\"currentColor\" stroke=\"none\"/><text x=\"153.4\" y=\"66.5\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">C</text><line x1=\"173.8\" y1=\"112.5\" x2=\"173.8\" y2=\"155.5\"/><polygon points=\"173.8,164.5 169.7,155.5 177.8,155.5\" fill=\"currentColor\" stroke=\"none\"/><text x=\"173.8\" y=\"180.5\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">D</text></g></svg>"
+  },
+  {
+   "id": "MC-35",
+   "difficulty": "hard",
+   "topic": "friction",
+   "passage": null,
+   "stem": "A heavy wooden crate is dragged across a concrete floor at a steady speed, first resting on its large bottom face and then tipped onto one of its narrow sides. The force needed to keep it sliding",
+   "choices": [
+    "is about the same either way, because sliding friction depends on the weight and the surfaces, not the contact area",
+    "is less on the narrow side, because less wood touches the floor",
+    "is greater on the narrow side, because the crate presses harder on each square inch",
+    "is less on the large face, because the weight is spread out"
+   ],
+   "answer": 0,
+   "explanation": "For dry sliding, friction = coefficient x normal force. Tipping the crate does not change its weight or the two materials, so the friction is about the same. A smaller area does press harder per square inch, but on fewer square inches, and the two effects cancel.",
+   "svg": null
+  },
+  {
+   "id": "MC-36",
+   "difficulty": "easy",
+   "topic": "center of gravity",
+   "passage": null,
+   "stem": "Blocks A, B, C, and D in the diagram are made of the same solid material. The dot marks each block's center of gravity. Which block is hardest to tip over?",
+   "choices": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "answer": 3,
+   "explanation": "An object tips when its center of gravity moves past the edge of its base. A wide base and a low center of gravity both make that harder, and D has both. A, tall and narrow, tips most easily. B is wide but tall; C is low but narrow.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"10\" y1=\"150\" x2=\"310\" y2=\"150\"/><line x1=\"22.5\" y1=\"150\" x2=\"16.5\" y2=\"157\"/><line x1=\"47.5\" y1=\"150\" x2=\"41.5\" y2=\"157\"/><line x1=\"72.5\" y1=\"150\" x2=\"66.5\" y2=\"157\"/><line x1=\"97.5\" y1=\"150\" x2=\"91.5\" y2=\"157\"/><line x1=\"122.5\" y1=\"150\" x2=\"116.5\" y2=\"157\"/><line x1=\"147.5\" y1=\"150\" x2=\"141.5\" y2=\"157\"/><line x1=\"172.5\" y1=\"150\" x2=\"166.5\" y2=\"157\"/><line x1=\"197.5\" y1=\"150\" x2=\"191.5\" y2=\"157\"/><line x1=\"222.5\" y1=\"150\" x2=\"216.5\" y2=\"157\"/><line x1=\"247.5\" y1=\"150\" x2=\"241.5\" y2=\"157\"/><line x1=\"272.5\" y1=\"150\" x2=\"266.5\" y2=\"157\"/><line x1=\"297.5\" y1=\"150\" x2=\"291.5\" y2=\"157\"/><rect x=\"35\" y=\"50\" width=\"30\" height=\"100\"/><circle cx=\"50\" cy=\"100\" r=\"4\" fill=\"currentColor\" stroke=\"none\"/><text x=\"50\" y=\"170\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><rect x=\"85\" y=\"50\" width=\"70\" height=\"100\"/><circle cx=\"120\" cy=\"100\" r=\"4\" fill=\"currentColor\" stroke=\"none\"/><text x=\"120\" y=\"170\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><rect x=\"185\" y=\"100\" width=\"30\" height=\"50\"/><circle cx=\"200\" cy=\"125\" r=\"4\" fill=\"currentColor\" stroke=\"none\"/><text x=\"200\" y=\"170\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">C</text><rect x=\"235\" y=\"100\" width=\"70\" height=\"50\"/><circle cx=\"270\" cy=\"125\" r=\"4\" fill=\"currentColor\" stroke=\"none\"/><text x=\"270\" y=\"170\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">D</text></g></svg>"
+  },
+  {
+   "id": "MC-37",
+   "difficulty": "medium",
+   "topic": "center of gravity",
+   "passage": null,
+   "stem": "A forklift operator drives across the warehouse with the load raised high instead of just above the floor. What is the main danger?",
+   "choices": [
+    "The center of gravity of the forklift and load is higher, so it tips more easily on turns and bumps",
+    "The load weighs more when it is higher off the ground",
+    "The forks lose their mechanical advantage at full height",
+    "More weight shifts to the rear wheels, making the steering too light"
+   ],
+   "answer": 0,
+   "explanation": "Raising the load raises the combined center of gravity, so a smaller tilt or a sharp turn moves it outside the wheelbase and the truck tips. The weight itself does not change with height. Loads are carried low for the same reason a sailboat has a heavy keel and a crane keeps its boom low when traveling.",
+   "svg": null
+  },
+  {
+   "id": "MC-38",
+   "difficulty": "easy",
+   "topic": "structures",
+   "passage": null,
+   "stem": "Each rectangular frame in the diagram is made of boards joined by single nails at the corners, so the joints can pivot. Which frame cannot be pushed sideways into a leaning parallelogram shape?",
+   "choices": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "answer": 1,
+   "explanation": "A rectangle with pinned corners can rack (lean), but a triangle cannot change shape without changing the length of a side. The diagonal in B splits the rectangle into two triangles and locks it. The horizontal bar in C and the vertical bar in D just make more rectangles, which still rack.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"24\" y=\"40\" width=\"56\" height=\"90\"/><text x=\"52\" y=\"154\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><rect x=\"100\" y=\"40\" width=\"56\" height=\"90\"/><line x1=\"100\" y1=\"130\" x2=\"156\" y2=\"40\"/><text x=\"128\" y=\"154\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><rect x=\"176\" y=\"40\" width=\"56\" height=\"90\"/><line x1=\"176\" y1=\"85\" x2=\"232\" y2=\"85\"/><text x=\"204\" y=\"154\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">C</text><rect x=\"252\" y=\"40\" width=\"56\" height=\"90\"/><line x1=\"280\" y1=\"40\" x2=\"280\" y2=\"130\"/><text x=\"280\" y=\"154\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">D</text></g></svg>"
+  },
+  {
+   "id": "MC-39",
+   "difficulty": "hard",
+   "topic": "structures",
+   "passage": null,
+   "stem": "A load pushes down on the peak of the simple triangular truss in the diagram. The two ends rest on supports, and the right support is a roller that can slide. Which members are in tension (being stretched)?",
+   "choices": [
+    "C only",
+    "A and B only",
+    "A, B, and C",
+    "None, all three are in compression"
+   ],
+   "answer": 0,
+   "explanation": "The load pushes down the two sloping members A and B, squeezing them (compression). Their lower ends push outward and would spread apart, but the bottom member C ties the two feet together, so C is pulled from both ends (tension). This is why the bottom chord of a roof truss is called a tie.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 180\"><g stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"60,130 260,130 160,40\"/><line x1=\"20\" y1=\"160\" x2=\"300\" y2=\"160\"/><line x1=\"31.7\" y1=\"160\" x2=\"25.7\" y2=\"167\"/><line x1=\"55\" y1=\"160\" x2=\"49\" y2=\"167\"/><line x1=\"78.3\" y1=\"160\" x2=\"72.3\" y2=\"167\"/><line x1=\"101.7\" y1=\"160\" x2=\"95.7\" y2=\"167\"/><line x1=\"125\" y1=\"160\" x2=\"119\" y2=\"167\"/><line x1=\"148.3\" y1=\"160\" x2=\"142.3\" y2=\"167\"/><line x1=\"171.7\" y1=\"160\" x2=\"165.7\" y2=\"167\"/><line x1=\"195\" y1=\"160\" x2=\"189\" y2=\"167\"/><line x1=\"218.3\" y1=\"160\" x2=\"212.3\" y2=\"167\"/><line x1=\"241.7\" y1=\"160\" x2=\"235.7\" y2=\"167\"/><line x1=\"265\" y1=\"160\" x2=\"259\" y2=\"167\"/><line x1=\"288.3\" y1=\"160\" x2=\"282.3\" y2=\"167\"/><polygon points=\"60,130 48.8,144 71.2,144\" fill=\"currentColor\" stroke=\"none\"/><polygon points=\"260,130 248.8,144 271.2,144\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"254\" cy=\"150\" r=\"4\"/><circle cx=\"266\" cy=\"150\" r=\"4\"/><line x1=\"160\" y1=\"2\" x2=\"160\" y2=\"29\"/><polygon points=\"160,38 155.9,29 164.1,29\" fill=\"currentColor\" stroke=\"none\"/><text x=\"170\" y=\"16\" font-size=\"13\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">load</text><text x=\"100\" y=\"78\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">A</text><text x=\"222\" y=\"78\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">B</text><text x=\"160\" y=\"122\" font-size=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">C</text></g></svg>"
+  },
+  {
+   "id": "MC-40",
+   "difficulty": "hard",
+   "topic": "heat",
+   "passage": null,
+   "stem": "A thermostat uses a strip made of a layer of brass bonded to a layer of steel. Brass expands more than steel when heated. When the strip is heated, it",
+   "choices": [
+    "bends toward the steel side, because the brass becomes the longer, outer side of the curve",
+    "bends toward the brass side, because brass expands more",
+    "stays straight but becomes longer",
+    "bends toward whichever side is heated first"
+   ],
+   "answer": 0,
+   "explanation": "Both layers are bonded, so they must stay the same length at the joint even though the brass wants to be longer. The strip curves with the longer brass on the outside and the shorter steel on the inside, so it bends toward the steel. The movement opens or closes an electrical contact.",
+   "svg": null
+  }
+ ]
+}

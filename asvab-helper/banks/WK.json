@@ -1,0 +1,646 @@
+{
+  "subtest": "WK",
+  "name": "Word Knowledge",
+  "items": [
+    {
+      "id": "WK-01",
+      "difficulty": "easy",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "BENEVOLENT most nearly means",
+      "choices": [
+        "kindhearted",
+        "cruel",
+        "violent",
+        "polite"
+      ],
+      "answer": 0,
+      "explanation": "Benevolent means kind and well-meaning, from Latin bene (well) and velle (to wish). A benevolent neighbor shovels your driveway without being asked. Cruel is the opposite, violent only sounds similar, and polite describes manners rather than a generous spirit.",
+      "svg": null
+    },
+    {
+      "id": "WK-02",
+      "difficulty": "easy",
+      "topic": "context-sentence",
+      "passage": null,
+      "stem": "Despite the storm, the crew remained STEADFAST at their posts.",
+      "choices": [
+        "fearful",
+        "asleep",
+        "unwavering",
+        "unsteady"
+      ],
+      "answer": 2,
+      "explanation": "Steadfast means firm, loyal, and unwavering. In the sentence, the crew did not leave or waver despite the storm. Unsteady is nearly the opposite, and fearful would not fit a crew that held its posts.",
+      "svg": null
+    },
+    {
+      "id": "WK-03",
+      "difficulty": "easy",
+      "topic": "root-greek",
+      "passage": null,
+      "stem": "CHRONIC most nearly means",
+      "choices": [
+        "severe",
+        "brief",
+        "long-lasting",
+        "contagious"
+      ],
+      "answer": 2,
+      "explanation": "Chronic means continuing for a long time or recurring often, from Greek chronos (time), the same root as chronological. A chronic cough lingers for months. Brief is the opposite; severe and contagious describe how bad or how catchable an illness is, not how long it lasts.",
+      "svg": null
+    },
+    {
+      "id": "WK-04",
+      "difficulty": "easy",
+      "topic": "second-meaning",
+      "passage": null,
+      "stem": "The forecaster issued a GRAVE warning about the approaching hurricane.",
+      "choices": [
+        "serious",
+        "cheerful",
+        "buried",
+        "quiet"
+      ],
+      "answer": 0,
+      "explanation": "As an adjective, grave means serious or threatening great harm, a different word from the noun meaning a burial place. A grave warning is one to take seriously. The sentence rules out buried, and cheerful is the opposite tone.",
+      "svg": null
+    },
+    {
+      "id": "WK-05",
+      "difficulty": "easy",
+      "topic": "common-academic",
+      "passage": null,
+      "stem": "ABUNDANT most nearly means",
+      "choices": [
+        "scarce",
+        "expensive",
+        "abandoned",
+        "plentiful"
+      ],
+      "answer": 3,
+      "explanation": "Abundant means present in large amounts, plentiful. After the spring rains, wildflowers were abundant on the hillside. Scarce is the antonym, and abandoned only looks similar.",
+      "svg": null
+    },
+    {
+      "id": "WK-06",
+      "difficulty": "easy",
+      "topic": "context-sentence",
+      "passage": null,
+      "stem": "The captain was RELUCTANT to leave port without an updated weather report.",
+      "choices": [
+        "eager",
+        "relieved",
+        "unwilling",
+        "unable"
+      ],
+      "answer": 2,
+      "explanation": "Reluctant means unwilling or hesitant. The captain could leave but did not want to without the report. Eager is the antonym. Unable is a trap: reluctance is about willingness, not ability.",
+      "svg": null
+    },
+    {
+      "id": "WK-07",
+      "difficulty": "easy",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "TERRESTRIAL most nearly means",
+      "choices": [
+        "relating to land",
+        "heavenly",
+        "frightening",
+        "very old"
+      ],
+      "answer": 0,
+      "explanation": "Terrestrial means relating to the earth or living on land, from Latin terra (earth), also seen in territory and terrain. Frogs are amphibious, but lizards are fully terrestrial. Heavenly (celestial) is the opposite, and frightening is a trap based on the sound of terrible.",
+      "svg": null
+    },
+    {
+      "id": "WK-08",
+      "difficulty": "easy",
+      "topic": "root-greek",
+      "passage": null,
+      "stem": "The boat's hull was perfectly SYMMETRICAL, so it sat level in the water.",
+      "choices": [
+        "lopsided",
+        "balanced on both sides",
+        "hollow",
+        "waterproof"
+      ],
+      "answer": 1,
+      "explanation": "Symmetrical means matching in size and shape on both sides of a center line, from Greek syn (together) and metron (measure). A butterfly's wings are symmetrical. Lopsided is the opposite, and hollow or waterproof would not explain why the hull sat level.",
+      "svg": null
+    },
+    {
+      "id": "WK-09",
+      "difficulty": "easy",
+      "topic": "root-greek",
+      "passage": null,
+      "stem": "HYDRATE most nearly means",
+      "choices": [
+        "to dry out",
+        "to supply with water",
+        "to heat up",
+        "to conceal"
+      ],
+      "answer": 1,
+      "explanation": "Hydrate means to supply with water or moisture, from Greek hydor (water), the root of hydrant and hydroelectric. Runners hydrate before a race. To dry out (dehydrate) is the opposite.",
+      "svg": null
+    },
+    {
+      "id": "WK-10",
+      "difficulty": "easy",
+      "topic": "context-sentence",
+      "passage": null,
+      "stem": "The directions were too VAGUE to help us find the trailhead.",
+      "choices": [
+        "specific",
+        "unclear",
+        "lengthy",
+        "gloomy"
+      ],
+      "answer": 1,
+      "explanation": "Vague means not clearly expressed or defined. Directions that say to turn somewhere past the big tree are vague. Specific is the antonym. Lengthy directions might still be clear, so that choice does not fit.",
+      "svg": null
+    },
+    {
+      "id": "WK-11",
+      "difficulty": "easy",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "MALFUNCTION most nearly means",
+      "choices": [
+        "a failure to work",
+        "a repair",
+        "an improvement",
+        "a design"
+      ],
+      "answer": 0,
+      "explanation": "A malfunction is a failure to work properly. The prefix mal- means bad, as in malnutrition and malpractice, so a malfunction is literally bad functioning. A malfunction in the radar forced the ship to rely on lookouts.",
+      "svg": null
+    },
+    {
+      "id": "WK-12",
+      "difficulty": "easy",
+      "topic": "root-greek",
+      "passage": null,
+      "stem": "The medic quickly administered an ANTIDOTE for the snakebite.",
+      "choices": [
+        "a bandage",
+        "a poison",
+        "a counteracting remedy",
+        "a sedative"
+      ],
+      "answer": 2,
+      "explanation": "An antidote is a remedy that counteracts a poison, from Greek anti (against) and didonai (to give): something given against the poison. A bandage or sedative would not neutralize venom, and poison is what the antidote fights.",
+      "svg": null
+    },
+    {
+      "id": "WK-13",
+      "difficulty": "medium",
+      "topic": "common-academic",
+      "passage": null,
+      "stem": "CANDID most nearly means",
+      "choices": [
+        "secretive",
+        "frank",
+        "sweet",
+        "hopeful"
+      ],
+      "answer": 1,
+      "explanation": "Candid means honest and direct, frank. It comes from Latin candidus (white, pure), the idea being that nothing is hidden. She gave a candid opinion of the plan instead of saying what the boss wanted to hear. Secretive is the opposite, and sweet is a trap based on the sound of candy.",
+      "svg": null
+    },
+    {
+      "id": "WK-14",
+      "difficulty": "medium",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "Even after the long shift, the nurse gave a LUCID account of what had happened.",
+      "choices": [
+        "lengthy",
+        "clear",
+        "confused",
+        "lucky"
+      ],
+      "answer": 1,
+      "explanation": "Lucid means clear and easy to understand, from Latin lux, lucis (light), the root of translucent. A lucid explanation sheds light on the subject. Confused is the antonym, and lucky is a sound-alike.",
+      "svg": null
+    },
+    {
+      "id": "WK-15",
+      "difficulty": "medium",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "CREDIBLE most nearly means",
+      "choices": [
+        "praiseworthy",
+        "doubtful",
+        "edible",
+        "believable"
+      ],
+      "answer": 3,
+      "explanation": "Credible means believable or trustworthy, from Latin credere (to believe), the root of credit and creed. A credible witness has no reason to lie. Praiseworthy is the meaning of the look-alike word creditable, doubtful is the opposite, and edible is only a rhyme.",
+      "svg": null
+    },
+    {
+      "id": "WK-16",
+      "difficulty": "medium",
+      "topic": "root-greek",
+      "passage": null,
+      "stem": "The PROTAGONIST of the novel is a young lighthouse keeper who uncovers a smuggling ring.",
+      "choices": [
+        "the villain",
+        "the narrator",
+        "the author",
+        "the main character"
+      ],
+      "answer": 3,
+      "explanation": "The protagonist is the main character of a story, from Greek protos (first) and agonistes (actor, contestant). The narrator tells the story and may or may not be the main character, so that choice is a trap. The villain who opposes the protagonist is the antagonist.",
+      "svg": null
+    },
+    {
+      "id": "WK-17",
+      "difficulty": "medium",
+      "topic": "root-greek",
+      "passage": null,
+      "stem": "AUTONOMY most nearly means",
+      "choices": [
+        "independence",
+        "authority",
+        "automation",
+        "dependence"
+      ],
+      "answer": 0,
+      "explanation": "Autonomy means self-government or independence, from Greek autos (self) and nomos (law): making your own laws. The island was granted autonomy over its local affairs. Dependence is the opposite, authority is power over others rather than freedom from them, and automation is a sound-alike.",
+      "svg": null
+    },
+    {
+      "id": "WK-18",
+      "difficulty": "medium",
+      "topic": "second-meaning",
+      "passage": null,
+      "stem": "The instructor's NOVEL approach to knot-tying had even the veterans paying attention.",
+      "choices": [
+        "new and original",
+        "bookish",
+        "traditional",
+        "harsh"
+      ],
+      "answer": 0,
+      "explanation": "As an adjective, novel means new and unlike anything seen before, a different sense from the noun meaning a book-length story, though both come from Latin novus (new). A novel idea gets attention precisely because it is fresh. Traditional is the opposite, and bookish is a trap based on the more familiar meaning.",
+      "svg": null
+    },
+    {
+      "id": "WK-19",
+      "difficulty": "medium",
+      "topic": "root-greek",
+      "passage": null,
+      "stem": "EMPATHY most nearly means",
+      "choices": [
+        "pity for the less fortunate",
+        "strong dislike of someone",
+        "confidence in oneself",
+        "understanding another's feelings"
+      ],
+      "answer": 3,
+      "explanation": "Empathy is the ability to understand and share another person's feelings, from Greek en (in) and pathos (feeling), the root of sympathy and pathetic. A good medic shows empathy by imagining what the patient is going through. Pity means feeling sorry for someone, which is closer to sympathy than to empathy.",
+      "svg": null
+    },
+    {
+      "id": "WK-20",
+      "difficulty": "medium",
+      "topic": "context-sentence",
+      "passage": null,
+      "stem": "Turning back before the fog thickened was the PRUDENT decision.",
+      "choices": [
+        "reckless",
+        "proud",
+        "wise and careful",
+        "unpopular"
+      ],
+      "answer": 2,
+      "explanation": "Prudent means showing good judgment and caution. Turning back before conditions got worse was a sensible, careful choice. Reckless is the antonym, and proud is a trap based on sound.",
+      "svg": null
+    },
+    {
+      "id": "WK-21",
+      "difficulty": "medium",
+      "topic": "common-academic",
+      "passage": null,
+      "stem": "AMBIGUOUS most nearly means",
+      "choices": [
+        "ambitious",
+        "clear",
+        "lengthy",
+        "unclear in meaning"
+      ],
+      "answer": 3,
+      "explanation": "Ambiguous means open to more than one interpretation, unclear. Latin ambi- means both, as in ambidextrous, so an ambiguous statement points both ways at once. The order to meet at the dock was ambiguous because the harbor has three docks. Clear is the opposite, and ambitious is a sound-alike.",
+      "svg": null
+    },
+    {
+      "id": "WK-22",
+      "difficulty": "medium",
+      "topic": "context-sentence",
+      "passage": null,
+      "stem": "Years of salt air and neglect left the old pier DILAPIDATED.",
+      "choices": [
+        "repainted",
+        "run-down",
+        "crowded",
+        "deserted"
+      ],
+      "answer": 1,
+      "explanation": "Dilapidated means falling apart from age or neglect. The clue is years of salt air and neglect, which wear a structure down. Deserted means empty of people, which is different: a pier can be deserted but in perfect repair.",
+      "svg": null
+    },
+    {
+      "id": "WK-23",
+      "difficulty": "medium",
+      "topic": "common-academic",
+      "passage": null,
+      "stem": "CONCISE most nearly means",
+      "choices": [
+        "precise",
+        "brief",
+        "wordy",
+        "confident"
+      ],
+      "answer": 1,
+      "explanation": "Concise means saying what needs to be said in few words, brief and to the point. Latin concidere means to cut up, so a concise report has been cut down to the essentials. Wordy is the antonym. Precise means exact, which is a different quality: a report can be precise and still be long.",
+      "svg": null
+    },
+    {
+      "id": "WK-24",
+      "difficulty": "medium",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "Ice and elevation helped ALLEVIATE the swelling in his ankle.",
+      "choices": [
+        "measure",
+        "worsen",
+        "relieve",
+        "describe"
+      ],
+      "answer": 2,
+      "explanation": "Alleviate means to make less severe, to relieve, from Latin levis (light), related to elevate and lever: to lighten a burden. Worsen (aggravate) is the opposite.",
+      "svg": null
+    },
+    {
+      "id": "WK-25",
+      "difficulty": "medium",
+      "topic": "root-greek",
+      "passage": null,
+      "stem": "PROLOGUE most nearly means",
+      "choices": [
+        "a conclusion",
+        "an introduction",
+        "an argument",
+        "a lengthy speech"
+      ],
+      "answer": 1,
+      "explanation": "A prologue is an introduction to a play, book, or event, from Greek pro (before) and logos (word, speech). The prologue explains what happened before the story begins. A conclusion or epilogue comes at the end, which is the opposite.",
+      "svg": null
+    },
+    {
+      "id": "WK-26",
+      "difficulty": "medium",
+      "topic": "second-meaning",
+      "passage": null,
+      "stem": "The exchange program was designed to FOSTER cooperation between the two coast guards.",
+      "choices": [
+        "adopt",
+        "encourage",
+        "end",
+        "investigate"
+      ],
+      "answer": 1,
+      "explanation": "Foster means to promote or encourage the growth of something. The program was meant to help cooperation grow. Adopt is a trap based on the more familiar sense of a foster family, and end is the opposite.",
+      "svg": null
+    },
+    {
+      "id": "WK-27",
+      "difficulty": "medium",
+      "topic": "common-academic",
+      "passage": null,
+      "stem": "OBSOLETE most nearly means",
+      "choices": [
+        "obvious",
+        "expensive",
+        "portable",
+        "outdated"
+      ],
+      "answer": 3,
+      "explanation": "Obsolete means no longer in use or no longer useful because something newer has replaced it. Paper charts became nearly obsolete once GPS was installed on every bridge. Obvious is a sound-alike, and modern or current would be the opposite.",
+      "svg": null
+    },
+    {
+      "id": "WK-28",
+      "difficulty": "medium",
+      "topic": "second-meaning",
+      "passage": null,
+      "stem": "The inspector declared the old bridge structurally SOUND.",
+      "choices": [
+        "noisy",
+        "ancient",
+        "in good condition",
+        "weak"
+      ],
+      "answer": 2,
+      "explanation": "As an adjective, sound means solid, free from defects, in good condition, a separate meaning from the noun for noise. A sound argument has no holes, and a sound bridge has no cracks. Weak is the opposite, and noisy is the trap from the familiar meaning.",
+      "svg": null
+    },
+    {
+      "id": "WK-29",
+      "difficulty": "hard",
+      "topic": "root-greek",
+      "passage": null,
+      "stem": "PERIPHERAL most nearly means",
+      "choices": [
+        "central",
+        "circular",
+        "personal",
+        "on the edge"
+      ],
+      "answer": 3,
+      "explanation": "Peripheral means on the outer edge or of secondary importance, from Greek peri (around), also seen in perimeter, and pherein (to carry). Peripheral vision is what you see at the edges without looking directly. Central is the opposite. Circular is a trap: a perimeter goes around something, but peripheral describes position at the edge, not shape.",
+      "svg": null
+    },
+    {
+      "id": "WK-30",
+      "difficulty": "hard",
+      "topic": "second-meaning",
+      "passage": null,
+      "stem": "The council voted to TABLE the harbor proposal until the budget is finished.",
+      "choices": [
+        "to postpone",
+        "to approve",
+        "to display",
+        "to reject"
+      ],
+      "answer": 0,
+      "explanation": "In American usage, to table a proposal means to set it aside and postpone discussion of it, as if laying it on the table for later. The phrase until the budget is finished shows the proposal was delayed, not approved or rejected. Display is a trap from the furniture meaning.",
+      "svg": null
+    },
+    {
+      "id": "WK-31",
+      "difficulty": "hard",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "TENACIOUS most nearly means",
+      "choices": [
+        "anxious",
+        "delicate",
+        "yielding",
+        "persistent"
+      ],
+      "answer": 3,
+      "explanation": "Tenacious means holding on firmly, persistent and determined, from Latin tenere (to hold), the root of tenant and retain. A tenacious defender refuses to give up on the play. Yielding is the opposite, and anxious is a trap based on the sound of tense.",
+      "svg": null
+    },
+    {
+      "id": "WK-32",
+      "difficulty": "hard",
+      "topic": "second-meaning",
+      "passage": null,
+      "stem": "The coach asked the players to TEMPER their celebration until the final whistle.",
+      "choices": [
+        "moderate",
+        "express",
+        "rehearse",
+        "lose"
+      ],
+      "answer": 0,
+      "explanation": "As a verb, temper means to moderate or soften something, the way a blacksmith tempers steel to make it less brittle. The players were asked to hold back their celebration. Lose is a trap from the phrase lose your temper, and express is nearly the opposite.",
+      "svg": null
+    },
+    {
+      "id": "WK-33",
+      "difficulty": "hard",
+      "topic": "common-academic",
+      "passage": null,
+      "stem": "METICULOUS most nearly means",
+      "choices": [
+        "careless",
+        "timid",
+        "lengthy",
+        "extremely careful"
+      ],
+      "answer": 3,
+      "explanation": "Meticulous means extremely careful and precise about details. A meticulous mechanic torques every bolt to spec and double-checks the list. Careless is the antonym. Lengthy is a trap because meticulous work often takes time, but the word describes attention to detail, not duration.",
+      "svg": null
+    },
+    {
+      "id": "WK-34",
+      "difficulty": "hard",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "Because she is so GREGARIOUS, Elena knew everyone on the base within a week.",
+      "choices": [
+        "shy",
+        "generous",
+        "sociable",
+        "famous"
+      ],
+      "answer": 2,
+      "explanation": "Gregarious means fond of company, sociable, from Latin grex, gregis (flock), the root of congregate: one who likes to be in the flock. The clue is that she quickly knew everyone. Shy is the antonym, and generous is a trap based on sound.",
+      "svg": null
+    },
+    {
+      "id": "WK-35",
+      "difficulty": "hard",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "CIRCUMVENT most nearly means",
+      "choices": [
+        "to circulate",
+        "to confront directly",
+        "to get around",
+        "to complete"
+      ],
+      "answer": 2,
+      "explanation": "Circumvent means to get around an obstacle or rule, often cleverly, from Latin circum (around) and venire (to come). The driver circumvented the roadblock by taking a back road. To confront directly is the opposite approach, and circulate shares only the prefix.",
+      "svg": null
+    },
+    {
+      "id": "WK-36",
+      "difficulty": "hard",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "The guard gave the ID card only a CURSORY glance before waving the truck through.",
+      "choices": [
+        "careful",
+        "angry",
+        "hurried",
+        "final"
+      ],
+      "answer": 2,
+      "explanation": "Cursory means quick and not thorough, from Latin currere (to run), the root of current and courier: running past something. A cursory glance misses details. Careful is the opposite, and angry is a trap based on the sound of cursing.",
+      "svg": null
+    },
+    {
+      "id": "WK-37",
+      "difficulty": "hard",
+      "topic": "common-academic",
+      "passage": null,
+      "stem": "PRAGMATIC most nearly means",
+      "choices": [
+        "dramatic",
+        "practical",
+        "stubborn",
+        "idealistic"
+      ],
+      "answer": 1,
+      "explanation": "Pragmatic means practical, focused on what works rather than on theory, from Greek pragma (deed, action). A pragmatic leader picks the plan that can be done today with the people available. Idealistic is the opposite, and dramatic is a sound-alike.",
+      "svg": null
+    },
+    {
+      "id": "WK-38",
+      "difficulty": "hard",
+      "topic": "second-meaning",
+      "passage": null,
+      "stem": "By the third hour of the march, the recruits' energy began to FLAG.",
+      "choices": [
+        "weaken",
+        "increase",
+        "signal",
+        "stabilize"
+      ],
+      "answer": 0,
+      "explanation": "As a verb, flag means to weaken or lose strength, a different sense from the noun for a banner. Energy that flags is running low. Increase is the opposite, and signal is a trap from the familiar meaning of waving a flag.",
+      "svg": null
+    },
+    {
+      "id": "WK-39",
+      "difficulty": "hard",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "SUPERFLUOUS most nearly means",
+      "choices": [
+        "unnecessary",
+        "superior",
+        "liquid",
+        "essential"
+      ],
+      "answer": 0,
+      "explanation": "Superfluous means more than is needed, extra, from Latin super (over) and fluere (to flow): overflowing. The third backup battery was superfluous because the first two never ran down. Essential is the opposite, and superior and liquid are traps based on the word parts.",
+      "svg": null
+    },
+    {
+      "id": "WK-40",
+      "difficulty": "hard",
+      "topic": "root-latin",
+      "passage": null,
+      "stem": "The court's ruling set a PRECEDENT that later judges were expected to follow.",
+      "choices": [
+        "a penalty",
+        "a president",
+        "an exception",
+        "a guiding earlier example"
+      ],
+      "answer": 3,
+      "explanation": "A precedent is an earlier decision or action that serves as a model for later ones, from Latin prae (before) and cedere (to go): something that went before. The clue is that later judges were expected to follow it. Exception is nearly the opposite, and president is a sound-alike.",
+      "svg": null
+    }
+  ]
+}

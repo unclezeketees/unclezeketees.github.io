@@ -1,0 +1,646 @@
+{
+  "subtest": "SI",
+  "name": "Shop Information",
+  "items": [
+    {
+      "id": "SI-01",
+      "difficulty": "easy",
+      "topic": "measuring and layout",
+      "passage": null,
+      "stem": "A carpenter wants to check whether the top of a workbench is exactly horizontal. Which tool should be used?",
+      "choices": [
+        "A spirit level",
+        "A plumb bob",
+        "A chalk line",
+        "A framing square"
+      ],
+      "answer": 0,
+      "explanation": "A spirit level has a bubble vial that centers when a surface is horizontal (level) or, with the end vial, vertical (plumb). A plumb bob gives only a true vertical line, a chalk line snaps a long straight mark, and a framing square checks right angles.",
+      "svg": null
+    },
+    {
+      "id": "SI-02",
+      "difficulty": "medium",
+      "topic": "measuring and layout",
+      "passage": null,
+      "stem": "A machinist must measure the diameter of a steel pin to the nearest one thousandth of an inch (0.001 inch). Which tool is designed for that precision?",
+      "choices": [
+        "A steel rule",
+        "A tape measure",
+        "An outside micrometer",
+        "A combination square"
+      ],
+      "answer": 2,
+      "explanation": "A standard outside micrometer reads directly to 0.001 inch (some read to 0.0001 inch with a vernier scale). Steel rules and tape measures are graduated only to 1/64 or 1/16 inch, and a combination square is a layout tool, not a precision measuring instrument.",
+      "svg": null
+    },
+    {
+      "id": "SI-03",
+      "difficulty": "hard",
+      "topic": "measuring and layout",
+      "passage": null,
+      "stem": "A mechanic needs one tool that can measure the outside diameter of a shaft, the inside diameter of a bushing, and the depth of a blind hole. Which tool does all three?",
+      "choices": [
+        "An outside micrometer",
+        "A feeler gauge",
+        "A depth rule",
+        "A dial or vernier caliper"
+      ],
+      "answer": 3,
+      "explanation": "A dial or vernier caliper has outside jaws, inside jaws, and a depth rod, so it takes all three measurements, usually to 0.001 inch. An outside micrometer measures only outside dimensions, a feeler gauge measures small gaps, and a depth rule measures only depth.",
+      "svg": null
+    },
+    {
+      "id": "SI-04",
+      "difficulty": "easy",
+      "topic": "cutting tools",
+      "passage": null,
+      "stem": "Which handsaw has small knife-like teeth and is designed to cut a board across the grain?",
+      "choices": [
+        "A crosscut saw",
+        "A ripsaw",
+        "A coping saw",
+        "A keyhole saw"
+      ],
+      "answer": 0,
+      "explanation": "A crosscut saw has fine, beveled teeth that slice wood fibers when cutting across the grain. A ripsaw has larger chisel-shaped teeth for cutting with the grain, a coping saw cuts curves in thin stock, and a keyhole saw cuts small openings from a starter hole.",
+      "svg": null
+    },
+    {
+      "id": "SI-05",
+      "difficulty": "medium",
+      "topic": "cutting tools",
+      "passage": null,
+      "stem": "Hacksaw blades are sold with 14, 18, 24, and 32 teeth per inch. Which blade should be used to cut thin sheet metal about 1/16 inch thick?",
+      "choices": [
+        "14 teeth per inch",
+        "18 teeth per inch",
+        "24 teeth per inch",
+        "32 teeth per inch"
+      ],
+      "answer": 3,
+      "explanation": "The rule is to keep at least two or three teeth in contact with the metal at all times, so thinner stock needs more teeth per inch. A 32 tooth blade is for stock under 1/8 inch; coarser blades such as 14 or 18 would catch and strip teeth on thin sheet.",
+      "svg": null
+    },
+    {
+      "id": "SI-06",
+      "difficulty": "hard",
+      "topic": "cutting tools",
+      "passage": null,
+      "stem": "Aviation snips are color coded by handle. A sheet metal worker needs to cut a curve that turns to the left. Which snips should be picked up?",
+      "choices": [
+        "Yellow handled snips",
+        "Green handled snips",
+        "Red handled snips",
+        "Blue handled snips"
+      ],
+      "answer": 2,
+      "explanation": "By trade convention, red handled aviation snips cut straight and to the left, green handled snips cut straight and to the right, and yellow handled snips are for straight cuts. Blue is not part of the standard three-color code.",
+      "svg": null
+    },
+    {
+      "id": "SI-07",
+      "difficulty": "easy",
+      "topic": "drilling and boring",
+      "passage": null,
+      "stem": "A woodworker wants a flat head screw to sit flush with the surface of a board. Which tool cuts the cone-shaped recess for the screw head?",
+      "choices": [
+        "A countersink",
+        "A reamer",
+        "A tap",
+        "A spade bit"
+      ],
+      "answer": 0,
+      "explanation": "A countersink cuts a conical recess that matches the angled underside of a flat head screw so the head sits flush or slightly below the surface. A reamer sizes a hole, a tap cuts internal threads, and a spade bit bores large rough holes in wood.",
+      "svg": null
+    },
+    {
+      "id": "SI-08",
+      "difficulty": "medium",
+      "topic": "drilling and boring",
+      "passage": null,
+      "stem": "A repair requires cutting new threads on the outside of a plain steel rod so a nut can be screwed onto it. Which tool is used?",
+      "choices": [
+        "A tap",
+        "A reamer",
+        "A countersink",
+        "A die"
+      ],
+      "answer": 3,
+      "explanation": "A die cuts external threads on a rod or bolt, while a tap cuts internal threads inside a drilled hole. Remember: tap goes in the hole, die goes over the rod. A reamer and a countersink do not cut threads at all.",
+      "svg": null
+    },
+    {
+      "id": "SI-09",
+      "difficulty": "hard",
+      "topic": "drilling and boring",
+      "passage": null,
+      "stem": "A machinist drills a hole slightly undersize, then finishes it to an exact diameter with a smooth wall so a pin fits precisely. Which tool is used for the finishing step?",
+      "choices": [
+        "A larger twist drill",
+        "A countersink",
+        "A reamer",
+        "A center punch"
+      ],
+      "answer": 2,
+      "explanation": "A reamer removes a very small amount of metal to bring a drilled hole to an accurate size with a smooth finish; drills alone leave holes that are slightly oversize and rough. A countersink only chamfers the hole mouth, and a center punch marks a starting point before drilling.",
+      "svg": null
+    },
+    {
+      "id": "SI-10",
+      "difficulty": "easy",
+      "topic": "fastening",
+      "passage": null,
+      "stem": "A screw head has a cross-shaped recess. Which screwdriver tip fits it?",
+      "choices": [
+        "A Phillips tip",
+        "A slotted tip",
+        "A Torx tip",
+        "A hex tip"
+      ],
+      "answer": 0,
+      "explanation": "A Phillips screw has a cross-shaped (plus-sign) recess, and the matching Phillips driver has a cross-shaped tip. A slotted driver fits a single straight slot, a Torx fits a six-point star, and a hex tip fits a six-sided socket.",
+      "svg": null
+    },
+    {
+      "id": "SI-11",
+      "difficulty": "easy",
+      "topic": "fastening",
+      "passage": null,
+      "stem": "Which adhesive is supplied as two separate parts, a resin and a hardener, that are mixed just before use?",
+      "choices": [
+        "Wood glue",
+        "Contact cement",
+        "Epoxy",
+        "Hot melt glue"
+      ],
+      "answer": 2,
+      "explanation": "Epoxy cures by a chemical reaction that starts when the resin and hardener are mixed, which is why it comes in two containers. Wood glue and hot melt glue are single-part products, and contact cement is one liquid applied to both surfaces and allowed to dry before joining.",
+      "svg": null
+    },
+    {
+      "id": "SI-12",
+      "difficulty": "medium",
+      "topic": "fastening",
+      "passage": null,
+      "stem": "A bolt head is marked with six raised radial lines. What does this marking indicate?",
+      "choices": [
+        "SAE grade 2, a low-strength bolt",
+        "SAE grade 5, a medium-strength bolt",
+        "SAE grade 8, a high-strength bolt",
+        "A metric class 8.8 bolt"
+      ],
+      "answer": 2,
+      "explanation": "SAE bolt grades are marked with radial lines: no lines means grade 2, three lines means grade 5, and six lines means grade 8, the strongest common grade. Metric bolts are marked with numbers such as 8.8 or 10.9, not lines.",
+      "svg": null
+    },
+    {
+      "id": "SI-13",
+      "difficulty": "medium",
+      "topic": "fastening",
+      "passage": null,
+      "stem": "A technician must fasten a sheet metal panel to a closed box where only the outside of the joint can be reached. Which fastener is designed for this situation?",
+      "choices": [
+        "A solid rivet",
+        "A blind (pop) rivet",
+        "A carriage bolt",
+        "A machine screw and nut"
+      ],
+      "answer": 1,
+      "explanation": "A blind or pop rivet is set entirely from one side: a rivet gun pulls the mandrel, which expands the rivet body behind the work and then snaps off. Solid rivets, carriage bolts, and screw-and-nut fasteners all need access to both sides of the joint.",
+      "svg": null
+    },
+    {
+      "id": "SI-14",
+      "difficulty": "hard",
+      "topic": "fastening",
+      "passage": null,
+      "stem": "Common nails are sized by the penny system, written with the letter d. How long is a 16d common nail?",
+      "choices": [
+        "2 inches",
+        "2 1/2 inches",
+        "3 inches",
+        "3 1/2 inches"
+      ],
+      "answer": 3,
+      "explanation": "In the penny system, a 16d common nail is 3 1/2 inches long, the standard nail for framing 2x4 lumber. For comparison, 6d is 2 inches, 8d is 2 1/2 inches, and 10d is 3 inches.",
+      "svg": null
+    },
+    {
+      "id": "SI-15",
+      "difficulty": "easy",
+      "topic": "wrenches and sockets",
+      "passage": null,
+      "stem": "A set screw has a six-sided recess in its head instead of a slot. Which tool is used to turn it?",
+      "choices": [
+        "An open-end wrench",
+        "An Allen (hex key) wrench",
+        "A pipe wrench",
+        "A Phillips screwdriver"
+      ],
+      "answer": 1,
+      "explanation": "An Allen wrench, also called a hex key, is an L-shaped six-sided bar that fits inside a hex socket in the screw head. Open-end and pipe wrenches grip the outside of a fastener, and a Phillips screwdriver fits a cross-shaped recess.",
+      "svg": null
+    },
+    {
+      "id": "SI-16",
+      "difficulty": "medium",
+      "topic": "wrenches and sockets",
+      "passage": null,
+      "stem": "A nut is rusted tight and must not have its corners rounded off. Which wrench is least likely to slip while turning it?",
+      "choices": [
+        "An open-end wrench",
+        "An adjustable wrench",
+        "A box-end wrench",
+        "A pipe wrench"
+      ],
+      "answer": 2,
+      "explanation": "A box-end wrench surrounds the nut and grips all six corners, so it is the least likely to slip under heavy force. Open-end and adjustable wrenches contact only two flats and can spring open and slip, and a pipe wrench has serrated jaws that would chew up the flats.",
+      "svg": null
+    },
+    {
+      "id": "SI-17",
+      "difficulty": "hard",
+      "topic": "wrenches and sockets",
+      "passage": null,
+      "stem": "To avoid springing the jaws or rounding the nut, how should an adjustable wrench be placed on a nut before pulling the handle?",
+      "choices": [
+        "So the turning force is carried by the fixed jaw",
+        "So the turning force is carried by the movable jaw",
+        "With the jaws left slightly loose so they do not bind",
+        "With the handle pointed toward the operator at all times"
+      ],
+      "answer": 0,
+      "explanation": "The movable jaw is the weak part of an adjustable wrench, so the wrench is set so the pull drives the nut against the fixed jaw, with the movable jaw on the side the handle moves toward. The jaws must be snugged tight to the flats; loose jaws are what cause slipping and rounding.",
+      "svg": null
+    },
+    {
+      "id": "SI-18",
+      "difficulty": "hard",
+      "topic": "wrenches and sockets",
+      "passage": null,
+      "stem": "A service manual calls for a bolt to be tightened to 30 foot-pounds, but the only torque wrench available is marked in inch-pounds. What setting should be used?",
+      "choices": [
+        "30 inch-pounds",
+        "180 inch-pounds",
+        "360 inch-pounds",
+        "720 inch-pounds"
+      ],
+      "answer": 2,
+      "explanation": "There are 12 inches in a foot, so 30 foot-pounds x 12 = 360 inch-pounds. Setting 30 inch-pounds would leave the bolt far too loose, and 720 would double the specified torque and risk stripping the threads.",
+      "svg": null
+    },
+    {
+      "id": "SI-19",
+      "difficulty": "easy",
+      "topic": "hammers and striking tools",
+      "passage": null,
+      "stem": "Which hammer has one flat face and one rounded face and is used for shaping metal and setting rivets?",
+      "choices": [
+        "A claw hammer",
+        "A rubber mallet",
+        "A sledge hammer",
+        "A ball-peen hammer"
+      ],
+      "answer": 3,
+      "explanation": "A ball-peen hammer is the standard metalworking hammer; the flat face drives punches and chisels and the rounded peen spreads rivet heads and shapes metal. A claw hammer drives and pulls nails, a rubber mallet strikes without marring, and a sledge delivers heavy blows for demolition or driving stakes.",
+      "svg": null
+    },
+    {
+      "id": "SI-20",
+      "difficulty": "easy",
+      "topic": "woodworking",
+      "passage": null,
+      "stem": "Which wood joint is made of interlocking wedge-shaped pins and tails and is commonly found at the corners of a well-made drawer?",
+      "choices": [
+        "A butt joint",
+        "A dovetail joint",
+        "A lap joint",
+        "A miter joint"
+      ],
+      "answer": 1,
+      "explanation": "A dovetail joint locks together with flared pins and tails that resist being pulled apart, which is why it is used for drawer fronts. A butt joint simply places one board end against another, a lap joint overlaps the pieces, and a miter joint meets at matching angles.",
+      "svg": null
+    },
+    {
+      "id": "SI-21",
+      "difficulty": "medium",
+      "topic": "woodworking",
+      "passage": null,
+      "stem": "The corner of a picture frame is made by cutting the end of each piece at 45 degrees so the two pieces form a 90 degree corner. What is this joint called?",
+      "choices": [
+        "A rabbet joint",
+        "A dado joint",
+        "A miter joint",
+        "A mortise and tenon joint"
+      ],
+      "answer": 2,
+      "explanation": "A miter joint hides the end grain by cutting both pieces at half the corner angle, 45 degrees each for a square corner. A rabbet is a step cut along an edge, a dado is a channel cut across a board, and a mortise and tenon fits a tongue into a cavity.",
+      "svg": null
+    },
+    {
+      "id": "SI-22",
+      "difficulty": "medium",
+      "topic": "woodworking",
+      "passage": null,
+      "stem": "In a mortise and tenon joint used to attach a chair rail to a leg, which part is the mortise?",
+      "choices": [
+        "The rectangular tongue cut on the end of the rail",
+        "The wooden peg that pins the joint",
+        "The glue line between the two pieces",
+        "The rectangular cavity cut into the leg"
+      ],
+      "answer": 3,
+      "explanation": "The mortise is the hole or cavity, and the tenon is the projecting tongue that fits into it. A good way to remember it is that the tenon is the part that extends. A peg driven through the joint is called a drawbore pin, and glue is not a named part of the joint.",
+      "svg": null
+    },
+    {
+      "id": "SI-23",
+      "difficulty": "easy",
+      "topic": "metalworking",
+      "passage": null,
+      "stem": "Which metal joining process melts the edges of the base metals themselves so they fuse together?",
+      "choices": [
+        "Soldering",
+        "Brazing",
+        "Welding",
+        "Riveting"
+      ],
+      "answer": 2,
+      "explanation": "Welding melts the base metals (often with added filler) so they flow together and solidify as one piece. Soldering and brazing melt only a filler metal that bonds to unmelted base metal, and riveting is a mechanical fastening method that melts nothing.",
+      "svg": null
+    },
+    {
+      "id": "SI-24",
+      "difficulty": "medium",
+      "topic": "metalworking",
+      "passage": null,
+      "stem": "Soldering and brazing both join metals with a melted filler without melting the base metal. What is the standard distinction between them?",
+      "choices": [
+        "Brazing uses a filler that melts above about 840 degrees F; soldering uses a filler that melts below that",
+        "Soldering uses a torch; brazing uses a soldering iron",
+        "Brazing is used only on steel; soldering is used only on copper",
+        "Soldering produces a stronger joint than brazing"
+      ],
+      "answer": 0,
+      "explanation": "The American Welding Society sets the dividing line at 840 degrees F (450 degrees C): filler that melts above it is brazing, below it is soldering. Brazed joints are generally much stronger than soldered joints, and either process can use a torch depending on the job.",
+      "svg": null
+    },
+    {
+      "id": "SI-25",
+      "difficulty": "medium",
+      "topic": "metalworking",
+      "passage": null,
+      "stem": "Two steel plates are welded where one stands at a right angle on the other, forming a T. The weld bead that fills the inside corner has a roughly triangular cross section. What type of weld is this?",
+      "choices": [
+        "A fillet weld",
+        "A butt weld",
+        "A plug weld",
+        "A spot weld"
+      ],
+      "answer": 0,
+      "explanation": "A fillet weld is a triangular bead laid in the corner of a T joint, lap joint, or corner joint. A butt weld joins two pieces end to end in the same plane, a plug weld fills a hole in one piece to attach it to another, and a spot weld is a small resistance weld between overlapping sheets.",
+      "svg": null
+    },
+    {
+      "id": "SI-26",
+      "difficulty": "hard",
+      "topic": "metalworking",
+      "passage": null,
+      "stem": "When filing a piece of steel, an experienced worker lifts the file clear of the work on every return stroke instead of dragging it back. Why?",
+      "choices": [
+        "The file teeth cut only on the forward stroke, and dragging them backward dulls them",
+        "Lifting the file keeps the handle from loosening",
+        "The return stroke would cut too deeply and ruin the surface",
+        "Lifting the file lets the filings fall off the work"
+      ],
+      "answer": 0,
+      "explanation": "File teeth are angled to cut on the push stroke only; dragging the file back under pressure rubs the teeth and wears them down. Clogged filings are removed with a file card, not by lifting the file, and the return stroke does not cut at all.",
+      "svg": null
+    },
+    {
+      "id": "SI-27",
+      "difficulty": "easy",
+      "topic": "finishing",
+      "passage": null,
+      "stem": "Which of these sandpaper grits is the finest?",
+      "choices": [
+        "60 grit",
+        "100 grit",
+        "150 grit",
+        "220 grit"
+      ],
+      "answer": 3,
+      "explanation": "The grit number tells how many abrasive particles fit through a one inch screen, so a higher number means smaller particles and a finer paper. 60 grit is coarse for fast removal, 100 to 150 is medium, and 220 is a fine finishing grit used before applying a finish.",
+      "svg": null
+    },
+    {
+      "id": "SI-28",
+      "difficulty": "medium",
+      "topic": "finishing",
+      "passage": null,
+      "stem": "Before painting bare wood or metal, a painter first applies a coat of primer. What is the main purpose of primer?",
+      "choices": [
+        "To add the final color and gloss",
+        "To seal the surface and help the topcoat bond",
+        "To fill deep gouges and dents",
+        "To remove old paint and rust"
+      ],
+      "answer": 1,
+      "explanation": "Primer seals porous or bare surfaces, blocks stains and rust, and gives the paint a uniform surface to grip. The topcoat supplies the color and gloss, filler or putty fills gouges, and old paint and rust are removed by scraping, sanding, or chemical stripping before priming.",
+      "svg": null
+    },
+    {
+      "id": "SI-29",
+      "difficulty": "hard",
+      "topic": "finishing",
+      "passage": null,
+      "stem": "A woodworker sands a tabletop with 80 grit paper and then goes straight to 320 grit before applying a clear stain and varnish. What problem is most likely to show up?",
+      "choices": [
+        "Deep scratches left by the 80 grit paper will remain visible under the finish",
+        "The 320 grit paper will remove too much wood",
+        "The stain will not be able to penetrate the wood at all",
+        "The varnish will refuse to dry on the sanded surface"
+      ],
+      "answer": 0,
+      "explanation": "Each finer grit is meant to remove the scratches left by the one before it; jumping from 80 to 320 skips so many steps that the fine paper only polishes the bottoms of the deep 80 grit scratches, and stain makes them stand out. The correct sequence steps through grits such as 80, 120, 150, 180, then 220.",
+      "svg": null
+    },
+    {
+      "id": "SI-30",
+      "difficulty": "easy",
+      "topic": "materials",
+      "passage": null,
+      "stem": "Which of these woods is classified as a hardwood?",
+      "choices": [
+        "Pine",
+        "Fir",
+        "Cedar",
+        "Oak"
+      ],
+      "answer": 3,
+      "explanation": "Hardwoods come from broadleaf deciduous trees such as oak, maple, and walnut; softwoods come from cone-bearing evergreens such as pine, fir, spruce, and cedar. The terms describe the kind of tree, not always how hard the wood actually is.",
+      "svg": null
+    },
+    {
+      "id": "SI-31",
+      "difficulty": "medium",
+      "topic": "materials",
+      "passage": null,
+      "stem": "Plywood is made by gluing together thin layers of wood called plies. How is the grain of each ply arranged compared with the ply next to it?",
+      "choices": [
+        "All plies run in the same direction for maximum stiffness",
+        "The plies are arranged randomly",
+        "Only the two face plies have their grain aligned",
+        "Each ply runs at a right angle to the plies next to it"
+      ],
+      "answer": 3,
+      "explanation": "Alternating the grain direction 90 degrees between layers gives plywood nearly equal strength in both directions and keeps it from splitting, warping, or shrinking the way a solid board does. Plywood is usually made with an odd number of plies so the two faces run the same way.",
+      "svg": null
+    },
+    {
+      "id": "SI-32",
+      "difficulty": "medium",
+      "topic": "materials",
+      "passage": null,
+      "stem": "Compared with a steel part of the same size, an aluminum part is generally:",
+      "choices": [
+        "Heavier and more likely to rust",
+        "Lighter and more resistant to rust",
+        "Heavier but more resistant to rust",
+        "Lighter but more likely to rust"
+      ],
+      "answer": 1,
+      "explanation": "Aluminum weighs about one third as much as steel and forms a thin oxide skin that protects it from corrosion, so it does not rust the way iron-based steel does. The trade-off is that aluminum is softer and weaker than steel for the same thickness.",
+      "svg": null
+    },
+    {
+      "id": "SI-33",
+      "difficulty": "hard",
+      "topic": "materials",
+      "passage": null,
+      "stem": "A shop needs to make a bracket that will be bent cold in a vise and then welded. Which steel is the best choice for easy bending and welding?",
+      "choices": [
+        "High-carbon steel",
+        "Tool steel",
+        "Low-carbon (mild) steel",
+        "Cast iron"
+      ],
+      "answer": 2,
+      "explanation": "Steel is iron with carbon added, and more carbon makes it harder but also more brittle and harder to weld. Low-carbon or mild steel, with roughly 0.3 percent carbon or less, bends and welds easily; high-carbon and tool steels may crack, and cast iron is brittle and difficult to weld.",
+      "svg": null
+    },
+    {
+      "id": "SI-34",
+      "difficulty": "easy",
+      "topic": "shop safety",
+      "passage": null,
+      "stem": "What is the most important item of personal protective equipment to wear when using a bench grinder?",
+      "choices": [
+        "Leather gloves",
+        "Eye and face protection",
+        "A shop apron",
+        "Steel-toed boots"
+      ],
+      "answer": 1,
+      "explanation": "A grinding wheel throws sparks and hot metal particles toward the face at high speed, so safety glasses or goggles, often with a face shield, are essential. Gloves are actually discouraged near rotating wheels because they can be caught and pull the hand in.",
+      "svg": null
+    },
+    {
+      "id": "SI-35",
+      "difficulty": "medium",
+      "topic": "shop safety",
+      "passage": null,
+      "stem": "What is the purpose of the third, round prong on a power tool's plug?",
+      "choices": [
+        "It carries the current that runs the motor",
+        "It keeps the plug from being inserted upside down",
+        "It lets the tool run on either 120 or 240 volts",
+        "It connects the metal tool housing to ground so a fault trips the breaker instead of shocking the user"
+      ],
+      "answer": 3,
+      "explanation": "The round grounding prong connects the metal case of the tool to the building's ground. If a wire inside shorts to the case, the fault current flows to ground and trips the breaker or fuse instead of passing through the person holding the tool. Never cut off the ground prong.",
+      "svg": null
+    },
+    {
+      "id": "SI-36",
+      "difficulty": "hard",
+      "topic": "shop safety",
+      "passage": null,
+      "stem": "Before using a bench grinder, the tool rest should be checked and adjusted. What is the maximum gap allowed between the tool rest and the face of the grinding wheel?",
+      "choices": [
+        "1/8 inch",
+        "1/4 inch",
+        "1/2 inch",
+        "1 inch"
+      ],
+      "answer": 0,
+      "explanation": "OSHA and shop safety texts require the work rest to be kept within 1/8 inch of the wheel so that the workpiece cannot be pulled down into the gap and jam or shatter the wheel. The separate tongue guard at the top of the wheel is set within 1/4 inch. Adjust the rest only with the wheel stopped.",
+      "svg": null
+    },
+    {
+      "id": "SI-37",
+      "difficulty": "medium",
+      "topic": "shop math",
+      "passage": null,
+      "stem": "A tape measure is graduated in sixteenths of an inch. The end of a board lines up with the eleventh division mark past the 2 inch line. How long is the board?",
+      "choices": [
+        "2 11/32 inches",
+        "2 5/8 inches",
+        "2 11/16 inches",
+        "2 11/12 inches"
+      ],
+      "answer": 2,
+      "explanation": "Each small division is 1/16 inch, so eleven marks past 2 inches is 2 and 11/16 inches. Counting the marks as thirty-seconds gives 2 11/32, which is wrong because this tape has sixteen divisions per inch. Reading 2 5/8 would be the tenth mark (10/16 = 5/8).",
+      "svg": null
+    },
+    {
+      "id": "SI-38",
+      "difficulty": "medium",
+      "topic": "shop math",
+      "passage": null,
+      "stem": "A board foot is a piece of lumber 1 inch thick, 12 inches wide, and 1 foot long. How many board feet are in a 2 x 6 that is 10 feet long?",
+      "choices": [
+        "5 board feet",
+        "10 board feet",
+        "12 board feet",
+        "120 board feet"
+      ],
+      "answer": 1,
+      "explanation": "Board feet = thickness in inches x width in inches x length in feet / 12. Here 2 x 6 x 10 / 12 = 120 / 12 = 10 board feet. Forgetting to divide by 12 gives 120, and halving instead of dividing by 12 gives 5.",
+      "svg": null
+    },
+    {
+      "id": "SI-39",
+      "difficulty": "hard",
+      "topic": "shop math",
+      "passage": null,
+      "stem": "A 3/8-16 bolt has 16 threads per inch. If a nut on this bolt is turned exactly 8 full turns, how far does it travel along the bolt?",
+      "choices": [
+        "1/4 inch",
+        "1/2 inch",
+        "3/4 inch",
+        "2 inches"
+      ],
+      "answer": 1,
+      "explanation": "Thread pitch is the distance between threads, 1/16 inch for 16 threads per inch, and each full turn advances the nut one pitch. So 8 turns x 1/16 inch = 8/16 = 1/2 inch. Multiplying 8 by the 3/8 diameter or by 1/4 gives the wrong answers.",
+      "svg": null
+    },
+    {
+      "id": "SI-40",
+      "difficulty": "hard",
+      "topic": "shop math",
+      "passage": null,
+      "stem": "A woodworker needs three pieces exactly 12 inches long cut from one board. The saw blade removes a 1/8 inch kerf with each cut. What is the shortest board that will yield all three pieces?",
+      "choices": [
+        "36 inches",
+        "36 1/8 inches",
+        "36 1/4 inches",
+        "36 3/8 inches"
+      ],
+      "answer": 2,
+      "explanation": "Three 12 inch pieces need 36 inches of wood, but cutting three pieces from one board takes only two cuts (the third piece is the remaining end), and each cut wastes 1/8 inch. 36 + 2 x 1/8 = 36 1/4 inches. Counting three kerfs gives 36 3/8, and ignoring the kerf gives 36.",
+      "svg": null
+    }
+  ]
+}

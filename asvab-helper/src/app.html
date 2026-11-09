@@ -1,0 +1,893 @@
+<title>Coast Guard ASVAB Prep</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: one 680px column, cards only for interactive objects, a fixed status strip during a timed run. */
+:root{
+  --bg:#f3f5f8; --panel:#ffffff; --ink:#15202b; --muted:#5a6878; --line:#d6dde6;
+  --navy:#153a63; --navy-ink:#ffffff; --brass:#b7791f; --brass-soft:#fbf1dc;
+  --good:#1f7a4d; --good-soft:#e3f3ea; --bad:#a93a32; --bad-soft:#f9e6e4; --warn:#8a5a00; --warn-soft:#fff4d6;
+  --display:"Barlow Condensed","Arial Narrow",Impact,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f151d; --panel:#182230; --ink:#e7edf4; --muted:#9aa8b8; --line:#2a3645;
+    --navy:#5b8fd6; --navy-ink:#0b1420; --brass:#e0a84a; --brass-soft:#3a2d12;
+    --good:#5fcf95; --good-soft:#13301f; --bad:#ff8d85; --bad-soft:#3a1a18; --warn:#ffd27a; --warn-soft:#3a2f12;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f151d; --panel:#182230; --ink:#e7edf4; --muted:#9aa8b8; --line:#2a3645;
+  --navy:#5b8fd6; --navy-ink:#0b1420; --brass:#e0a84a; --brass-soft:#3a2d12;
+  --good:#5fcf95; --good-soft:#13301f; --bad:#ff8d85; --bad-soft:#3a1a18; --warn:#ffd27a; --warn-soft:#3a2f12;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;overflow-x:hidden}
+.wrap{max-width:680px;margin:0 auto;padding-inline:16px;padding-block:12px 48px}
+h1,h2,h3{font-family:var(--display);letter-spacing:.01em;text-wrap:balance;margin:0}
+h1{font-size:2.2rem;line-height:1;color:var(--navy)}
+h2{font-size:1.6rem;line-height:1.1;margin:18px 0 8px}
+h3{font-size:1.2rem;margin:14px 0 4px}
+p{margin:6px 0}
+a{color:var(--navy);overflow-wrap:anywhere}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brass)}
+.muted{color:var(--muted)}
+.small{font-size:.92rem}
+.hidden{display:none !important}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:6px;border-bottom:2px solid var(--line);margin-bottom:10px}
+.topbar .brand{display:flex;flex-direction:column;gap:0}
+.brand .sub{font-size:.9rem;color:var(--muted)}
+.notice{background:var(--warn-soft);border-left:4px solid var(--warn);padding:10px 14px;border-radius:6px;margin:10px 0}
+.notice.good{background:var(--good-soft);border-left-color:var(--good)}
+.notice.bad{background:var(--bad-soft);border-left-color:var(--bad)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;min-height:92px;text-align:left;cursor:pointer;color:var(--ink);font:inherit;width:100%}
+.tile:hover{border-color:var(--navy)}
+.tile .t{font-family:var(--display);font-size:1.3rem;color:var(--navy);line-height:1}
+.tile .d{font-size:.9rem;color:var(--muted)}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:10px 14px;min-height:44px}
+button.primary{background:var(--navy);color:var(--navy-ink);border-color:var(--navy);font-weight:600}
+button.ghost{background:transparent;border-color:transparent;color:var(--muted);padding-inline:6px}
+button:focus-visible,.tile:focus-visible,.choice:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+button:disabled{opacity:.6;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row.end{justify-content:flex-end}
+.stack{display:flex;flex-direction:column;gap:8px}
+label{display:block;font-weight:600;font-size:.95rem}
+input[type=number],select{font:inherit;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);min-height:44px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+table{width:100%;border-collapse:collapse;font-size:.95rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+th{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.tablewrap{overflow-x:auto;margin:6px 0}
+.pill{display:inline-block;font-size:.8rem;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid var(--line);max-width:100%;overflow-wrap:anywhere}
+.pill.good{background:var(--good-soft);color:var(--good);border-color:transparent}
+.pill.bad{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.pill.warn{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.pill.navy{background:var(--navy);color:var(--navy-ink);border-color:transparent}
+.pill.brass{background:var(--brass-soft);color:var(--brass);border-color:transparent}
+ul{padding-left:20px;margin:6px 0}
+li{margin:3px 0}
+/* run screen */
+.status{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.status .clock{font-family:var(--mono);font-size:1.25rem;font-variant-numeric:tabular-nums}
+.status .clock.low{color:var(--bad);font-weight:700}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:8px 0 14px}
+.bar>div{height:100%;background:var(--navy);width:0;transition:width .2s}
+.passage{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;line-height:1.6}
+.stem{font-size:1.15rem;margin:10px 0}
+.figure{margin:8px 0 12px;color:var(--ink)}
+.figure svg{display:block;width:100%;max-width:640px;height:auto;max-height:260px;margin:0 auto}
+.choices{display:flex;flex-direction:column;gap:8px}
+.choice{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:48px;width:100%;color:var(--ink);font:inherit;cursor:pointer}
+.choice .k{font-family:var(--display);font-weight:700;color:var(--muted);min-width:1.2em}
+.choice.sel{border-color:var(--navy);box-shadow:inset 0 0 0 1px var(--navy)}
+.choice.right{border-color:var(--good);background:var(--good-soft)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.choice:disabled{cursor:default;opacity:1}
+.explain{margin-top:10px;padding:10px 14px;border-radius:8px;background:var(--panel);border:1px dashed var(--line)}
+.explain .v{font-weight:600}
+.sect{margin-top:28px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:.95rem}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.big{font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--navy)}
+.trend{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+details{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:8px 14px;margin:8px 0}
+summary{cursor:pointer;font-weight:600;font-family:var(--display);font-size:1.15rem;color:var(--navy)}
+summary .code{font-family:var(--mono);font-size:.9rem;color:var(--brass);margin-right:8px}
+.footer{margin-top:36px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:10px}
+@media (prefers-reduced-motion: reduce){ .bar>div{transition:none} }
+@media (max-width:420px){ h1{font-size:1.9rem} .status .clock{font-size:1.1rem} }
+</style>
+
+<div class="wrap">
+<div class="topbar">
+  <div class="brand">
+    <h1 id="brand" style="cursor:pointer">Coast Guard ASVAB Prep</h1>
+    <span class="sub">Practice the real test's shape. Know the real numbers. Nothing here is official.</span>
+  </div>
+</div>
+
+<!-- HOME -->
+<section id="home" class="screen">
+  <div id="home-status"></div>
+  <div class="grid" style="margin-top:8px">
+    <button class="tile" data-go="setup"><span class="t">Practice test</span><span class="d">Full CAT-ASVAB shape, or one subtest. Timed or study mode.</span></button>
+    <button class="tile" data-go="results"><span class="t">My results</span><span class="d">Scores by subtest, trend, what to study next.</span></button>
+    <button class="tile" data-go="real"><span class="t">Real score check</span><span class="d">Type in official scores. Get the exact AFQT and every job formula.</span></button>
+    <button class="tile" data-go="jobs"><span class="t">Coast Guard jobs</span><span class="d">All 21 ratings: the work, the school, the demand, the score.</span></button>
+    <button class="tile" data-go="study"><span class="t">Study plan</span><span class="d">Rules, pacing, an 8-week plan, what to study and where.</span></button>
+    <button class="tile" data-go="road"><span class="t">Road map at 17</span><span class="d">Consent, recruiter, MEPS, boot camp, the Academy option, the payoff.</span></button>
+    <button class="tile" data-go="resources"><span class="t">Free resources</span><span class="d">Official samples, March2Success, the library, the school.</span></button>
+    <button class="tile" data-go="about"><span class="t">Sources and limits</span><span class="d">Where every number came from, and what nobody can verify.</span></button>
+  </div>
+  <div class="notice small" style="margin-top:14px"><strong>What this is.</strong> An independent study tool built from the official ASVAB site and Coast Guard pages, checked on November 9, 2026. It is not affiliated with the Coast Guard or the Department of Defense. The questions are original and match the real test's subjects and format. They are not real test items. Practice scores are percent correct, never an AFQT percentile; the real AFQT comes only from the real test. Results are saved only in this browser.</div>
+</section>
+
+<!-- SETUP -->
+<section id="setup" class="screen hidden">
+  <button class="ghost" data-go="home">Back</button>
+  <h2>Practice test</h2>
+  <div class="card">
+    <h3>Full test</h3>
+    <p class="small muted">All 10 subtests in the official order with the official question counts and time limits: 135 questions, 197 minutes. No calculator. No going back. Explanations at the end.</p>
+    <button class="primary" id="start-full">Start the full test</button>
+  </div>
+  <div class="card">
+    <h3>One subtest</h3>
+    <div class="fields">
+      <div><label for="sub-pick">Subtest</label><select id="sub-pick"></select></div>
+      <div><label for="mode-pick">Mode</label><select id="mode-pick">
+        <option value="test">Timed, official length, review at the end</option>
+        <option value="study">Study mode: untimed, explanation after each answer</option>
+      </select></div>
+    </div>
+    <p class="small muted" id="sub-info" style="margin-top:8px"></p>
+    <button class="primary" id="start-one">Start</button>
+  </div>
+  <div class="card small">
+    <h3>How the real test works</h3>
+    <ul>
+      <li>You cannot change an answer once you move on. Here, Next locks your answer, same as the real thing.</li>
+      <li>If time runs out, the real test scores the questions you did not reach as if you guessed at random, and it applies a heavy penalty for a run of wrong answers at the end. Here they count as wrong. Keep answering real answers to the end.</li>
+      <li>The real test is adaptive, so it gets harder as you do well. This one is not adaptive; it mixes easy, medium and hard.</li>
+      <li>The real test may add 15 unscored tryout questions to 2 to 4 subtests, with extra time. This one does not.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- RUN -->
+<section id="run" class="screen hidden">
+  <div class="status">
+    <div><span class="eyebrow" id="run-sub"></span><br><span class="small muted" id="run-count"></span></div>
+    <div class="clock" id="run-clock" aria-live="off"></div>
+  </div>
+  <div class="bar"><div id="run-bar"></div></div>
+  <div id="run-passage" class="passage hidden"></div>
+  <p class="stem" id="run-stem"></p>
+  <div id="run-fig" class="figure hidden"></div>
+  <div class="choices" id="run-choices"></div>
+  <div id="run-explain" class="explain hidden" aria-live="polite"></div>
+  <div class="row end" style="margin-top:14px">
+    <button class="ghost" id="run-quit">Quit</button>
+    <button class="primary" id="run-next" disabled>Next</button>
+  </div>
+</section>
+
+<!-- INTERSTITIAL between subtests -->
+<section id="between" class="screen hidden">
+  <h2 id="between-title"></h2>
+  <div class="card" id="between-body"></div>
+  <div class="row">
+    <button class="primary" id="between-go">Start</button>
+    <button class="ghost" id="between-quit">Stop and score what I have</button>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section id="review" class="screen hidden">
+  <button class="ghost" data-go="results">Back to results</button>
+  <h2 id="review-title">Review</h2>
+  <div id="review-summary"></div>
+  <div class="row" style="margin:8px 0">
+    <button id="review-missed">Show missed only</button>
+    <button id="review-all" class="hidden">Show all</button>
+  </div>
+  <div id="review-list"></div>
+</section>
+
+<!-- RESULTS -->
+<section id="results" class="screen hidden">
+  <button class="ghost" data-go="home">Back</button>
+  <h2>My results</h2>
+  <div id="res-main"></div>
+  <p class="small muted">Everything here is percent correct on practice items. It is not a percentile and cannot be compared to the Coast Guard's AFQT 32 minimum. For that, take the real test, then use Real score check.</p>
+  <button id="res-reset">Clear my results on this device</button>
+  <div id="res-confirm" class="card hidden">
+    <p>Clear every saved practice result on this device? This cannot be undone.</p>
+    <div class="row"><button class="primary" id="res-yes">Yes, clear them</button><button id="res-no">Keep them</button></div>
+  </div>
+</section>
+
+<!-- REAL SCORES -->
+<section id="real" class="screen hidden">
+  <button class="ghost" data-go="home">Back</button>
+  <h2>Real score check</h2>
+  <p class="small">Type the standard scores from an official ASVAB or school ASVAB (CEP) score sheet. Each is a number near 20 to 80, average 50. The tool then computes the AFQT exactly the way the Department of Defense does and checks every Coast Guard rating formula.</p>
+  <div class="card">
+    <div class="fields" id="real-fields"></div>
+    <p class="small muted" style="margin-top:8px">AS is the combined Auto and Shop score printed on the sheet. VE is optional; if your sheet prints it, enter it, otherwise it is computed from WK and PC.</p>
+    <div class="row"><button class="primary" id="real-calc">Calculate</button><button id="real-clear">Clear</button></div>
+  </div>
+  <div id="real-out"></div>
+</section>
+
+<!-- JOBS -->
+<section id="jobs" class="screen hidden">
+  <button class="ghost" data-go="home">Back</button>
+  <h2>Coast Guard enlisted jobs</h2>
+  <div class="notice small"><strong>About the score column.</strong> The Coast Guard pulled the per-job score table from its public manual in 2023 and keeps the current one behind a login. Every value below is labeled. "Confirmed" means stated in official text after the November 2021 ten-point cut. "Derived" means the last official or best-attested pre-2021 figure minus 10, as the Coast Guard announced. Third-party websites publish stale copies, so ask a recruiter for the dated current list and compare.</div>
+  <div class="row small" style="margin:8px 0">
+    <label for="jobs-sort" style="display:inline">Sort by</label>
+    <select id="jobs-sort" style="width:auto"><option value="code">Code</option><option value="score">Lowest score first</option><option value="demand">Bonus and demand first</option></select>
+  </div>
+  <div id="jobs-list"></div>
+</section>
+
+<!-- STUDY -->
+<section id="study" class="screen hidden">
+  <button class="ghost" data-go="home">Back</button>
+  <h2>Study plan</h2>
+  <div id="study-body"></div>
+</section>
+
+<!-- ROADMAP -->
+<section id="road" class="screen hidden">
+  <button class="ghost" data-go="home">Back</button>
+  <h2>Road map at 17</h2>
+  <div id="road-body"></div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources" class="screen hidden">
+  <button class="ghost" data-go="home">Back</button>
+  <h2>Free resources</h2>
+  <div id="resources-body"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="screen hidden">
+  <button class="ghost" data-go="home">Back</button>
+  <h2>Sources and limits</h2>
+  <div id="about-body"></div>
+</section>
+
+<div class="footer">Built for one family's use. Not affiliated with the U.S. Coast Guard, the Department of Defense, or the ASVAB program. Facts checked November 9, 2026. Confirm anything that matters with a recruiter.</div>
+</div>
+
+<script>
+/*__DATA__*/
+</script>
+<script>
+(function(){
+'use strict';
+const D = window.DATA;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// Official CAT-ASVAB order, scored items, minutes (officialasvab.com, Oct 2026)
+const SUBS = [
+  {k:'GS', name:'General Science', n:15, min:12},
+  {k:'AR', name:'Arithmetic Reasoning', n:15, min:55},
+  {k:'WK', name:'Word Knowledge', n:15, min:9},
+  {k:'PC', name:'Paragraph Comprehension', n:10, min:27},
+  {k:'MK', name:'Mathematics Knowledge', n:15, min:31},
+  {k:'EI', name:'Electronics Information', n:15, min:10},
+  {k:'AI', name:'Auto Information', n:10, min:7},
+  {k:'SI', name:'Shop Information', n:10, min:6},
+  {k:'MC', name:'Mechanical Comprehension', n:15, min:22},
+  {k:'AO', name:'Assembling Objects', n:15, min:18}
+];
+const SUB = Object.fromEntries(SUBS.map(s => [s.k, s]));
+const AFQT_KEYS = ['AR','MK','WK','PC'];
+
+// ---------- storage ----------
+const STORE = 'cgasvab.v2';
+let ST = load();
+function load(){
+  try { const v = JSON.parse(localStorage.getItem(STORE) || 'null'); if (v && v.sessions) return v; } catch(e){}
+  return { sessions: [], used: {}, real: null };
+}
+function save(){ try { localStorage.setItem(STORE, JSON.stringify(ST)); } catch(e){} }
+
+// ---------- nav ----------
+function show(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.toggle('hidden', s.id !== id));
+  window.scrollTo(0,0);
+  if (id === 'home') renderHome();
+  if (id === 'results') renderResults();
+  if (id === 'setup') renderSetup();
+  if (id === 'jobs') renderJobs();
+  if (id === 'real') renderRealForm();
+}
+document.addEventListener('click', e => {
+  const go = e.target.closest('[data-go]');
+  if (go){ show(go.dataset.go); return; }
+});
+$('#brand').addEventListener('click', () => { if (!RUN) show('home'); });
+
+// ---------- helpers ----------
+const shuffle = a => { a = a.slice(); for (let i = a.length-1; i>0; i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; };
+const pct = (r,t) => t ? Math.round(100*r/t) : 0;
+const fmtClock = s => { s = Math.max(0, s); const m = Math.floor(s/60), x = s%60; return m + ':' + (x<10?'0':'') + x; };
+const letters = ['A','B','C','D'];
+// AO items: the choices are the figure labels themselves, so keep their order and show them as figures.
+const letterChoices = it => it.choices.length === 4 && it.choices.every((c,i) => c === letters[i]);
+
+// Draw n items: roughly a third from each difficulty, preferring items not used recently.
+function draw(k, n){
+  const bank = D.banks[k].items;
+  const used = new Set(ST.used[k] || []);
+  const by = {easy:[], medium:[], hard:[]};
+  bank.forEach(it => (by[it.difficulty] || by.medium).push(it));
+  const want = {easy: Math.round(n*0.3), hard: Math.round(n*0.3)}; want.medium = n - want.easy - want.hard;
+  let out = [];
+  for (const d of ['easy','medium','hard']){
+    const fresh = shuffle(by[d].filter(it => !used.has(it.id)));
+    const stale = shuffle(by[d].filter(it => used.has(it.id)));
+    out = out.concat(fresh.concat(stale).slice(0, want[d]));
+  }
+  if (out.length < n){
+    const have = new Set(out.map(i => i.id));
+    out = out.concat(shuffle(bank.filter(i => !have.has(i.id))).slice(0, n - out.length));
+  }
+  out = shuffle(out).slice(0, n);
+  // remember use; forget everything once most of the bank has been seen
+  const nu = (ST.used[k] || []).concat(out.map(i => i.id));
+  ST.used[k] = nu.length >= bank.length - n ? [] : nu;
+  save();
+  return out.map(it => {
+    const order = letterChoices(it) ? [0,1,2,3] : shuffle([0,1,2,3]);
+    return { it, order, picked: null };
+  });
+}
+
+// ---------- setup ----------
+function renderSetup(){
+  const sel = $('#sub-pick');
+  if (!sel.options.length){
+    SUBS.forEach(s => { const o = document.createElement('option'); o.value = s.k; o.textContent = s.name + ' (' + s.k + ')'; sel.appendChild(o); });
+  }
+  updSubInfo();
+}
+function updSubInfo(){
+  const s = SUB[$('#sub-pick').value];
+  const mode = $('#mode-pick').value;
+  $('#sub-info').textContent = mode === 'test'
+    ? `${s.n} questions, ${s.min} minutes, the official count and limit. About ${Math.round(s.min*60/s.n)} seconds per question.`
+    : `${s.n} questions, untimed. You see the explanation after each answer.`;
+}
+$('#sub-pick').addEventListener('change', updSubInfo);
+$('#mode-pick').addEventListener('change', updSubInfo);
+$('#start-full').addEventListener('click', () => startSession(SUBS.map(s => s.k), 'test', 'full'));
+$('#start-one').addEventListener('click', () => startSession([$('#sub-pick').value], $('#mode-pick').value, 'single'));
+
+// ---------- run ----------
+let RUN = null, TICK = null;
+function startSession(keys, mode, kind){
+  RUN = { keys, mode, kind, pi: -1, parts: [], t0: Date.now() };
+  nextPart();
+}
+function nextPart(){
+  RUN.pi++;
+  if (RUN.pi >= RUN.keys.length){ finishSession(); return; }
+  const s = SUB[RUN.keys[RUN.pi]];
+  RUN.cur = { k: s.k, qs: draw(s.k, s.n), i: 0, left: s.min*60, started: null };
+  if (RUN.kind === 'full'){
+    $('#between-title').textContent = (RUN.pi === 0 ? 'First: ' : 'Next: ') + s.name;
+    $('#between-body').innerHTML = `<p><strong>${s.n} questions, ${s.min} minutes.</strong> ${describe(s.k)}</p><p class="small muted">Subtest ${RUN.pi+1} of ${RUN.keys.length}. The real test lets you start the next subtest when you are ready, so take a breath, then start.</p>`;
+    $('#between-go').textContent = 'Start ' + s.k;
+    show('between');
+  } else {
+    beginPart();
+  }
+}
+$('#between-go').addEventListener('click', beginPart);
+$('#between-quit').addEventListener('click', () => finishSession());
+function describe(k){
+  return {
+    GS:'Life, earth and space, and physical science facts.', AR:'Word problems. Read twice, set it up, check the units.',
+    WK:'Which word most nearly means the given word.', PC:'Short passages. Answer only from what the passage says.',
+    MK:'Algebra, geometry and number facts. No calculator.', EI:'Circuits, components, electrical terms.',
+    AI:'How vehicle systems work and fail.', SI:'Tools, fasteners, materials and shop practice.',
+    MC:'Levers, gears, pulleys, pressure, balance. Most have a diagram.', AO:'Which figure shows the shapes connected or assembled correctly.'
+  }[k];
+}
+function beginPart(){
+  const c = RUN.cur; c.started = Date.now();
+  show('run');
+  $('#run-sub').textContent = SUB[c.k].name;
+  renderQ();
+  clearInterval(TICK);
+  if (RUN.mode === 'test'){
+    TICK = setInterval(() => {
+      c.left--;
+      paintClock();
+      if (c.left <= 0){ clearInterval(TICK); timeUp(); }
+    }, 1000);
+  }
+  paintClock();
+}
+function paintClock(){
+  const el = $('#run-clock');
+  if (RUN.mode !== 'test'){ el.textContent = 'untimed'; el.classList.remove('low'); return; }
+  el.textContent = fmtClock(RUN.cur.left);
+  el.classList.toggle('low', RUN.cur.left <= 60);
+}
+function renderQ(){
+  const c = RUN.cur, q = c.qs[c.i], it = q.it;
+  c.answered = false;
+  $('#run-count').textContent = `Question ${c.i+1} of ${c.qs.length}`;
+  $('#run-bar').style.width = (c.i / c.qs.length * 100) + '%';
+  const p = $('#run-passage'); p.textContent = it.passage || ''; p.classList.toggle('hidden', !it.passage);
+  $('#run-stem').textContent = it.stem;
+  const f = $('#run-fig'); f.innerHTML = it.svg || ''; f.classList.toggle('hidden', !it.svg);
+  const box = $('#run-choices'); box.innerHTML = '';
+  q.order.forEach((ci, pos) => {
+    const b = document.createElement('button'); b.className = 'choice'; b.dataset.ci = ci;
+    b.innerHTML = letterChoices(it) ? `<span class="k">${letters[pos]}</span><span>Figure ${letters[pos]}</span>` : `<span class="k">${letters[pos]}</span><span>${esc(it.choices[ci])}</span>`;
+    box.appendChild(b);
+  });
+  $('#run-explain').classList.add('hidden'); $('#run-explain').innerHTML = '';
+  const nx = $('#run-next'); nx.disabled = true; nx.textContent = (c.i === c.qs.length-1) ? 'Finish ' + c.k : 'Next';
+}
+$('#run-choices').addEventListener('click', e => {
+  const b = e.target.closest('.choice'); if (!b || !RUN) return;
+  const c = RUN.cur, q = c.qs[c.i];
+  if (RUN.mode === 'study'){
+    if (c.answered) return;
+    c.answered = true; q.picked = +b.dataset.ci;
+    [...$('#run-choices').children].forEach(x => { x.disabled = true; if (+x.dataset.ci === q.it.answer) x.classList.add('right'); });
+    if (q.picked !== q.it.answer) b.classList.add('wrong');
+    const ex = $('#run-explain');
+    ex.innerHTML = `<div class="v">${q.picked === q.it.answer ? 'Correct.' : 'Not quite. The answer is ' + letters[q.order.indexOf(q.it.answer)] + '.'}</div><div>${esc(q.it.explanation)}</div>`;
+    ex.classList.remove('hidden');
+    $('#run-next').disabled = false;
+  } else {
+    [...$('#run-choices').children].forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel'); q.picked = +b.dataset.ci;
+    $('#run-next').disabled = false;
+  }
+});
+$('#run-next').addEventListener('click', () => {
+  const c = RUN.cur;
+  c.i++;
+  if (c.i < c.qs.length) renderQ(); else endPart(false);
+});
+$('#run-quit').addEventListener('click', () => {
+  if (!RUN) return;
+  clearInterval(TICK);
+  // score what has been answered so far, then stop
+  endPart(false, true);
+});
+function timeUp(){ endPart(true); }
+function endPart(timedOut, quit){
+  clearInterval(TICK);
+  const c = RUN.cur;
+  const right = c.qs.filter(q => q.picked === q.it.answer).length;
+  const answered = c.qs.filter(q => q.picked !== null).length;
+  RUN.parts.push({ k: c.k, right, total: c.qs.length, answered, timedOut: !!timedOut, stopped: !!quit, secs: Math.round((Date.now()-c.started)/1000), qs: c.qs });
+  if (quit) finishSession(); else nextPart();
+}
+function finishSession(){
+  clearInterval(TICK);
+  const parts = RUN.parts;
+  if (parts.length){
+    ST.sessions.push({ t: Date.now(), kind: RUN.kind, mode: RUN.mode, parts: parts.map(p => ({k:p.k, right:p.right, total:p.total, answered:p.answered, timedOut:p.timedOut, secs:p.secs})) });
+    save();
+  }
+  const last = { parts };
+  RUN = null;
+  if (parts.length) renderReview(last, true); else show('home');
+}
+
+// ---------- review ----------
+let REV = null;
+function renderReview(sess, fresh){
+  REV = sess; REV.missedOnly = false;
+  $('#review-title').textContent = fresh ? 'Session complete' : 'Review';
+  const rows = sess.parts.map(p => `<tr><td>${SUB[p.k].name}</td><td>${p.right}/${p.total}</td><td>${pct(p.right,p.total)}%</td><td>${p.answered < p.total ? `<span class="pill warn">${p.total-p.answered} unanswered</span>` : ''} ${p.timedOut ? '<span class="pill bad">time ran out</span>' : ''}${p.stopped ? '<span class="pill">stopped early</span>' : ''}</td></tr>`).join('');
+  const afqt = afqtCore(sess.parts);
+  $('#review-summary').innerHTML = `<div class="tablewrap"><table><tr><th>Subtest</th><th>Right</th><th>Percent</th><th></th></tr>${rows}</table></div>` +
+    (afqt ? `<p class="small">AFQT subtests combined (AR, MK, WK, PC): <strong>${afqt.right}/${afqt.total}, ${pct(afqt.right,afqt.total)}%</strong>. Percent correct, not a percentile.</p>` : '') +
+    (sess.parts.some(p => p.timedOut) ? `<div class="notice small">You ran out of time on a subtest. On the real test those unanswered questions are scored as random guesses, and a string of wrong answers at the end carries an extra penalty. Work on pacing for that subtest: see Study plan.</div>` : '');
+  paintReviewList();
+  show('review');
+}
+function paintReviewList(){
+  const html = REV.parts.map(p => {
+    const items = p.qs.map((q, idx) => {
+      const ok = q.picked === q.it.answer;
+      if (REV.missedOnly && ok) return '';
+      const fig = letterChoices(q.it);
+      const your = q.picked === null ? '<em>no answer</em>' : (fig ? 'Figure ' : '') + esc(q.it.choices[q.picked]);
+      return `<div class="card"><div class="row" style="justify-content:space-between"><span class="eyebrow">${p.k} ${idx+1}</span><span class="pill ${ok?'good':'bad'}">${ok?'Correct':(q.picked===null?'Unanswered':'Missed')}</span></div>
+        ${q.it.passage ? `<div class="passage small">${esc(q.it.passage)}</div>` : ''}
+        <p class="stem" style="font-size:1.05rem">${esc(q.it.stem)}</p>
+        ${q.it.svg ? `<div class="figure">${q.it.svg}</div>` : ''}
+        <dl class="kv"><dt>Your answer</dt><dd>${your}</dd><dt>Correct</dt><dd>${fig ? 'Figure ' : ''}${esc(q.it.choices[q.it.answer])}</dd></dl>
+        <div class="explain small">${esc(q.it.explanation)}</div></div>`;
+    }).join('');
+    return `<h3>${SUB[p.k].name}</h3>${items || '<p class="small muted">Nothing missed here.</p>'}`;
+  }).join('');
+  $('#review-list').innerHTML = html;
+}
+$('#review-missed').addEventListener('click', () => { REV.missedOnly = true; $('#review-missed').classList.add('hidden'); $('#review-all').classList.remove('hidden'); paintReviewList(); });
+$('#review-all').addEventListener('click', () => { REV.missedOnly = false; $('#review-all').classList.add('hidden'); $('#review-missed').classList.remove('hidden'); paintReviewList(); });
+
+function afqtCore(parts){
+  const ps = parts.filter(p => AFQT_KEYS.includes(p.k));
+  if (ps.length < 4) return null;
+  return ps.reduce((a,p) => ({right:a.right+p.right, total:a.total+p.total}), {right:0,total:0});
+}
+
+// ---------- results ----------
+function latestBySub(){
+  const out = {};
+  ST.sessions.forEach(s => s.parts.forEach(p => { (out[p.k] = out[p.k] || []).push({...p, t:s.t, mode:s.mode}); }));
+  return out;
+}
+function renderHome(){
+  const by = latestBySub();
+  const n = ST.sessions.length;
+  const el = $('#home-status');
+  if (!n){ el.innerHTML = `<div class="card"><span class="eyebrow">Start here</span><p>Take one timed subtest to see how this works, or the full test for a real baseline. Then read the Study plan.</p></div>`; return; }
+  const done = Object.keys(by).length;
+  const weak = weakest(by, 2);
+  el.innerHTML = `<div class="card"><span class="eyebrow">Where you stand</span><p>${n} session${n>1?'s':''} saved. ${done} of 10 subtests practiced.${weak.length ? ' Lowest latest scores: ' + weak.map(w => `<strong>${SUB[w.k].name}</strong> ${w.p}%`).join(', ') + '.' : ''}</p><button class="primary" data-go="results">See results</button></div>`;
+}
+function weakest(by, count){
+  return Object.keys(by).map(k => { const l = by[k][by[k].length-1]; return {k, p: pct(l.right, l.total)}; }).sort((a,b) => a.p-b.p).slice(0, count);
+}
+function renderResults(){
+  const by = latestBySub();
+  const el = $('#res-main');
+  if (!ST.sessions.length){ el.innerHTML = '<div class="card"><p class="muted">No practice saved yet.</p><button class="primary" data-go="setup">Take a practice test</button></div>'; return; }
+  const rows = SUBS.map(s => {
+    const h = by[s.k];
+    if (!h) return `<tr><td>${s.name}</td><td colspan="4" class="muted">not practiced yet</td></tr>`;
+    const l = h[h.length-1];
+    const best = Math.max(...h.map(x => pct(x.right,x.total)));
+    const trend = h.slice(-6).map(x => pct(x.right,x.total)).join(' > ');
+    return `<tr><td>${s.name}</td><td><strong>${pct(l.right,l.total)}%</strong><span class="small muted"> (${l.right}/${l.total})</span></td><td>${best}%</td><td>${h.length}</td><td class="trend">${trend}</td></tr>`;
+  }).join('');
+  const lastFull = [...ST.sessions].reverse().find(s => s.kind === 'full');
+  let afqtHtml = '';
+  const lastParts = {}; SUBS.forEach(s => { if (by[s.k]) lastParts[s.k] = by[s.k][by[s.k].length-1]; });
+  if (AFQT_KEYS.every(k => lastParts[k])){
+    const a = AFQT_KEYS.reduce((x,k) => ({right:x.right+lastParts[k].right, total:x.total+lastParts[k].total}), {right:0,total:0});
+    afqtHtml = `<div class="card"><span class="eyebrow">AFQT subtests</span><div class="big">${pct(a.right,a.total)}%</div><p class="small">Latest Arithmetic Reasoning, Mathematics Knowledge, Word Knowledge and Paragraph Comprehension combined: ${a.right} of ${a.total}. These four decide the AFQT. Word Knowledge counts most (about 1.3 points per standard-score point), then AR and MK (1 each), then PC (0.8).</p></div>`;
+  } else {
+    afqtHtml = `<div class="card"><span class="eyebrow">AFQT subtests</span><p class="small muted">Practice AR, MK, WK and PC at least once each to see the combined number.</p></div>`;
+  }
+  const weak = weakest(by, 3);
+  const next = weak.length ? `<div class="card"><span class="eyebrow">Study next</span><ol>${weak.map(w => `<li><strong>${SUB[w.k].name}</strong>, latest ${w.p}%. ${studyLine(w.k)}</li>`).join('')}</ol><button data-go="study">Open the study plan</button></div>` : '';
+  el.innerHTML = `<div class="tablewrap"><table><tr><th>Subtest</th><th>Latest</th><th>Best</th><th>Tries</th><th>Trend</th></tr>${rows}</table></div>${afqtHtml}${next}` +
+    (lastFull ? `<p class="small muted">Last full test: ${new Date(lastFull.t).toLocaleDateString()}.</p>` : '') +
+    `<p class="small"><a href="#" id="res-review-last">Review the most recent session</a></p>`;
+  const a = $('#res-review-last'); if (a) a.addEventListener('click', e => { e.preventDefault(); const s = ST.sessions[ST.sessions.length-1]; if (s) renderReview({parts: s.parts.map(p => ({...p, qs: []}))}, false); });
+}
+function studyLine(k){
+  return {
+    AR:'Rates, ratios, percents. Khan Academy Pre-algebra. Set the problem up before you compute.',
+    MK:'Equations, exponents, geometry formulas. Khan Academy Algebra 1 and Basic geometry.',
+    WK:'Roots, prefixes, suffixes. Read more, and look up every word you skip.',
+    PC:'Read the passage twice, answer only from the text. Khan Academy SAT Reading.',
+    GS:'Survey the OpenStax biology, chemistry, physics and astronomy intros.',
+    EI:'Ohm\'s law, series and parallel, component names. Khan Academy circuits.',
+    AI:'Engine, cooling, brakes, drivetrain. How a Car Works basics.',
+    SI:'Tool names and uses, fasteners, reading a tape measure.',
+    MC:'Levers, pulleys, gears, pressure. OpenStax Physics forces and fluids chapters.',
+    AO:'Rotate, never mirror. Find the anchor piece and eliminate.'
+  }[k] || '';
+}
+$('#res-reset').addEventListener('click', () => $('#res-confirm').classList.remove('hidden'));
+$('#res-no').addEventListener('click', () => $('#res-confirm').classList.add('hidden'));
+$('#res-yes').addEventListener('click', () => { ST = {sessions:[], used:{}, real: ST.real}; save(); $('#res-confirm').classList.add('hidden'); renderResults(); });
+
+// ---------- real scores ----------
+const REAL_FIELDS = [['GS','General Science'],['AR','Arithmetic Reasoning'],['WK','Word Knowledge'],['PC','Paragraph Comprehension'],['MK','Mathematics Knowledge'],['EI','Electronics Information'],['AS','Auto and Shop (combined)'],['MC','Mechanical Comprehension'],['AO','Assembling Objects'],['VE','Verbal Expression (optional)']];
+function renderRealForm(){
+  const box = $('#real-fields');
+  if (!box.children.length){
+    box.innerHTML = REAL_FIELDS.map(([k,n]) => `<div><label for="rs-${k}">${k}<span class="small muted" style="font-weight:400"> ${n}</span></label><input type="number" id="rs-${k}" min="1" max="99" inputmode="numeric" placeholder="50"></div>`).join('');
+  }
+  if (ST.real){ REAL_FIELDS.forEach(([k]) => { if (ST.real[k] != null) $('#rs-'+k).value = ST.real[k]; }); renderRealOut(ST.real); }
+}
+$('#real-clear').addEventListener('click', () => { REAL_FIELDS.forEach(([k]) => $('#rs-'+k).value = ''); ST.real = null; save(); $('#real-out').innerHTML = ''; });
+$('#real-calc').addEventListener('click', () => {
+  const sc = {};
+  REAL_FIELDS.forEach(([k]) => { const v = parseFloat($('#rs-'+k).value); if (!isNaN(v)) sc[k] = v; });
+  const need = ['AR','WK','PC','MK'].filter(k => sc[k] == null);
+  if (need.length){ $('#real-out').innerHTML = `<div class="notice bad">Enter at least ${need.join(', ')} to compute the AFQT.</div>`; return; }
+  ST.real = sc; save(); renderRealOut(sc);
+});
+function computeVE(sc){
+  if (sc.VE != null) return Math.round(sc.VE);
+  const v = D.afqt.ve;
+  return Math.round(v.wk*sc.WK + v.pc*sc.PC + v.intercept);
+}
+function afqtPct(comp){
+  let p = 1; for (const [lo, pc] of D.afqt.table){ if (comp >= lo) p = pc; else break; } return p;
+}
+function afqtCat(p){ return (D.afqt.categories.find(c => p >= c.lo && p <= c.hi) || {}).cat || '?'; }
+function renderRealOut(sc){
+  const VE = computeVE(sc);
+  const comp = Math.round(sc.AR) + Math.round(sc.MK) + 2*VE;
+  const p = afqtPct(comp), cat = afqtCat(p);
+  const floor = 32;
+  const floorHtml = p >= floor
+    ? `<div class="notice good small"><strong>Meets the Coast Guard AFQT minimum of 32</strong> (high school diploma). GED holders need more: reported as 47 under the 2025 recruiting manual, some sources say 50. The AFQT minimum cannot be waived.</div>`
+    : `<div class="notice bad small"><strong>Below the Coast Guard AFQT minimum of 32.</strong> The AFQT minimum cannot be waived; the path is to study and retest (1 month after the first test, 1 month after the second, then 6 months). A gain of 20 or more points within 6 months triggers a confirmation test.</div>`;
+  const all = {...sc, VE};
+  const rows = D.ratings.ratings.map(r => {
+    const res = ratingCheck(r, all, p);
+    return `<tr><td><strong>${r.code}</strong><br><span class="small muted">${r.name}</span></td><td>${res.formulaHtml}</td><td>${res.badge}</td></tr>`;
+  }).join('');
+  $('#real-out').innerHTML = `
+    <div class="card"><span class="eyebrow">Your AFQT, computed the official way</span>
+      <div class="row" style="gap:18px;align-items:baseline"><span class="big">${p}</span><span>percentile, Category <strong>${cat}</strong></span></div>
+      <dl class="kv"><dt>VE</dt><dd>${VE}${sc.VE == null ? ' (computed from WK ' + sc.WK + ' and PC ' + sc.PC + ')' : ' (from your sheet)'}</dd><dt>Composite</dt><dd>AR ${Math.round(sc.AR)} + MK ${Math.round(sc.MK)} + 2 x VE ${VE} = ${comp}</dd></dl>
+      <p class="small muted">Method: DoD 1997 score scale (Segall 2004, Table 2.5). The real test's own measurement error is about 4 percentile points.</p>
+    </div>
+    ${floorHtml}
+    <h3>Rating check</h3>
+    <p class="small">Your composite for each rating against the labeled requirement. Commanding officers can waive up to 10 points on a composite or subtest minimum (never the AFQT), so "short by 10 or less" is often still reachable.</p>
+    <div class="tablewrap"><table><tr><th>Rating</th><th>Your numbers</th><th>Result</th></tr>${rows}</table></div>
+    <p class="small muted">${D.ratings.statusLabels.confirmed}: IT only. Everything else is derived or unknown. Ask a recruiter for the dated current list and compare.</p>`;
+}
+function ratingCheck(r, s, afqt){
+  const label = D.ratings.statusLabels[r.status];
+  if (r.status === 'unknown' || !r.paths.length || !r.paths[0].subtests.length || r.paths[0].current == null){
+    const f = r.paths[0] && r.paths[0].subtests.length ? r.paths[0].subtests.join(' + ') : 'formula not public';
+    return { formulaHtml: `<span class="small">${f}</span>`, badge: `<span class="pill warn">No reliable figure</span>` };
+  }
+  let best = null;
+  const parts = r.paths.map(pth => {
+    const missing = pth.subtests.filter(k => s[k] == null);
+    const sum = missing.length ? null : pth.subtests.reduce((a,k) => a + Math.round(s[k]), 0);
+    const ok = sum != null && sum >= pth.current;
+    if (sum != null && (!best || (ok && !best.ok) || (ok === best.ok && (sum - pth.current) > (best.sum - best.need)))) best = {ok, sum, need: pth.current, missing: []};
+    return `${pth.subtests.join('+')} = ${sum == null ? '<em>missing ' + missing.join(', ') + '</em>' : sum} <span class="muted">(need ${pth.current})</span>`;
+  }).join('<br>');
+  const minFails = Object.entries(r.minimums).filter(([k,v]) => s[k] != null && Math.round(s[k]) < v).map(([k,v]) => `${k} ${Math.round(s[k])} is under the ${v} minimum`);
+  const minMissing = Object.keys(r.minimums).filter(k => s[k] == null);
+  const altOk = r.afqtAlt != null && afqt >= r.afqtAlt;
+  let badge;
+  if (!best) badge = `<span class="pill warn">Enter the missing scores</span>`;
+  else if (best.ok && !minFails.length) badge = `<span class="pill good">Meets</span>`;
+  else if (altOk) badge = `<span class="pill good">Meets via AFQT ${r.afqtAlt}+</span>`;
+  else if (!best.ok){ const short = best.need - best.sum; badge = `<span class="pill ${short <= 10 ? 'warn' : 'bad'}">Short by ${short}${short <= 10 ? ', within waiver range' : ''}</span>`; }
+  else badge = `<span class="pill warn">Composite ok, but ${minFails.join('; ')}</span>`;
+  const extras = [Object.entries(r.minimums).map(([k,v]) => `min ${k} ${v}`).join(', '), r.afqtAlt != null ? `or AFQT ${r.afqtAlt}` : ''].filter(Boolean).join('; ');
+  return { formulaHtml: `<span class="small">${parts}${extras ? '<br><span class="muted">' + extras + '</span>' : ''}<br><span class="pill ${r.status==='confirmed'?'navy':'brass'}">${label}</span>${minMissing.length ? '<br><span class="muted small">minimum not checked: ' + minMissing.join(', ') + '</span>' : ''}</span>`, badge };
+}
+
+// ---------- jobs ----------
+function renderJobs(){
+  const sort = $('#jobs-sort').value;
+  let list = D.ratings.ratings.slice();
+  if (sort === 'score') list.sort((a,b) => (a.paths[0].current ?? 999) - (b.paths[0].current ?? 999));
+  if (sort === 'demand') list.sort((a,b) => (/bonus-eligible|critical|\$/i.test(b.demand) ? 1 : 0) - (/bonus-eligible|critical|\$/i.test(a.demand) ? 1 : 0));
+  $('#jobs-list').innerHTML = list.map(r => {
+    const f = r.paths.map(p => p.subtests.length ? `${p.subtests.join(' + ')} of <strong>${p.current ?? '?'}</strong>${p.pre2021 ? ` <span class="muted small">(was ${p.pre2021} before Nov 2021)</span>` : ''}` : 'formula not public').join(' <em>or</em> ');
+    const mins = Object.entries(r.minimums).map(([k,v]) => `${k} at least ${v}`).join(', ');
+    return `<details><summary><span class="code">${r.code}</span>${r.name}</summary>
+      <p>${esc(r.job)}</p>
+      <dl class="kv">
+        <dt>A-school</dt><dd>${esc(r.school)}</dd>
+        <dt>Score</dt><dd>${f}${mins ? '; ' + mins : ''}${r.afqtAlt ? '; or AFQT ' + r.afqtAlt : ''}<br><span class="pill ${r.status==='confirmed'?'navy':(r.status==='unknown'?'warn':'brass')}">${D.ratings.statusLabels[r.status]}</span></dd>
+        <dt>Demand</dt><dd>${esc(r.demand)}</dd>
+        <dt>Gate</dt><dd>${esc(r.gate)}</dd>
+        <dt>Official page</dt><dd><a href="https://www.gocoastguard.com/careers/enlisted/${r.code.toLowerCase()}" target="_blank" rel="noopener">gocoastguard.com/careers/enlisted/${r.code.toLowerCase()}</a></dd>
+      </dl></details>`;
+  }).join('');
+}
+$('#jobs-sort').addEventListener('change', renderJobs);
+
+// ---------- static pages ----------
+function pace(){
+  return SUBS.map(s => `<tr><td>${s.name}</td><td>${s.n}</td><td>${s.min}</td><td>${Math.round(s.min*60/s.n)} s</td></tr>`).join('');
+}
+$('#study-body').innerHTML = `
+<div class="card"><span class="eyebrow">The rules that change how you take it</span>
+<ul>
+<li><strong>No calculator</strong>, ever. Practice every bit of arithmetic by hand.</li>
+<li><strong>No going back.</strong> Once you click past a question it is locked. Decide, then move.</li>
+<li><strong>Unanswered means wrong, plus a penalty.</strong> If time runs out, the questions you did not reach are scored as random guesses, and a run of wrong answers at the end is penalized extra. Never click randomly to finish. Keep giving real answers.</li>
+<li><strong>It adapts.</strong> It starts medium and gets harder as you get things right. Feeling it get hard is a good sign. Every answer counts toward the final estimate; the "first five decide everything" rumor is false.</li>
+<li><strong>Tryout questions.</strong> 2 to 4 subtests will have 15 extra unscored questions with extra time. You will not know which. Treat every question as real.</li>
+<li><strong>Scores for the computer test are immediate</strong> and are valid for enlistment for 2 years.</li>
+</ul></div>
+
+<h3>Pacing, from the official limits</h3>
+<div class="tablewrap"><table><tr><th>Subtest</th><th>Questions</th><th>Minutes</th><th>Per question</th></tr>${pace()}</table></div>
+<p class="small">The recall subtests (WK, EI, AI, SI, GS) move fast: answer and go. AR, PC and MK give you minutes per question; use them to read twice and check your arithmetic.</p>
+
+<h3>An 8-week plan, about an hour a day</h3>
+<div class="card small">
+<ol>
+<li><strong>Week 1.</strong> Take the full practice test here, timed, as a baseline. Read every explanation for every miss. Rank your subtests from weakest to strongest.</li>
+<li><strong>Weeks 2 and 3.</strong> Arithmetic Reasoning and Mathematics Knowledge, every day. They are half the AFQT and gate most technical ratings (AR 52 is a hard minimum for ET, IT, AET, AMT, AST and EM). Khan Academy Pre-algebra and Algebra 1, 30 minutes, then 15 practice items here in study mode.</li>
+<li><strong>Weeks 4 and 5.</strong> Word Knowledge and Paragraph Comprehension. WK is the single most heavily weighted subtest in the AFQT. Learn 10 roots or prefixes a day and read something hard for 20 minutes. PC: read the passage twice, answer only from the text.</li>
+<li><strong>Week 6.</strong> The technical subtests that match the ratings you want. GS, EI and MC for the electronics and engineering ratings; AI, SI and MC for aviation and machinery; AO for everyone, because it is pure practice.</li>
+<li><strong>Week 7.</strong> Second full timed test. Compare with week 1. Go back to whatever is still lowest.</li>
+<li><strong>Week 8.</strong> Light review, one subtest a day in study mode. Sleep. Nothing new the last day.</li>
+</ol>
+<p>Short daily sessions beat weekend marathons. Two 30-minute blocks are better than one 2-hour block. Retest here every two weeks and keep the dates.</p>
+</div>
+
+<h3>What matters for the Coast Guard</h3>
+<div class="card small">
+<p><strong>VE and AR</strong> (that is WK, PC and AR) appear in the formula for most ratings: BM, ME, CS, OS, SK, YN, IS, PA, MST, and one path for MK. <strong>MK, EI and GS</strong> add ET, IT, AET and EM. <strong>AR, MC and AS</strong> matter for AMT, MK and DC; <strong>MC and AS</strong> with VE for AST and DC. HS wants VE, MK, GS and AR with AR at least 50. Nothing in the Coast Guard formulas uses AO, but it still counts toward the overall picture a recruiter sees.</p>
+<p>Translation: the four AFQT subtests are the foundation for every job. Then pick the technical subtests that match the two or three ratings you actually want.</p>
+</div>
+
+<h3>What to study and where, by subtest</h3>
+<div class="tablewrap"><table><tr><th>Subtest</th><th>Study this</th><th>Free source</th></tr>
+<tr><td>AR</td><td>Word problems: rates, ratios, percents, interest, unit conversion, averages. Set up before you compute.</td><td><a href="https://www.khanacademy.org/math/pre-algebra" target="_blank" rel="noopener">Khan Academy Pre-algebra</a>, <a href="https://www.khanacademy.org/math/arithmetic" target="_blank" rel="noopener">Arithmetic</a>, <a href="https://www.officialasvab.com/arithmetic-reasoning-ar/" target="_blank" rel="noopener">official AR samples</a></td></tr>
+<tr><td>MK</td><td>Solving equations, exponents and roots, factoring, geometry formulas, Pythagorean theorem, probability.</td><td><a href="https://www.khanacademy.org/math/algebra" target="_blank" rel="noopener">Khan Academy Algebra 1</a>, <a href="https://www.khanacademy.org/math/basic-geo" target="_blank" rel="noopener">Basic geometry</a>, <a href="https://www.officialasvab.com/mathematics-knowledge-mk/" target="_blank" rel="noopener">official MK samples</a></td></tr>
+<tr><td>WK</td><td>Roots, prefixes, suffixes. Synonyms alone and in a sentence. Read daily and look up what you skip.</td><td><a href="https://www.officialasvab.com/word-knowledge-wk/" target="_blank" rel="noopener">official WK samples</a>, any library vocabulary book, Khan Academy ELA</td></tr>
+<tr><td>PC</td><td>Main idea, stated detail, inference, author's purpose, word in context.</td><td><a href="https://www.khanacademy.org/test-prep/sat-reading-and-writing" target="_blank" rel="noopener">Khan Academy SAT Reading and Writing</a>, <a href="https://www.officialasvab.com/paragraph-comprehension-pc/" target="_blank" rel="noopener">official PC samples</a></td></tr>
+<tr><td>GS</td><td>Biology, human body, ecology, earth and space, chemistry basics, forces and energy.</td><td><a href="https://openstax.org/subjects/science" target="_blank" rel="noopener">OpenStax science textbooks</a>, <a href="https://www.khanacademy.org/science" target="_blank" rel="noopener">Khan Academy science</a>, <a href="https://www.officialasvab.com/general-science-gs/" target="_blank" rel="noopener">official GS samples</a></td></tr>
+<tr><td>EI</td><td>Ohm's law, series and parallel, component names and symbols, AC vs DC, wiring safety.</td><td><a href="https://www.khanacademy.org/science/physics/circuits-topic" target="_blank" rel="noopener">Khan Academy circuits</a>, <a href="https://www.officialasvab.com/electronics-information-ei/" target="_blank" rel="noopener">official EI samples</a></td></tr>
+<tr><td>AI</td><td>Engine cycle, fuel, ignition, cooling, brakes, drivetrain, common symptoms.</td><td><a href="https://www.howacarworks.com/basics" target="_blank" rel="noopener">How a Car Works basics</a>, <a href="https://www.officialasvab.com/auto-information-ai/" target="_blank" rel="noopener">official AI samples</a></td></tr>
+<tr><td>SI</td><td>Tool names and uses, fasteners, saws and blades, measuring, shop safety.</td><td><a href="https://www.officialasvab.com/shop-information-si/" target="_blank" rel="noopener">official SI samples</a>, any library shop or woodworking reference</td></tr>
+<tr><td>MC</td><td>Levers, pulleys, gears, inclined planes, pressure and hydraulics, balance and center of gravity.</td><td><a href="https://openstax.org/details/books/physics" target="_blank" rel="noopener">OpenStax Physics</a>, <a href="https://www.officialasvab.com/mechanical-comprehension-mc/" target="_blank" rel="noopener">official MC samples</a></td></tr>
+<tr><td>AO</td><td>Rotation, never mirroring. Find one anchor piece, eliminate options that mirror or swap it.</td><td><a href="https://www.officialasvab.com/assembling-objects-ao/" target="_blank" rel="noopener">official AO samples</a>, this tool's AO bank</td></tr>
+</table></div>
+
+<h3>Test day</h3>
+<div class="card small"><ul>
+<li>Bring valid photo ID. No ID, no test.</li>
+<li>Be early. Late means turned away and rescheduled.</li>
+<li>No calculator, no phone. They give you scratch paper and a pencil.</li>
+<li>Sleep the night before. Eat. The computer test runs about 2 hours plus tryout time.</li>
+<li>Your recruiter can drive you but cannot come in the room.</li>
+<li>Never share or ask about actual test questions. It is a federal offense.</li>
+</ul></div>
+
+<h3>Myths to ignore</h3>
+<div class="card small"><ul>
+<li>"The AFQT is a percent correct." No. It is a percentile against a national sample. 50 means you beat half of them.</li>
+<li>"You can use a calculator." No.</li>
+<li>"You can go back and fix answers." Not on the computer test.</li>
+<li>"The Coast Guard needs a 36 or 40." Old. It is 32 for a diploma holder (higher for a GED).</li>
+<li>"Guess fast at the end to finish." Random wrong answers at the end are penalized extra. Work to the last second.</li>
+<li>"Jobs go by your AFQT." Jobs go by combinations of subtest scores. The AFQT only gets you in the door.</li>
+</ul></div>`;
+
+$('#road-body').innerHTML = `
+<div class="card"><span class="eyebrow">The basics, official</span>
+<dl class="kv">
+<dt>Age</dt><dd>17 to 41 for active duty. Under 18 needs written consent from a parent or guardian. That is federal law (10 U.S.C. 505), not a recruiter's choice.</dd>
+<dt>AFQT</dt><dd>32 minimum with a high school diploma. GED: higher (reported 47, some say 50). Cannot be waived.</dd>
+<dt>Citizenship</dt><dd>U.S. citizen or lawful permanent resident.</dd>
+<dt>Education</dt><dd>Diploma or equivalent.</dd>
+<dt>Fitness at boot camp</dt><dd>Push-ups in one minute: 29 (men) or 15 (women). Forearm plank: 1:18 or 1:09. 1.5-mile run: 12:29 or 15:05. Swim training is part of boot camp.</dd>
+<dt>Tattoos</dt><dd>No limit on number; location and content rules apply.</dd>
+</dl></div>
+
+<h3>Timeline for a high school junior or senior</h3>
+<div class="card small"><ol>
+<li><strong>Now.</strong> Ask the school counselor (Moravia Jr-Sr High: Shannon Taylor, 315-497-2670) whether the school gives the free ASVAB Career Exploration Program and which release option it uses. An 11th or 12th grade CEP score counts for enlistment for two years, even under the option that never sends it to recruiters. Study 6 to 8 weeks before it.</li>
+<li><strong>Talk to a recruiter</strong> once you have a practice baseline. Find one at <a href="https://www.gocoastguard.com/connect" target="_blank" rel="noopener">gocoastguard.com/connect</a>. Bring: certified birth certificate, Social Security card, state ID, transcript, a parent ready to sign, and a complete list of doctor visits, prescriptions and anything with a court. Ask for the dated, current A-school ASVAB list.</li>
+<li><strong>Be completely honest on the medical prescreen.</strong> Since 2022 MEPS pulls civilian medical records automatically (MHS Genesis). Old ADHD medication, inhalers, surgeries and the like get found. Disclosed, they are often waivable. Hidden, they end the application.</li>
+<li><strong>Delayed Decision Program.</strong> A pilot since 2024 lets a 17-year-old rising senior enlist in the Reserve, go to boot camp the summer before senior year, and choose active duty at graduation. Ask whether it is still running.</li>
+<li><strong>ASVAB at MEPS</strong> (or the at-home PiCAT plus a 30-minute verification test within 45 days). Scores are immediate. Retest waits: 1 month, 1 month, then 6 months. A jump of 20+ points in 6 months triggers a confirmation test, so your first serious attempt should be your real attempt.</li>
+<li><strong>Pick ratings with your eyes open.</strong> Only what is written in the enlistment contract counts. A guaranteed A-school in the contract can mean an E-4 billet right after boot camp (Vested Crewmember program for BM, DC, ET, GM and others). A verbal promise is not a contract.</li>
+<li><strong>Delayed Entry Program</strong>, up to about a year between signing and shipping. A Quick-Ship bonus ($5,000 to $10,000) is offered for taking the next open class.</li>
+<li><strong>Boot camp:</strong> 8 weeks at Cape May, New Jersey. About 15 percent of recruits were discharged in 2024. Show up already able to pass the fitness numbers above with room to spare, and able to swim.</li>
+<li><strong>After boot camp:</strong> E-2 automatically. Either straight to A-school (if guaranteed) or to a unit as a non-rate, then request A-school through Direct Access. Since 2026, critical ratings have no 4-month wait, and non-rates idle for 12 months get assigned a school based on ASVAB scores.</li>
+</ol></div>
+
+<h3>Advanced rank at entry</h3>
+<div class="card small"><p>The official hiring page says recruits with college credits, JROTC, ROTC, Police Explorer, Sea Explorer or Scouting achievements may be advanced straight to E-3 after boot camp. One state program documents 2 years of a cadet program for E-2 and 3 years for E-3. Sea Cadets credit is a Navy rule and unconfirmed for the Coast Guard. E-3 over E-2 is worth about $139 more a month at the start. Ask the recruiter what his record qualifies for and get it in writing.</p></div>
+
+<h3>The Academy option</h3>
+<div class="card small"><p>The Coast Guard Academy is a free four-year college with an officer commission at the end and <strong>no congressional nomination required</strong>. Ages 17 to 22 at entry, U.S. citizen, unmarried, no dependents. SAT or ACT required. Its own fitness exam is required. Five years of service afterward.</p>
+<dl class="kv">
+<dt>Application opens</dt><dd>July 15</dd>
+<dt>Early Action</dt><dd>October 15 (decisions by December 23)</dd>
+<dt>Regular Decision</dt><dd>January 15 (decisions by April 1)</dd>
+<dt>AIM summer program</dt><dd>Rising seniors only. Apply early February to April 1 of junior year. One week in July, about $750, plus a free virtual session. The fitness score from AIM counts for the application.</dd>
+<dt>Scholars Program</dt><dd>About 50 applicants a year get a paid prep year, then most are appointed.</dd>
+</dl><p><a href="https://uscga.edu/admissions/apply/" target="_blank" rel="noopener">uscga.edu/admissions/apply</a></p>
+<p>If his scores and grades come in strong, he should know this door exists before he signs enlistment papers. Enlisting first and going officer later (OCS) is also a real path.</p></div>
+
+<h3>What the Coast Guard pays back</h3>
+<div class="card small">
+<dl class="kv">
+<dt>Pay, 2026</dt><dd>E-2 about $2,698 a month; E-3 $2,837 to $3,198; E-4 $3,142 to $3,659; plus housing and food allowances (food is about $477 a month, tax free). The Coast Guard advances to E-2 at boot camp graduation, and since late 2023 can advance to E-4 at A-school graduation.</dd>
+<dt>Bonuses</dt><dd>Up to $60,000 for a critical rating, $15,000 for college credits, $10,000 for quick shipping, stacking to a $75,000 cap. Critical ratings for the year ending September 2026: CS, EM and MK. The new list was not out as of November 2026.</dd>
+<dt>Tuition Assistance</dt><dd>$250 per credit hour, $4,500 a year, no payback obligation for enlisted. Degrees through a first master's.</dd>
+<dt>GI Bill</dt><dd>Post-9/11 GI Bill: 36 months of full in-state tuition plus a housing allowance after 36 months of service; 50 percent after 90 days.</dd>
+<dt>Credentials</dt><dd>A-schools carry college credit recommendations. Coast Guard COOL funds civilian licenses. AMT and AET time counts toward the FAA A&P license. Sea ratings map to Merchant Mariner Credentials.</dd>
+<dt>Leave and care</dt><dd>30 days paid leave a year, full medical and dental.</dd>
+</dl>
+<p>The chain is concrete: a strong composite opens a critical rating, which can bring a guaranteed school, an E-4 billet from boot camp, and the bonuses. A recruit who only clears 32 gets none of that.</p></div>
+
+<h3>Other doors</h3>
+<div class="card small"><ul>
+<li><strong>Reserve</strong> at 17 with consent, same AFQT 32, same boot camp, two days a month and two weeks a year, up to $15,000 bonus.</li>
+<li><strong>Coast Guard JROTC</strong> exists at a small number of high schools; two years can qualify for advanced enlistment rank.</li>
+<li><strong>Coast Guard Auxiliary</strong> accepts members at 17 (volunteer, no pay, no commission). Useful exposure.</li>
+<li><strong>CSPI</strong> pays for the last two years of college and leads to a commission, for enrolled college students.</li>
+</ul></div>`;
+
+$('#resources-body').innerHTML = `
+<div class="card"><span class="eyebrow">Official, free, no account</span>
+<p><a href="https://www.officialasvab.com/applicants/sample-questions/" target="_blank" rel="noopener">Official sample questions</a> for all 10 subtests, from retired test forms. The single best way to see exactly what the real items look like. Also read <a href="https://www.officialasvab.com/applicants/prepare/" target="_blank" rel="noopener">Preparing for the ASVAB</a> and <a href="https://www.officialasvab.com/applicants/what-to-expect/" target="_blank" rel="noopener">What to Expect</a>.</p></div>
+
+<div class="card"><span class="eyebrow">Free full-length practice</span>
+<p><a href="https://www.march2success.com/" target="_blank" rel="noopener">March2Success</a>. Run by the Army, approved by the Department of Defense, free, no ads. A diagnostic ASVAB, lessons for every section, a full-length practice ASVAB, two more practice exams and flashcards. Requires an account (age 13 and up). Their FAQ says you will not be contacted by a recruiter. A parent can be added as a monitor. Accounts expire after 180 days or 25 days idle, so make a new one if it lapses.</p></div>
+
+<div class="card"><span class="eyebrow">At school, free</span>
+<p>The <strong>ASVAB Career Exploration Program</strong> is the real ASVAB given free at participating high schools. 11th and 12th grade scores count for enlistment for two years no matter which release option the school picked. Ask the counselor at Moravia Jr-Sr High School (68 S Main St, 315-497-2670, counselor Shannon Taylor) whether the school hosts it. If staff administered it, a short verification test is needed before enlistment. <a href="https://www.asvabprogram.com/" target="_blank" rel="noopener">asvabprogram.com</a></p></div>
+
+<div class="card"><span class="eyebrow">At the library, free with a card</span>
+<p><strong>Powers Library</strong>, 29 Church Street, Moravia, 315-497-1955 (Mon and Wed 12 to 6, Tue and Fri 10 to 5, Sat 9 to 12). It belongs to the Finger Lakes Library System, and New York's NOVELny program includes <strong>Gale Presents: Peterson's Test and Career Prep</strong>, which has full-length ASVAB practice tests and courses that otherwise cost about $49 a month. Ask staff how to log in with the library barcode. Also ask about LearningExpress Library and ASVAB books on the shelf. <a href="https://catalog.flls.org/polaris/search/misc/esources.aspx?ctx=1.1033.0.0.3" target="_blank" rel="noopener">FLLS online databases</a></p></div>
+
+<div class="card"><span class="eyebrow">Content review, free</span>
+<ul>
+<li><a href="https://www.khanacademy.org/math" target="_blank" rel="noopener">Khan Academy math</a>: Arithmetic, Pre-algebra, Algebra 1, Basic geometry. Nonprofit. No ASVAB course, but it covers everything AR and MK test.</li>
+<li><a href="https://openstax.org/" target="_blank" rel="noopener">OpenStax</a>: free textbooks for physics, biology, chemistry, astronomy, anatomy. Read the chapter intros and summaries for GS and MC.</li>
+<li><a href="https://www.khanacademy.org/test-prep/sat-reading-and-writing" target="_blank" rel="noopener">Khan Academy SAT Reading and Writing</a> for PC-style reading.</li>
+</ul></div>
+
+<div class="card"><span class="eyebrow">Free, but ad-supported</span>
+<p>Union Test Prep and 4Tests offer free question sets. The New York National Guard's education office lists both. Expect upsells. Never pay or hand personal information to a prep site you have not checked, and avoid anything that lets you use a calculator.</p></div>
+
+<div class="card"><span class="eyebrow">Coast Guard</span>
+<ul>
+<li><a href="https://www.gocoastguard.com/get-started/eligibility-requirements" target="_blank" rel="noopener">Eligibility requirements</a> (choose Enlisted: Active Duty)</li>
+<li><a href="https://www.gocoastguard.com/careers/enlisted" target="_blank" rel="noopener">Enlisted careers</a>, each with a video</li>
+<li><a href="https://www.gocoastguard.com/hiring-incentives" target="_blank" rel="noopener">Hiring incentives</a> (bonuses, advanced rank)</li>
+<li><a href="https://www.gocoastguard.com/get-started/basic-training" target="_blank" rel="noopener">Basic training</a></li>
+<li><a href="https://www.gocoastguard.com/connect" target="_blank" rel="noopener">Find a recruiter</a></li>
+<li><a href="https://uscga.edu/admissions/" target="_blank" rel="noopener">Coast Guard Academy admissions</a></li>
+</ul></div>`;
+
+$('#about-body').innerHTML = `
+<div class="card small">
+<p><strong>What is official here.</strong> The test structure (10 subtests, 135 scored questions, 197 minutes, per-subtest counts and limits), the no-calculator, no-backtracking and random-scoring rules, the AFQT formula and the composite-to-percentile table, the category bands, the retest rules, and the 2-year validity all come from officialasvab.com and the Department of Defense 1997 score scale report. The Coast Guard age range, AFQT 32 minimum, fitness numbers, the 21 ratings and their schools, the bonus programs and the Academy calendar come from gocoastguard.com, uscga.edu, Coast Guard messages and GAO reports. Parental consent under 18 is 10 U.S.C. 505.</p>
+<p><strong>What is derived.</strong> The per-rating score requirements. The Coast Guard removed the table from its public manual in April 2023 and announced a 10-point cut in November 2021. The values here are the last official or best-attested pre-2021 figures minus 10. Only IT (162) is confirmed in official text after the cut. Seven of the pre-2021 rows were checked against official Coast Guard pages; the rest come from a transcription that matched all seven.</p>
+<p><strong>What is third-party or anecdotal.</strong> The GED AFQT minimum (47 or 50), A-school wait times, 2026 pay figures (transcribed from the official table), and everything attributed to test-takers.</p>
+<p><strong>What this tool cannot do.</strong> Turn a practice percent-correct into an AFQT percentile. The real score comes from an adaptive, item-response-theory model with no public conversion from number correct. Any site that gives you a percentile from a practice test is guessing.</p>
+<p><strong>The questions</strong> are original, written to the official content outlines and sample formats, and each was checked for a single correct answer. Report anything that looks wrong.</p>
+<p><strong>Privacy.</strong> Results and entered scores live only in this browser's storage on this device. Nothing is sent anywhere. Clearing browser data clears them.</p>
+<p><strong>Checked</strong> November 9, 2026. Policies change; a recruiter is the authority on anything current.</p>
+</div>
+<h3>Key sources</h3>
+<div class="card small"><ul>
+<li><a href="https://www.officialasvab.com/applicants/what-to-expect/" target="_blank" rel="noopener">officialasvab.com, What to Expect</a></li>
+<li><a href="https://www.officialasvab.com/applicants/scores/" target="_blank" rel="noopener">officialasvab.com, Understanding ASVAB Scores</a></li>
+<li><a href="https://www.officialasvab.com/wp-content/uploads/2019/08/1997score_scale.pdf" target="_blank" rel="noopener">DMDC, Development and Evaluation of the 1997 ASVAB Score Scale (Segall 2004)</a></li>
+<li><a href="https://www.officialasvab.com/recruiters/asvab-retest-policy/" target="_blank" rel="noopener">officialasvab.com, Retest Policy</a></li>
+<li><a href="https://www.gocoastguard.com/get-started/eligibility-requirements" target="_blank" rel="noopener">gocoastguard.com, Eligibility Requirements</a></li>
+<li><a href="https://www.gocoastguard.com/hiring-incentives" target="_blank" rel="noopener">gocoastguard.com, Hiring Incentives</a></li>
+<li><a href="https://www.law.cornell.edu/uscode/text/10/505" target="_blank" rel="noopener">10 U.S.C. 505 (Cornell LII)</a></li>
+<li><a href="https://files.gao.gov/reports/GAO-25-107224/index.html" target="_blank" rel="noopener">GAO-25-107224, Coast Guard recruiting and retention</a></li>
+<li><a href="https://uscga.edu/admissions/apply/" target="_blank" rel="noopener">Coast Guard Academy, Apply</a></li>
+<li><a href="https://www.march2success.com/" target="_blank" rel="noopener">March2Success</a></li>
+</ul></div>`;
+
+// ---------- boot ----------
+show('home');
+})();
+</script>
